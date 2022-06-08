@@ -56,6 +56,7 @@ public class ChatroomDao
 	 */
 	public ArrayList<ChatroomVo> getUserRooms(long mnum)
 	{
+		// asdfasddfjklasdhfjklasd
 		ArrayList<ChatroomVo> list = new ArrayList<ChatroomVo>();
 		String sql = "select * from chatroom where rnum = ?";
 		try(Connection con = JdbcUtil.getCon();
