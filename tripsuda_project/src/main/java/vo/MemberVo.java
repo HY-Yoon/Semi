@@ -2,6 +2,10 @@ package vo;
 
 import java.sql.Date;
 
+/**
+ * @author 주현
+ * 회원 VO
+ */
 public class MemberVo
 {
 	private long mnum;			// 회원 번호
@@ -15,6 +19,11 @@ public class MemberVo
 	private String favorite;	// 관심지역
 	private String grade;		// 권한(일반/전문가/관리자)
 	private Date stop;			// 정지기한
+	
+	public MemberVo()
+	{
+		
+	}
 	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, Date birth, String withdraw,
 			String favorite, String grade, Date stop) {
 		super();
