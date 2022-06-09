@@ -13,6 +13,10 @@ import db.JdbcUtil;
 import oracle.jdbc.OracleConnection;
 import vo.ChatVo;
 
+/**
+ * @author 주현
+ * 채팅 데이터 DAO
+ */
 public class ChatDao
 {
 	private static ChatDao instance = null;
