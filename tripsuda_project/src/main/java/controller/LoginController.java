@@ -30,4 +30,5 @@ public class LoginController extends HttpServlet
 		req.getSession().setAttribute("channel", 1);
 		resp.sendRedirect("chat.jsp");
 	}
+	
 }
