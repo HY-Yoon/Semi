@@ -36,24 +36,6 @@ public class ChatroomDao
 	{
 	}
 	
-	public int createRoom(ChatroomVo vo)
-	{
-		String sql = "insert into chatroom values(chatroom_seq.nextval, ?, ?)";
-		try(Connection con = JdbcUtil.getCon();
-			PreparedStatement pstmt = con.prepareStatement(sql);)
-		{
-			pstmt.setLong(1, vo.getaNum());
-			Array arr = ((OracleConnection) con).createARRAY("chat_members", vo.getMembers());
-			pstmt.setArray(2, arr);
-			return pstmt.executeUpdate();
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			return 0;
-		}
-	}
-
 	public String getArticleName(long anum)
 	{
 		String sql = "select * from board where anum = " + anum;
@@ -140,18 +122,18 @@ public class ChatroomDao
 			return list;
 		}
 	}
-	public ChatroomVo getRoom(long channel)
+	public ChatroomVo getRoom(long rnum)
 	{
 		String sql = "select * from chatroom where rnum = ?";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
-			pstmt.setLong(1, channel);
+			pstmt.setLong(1, rnum);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next())
 			{
 				ChatroomVo vo = new ChatroomVo();
-				vo.setrNum(channel);
+				vo.setrNum(rnum);
 				vo.setaNum(rs.getLong("anum"));
 				Array arr = rs.getArray("members");
 				System.out.println(arr.getArray().toString());

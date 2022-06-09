@@ -1,15 +1,10 @@
 package db;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
-import java.util.Scanner;
 
 public class JdbcUtil
 {
@@ -21,7 +16,7 @@ public class JdbcUtil
 			Class.forName("oracle.jdbc.OracleDriver");
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			conn = DriverManager.getConnection(url, "c##scott", "tiger");
-			System.out.println("접속 성공 - " + conn);
+			// System.out.println("접속 성공 - " + conn);
 			return conn;
 		}
 		catch(ClassNotFoundException e)
