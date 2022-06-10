@@ -1,5 +1,29 @@
 -- 테이블식
 
+
+-- 동행 게시판
+CREATE TABLE board_party (
+	anum	number(10)      primary key,	
+	mnum	number(10)      references member(mnum),	
+	nick	varchar2(20)	NOT NULL,
+	title	varchar2(100)	NOT NULL,
+	keyword	varchar2(20),
+	content	clob            NOT NULL,
+	regdate	date	        NOT NULL,
+	orgFile	varchar2(200),
+	serverFile	varchar2(200),
+	views       number(10)      NOT NULL,
+    memcnt      number(10)      NOT NULL,
+    dest        varchar2(100)   NOT NULL,
+    startdate   date            NOT NULL,
+    enddate     date            NOT NULL,
+    gender      varchar2(10),
+    age         number(10),
+    yn          varchar2(5)	    default N   NOT NULL
+);
+CREATE SEQUENCE board_party_seq;
+
+
 -- 회원 리스트 타입 선언
 CREATE OR REPLACE TYPE chat_members IS TABLE OF NUMBER;
 
@@ -11,7 +35,7 @@ CREATE TABLE chatroom
     anum NUMBER NOT NULL,
     members chat_members,
     
-    CONSTRAINT fk_chatroom_anum FOREIGN KEY(anum) REFERENCES board(anum)
+    CONSTRAINT fk_chatroom_anum FOREIGN KEY(anum) REFERENCES board_party(anum)
 )
 NESTED TABLE members STORE AS chat_members_list;
 
@@ -61,6 +85,6 @@ create or replace trigger chatroom_create_trig
 declare
     nums chat_members;
 begin
-    select mnum bulk collect into nums from board where anum = :new.anum;
+    select mnum bulk collect into nums from board_party where anum = :new.anum;
     insert into chatroom values(chatroom_seq.nextval, :new.anum, nums);
 end chatroom_create_trig;
