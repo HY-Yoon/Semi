@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="../../js/jQuary/jquery-3.6.0.js"></script>
+<script src="../../js/summernote/summernote-lite.js"></script>
+<script src="../../js/summernote/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../../css/summernote/summernote-lite.css">
+</head>
+<body>
+	just for test
+	<div class="container">
+		yo 맨 여기는 글 작성란 A yo
+		<div id="limiter">
+			<div id="region_select" class="select_box"> <!-- 지역 -->
+				<span style="width:200px;">지역 선택</span>
+			</div>
+			<div id="gender_select" class="select_box"> <!-- 성별 제한 -->
+				<span style="width:200px;">성별 조건</span>
+			</div>
+			<div id="age_select" class="select_box"> <!-- 나이 제한 -->
+				<span style="width:200px;">연령 조건</span>
+			</div>
+			<div id="schedule_select" class="select_box"> <!-- 일정 -->
+				<span style="width:200px;">날짜 선택</span>
+			</div>
+			<div id="memcount_select" class="select_box"> <!-- 모집 인원 -->
+				<span style="width:200px;">모집인원</span>
+			</div>
+		</div>
+		<div id="editor">
+			<div id="backimg_edit"></div> <!-- 배경사진 -->
+			<div id="title_edit"></div> <!-- 제목 -->
+			<div id="summernote"></div> <!-- 편집기 -->
+		</div>
+		<div id="submitter">
+			<input type="button" id="cancel_btn" value="취소">
+			<input type="button" id="submit_btn" value="완료">
+		</div>
+		<form>
+			
+		</form>
+	</div>
+</body>
+<link rel="stylesheet" href="css/editor.css">
+<script src="js/editor.js"></script>
+</html>

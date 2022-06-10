@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+div#chat_support_div {
+    position: fixed;
+    width: 100px; height: 100px;
+    right: 50px; bottom: 50px;
+    border-radius: 20px;
+    background-color: greenyellow;
+    border: 2px green solid;
+}
+
+div btn#chat_support_btn {
+    display: flex;
+    width: 100px; height: 100px;
+}
