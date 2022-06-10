@@ -183,3 +183,16 @@ CREATE TABLE adminchat
     CONSTRAINT fk_adchat_cnum FOREIGN KEY(cnum) REFERENCES chat(cnum),
     CONSTRAINT fk_adchat_sender FOREIGN KEY(sender) REFERENCES MEMBER(mnum)
 );
+
+-- 트리거
+-- 동행구하기 글 작성되면 채팅방도 자동으로 생성
+-- ※ 글이 지워진다고 같이 제거되진 않음! (기록을 남겨야 할 것 같아서)
+create or replace trigger chatroom_create_trig
+    after insert on partyboard
+    for each row
+declare
+    nums chat_members;
+begin
+    select mnum bulk collect into nums from board where anum = :new.anum;
+    insert into chatroom values(chatroom_seq.nextval, :new.anum, nums);
+end chatroom_create_trig;
