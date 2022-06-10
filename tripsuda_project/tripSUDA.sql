@@ -1,5 +1,5 @@
 -- 회원
-CREATE TABLE member(  
+CREATE TABLE member(   
 	mnum	number(10) primary key,
 	id	varchar2(20)	NOT NULL UNIQUE,
 	pwd	varchar2(20)	NOT NULL,
