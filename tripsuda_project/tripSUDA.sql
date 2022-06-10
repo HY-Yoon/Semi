@@ -1,16 +1,16 @@
 -- 회원
-CREATE TABLE member(   
-	mnum	number(10) primary key,
-	id	varchar2(20)	NOT NULL UNIQUE,
-	pwd	varchar2(20)	NOT NULL,
-	name	varchar2(20)	NOT NULL,
-	nick	varchar2(20)	NOT NULL UNIQUE,	
-	phone	varchar2(11)	NOT NULL,
-	birth	Date	NOT NULL,
-	withdraw varchar2(5)	DEFAULT 'N' check(withdraw in('Y','N')),	-- 'Y/N'
-	favorite varchar2(15)	NOT NULL, --관심지역
-	grade	varchar2(30)	NOT NULL, --일/전/관   디폴트 일반?
-	stop	Date DEFAULT NULL	--기한이 됐을 때 로그인 가능함
+CREATE TABLE member (
+   mnum   number(10) primary key,
+   id   varchar2(20) NOT NULL UNIQUE,
+   pwd   varchar2(20) NOT NULL,
+   name   varchar2(20) NOT NULL,
+   nick   varchar2(20) NOT NULL UNIQUE,   
+   phone   varchar2(15) NOT NULL,
+   birth   Date NOT NULL,
+   withdraw varchar2(10) DEFAULT 'N' check(withdraw in('Y','N')),   
+   favorite varchar2(15) NOT NULL, 
+   grade   varchar2(30) DEFAULT '일반' , 
+   stop   Date DEFAULT NULL  
 );
 -- 여행후기게시판
 CREATE TABLE board_review (
