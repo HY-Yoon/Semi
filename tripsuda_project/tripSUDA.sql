@@ -94,17 +94,7 @@ CREATE table report(
 	rdate Date not null,
 	repo varchar2(500) not null --신고 내용(댓글내용/게시글내용 짧게)
 );
---동행구하기
-create table partyboard(
-  anum number(10) NOT NULL, --시퀀스
-  memcnt number(10) NOT NULL, --default 2, max 100
-  dest varchar2(100) NOT NULL,
-  startdate date NOT NULL,
-  enddate date NOT NULL,
-  gender varchar2(10),
-  age number(10),
-  yn varchar2(5)	default N NOT NULL,
-);
+
 --내일정
 create table mycalender(
   ecode number(10) NOT NULL, --시퀀스
@@ -125,6 +115,30 @@ create table taglist(
 CREATE TABLE category (
 	cate varchar2(30) check(cate in('자유','동행','전문가','후기','질문')) primary key
 );
+
+
+-- 동행 게시판 (partyboard X)
+CREATE TABLE board_party (
+	anum	number(10)      primary key,	
+	mnum	number(10)      references member(mnum),	
+	nick	varchar2(20)	NOT NULL,
+	title	varchar2(100)	NOT NULL,
+	keyword	varchar2(20),
+	content	clob            NOT NULL,
+	regdate	date	        NOT NULL,
+	orgFile	varchar2(200),
+	serverFile	varchar2(200),
+	views       number(10)      NOT NULL,
+	memcnt      number(10)      NOT NULL,
+	dest        varchar2(100)   NOT NULL,
+	startdate   date            NOT NULL,
+	enddate     date            NOT NULL,
+	gender      varchar2(10),
+	age         number(10),
+	yn          varchar2(5)	    default N   NOT NULL
+);
+CREATE SEQUENCE board_party_seq;
+
 --동행신청목록
 CREATE TABLE partywait (
     pnum number(10) primary key, --시퀀스 따로 만들 것 
@@ -145,10 +159,10 @@ DROP TABLE chatroom;
 CREATE TABLE chatroom
 (
     rnum NUMBER PRIMARY KEY,
-    anum NUMBER NOT NULL,
+    anum NUMBER,
     members chat_members,
     
-    CONSTRAINT fk_chatroom_anum FOREIGN KEY(anum) REFERENCES board(anum)
+    CONSTRAINT fk_chatroom_anum FOREIGN KEY(anum) REFERENCES board_party(anum)
 )
 NESTED TABLE members STORE AS chat_members_list;
 -- 채팅방 시퀀스
@@ -159,13 +173,13 @@ DROP TABLE chat;
 CREATE TABLE chat
 (
     cnum NUMBER PRIMARY KEY,
-    rnum NUMBER NOT NULL,
+    rnum NUMBER,
     sender NUMBER NOT NULL,
     readers chat_members,
     message VARCHAR2(1000) NOT NULL,
     credate DATE NOT NULL,
     
-    CONSTRAINT fk_chat_rnum FOREIGN KEY(rnum) REFERENCES chatroom(rnum),
+    CONSTRAINT fk_chat_rnum FOREIGN KEY(rnum) REFERENCES board_party(rnum),
     CONSTRAINT fk_chat_sender FOREIGN KEY(sender) REFERENCES MEMBER(mnum)
 )
 NESTED TABLE readers STORE AS chat_readers_list;
@@ -193,6 +207,6 @@ create or replace trigger chatroom_create_trig
 declare
     nums chat_members;
 begin
-    select mnum bulk collect into nums from board where anum = :new.anum;
+    select mnum bulk collect into nums from board_party where anum = :new.anum;
     insert into chatroom values(chatroom_seq.nextval, :new.anum, nums);
 end chatroom_create_trig;
