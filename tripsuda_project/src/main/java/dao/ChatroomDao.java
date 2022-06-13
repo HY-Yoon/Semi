@@ -36,9 +36,27 @@ public class ChatroomDao
 	{
 	}
 	
+	public int createRoom(ChatroomVo vo)
+	{
+		String sql = "insert into chatroom values(chatroom_seq.nextval, ?, ?)";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, vo.getaNum());
+			Array arr = ((OracleConnection) con).createARRAY("chat_members", vo.getMembers());
+			pstmt.setArray(2, arr);
+			return pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
 	public String getArticleName(long anum)
 	{
-		String sql = "select * from board_party where anum = " + anum;
+		String sql = "select * from board where anum = " + anum;
 		try(Connection con = JdbcUtil.getCon();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);)
@@ -73,9 +91,9 @@ public class ChatroomDao
 					+ "    on a.anum = b.anum";
 		// 자신이 쓴 게시물을 통해 채팅방 가져오기
 		String sql2 = "select a.*, b.*"
-					+ "	   from board_party a inner join chatroom b"
+					+ "	   from partyboard a inner join chatroom b"
 					+ "        on a.anum = b.anum"
-					+ "    where ? = a.mnum";
+					+ "    where ? in(select mnum from board where anum = a.anum)";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			PreparedStatement pstmt2 = con.prepareStatement(sql2);)
@@ -122,18 +140,18 @@ public class ChatroomDao
 			return list;
 		}
 	}
-	public ChatroomVo getRoom(long rnum)
+	public ChatroomVo getRoom(long channel)
 	{
 		String sql = "select * from chatroom where rnum = ?";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
-			pstmt.setLong(1, rnum);
+			pstmt.setLong(1, channel);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next())
 			{
 				ChatroomVo vo = new ChatroomVo();
-				vo.setrNum(rnum);
+				vo.setrNum(channel);
 				vo.setaNum(rs.getLong("anum"));
 				Array arr = rs.getArray("members");
 				System.out.println(arr.getArray().toString());

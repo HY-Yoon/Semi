@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 import db.JdbcUtil;
 import oracle.jdbc.OracleConnection;
-import oracle.jdbc.OraclePreparedStatement;
-import oracle.sql.ARRAY;
 import vo.ChatVo;
 
 /**
@@ -39,18 +37,15 @@ public class ChatDao
 	
 	public int addChat(ChatVo vo)
 	{
-		String sql = "insert into chat values(chat_seq.nextval, ?, ?, <chat>, ?, sysdate)";
-		String param_cm = "chat_members(";
-		for (int i = 0; i < vo.getReaders().length; i++)
-			param_cm += vo.getReaders()[i] + (i == vo.getReaders().length - 1 ? ")" : ",");
-		sql = sql.replaceAll("<chat>", param_cm);
-		
+		String sql = "insert into chat values(chat_seq.nextval, ?, ?, ?, ?, sysdate)";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
 			pstmt.setLong(1, vo.getrNum());
 			pstmt.setLong(2, vo.getSender());
-			pstmt.setString(3, vo.getMessage());
+			Array arr = ((OracleConnection) con).createARRAY("chat_members", vo.getReaders());
+			pstmt.setArray(3, arr);
+			pstmt.setString(4, vo.getMessage());
 			return pstmt.executeUpdate();
 		}
 		catch(SQLException e)
@@ -60,11 +55,11 @@ public class ChatDao
 		}
 	}
 	
-	public ArrayList<ChatVo> select(long rnum)
+	public static ArrayList<ChatVo> select(long rnum)
 	{
 		ArrayList<ChatVo> list = new ArrayList<ChatVo>();
 		
-		String sql = "select * from chat where rnum = ? order by credate asc";
+		String sql = "select * from chat where rnum = ?";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
@@ -76,7 +71,7 @@ public class ChatDao
 				vo.setcNum(rs.getLong("cnum"));
 				vo.setrNum(rs.getLong("rnum"));
 				vo.setSender(rs.getLong("sender"));
-				Array arr = rs.getArray("readers");
+				Array arr = rs.getArray("members");
 				System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
