@@ -104,6 +104,7 @@ create table mycalender(
   startdate date NOT NULL,
   enddate date NOT NULL
  );
+create sequence mycalender_seq;
 
 --태그리스트
 create table taglist(
