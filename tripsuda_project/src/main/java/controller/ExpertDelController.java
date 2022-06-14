@@ -24,20 +24,24 @@ public class ExpertDelController extends HttpServlet {
 		int anum = Integer.parseInt(req.getParameter("anum"));
 		System.out.println(anum);
 		//하위테이블 comm_expert(댓글),reco_expert(추천),tag_expert(지역),hashtag_expert 삭제 후 board_expert삭
+		
 		Expert_commDao cdao = new Expert_commDao();
 		int n1 =cdao.delete(anum);
+				
 		
 		Expert_hashtagDao hdao = new Expert_hashtagDao();
 		int n2 =hdao.delete(anum);
-		
+				
 		Expert_RecoDao rdao = new Expert_RecoDao();
 		int n3 =rdao.delete(anum);
-		
+				
 		Expert_taglistDao tdao = new Expert_taglistDao();
 		int n4 =tdao.delete(anum);
-		
+						
 		Board_ExpertDao edao = Board_ExpertDao.getInstance();
 		int n5 = edao.delete(anum);
+		
+		System.out.println(n5);
 		
 		resp.setContentType("text/plain;charset=utf-8");
 		PrintWriter pw=resp.getWriter();
@@ -48,16 +52,8 @@ public class ExpertDelController extends HttpServlet {
 		}else {
 			json.put("result", "X");
 		}
-				
+			
 		pw.print(json);
-		
-	/*			
-		if(n1>0 && n2>0 && n3>0 && n4>0 && n5>0) {
-			json.put("result", "success");	
-		}else {
-			json.put("result", "fail");	
-		}
-			pw.print(json);
-	*/
+	
 	}
 }

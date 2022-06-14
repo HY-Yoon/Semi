@@ -13,6 +13,13 @@
 </style>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<%
+	request.setCharacterEncoding("utf-8");
+	String select = request.getParameter("select");
+	String search = request.getParameter("search");
+	request.setAttribute("select",select);
+	request.setAttribute("search",search);
+%>
 <script type="text/javascript">
 	window.onload=function(){
 		BoardList(1);
@@ -92,18 +99,19 @@
 				
 				}
 			};
-			xhr.open('get','${pageContext.request.contextPath}/html&jsp/board_expert/list?pageNum='+pageNum,true);
-			xhr.send();
-		}
 		
-
+						
+			xhr.open('post','${pageContext.request.contextPath}/html&jsp/board_expert/list',true);
+			let param="pageNum="+pageNum +"&select=${select}&search=${search}"
+			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			xhr.send(param);
+						
+		}
+	
 </script>
 <body>
-<!-- 
-<div>
-<input type="text" id="search" value="">검색
-</div>
- -->
+
+
 <div id="header">
  	<jsp:include page="../default/default_header.jsp"/>
 </div>

@@ -30,8 +30,8 @@ $(document).ready(function() {
 		});
 	});
 </script>
-
 <!-- css적용...? -->
+
 
 <div id="header">
  	<jsp:include page="../default/default_header.jsp"/>
@@ -75,5 +75,6 @@ $(document).ready(function() {
 <div id="footer">
 	<jsp:include page="../default/default_footer.jsp"/>
 </div>
+
 </body>
 </html>

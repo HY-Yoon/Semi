@@ -53,23 +53,26 @@ public class Expert_taglistDao {
 		JdbcUtil.close(con, pstmt, rs);
 	}
 }
-	//----------삭--------
-	public int delete(int anum) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		con = JdbcUtil.getCon();
-	try {
-		String sql = "delete from tag_expert where anum=?";
-		pstmt = con.prepareStatement(sql);
-		pstmt.setInt(1,anum);
-		return pstmt.executeUpdate();
-				
-	}catch (SQLException s) {
-		 s.printStackTrace();
-		 return -1;
-	}finally {
-		JdbcUtil.close(con, pstmt, null);
+		//----------삭제--------
+		public int delete(int anum) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			con = JdbcUtil.getCon();
+		try {
+			String sql = "delete from tag_expert where anum=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,anum);
+			return pstmt.executeUpdate();
+					
+		}catch (SQLException s) {
+			 s.printStackTrace();
+			 return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+		
 	}
 	
-}
+	
+	
 }

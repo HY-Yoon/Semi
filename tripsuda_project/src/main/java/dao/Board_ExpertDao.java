@@ -67,14 +67,37 @@ public class Board_ExpertDao {
 	}
 	
 }
-	//-----------------전체 글 개수-------------------------
-	public int getCount() {
+	//-----------------전체 글 개수(+검색기능 수정)-------------------------
+	public int getCount(String select, String search) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		con = JdbcUtil.getCon();
 	try {
-			String sql = "select NVL(count(*),0) cnt from board_expert ";
+		String sql = null;
+			  //검색X
+			if(select!=null && !select.equals("")) { //검색
+				
+				if(select.equals("tot")) { //통합
+					sql  = 	"select nvl(count(*),0) cnt from("
+							+ "select e.*,t.tag from board_expert e, tag_expert t where e.anum = t.anum )"
+							+ "where tag like '%"+search+"%' or nick like '%"+search+"%' or title like '%"
+							+ search +"%' or keyword like '%"+search+"%'";
+					
+				}else if(select.equals("tag")) { //태그
+					sql  = "select NVL(count(e.anum),0) cnt from board_expert e, tag_expert t"
+							+ " where tag like '%"+search+"%' and e.anum = t.anum";
+									
+					
+				}else {       
+					sql = "select NVL(count(e.anum),0) cnt from board_expert e "
+							+"where "+select + " like '%" +search +"%'"; 
+				}
+							
+			}else {
+				 sql = "select NVL(count(e.anum),0) cnt from board_expert e ";
+			}
+		
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -88,19 +111,48 @@ public class Board_ExpertDao {
 			JdbcUtil.close(con, pstmt, null);
 		}
 	}
-	//-----------------전체 게시글 목록-------------------------
+	//-----------------전체 게시글 목록(+검색기능)-------------------------
 	
-	public ArrayList<Board_ExpertVo> list(int start, int end){
+	public ArrayList<Board_ExpertVo> list(int start, int end,String select, String search){
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
-		try {
+	try {
 			con = JdbcUtil.getCon();
-			String sql="select * from("
+			String sql = null;
+			
+			if(select!=null && !select.equals("")) {
+				if(select.equals("tot")) {
+					sql =  "select * from ( "
+						   +"select aa.*,rownum rnum from ( "
+						   +" select e.*,t.tag from board_expert e, tag_expert t "
+						   +" where e.anum=t.anum order by e.anum desc ) aa"
+						   +" where tag like '%"+search+"%' or nick like '%"+search+"%'"
+						   +" or title like '%"+search+"%' or keyword like '%"+search+"%'"
+						   +" ) where rnum >=? and rnum <= ?";
+				}
+				else if(select.equals("tag")) {
+					sql = "select * from ( "
+						+ " select e.*, rownum rnum from board_expert e, tag_expert t "
+						+ " where e.anum = t.anum and tag like '%"+search+"%' order by e.anum desc "
+						+" ) where rnum >=? and rnum <=?";
+				}
+				else {
+					sql = " select * from ("
+						+ " select e.*, rownum rnum from board_expert e "
+						+ " where "+select+ " like '%"+search+"%' order by e.anum desc "
+						+" ) where rnum >=? and rnum <= ?";
+				}
+			}
+			
+			else {
+				 sql =  "select * from("
 				    	+"select aa.*,rownum rnum from("
 				        +"select * from board_expert order by anum desc"
 				        +" ) aa"
 				        +") where rnum>=? and rnum<=?" ;
+			}
+				
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, start);
 			pstmt.setInt(2, end);
