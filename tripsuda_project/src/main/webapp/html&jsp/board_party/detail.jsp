@@ -41,5 +41,5 @@
 	</div>
 </div>
 
-<link rel="stylesheet" href="css/detail.css">
-<script src="js/detail.js"></script>
+<link rel="stylesheet" href="../../css/board_party/detail.css">
+<script src="../../js/board_party/detail.js"></script>
