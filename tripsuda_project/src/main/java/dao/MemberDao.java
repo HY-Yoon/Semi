@@ -66,4 +66,30 @@ public class MemberDao
 			return null;
 		}
 	}
+	//------------June-------
+	public int selAnum(String nick) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;			
+		con = JdbcUtil.getCon();
+	try {
+		String sql = "select mnum from member where nick=?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, nick);
+		rs = pstmt.executeQuery();
+		if(rs.next()) {
+			int mnum = rs.getInt("mnum");
+			return mnum ;
+		}
+		return -1;
+	}catch (SQLException s) {
+		 s.printStackTrace();
+		 return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt, rs);
+	}
+}
+	
+	
+	
 }

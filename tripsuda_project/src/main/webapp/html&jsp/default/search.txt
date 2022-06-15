@@ -1,0 +1,89 @@
+				header 검색기능
+
+	공유페이지라 css는 무서워서 수정안했어요
+  
+ 
+	목록보여주는 코드를 다 다르게 작성하실거 같은데 일단 제 기준으로 올립니다
+ 
+  
+1.	헤더 form action="#"에  게시판목록 보여주는 list.jsp(ajax)으로 select, search 값 전송
+	
+2.	list.jsp / 목록출력하는 function ~ xhr.open으로 select(통합/제목/지역), search(검색값)을 listcontroller에 전송
+	
+	
+           			페이징, 목록출력
+3. 
+  1)             검색결과 페이지 개수 계산
+	listcontroller에서 전달받은 값을 dao.getCount(select, search)
+	
+	검색을 게시판테이블에서만 하는게 아니라 join되어있는 지역태그테이블까지 조회해야해서 복잡하게한거같은데
+	다른 간단한 방법있으면 알려주세요
+	 	 
+    String sql = null;
+	 
+	if(select!=null && !select.equals("")) { //검색값이 있을때
+				
+		if(select.equals("tot")) { // 통합검색은 작성자, 제목, 말머리, 태그 4개로 했습니다
+					sql  = 	"select nvl(count(*),0) cnt from("
+							+ "select e.*,t.tag from board_expert e, tag_expert t where e.anum = t.anum )"
+							+ "where tag like '%"+search+"%' or nick like '%"+search+"%' or title like '%"
+							+ search +"%' or keyword like '%"+search+"%'";
+					
+					}else if(select.equals("tag")) { //지역
+					 sql  = "select NVL(count(e.anum),0) cnt from board_expert e, tag_expert t"
+							+ " where tag like '%"+search+"%' and e.anum = t.anum";
+									
+					}else {      
+					sql = "select NVL(count(e.anum),0) cnt from board_expert e "
+							+"where "+select + " like '%" +search +"%'"; 
+					}
+							
+					}else { // 검색없이 기본출력
+				 	sql = "select NVL(count(e.anum),0) cnt from board_expert e ";
+				} 
+	 
+	 
+	2)          	 검색결과 출력
+	listcontroller에서 dao.list(startRow,endRow,select,search)
+	
+	String sql = null;
+			
+			if(select!=null && !select.equals("")) { 
+				if(select.equals("tot")) {
+					sql =  "select * from ( "
+						   +"select aa.*,rownum rnum from ( "
+						   +" select e.*,t.tag from board_expert e, tag_expert t "
+						   +" where e.anum=t.anum order by e.anum desc ) aa"
+						   +" where tag like '%"+search+"%' or nick like '%"+search+"%'"
+						   +" or title like '%"+search+"%' or keyword like '%"+search+"%'"
+						   +" ) where rnum >=? and rnum <= ?";
+				}
+				else if(select.equals("tag")) {
+					sql = "select * from ( "
+						+ " select e.*, rownum rnum from board_expert e, tag_expert t "
+						+ " where e.anum = t.anum and tag like '%"+search+"%' order by e.anum desc "
+						+" ) where rnum >=? and rnum <=?";
+				}
+				else {
+					sql = " select * from ("
+						+ " select e.*, rownum rnum from board_expert e "
+						+ " where "+select+ " like '%"+search+"%' order by e.anum desc "
+						+" ) where rnum >=? and rnum <= ?";
+				}
+			}
+			
+			else {
+				 sql =  "select * from("
+				    	+"select aa.*,rownum rnum from("
+				        +"select * from board_expert order by anum desc"
+				        +" ) aa"
+				        +") where rnum>=? and rnum<=?" ;
+			}
+	 
+4   default_header.jsp  / board_expert- list.jsp / controller - ExpertListController / dao - Board_ExpertDao / 4개사용
+	  
+	 안되는거나 틀린부분있으면 말씀해주세요~
+
+
+ 
+

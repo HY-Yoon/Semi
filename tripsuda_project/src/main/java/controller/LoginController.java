@@ -14,7 +14,7 @@ import dao.MemberDao;
 import vo.ChatroomVo;
 import vo.MemberVo;
 
-@WebServlet("/board_chat/login")
+@WebServlet("/login")
 public class LoginController extends HttpServlet
 {
 	@Override
@@ -23,20 +23,11 @@ public class LoginController extends HttpServlet
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
 		MemberVo vo = MemberDao.getInstance().select(id, pwd);
-		if (vo == null)
-		{
-			resp.sendRedirect(req.getContextPath() + "/index.html");
-			return;
-		}
-		
 		req.getSession().setAttribute("userdata", vo);
-
-		System.out.println("no - " + vo.getMnum());
+		
 		ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
-		System.out.println("rooms - " + list.size());
-		req.getSession().setAttribute("chatrooms", list);
+		
 		req.getSession().setAttribute("channel", 1);
-		resp.sendRedirect(req.getContextPath() + "/board_chat/chat.jsp");
+		resp.sendRedirect("chat.jsp");
 	}
-	
 }
