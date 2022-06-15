@@ -6,6 +6,10 @@
 <script src="../../js/summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../../css/summernote/summernote-lite.css">
 
+<div class="content_header">
+	<h2>나와 맞는 여행동행과 싸움을 벌여보아요!</h2>
+	<h1>여행 친구 잃기</h1>
+</div>
 <div class="container">
 	<div id="limiter" style="border: 1px solid lightgray; padding: 15px">
 		<div class="flexcon"> <!-- 지역 -->

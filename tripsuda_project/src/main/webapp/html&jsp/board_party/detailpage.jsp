@@ -20,8 +20,7 @@
         <jsp:include page="../default/default_header.jsp"/>
     </header>
     <main>
-        <jsp:include page="pageheader.html"/>
-        <jsp:include page="edit.jsp"/>
+        <jsp:include page="detail.jsp"/>
     </main>
     <footer>
         <jsp:include page="../default/default_footer.jsp"/>

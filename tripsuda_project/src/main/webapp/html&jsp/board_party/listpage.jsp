@@ -21,7 +21,7 @@
     </header>
     <main>
         <jsp:include page="pageheader.html"/>
-        <jsp:include page="edit.jsp"/>
+        <jsp:include page="list.jsp"/>
     </main>
     <footer>
         <jsp:include page="../default/default_footer.jsp"/>

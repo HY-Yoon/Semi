@@ -4,45 +4,47 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="../../js/jQuary/jquery-3.6.0.js"></script>
-<script src="../../js/summernote/summernote-lite.js"></script>
-<script src="../../js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../../css/summernote/summernote-lite.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../css/common.css">
 </head>
 <body>
-	just for test
+	<div class="content_header">
+		<h1>여기에 배경 이미지 입력</h1>
+	</div>
 	<div class="container">
-		yo 맨 여기는 글 작성란 A yo
-		<div id="limiter">
-			<div id="region_select" class="select_box"> <!-- 지역 -->
-				<span style="width:200px;">지역 선택</span>
+		<div id="main_content" class="contentbox" style="flex: 0 1 800px;">
+			<div>
+				<h1 style="">이곳에 타이틀 입력</h1>
 			</div>
-			<div id="gender_select" class="select_box"> <!-- 성별 제한 -->
-				<span style="width:200px;">성별 조건</span>
+			<div class="line"></div>
+			<div class="desc">
+				지역, 모집인원<br>
+				일자 언제부터 ~ 언제까지<br>
+				성별 조건 (있으면)<br>
+				연령 조건 (있으면)
 			</div>
-			<div id="age_select" class="select_box"> <!-- 나이 제한 -->
-				<span style="width:200px;">연령 조건</span>
+			<div style="min-height: 300px;">
+				여기부터 내용물 주저리주저리
 			</div>
-			<div id="schedule_select" class="select_box"> <!-- 일정 -->
-				<span style="width:200px;">날짜 선택</span>
-			</div>
-			<div id="memcount_select" class="select_box"> <!-- 모집 인원 -->
-				<span style="width:200px;">모집인원</span>
+			<div class="content_footer">
+				<div>
+					태그 일람
+				</div>
+				일자 | 조회수 | 메시지수(?) | 신고버튼
 			</div>
 		</div>
-		<div id="editor">
-			<div id="backimg_edit"></div> <!-- 배경사진 -->
-			<div id="title_edit"></div> <!-- 제목 -->
-			<div id="summernote"></div> <!-- 편집기 -->
+		<div id="sidebar" class="contentbox desc" style="flex: 0 1 300px;">
+			<div class="">
+				프로필 카드
+			</div>
+			<div class="line"></div>
+			<input type="button" value="동행 신청/취소">
+			<input type="button" value="채팅방가기">
 		</div>
-		<div id="submitter">
-			<input type="button" id="cancel_btn" value="취소">
-			<input type="button" id="submit_btn" value="완료">
-		</div>
-		<form>
-			
-		</form>
 	</div>
 </body>
-<link rel="stylesheet" href="css/editor.css">
-<script src="js/editor.js"></script>
+<link rel="stylesheet" href="css/detail.css">
+<!-- <script src="js/editor.js"></script> -->
 </html>

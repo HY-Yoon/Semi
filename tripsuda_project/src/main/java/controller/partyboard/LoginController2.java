@@ -1,4 +1,4 @@
-package controller;
+package controller.partyboard;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ import dao.MemberDao;
 import vo.ChatroomVo;
 import vo.MemberVo;
 
-@WebServlet("/board_chat/login")
-public class LoginController extends HttpServlet
+@WebServlet("/html&jsp/board_party/login")
+public class LoginController2 extends HttpServlet
 {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
@@ -25,18 +25,17 @@ public class LoginController extends HttpServlet
 		MemberVo vo = MemberDao.getInstance().select(id, pwd);
 		if (vo == null)
 		{
-			resp.sendRedirect(req.getContextPath() + "/index.html");
 			return;
 		}
 		
 		req.getSession().setAttribute("userdata", vo);
 
-		System.out.println("no - " + vo.getMnum());
-		ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
-		System.out.println("rooms - " + list.size());
-		req.getSession().setAttribute("chatrooms", list);
-		req.getSession().setAttribute("channel", 1);
-		resp.sendRedirect(req.getContextPath() + "/board_chat/chat.jsp");
+		 System.out.println("no - " + vo.getMnum());
+		 ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
+		 System.out.println("rooms - " + list.size());
+		 req.getSession().setAttribute("chatrooms", list);
+		 req.getSession().setAttribute("channel", 1);
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
 	}
 	
 }
