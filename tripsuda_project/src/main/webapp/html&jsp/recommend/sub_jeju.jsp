@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="./css/reco_sub.css">
 <!-- 날씨를 얻어오기 위한 현재 페이지 정보 -->
 <div id="pageInfo" style="display: none;">
-    <span id="course_id">57</span>
-    <span id="spotName">(서울)롯데월드</span>
+    <span id="course_id">164</span>
+    <span id="spotName">(제주)우도해양도립공원</span>
 </div>
 
 <div class="top_inner">

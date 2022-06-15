@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 경기 --%>
+<%-- 경상도 --%>
 <link rel="stylesheet" href="./css/reco_sub.css">
 <!-- 날씨를 얻어오기 위한 현재 페이지 정보 -->
 <div id="pageInfo" style="display: none;">
-    <span id="course_id">45</span>
-    <span id="spotName">(파주)임진각관광지 </span>
+    <span id="course_id">199</span>
+    <span id="spotName">(통영)미륵산</span>
 </div>
 
 <div class="top_inner">
@@ -13,33 +13,33 @@
         <div class="info_box">
             <div class="title">
                 <div class="tag">
-                    <span>공원</span>
-                    <span>평화</span>
-                    <span>조형</span>
-                    <span>수도권</span>
-                    <span>역사</span>
+                    <span>바다</span>
+                    <span>산</span>
+                    <span>아이와함께</span>
+                    <span>조망케이블카</span>
+                    <span>자연</span>
                 </div>
                 <h2>
                     <em id="page_title">
-                        평화누리공원 임진각
+                        통영케이블카(미륵산)
                     </em>
                 </h2>
             </div>
             <div class="summary">
-                평화가 깃든 자연 휴식처
+                맑은 산바람과 시원한 바닷바람을 동시에 느끼다
             </div>
             <ul class="summeary_list">
                 <li>
                     <span>
                         <i class="fa fa_map"></i>주소
                     </span>
-                    경기도 파주시 문산읍 임진각로 177
+                    경상남도 통영시 발개로 205
                 </li>
                 <li>
                     <span>
                         <i class="fa fa_phone"></i>문의처
                     </span>
-                    031-953-4744
+                    1544-3303
                 </li>
             </ul>
             <div class="current_info">
@@ -69,7 +69,7 @@
         </div>
         <div class="thumb">
             <div>
-                <img src="https://ggtour.or.kr/cgi/upload/story100/01%20%EA%B3%A8%EB%AA%A9%EC%97%90%EC%84%9C%20%EB%A7%8C%EB%82%9C%20%EB%8F%84%EC%8B%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0/04%20%ED%8C%8C%EC%A3%BC%20%EC%9E%A5%ED%8C%8C%EB%A6%AC/img/edit_images07.JPG" alt="평화누리공원">
+                <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=e913e2a8-e574-4f64-8f85-07927a9b30da" alt="미륵산">
             </div>
         </div>
     </div>
@@ -81,10 +81,8 @@
                 <h3>상세소개</h3>
             </div>
             <div class="obj">
-                <p>서울시청에서 북서쪽으로 약 56km, 군사분계선에서 7km 남쪽으로 임진강을 사이에 두고 위치한 임진각은 6.25 전쟁의 비극이 그대로 남아 있는 대한민국 대표 평화관광지이다. 전쟁의 아픈 흔적을 살펴보면서 평화의 소중함을 배울 수 있는 곳이다. 다양한 전쟁유물이 산재되어 있으며 전시관은 물론 3만평 규모의 잔디밭이 펼쳐 있는 평화누리공원이 있어 관광명소로 많이 알려져 있다.</p>
-                <p>임진각 일원은 6.25전쟁중에는 참담한 전쟁터이기도 했다. 전쟁초기에 폭파되어 지금까지도 남아 있는 임진강 철교, 공산군의 포로였던 국군과 유엔군이 자유를 찾아 건너왔던 자유의 다리가 있다. 북한 실향민을 위한 임진각이 세워지면서 임진각관광지로 지정되었다. 현재는 평화누리, 임진각 평화곤돌라, 6.25전쟁납북자기념관, 어린이 놀이시설 등의 새로운 시설이 들어서면서 14만평의 대규모 관광지가 되었다.</p>
-                <p>* 평화누리 공원 <br>
-                    3만평의 대형 잔디언덕과 수상야외공연장으로 이루어진 자연 친화적 공간으로 분단의 상징인 임진각을 화해와 상생, 평화와 통일의 상징으로 전환하기 위해 조성되었다. 평화누리를 대표하는 장소는 ‘바람의 언덕’이다. 3,000개의 형형색색의 바람개비들이 돌고 있어 가족과 연인들을 위한 포토존과 드라마, CF촬영지로 인기만점인 곳이다.</p>
+                <p>통영 미륵산에 설치된 통영케이블카는 2선(bi-cable) 자동순환식 곤돌라 방식으로 스위스의 최신기술에 의해 설치되었으며, 길이는 1975m다. 평균속도 1초당 4m로 상부역사까지 약 9분이 소요될 예정이며 승객용 곤돌라 47기, 화물용 1기 등 48개의 곤돌라가 순환하게 된다.</p>
+                <p>특히, 친환경적인 설계에 의해 중간지주는 1개만 설치하여, 환경보호는 물론 탑승객에게 아주 편안한 승차감을 제공한다. 또한, 8인승 곤돌라 47대가 연속적으로 탑승객을 운송함으로써 지체 없이 탑승이 가능하며, 가까운 사람끼리 오붓하게 아름다운 한려수도의 경치를 감상할 수 있다. 펫 프렌들리 케이블카 오픈으로 반려동물과 함께 탑승이 가능하다.</p>
                 <div id="tab_wrap" class="tab_wrap">
                     <div class="tit_wrap">
                         <ul class="menu_wrap">
@@ -99,13 +97,13 @@
                                 <div class="photo_slide_wrap">
                                     <div class="photo_slides">
                                         <div class="photo_slide" id="slide_1">
-                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=cc5a1db2-74ec-4d90-ae98-a0b49ef96bf1" alt="이미지">
+                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=edf09934-13ea-4c4e-876f-4b5edd424975" alt="이미지">
                                         </div>
                                         <div class="photo_slide" id="slide_2">
-                                            <img src="https://ggtour.or.kr/cgi/upload/story100/01%20%EA%B3%A8%EB%AA%A9%EC%97%90%EC%84%9C%20%EB%A7%8C%EB%82%9C%20%EB%8F%84%EC%8B%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0/04%20%ED%8C%8C%EC%A3%BC%20%EC%9E%A5%ED%8C%8C%EB%A6%AC/img/edit_images09.JPG" alt="이미지">
+                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=4a14d4f5-e0ca-4e87-8036-5b9bd8c89024" alt="이미지">
                                         </div>
                                         <div class="photo_slide" id="slide_3">
-                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5621f6bc-6c35-4001-8eeb-2d9e6f6a6806" alt="이미지">
+                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=288d0503-fe33-4a2a-b8bf-fdd5281c1554" alt="이미지">
                                         </div>
                                     </div>
                                     
@@ -132,7 +130,7 @@
                                     style="border: 0;"
                                     loading="lazy"
                                     allowfullscreen
-                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB70pt_GZK1TuoW4Vq-itkkLGZm_FvaJFk&q=평화누리공원&region=KR&language=ko" frameborder="0"></iframe>
+                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB70pt_GZK1TuoW4Vq-itkkLGZm_FvaJFk&q=통영케이블카&region=KR&language=ko" frameborder="0"></iframe>
                             </div>
                         </div>
 
@@ -149,11 +147,17 @@
                 <p>
                     <strong>이용시간</strong>
                 </p>
-                <p>없음</p>
+                <p>- 동절기(10월~3월) 평일 09:30~16:00, 주말·공휴일 09:30~16:00 <br>
+                    - 춘·추계(4,9월) 평일 09:30~17:00, 주말·공휴일 09:30~17:00 <br>
+                    - 성수기·하절기(5~8월) 평일 09:30~18:00 주말·공휴일 09:30~18:00 <br>
+                    ※ 날씨 관계로 휴장하거나 운행이 중단될 수 있으니 사전 확인 필요 <br>
+                    ※ 매표는 운행종료 2~3시간 전에 조기마감 될 수 있음 <br>
+                    ※ 5월, 8월, 10월은 조기운행 및 연장운행 할 수 있음 <br>
+                    ※ 상기 운행시간은 상황에 따라 변동될 수 있으므로 사전확인 필요</p>
                 <p>
                     <strong>휴무일</strong>
                 </p>
-                <p>연중무휴</p>
+                <p>매월 2,4주차 월요일(두번쨰, 네번째 월요일이 공휴일인 경우 익일)</p>
             </div>
         </div>
     </div>
@@ -167,13 +171,13 @@
             <div class="obj">
                 <ul class="article_list">
                     <li>
-                        <a href="https://tour.paju.go.kr/tour/festival/festival02/festival02_2/festival02_2_01/festival02_2_01_01.jsp" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=01ced96a-a91e-454b-9486-dc7fdda7e486)"></div>
+                        <a href="https://www.timf.org/kr/" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=17ad2638-5bac-417c-a5cc-06898da77513)"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">파주장단콩축제</p>
+                                    <p class="title">통영국제음악제</p>
                                     <span class="small-text">
-                                        웰빙명품! 장단콩 세상!
+                                        ‘다양성 속의 비전(Vision in Diversity)’
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
@@ -181,13 +185,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://www.bcj.co.kr/" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=b1acba20-1b10-41a7-a184-a061afc20116);"></div>
+                        <a href="http://www.hansanf.org" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=3a3f019f-031b-4780-8060-4828d35bcbb5);"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">벽초지수목원 국화축제</p>
+                                    <p class="title">통영한산대첩축제</p>
                                     <span class="small-text">
-                                        동서양의 아름다운 정원을 모두 품은 곳, 벽초지수목원의 가을꽃 국화축제로 초대합니다.
+                                        한산대첩의 위대한 승리를 생생하게 느껴보자
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
@@ -195,13 +199,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.bicof.com/intro.php" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image: url(https://www.bicof.com/__upload/history/1653979701_3888.jpg);"></div>
+                        <a href="http://www.k-island.org/" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=89702246-9eee-4d74-9de6-4a3a4661968e);"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">부천국제만화축제</p>
+                                    <p class="title">제2회 섬의 날</p>
                                     <span class="small-text">
-                                        아시아 최고의 글로벌 만화축제, 부천국제만화축제(BICOF)!
+                                        섬, 쉼이되다
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
@@ -209,13 +213,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://ggtour.or.kr/enjoy/festival.php?tmenu=&smenu=&stitle=&tsort=1&msort=11&board_code=13&board=13&s_category_name=&s_view_yn=&key=&ordering=1&no=72923&mode=detail&page=1&s_tag=&s_admin_no=" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image: url(https://ggtour.or.kr/cgi/upload/comm_board/20210326094603.jpg);"></div>
+                        <a href="http://ttaf.kr" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=bdabc791-48cb-467d-ba21-73b0b4644b98);"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">수원 화성문화제</p>
+                                    <p class="title">통영연극예술축제</p>
                                     <span class="small-text">
-                                        제22대 정조대왕의 효심과 부국강병의 원대한 꿈으로 축성된 세계문화유산 수원화성에서 펼쳐지는 대표적인 전통문화관광축제 
+                                        통영시는 통제영 당시 12공방의 예술혼이 면면히 이어져 온 예술의 고장으로 통영만의 독특한 전통 공연예술인 통영오광대, 남해안별신굿, 승전무 등이 아직도 살아 숨 쉬고 있다.
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
