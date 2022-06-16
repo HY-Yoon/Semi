@@ -94,17 +94,6 @@ CREATE table report(
 	rdate Date not null,
 	repo varchar2(500) not null --신고 내용(댓글내용/게시글내용 짧게)
 );
---동행구하기
-create table partyboard(
-  anum number(10) NOT NULL, --시퀀스
-  memcnt number(10) NOT NULL, --default 2, max 100
-  dest varchar2(100) NOT NULL,
-  startdate date NOT NULL,
-  enddate date NOT NULL,
-  gender varchar2(10),
-  age number(10),
-  yn varchar2(5)	default N NOT NULL,
-);
 --내일정
 create table mycalender(
   ecode number(10) NOT NULL, --시퀀스
@@ -125,6 +114,34 @@ create table taglist(
 CREATE TABLE category (
 	cate varchar2(30) check(cate in('자유','동행','전문가','후기','질문')) primary key
 );
+
+--동행 게시판(220616)
+DROP TABLE partyboard;
+CREATE TABLE board_party (
+	anum	    number(10)      primary key,	
+	mnum	    number(10)      references member(mnum),	
+	nick	    varchar2(20)	NOT NULL,
+
+	dest        varchar2(10)    NOT NULL,
+	gender      varchar2(10),
+	age_min     number(10),
+	age_max     number(10),
+	memcnt      number(10)      NOT NULL,
+	startdate   date            NOT NULL,
+	enddate     date            NOT NULL,
+
+	backimage   clob            NOT NULL,
+
+	title	    varchar2(100)	NOT NULL,
+	content	    clob            NOT NULL,
+    tags        varchar2(100),
+
+	views       number(10)      NOT NULL,
+	regdate	    date	        NOT NULL,
+	expired     char	        default 'N' NOT NULL
+);
+CREATE SEQUENCE board_party_seq;
+
 --동행신청목록
 CREATE TABLE partywait (
     pnum number(10) primary key, --시퀀스 따로 만들 것 
@@ -132,9 +149,6 @@ CREATE TABLE partywait (
 	mnum number(10) references member(mnum), --회원번호 참조
 	yn varchar2(5)	DEFAULT 'N' check(yn in('Y','N'))
 );
-
-
-
 
 -- [[ 채팅방 ]]
 -- 타입 선언
@@ -148,7 +162,7 @@ CREATE TABLE chatroom
     anum NUMBER NOT NULL,
     members chat_members,
     
-    CONSTRAINT fk_chatroom_anum FOREIGN KEY(anum) REFERENCES board(anum)
+    CONSTRAINT fk_chatroom_anum FOREIGN KEY(anum) REFERENCES board_party(anum)
 )
 NESTED TABLE members STORE AS chat_members_list;
 -- 채팅방 시퀀스
@@ -165,7 +179,6 @@ CREATE TABLE chat
     message VARCHAR2(1000) NOT NULL,
     credate DATE NOT NULL,
     
-    CONSTRAINT fk_chat_rnum FOREIGN KEY(rnum) REFERENCES chatroom(rnum),
     CONSTRAINT fk_chat_sender FOREIGN KEY(sender) REFERENCES MEMBER(mnum)
 )
 NESTED TABLE readers STORE AS chat_readers_list;
@@ -183,3 +196,16 @@ CREATE TABLE adminchat
     CONSTRAINT fk_adchat_cnum FOREIGN KEY(cnum) REFERENCES chat(cnum),
     CONSTRAINT fk_adchat_sender FOREIGN KEY(sender) REFERENCES MEMBER(mnum)
 );
+
+-- 트리거 (220616)
+-- 동행구하기 글 작성되면 채팅방도 자동으로 생성
+-- ※ 글이 지워진다고 같이 제거되진 않음! (기록을 남겨야 할 것 같아서)
+create or replace trigger chatroom_create_trig
+    after insert on board_party
+    for each row
+declare
+    nums chat_members;
+begin
+--    select :new.mnum bulk collect into nums from board_party where anum = :new.anum;
+    insert into chatroom values(chatroom_seq.nextval, :new.anum, chat_members(:new.mnum));
+end chatroom_create_trig;
