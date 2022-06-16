@@ -1,0 +1,38 @@
+package controller;
+
+import java.io.IOException; 
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import dao.MemberDao;
+
+@WebServlet("/LoginForm")
+public class LoginFormController extends HttpServlet{
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//아이디 비밀번호 영대소+숫자, 인코딩 필요x
+		String id = request.getParameter("id");
+		String pwd = request.getParameter("pwd");
+		
+		MemberDao mdao = new MemberDao();
+		int check = mdao.loginCheck(id, pwd);
+		HttpSession session=request.getSession();
+		
+		if(check == 1) { //로그인 성공
+			session.setAttribute("sessionID", id);
+			request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
+		}else {
+	    	request.setAttribute("errMsg", "아이디 또는 비밀번호가 일치하지 않습니다");
+	    	request.getRequestDispatcher("/html&jsp/member/LoginForm.jsp").forward(request, response);
+	    }
+	}
+
+}
+

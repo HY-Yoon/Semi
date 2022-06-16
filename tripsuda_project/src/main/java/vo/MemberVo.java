@@ -24,6 +24,58 @@ public class MemberVo
 	{
 		
 	}
+	
+	
+	
+
+
+	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, String favorite) {
+		super();
+		this.mnum = mnum;
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.nick = nick;
+		this.phone = phone;
+		this.favorite = favorite;
+	}
+	
+	
+
+
+
+
+
+	public MemberVo(String id, String pwd, String name, String nick, String phone, String favorite, String grade) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.nick = nick;
+		this.phone = phone;
+		this.favorite = favorite;
+		this.grade = grade;
+	}
+
+
+
+
+
+	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, Date birth,
+			String favorite, String grade) {
+		super();
+		this.mnum = mnum;
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.nick = nick;
+		this.phone = phone;
+		this.birth = birth;
+		this.favorite = favorite;
+		this.grade = grade;
+	}
+
+
 	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, Date birth, String withdraw,
 			String favorite, String grade, Date stop) {
 		super();
