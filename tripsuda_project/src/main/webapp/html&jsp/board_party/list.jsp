@@ -1,17 +1,19 @@
+<%@page import="org.jsoup.Jsoup"%>
+<%@page import="dao.PartyBoardDao"%>
+<%@page import="vo.PartyboardVo"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<script src="../../js/jQuary/jquery-3.6.0.js"></script>
-<script src="../../js/summernote/summernote-lite.js"></script>
-<script src="../../js/summernote/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../../css/summernote/summernote-lite.css">
-
-<div class="content_header">
-	<h2>나와 맞는 여행동행과 싸움을 벌여보아요!</h2>
-	<h1>여행 친구 잃기</h1>
-</div>
+<%
+	String pn = request.getParameter("pagenum");
+	long pagenum = 1;
+	if (pn != null)
+		pagenum = Long.parseLong(pn);
+	ArrayList<PartyboardVo> list = PartyBoardDao.getInstance().selectAll(pagenum);
+%>
 <div class="container">
-	<div id="limiter" style="border: 1px solid lightgray; padding: 15px">
+	<div id="searcher" style="border: 1px solid lightgray; padding: 15px">
 		<div class="flexcon"> <!-- 지역 -->
 			<div class="descbox">지역 선택</div>
 			<div id="region_select" class="select_box">
@@ -44,36 +46,66 @@
 				<input type="date" id="enddate" style="width: 100%" onchange="onChangeSchedule(false)">
 			</div>
 		</div>
-		<div class="flexcon">
-			<div class="descbox">모집인원</div>
-			<div id="memcount_select" class="select_box" style="display: flex"> <!-- 모집 인원 -->
-				<input type="range" min="2" max="100" value="2" id="memcount_range" style="width:100%;" oninput="onChangeMemCount()">
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<div id="memcount" style="display: flex; width: 80px;">2명</div>
+		<input type="button" class="submit_btn" value="이 조건으로 검색" style="height:60px">
+	</div>
+	<div id="list" style="flex-direction: row; flex-wrap: wrap;">
+	<%
+		for (PartyboardVo vo : list)
+		{
+	%>
+		<div class="article" onclick="window.location.replace('<%=request.getContextPath() %>/html&jsp/board_party/detailpage.jsp?anum=<%=vo.getAnum() %>')">
+			<div class="pic">
+				<img src="<%=vo.getBackimg() %>">
+				<div class="flexcon region">
+					<span><%=vo.getDest() %></span><span class="schedule">&nbsp;06/01 ~ 06/30</span>
+				</div>
+			</div>
+			<div class="content">
+				<div style="font-weight: 500;">
+					<%
+						if (vo.getExpired().equalsIgnoreCase("Y"))
+						{
+							%><span class="expired">지난 여행</span><%
+						}
+						else
+						{
+							%><span class="hiring">모집 중</span><%
+						}
+					%>
+					
+					<span class="title"><%=vo.getTitle() %></span>
+				</div>
+				<div class="desc">
+					<%=Jsoup.parse(vo.getContent()).text() %>
+				</div>
+				<div style="display: flex; justify-content: space-between;">
+					<div class="profile">
+						프로필
+					</div>
+					<div class="view">
+						조회수 <%=vo.getViews() %> / 댓글
+					</div>
+				</div>
 			</div>
 		</div>
+	<%
+		}
+	%>
 	</div>
-	<div id="editor"> 
-		<div id="backimg_edit" style="margin:15px 0px;" onclick="onChangeImage()">
-			<div id="backimg_input" style="display: flex; height:400px; background-color: lightgray; justify-content: center; align-items: center; overflow: hidden;">
-				<p id="backimg_notice">이곳에 배경 사진 입력</p>
-				<img id="backimg_file">
-			</div>
-		</div> <!-- 배경사진 -->
-		<div style="margin:15px 0px;"> <!-- 제목 -->
-			<input id="title_edit" type="text" placeholder="이곳에 제목 입력" style="box-sizing: border-box; border: 1px solid lightgray; width: 100%; height: 54px; padding: 20px;">
-		</div>
-		<div id="summernote"></div> <!-- 편집기 -->
-		<div style="margin:15px 0px;"> <!-- 제목 -->
-			<input id="tag_edit" type="text" placeholder="이곳에 태그 입력(띄어쓰기로 구분)" style="box-sizing: border-box; border: 1px solid lightgray; width: 100%; height: 54px; padding: 20px;">
-		</div>
-	</div>
-	<div id="submitter" style="flex-direction: row; justify-content: space-between;">
-		<input type="button" id="cancel_btn" style="background-color: lightgray;" class="submit_btn" value="취소">
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="button" id="submit_btn" class="submit_btn" value="완료" onclick="sendForm()">
+	<div id="page" style="width: 100%; flex-direction: row; align-items: center; justify-content: center;">
+	<% if (pagenum > 10) { %>
+		<a href=""><< 이전</a>
+	<% } %>
+	<% for (long pnum = pagenum - (pagenum % 10) + 1; pnum <= Math.min(pagenum - (pagenum % 10) + 10, PartyBoardDao.getInstance().getPageCount()); pnum++) { %>
+		<a href="<%=request.getContextPath() %>/html&jsp/board_party/listpage.jsp?pagenum=<%=pnum %>"><%=pnum %></a>
+	<% }
+		if (pagenum - (pagenum % 10) + 10 >= PartyBoardDao.getInstance().getPageCount())
+		{
+	%>
+		<a href="">다음 >></a>
+	<% } %>
 	</div>
 </div>
 
-<link rel="stylesheet" href="css/editor.css">
+<link rel="stylesheet" href="../../css/board_party/list.css">
 <script src="js/editor.js"></script>

@@ -12,7 +12,7 @@
 <div class="container">
 	<div id="main_content" class="contentbox" style="flex: 0 1 800px;">
 		<div>
-			<h1 style=""><%=vo.getTitle() %></h1>
+			<h1><%=vo.getTitle() %></h1>
 		</div>
 		<div class="line"></div>
 		<div class="desc">

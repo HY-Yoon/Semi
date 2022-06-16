@@ -10,41 +10,179 @@
 <link rel="stylesheet" href="../../css/common.css">
 </head>
 <body>
-	<div class="content_header">
-		<h1>여기에 배경 이미지 입력</h1>
-	</div>
 	<div class="container">
-		<div id="main_content" class="contentbox" style="flex: 0 1 800px;">
-			<div>
-				<h1 style="">이곳에 타이틀 입력</h1>
-			</div>
-			<div class="line"></div>
-			<div class="desc">
-				지역, 모집인원<br>
-				일자 언제부터 ~ 언제까지<br>
-				성별 조건 (있으면)<br>
-				연령 조건 (있으면)
-			</div>
-			<div style="min-height: 300px;">
-				여기부터 내용물 주저리주저리
-			</div>
-			<div class="content_footer">
-				<div>
-					태그 일람
+		<div id="searcher" style="border: 1px solid lightgray; padding: 15px">
+			<div class="flexcon"> <!-- 지역 -->
+				<div class="descbox">지역 선택</div>
+				<div id="region_select" class="select_box">
 				</div>
-				일자 | 조회수 | 메시지수(?) | 신고버튼
+			</div>
+			<div class="flexcon">
+				<div class="descbox">성별 조건</div>
+				<div id="gender_select" class="select_box"> <!-- 성별 제한 -->
+				</div>
+			</div>
+			<div class="flexcon">
+				<div class="descbox">연령 조건</div>
+				<div id="age_select" class="select_box"> <!-- 나이 제한 -->
+					<span style="width: 250px;">
+						<input type="checkbox" id="age_ignore_check" onchange="onCheckAgeIgnore()"> 제한 없음 &nbsp;&nbsp;
+					</span>
+					<span id="age_limit_span">
+						<input type="number" min="2" max="20" value="10">
+						세 ~
+						<input type="number" min="2" max="20" value="80">
+						세
+					</span>
+				</div>
+			</div>
+			<div class="flexcon">
+				<div class="descbox">날짜 선택</div>
+				<div id="schedule_select" class="select_box flexcon"> <!-- 일정 -->
+					<input type="date" id="startdate" style="width: 100%" onchange="onChangeSchedule(true)">
+					&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp; 
+					<input type="date" id="enddate" style="width: 100%" onchange="onChangeSchedule(false)">
+				</div>
+			</div>
+			<input type="button" class="submit_btn" value="이 조건으로 검색" style="height:60px">
+		</div>
+		<div id="list" style="flex-direction: row; flex-wrap: wrap;">
+			<div class="article">
+				<div class="pic">
+					<img src="../../images/board_party/thumb.jpg">
+					<div class="flexcon region">
+						<span>지역</span><span class="schedule">&nbsp;06/01 ~ 06/30</span>
+					</div>
+				</div>
+				<div class="content">
+					<div style="font-weight: 500;">
+						<span class="hiring">모집중</span>
+						<span class="title">제목</span>
+					</div>
+					<div class="desc">
+						이곳에 짧은 내용 입력
+					</div>
+					<div style="display: flex; justify-content: space-between;">
+						<div class="profile">
+							프로필
+						</div>
+						<div class="view">
+							조회수/댓글
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article">
+				<div class="pic">
+					<img src="../../images/board_party/thumb.jpg">
+					<div class="region">
+						지역
+					</div>
+				</div>
+				<div class="content">
+					<div style="font-weight: 500;">
+						<span class="expired">지난여행</span>
+						<span class="title">제목</span>
+					</div>
+					<div class="desc">
+						이곳에 짧은 내용 입력
+					</div>
+					<div style="display: flex; justify-content: space-between;">
+						<div class="profile">
+							프로필
+						</div>
+						<div class="view">
+							조회수/댓글
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article">
+				<div class="pic">
+					<img src="../../images/board_party/thumb.jpg">
+					<div class="region">
+						지역
+					</div>
+				</div>
+				<div class="content">
+					<div style="font-weight: 500;">
+						<span class="expired">지난여행</span>
+						<span class="title">제목</span>
+					</div>
+					<div class="desc">
+						이곳에 짧은 내용 입력
+					</div>
+					<div style="display: flex; justify-content: space-between;">
+						<div class="profile">
+							프로필
+						</div>
+						<div class="view">
+							조회수/댓글
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article">
+				<div class="pic">
+					<img src="../../images/board_party/thumb.jpg">
+					<div class="region">
+						지역
+					</div>
+				</div>
+				<div class="content">
+					<div style="font-weight: 500;">
+						<span class="expired">지난여행</span>
+						<span class="title">제목</span>
+					</div>
+					<div class="desc">
+						이곳에 짧은 내용 입력
+					</div>
+					<div style="display: flex; justify-content: space-between;">
+						<div class="profile">
+							프로필
+						</div>
+						<div class="view">
+							조회수/댓글
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="article">
+				<div class="pic">
+					<img src="../../images/board_party/thumb.jpg">
+					<div class="region">
+						지역
+					</div>
+				</div>
+				<div class="content">
+					<div style="font-weight: 500;">
+						<span class="expired">지난여행</span>
+						<span class="title">제목</span>
+					</div>
+					<div class="desc">
+						이곳에 짧은 내용 입력
+					</div>
+					<div style="display: flex; justify-content: space-between;">
+						<div class="profile">
+							프로필
+						</div>
+						<div class="view">
+							조회수/댓글
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		<div id="sidebar" class="contentbox desc" style="flex: 0 1 300px;">
-			<div class="">
-				프로필 카드
-			</div>
-			<div class="line"></div>
-			<input type="button" value="동행 신청/취소">
-			<input type="button" value="채팅방가기">
+		<div id="page" style="width: 100%; flex-direction: row; align-items: center; justify-content: center;">
+			<a href=""><< 이전</a>
+			<a href="">1</a> <a href="">2</a> <a href="">3</a>
+			<a href="">4</a> <a href="">5</a> <a href="">6</a>
+			<a href="">7</a> <a href="">8</a> <a href="">9</a>
+			<a href="">10</a>
+			<a href="">다음 >></a>
 		</div>
 	</div>
 </body>
-<link rel="stylesheet" href="css/detail.css">
+<link rel="stylesheet" href="../../css/board_party/list.css">
 <!-- <script src="js/editor.js"></script> -->
 </html>

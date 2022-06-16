@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import db.JdbcUtil;
 import vo.ChatroomVo;
@@ -92,20 +93,16 @@ public class PartyBoardDao
 	
 	public PartyboardVo select(long anum)
 	{
-		System.out.println("test 1");
 		if (anum <= 0)
 			return null;
-		System.out.println("test 2");
 		
 		String sql = "select * from board_party where anum = " + anum;
 		try(Connection con = JdbcUtil.getCon();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);)
 		{
-			System.out.println("test 3");
 			if (rs.next())
 			{
-				System.out.println("test 4");
 				PartyboardVo vo = new PartyboardVo(
 					anum,
 					rs.getLong("mnum"),
@@ -133,5 +130,70 @@ public class PartyBoardDao
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public int getPageCount()
+	{
+		int page = 1;
+		String sql = "select max(rownum) as rmax from board_party";
+		try(Connection con = JdbcUtil.getCon();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);)
+		{
+			if (rs.next())
+			{
+				page = rs.getInt("rmax");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return (int)Math.ceil(page / 8.0);
+	}
+	
+	public ArrayList<PartyboardVo> selectAll(long page)
+	{
+		ArrayList<PartyboardVo> list = new ArrayList<PartyboardVo>();
+		if (page <= 0)
+			return list;
+		
+		String sql = "select * from (select bp.*, rownum as rnum from board_party bp order by anum desc) where rnum >= ? and rnum <= ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, page * 8 - 7);
+			pstmt.setLong(2, page * 8);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+			{
+				PartyboardVo vo = new PartyboardVo(
+					rs.getLong("anum"),
+					rs.getLong("mnum"),
+					rs.getString("nick"),
+					rs.getString("dest"),
+					rs.getString("gender"),
+					rs.getLong("age_min"),
+					rs.getLong("age_max"),
+					rs.getLong("memcnt"),
+					rs.getDate("startdate"),
+					rs.getDate("enddate"),
+					rs.getString("backimage"),
+					rs.getString("title"),
+					rs.getString("content"),
+					rs.getString("tags"),
+					rs.getLong("views"),
+					rs.getDate("regdate"),
+					rs.getString("expired")
+				);
+				list.add(vo);
+			}
+			rs.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
