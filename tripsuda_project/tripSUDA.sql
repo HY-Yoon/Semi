@@ -79,6 +79,43 @@ create table reco_expert(
     anum number(10) references board_expert(anum),
     mnum number(10) references member(mnum)
 );
+-- Q&A게시판
+CREATE TABLE board_qa (
+	anum	number(10)	primary key,	
+	mnum	number(10) references member(mnum),	
+	nick	varchar2(20)	NOT NULL,
+	title	varchar2(100)	NOT NULL,
+	keyword	varchar2(20),
+	content	clob	NOT NULL,
+	regdate	date	NOT NULL,
+	views number(10) NOT NULL
+);
+create sequence board_qa_seq;
+-- Q&A댓글
+CREATE TABLE comm_qa (
+	cnum	number(10) primary key, --시퀀스
+	anum	number(10) references board_qa(anum),
+	mnum	number(10)	references member(mnum),
+	content	varchar2(500)	NOT NULL,
+	regdate	Date	NOT NULL,
+	lev	    number(10)	NULL,
+	sel  	VARCHAR2(100) check(sel in('Y','N'))
+);
+create sequence comm_qa_seq;
+--Q&A해시태그리스트
+create table hashtag_qa(
+    hnum number(10) primary key,
+    anum number(10) references board_qa(anum),
+    htag varchar2(30) not null
+);
+create sequence hashtag_qa_seq;
+--Q&A지역태그리스트
+create table localtag_qa(
+    tnum number(10) primary key,
+    anum number(10) references board_qa(anum),
+    ltag varchar2(30) not null
+);
+create sequence localtag_qa_seq;
 
 -- 포인트
 CREATE TABLE point (
