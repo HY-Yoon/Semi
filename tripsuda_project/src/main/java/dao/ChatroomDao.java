@@ -14,9 +14,9 @@ import oracle.jdbc.OracleConnection;
 import vo.ChatroomVo;
 
 /**
- * @author jimja
+ * @author 주현
  * 채팅방 DAO
- * partywait, board, member 테이블에 의존
+ * partywait, board_party, member 테이블에 의존
  */
 public class ChatroomDao
 {

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- 경기 --%>
+<%-- 충청도 --%>
 <link rel="stylesheet" href="./css/reco_sub.css">
 <!-- 날씨를 얻어오기 위한 현재 페이지 정보 -->
 <div id="pageInfo" style="display: none;">
-    <span id="course_id">45</span>
-    <span id="spotName">(파주)임진각관광지 </span>
+    <span id="course_id">363</span>
+    <span id="spotName">(청주)상수허브랜드</span>
 </div>
 
 <div class="top_inner">
@@ -13,33 +13,33 @@
         <div class="info_box">
             <div class="title">
                 <div class="tag">
-                    <span>공원</span>
-                    <span>평화</span>
-                    <span>조형</span>
-                    <span>수도권</span>
-                    <span>역사</span>
+                    <span>자연</span>
+                    <span>경치</span>
+                    <span>한천팔경</span>
+                    <span>힐링</span>
+                    <span>산/계곡</span>
                 </div>
                 <h2>
                     <em id="page_title">
-                        평화누리공원 임진각
+                        월류봉(한천팔경)
                     </em>
                 </h2>
             </div>
             <div class="summary">
-                평화가 깃든 자연 휴식처
+                달도 머물다 가는 월류봉
             </div>
             <ul class="summeary_list">
                 <li>
                     <span>
                         <i class="fa fa_map"></i>주소
                     </span>
-                    경기도 파주시 문산읍 임진각로 177
+                    충북 영동군 황간면 원촌리
                 </li>
                 <li>
                     <span>
                         <i class="fa fa_phone"></i>문의처
                     </span>
-                    031-953-4744
+                    043-745-7741 / 043-740-3205 ~ 7 (영동군청 문화체육정책실)
                 </li>
             </ul>
             <div class="current_info">
@@ -69,7 +69,7 @@
         </div>
         <div class="thumb">
             <div>
-                <img src="https://ggtour.or.kr/cgi/upload/story100/01%20%EA%B3%A8%EB%AA%A9%EC%97%90%EC%84%9C%20%EB%A7%8C%EB%82%9C%20%EB%8F%84%EC%8B%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0/04%20%ED%8C%8C%EC%A3%BC%20%EC%9E%A5%ED%8C%8C%EB%A6%AC/img/edit_images07.JPG" alt="평화누리공원">
+                <img src="https://tour.chungbuk.go.kr/DATA/tour/main/thumb/t_15124473403.jpg" alt="월류봉">
             </div>
         </div>
     </div>
@@ -81,10 +81,9 @@
                 <h3>상세소개</h3>
             </div>
             <div class="obj">
-                <p>서울시청에서 북서쪽으로 약 56km, 군사분계선에서 7km 남쪽으로 임진강을 사이에 두고 위치한 임진각은 6.25 전쟁의 비극이 그대로 남아 있는 대한민국 대표 평화관광지이다. 전쟁의 아픈 흔적을 살펴보면서 평화의 소중함을 배울 수 있는 곳이다. 다양한 전쟁유물이 산재되어 있으며 전시관은 물론 3만평 규모의 잔디밭이 펼쳐 있는 평화누리공원이 있어 관광명소로 많이 알려져 있다.</p>
-                <p>임진각 일원은 6.25전쟁중에는 참담한 전쟁터이기도 했다. 전쟁초기에 폭파되어 지금까지도 남아 있는 임진강 철교, 공산군의 포로였던 국군과 유엔군이 자유를 찾아 건너왔던 자유의 다리가 있다. 북한 실향민을 위한 임진각이 세워지면서 임진각관광지로 지정되었다. 현재는 평화누리, 임진각 평화곤돌라, 6.25전쟁납북자기념관, 어린이 놀이시설 등의 새로운 시설이 들어서면서 14만평의 대규모 관광지가 되었다.</p>
-                <p>* 평화누리 공원 <br>
-                    3만평의 대형 잔디언덕과 수상야외공연장으로 이루어진 자연 친화적 공간으로 분단의 상징인 임진각을 화해와 상생, 평화와 통일의 상징으로 전환하기 위해 조성되었다. 평화누리를 대표하는 장소는 ‘바람의 언덕’이다. 3,000개의 형형색색의 바람개비들이 돌고 있어 가족과 연인들을 위한 포토존과 드라마, CF촬영지로 인기만점인 곳이다.</p>
+                <p>높이 약 400m의 봉우리로 동서로 뻗은 능선은 6개의 봉우리로 이루어져있다. 깎아지른 절벽산인 월류봉 아래로 물 맑은 초강천(草江川) 상류가 휘감아 흘러 수려한 풍경을 이룬다. ‘달이 머물다 가는 봉우리’라는 뜻의 월류봉(月留峯)이란 이름처럼 직립한 절벽에 걸려 있는 달의 정경이 특히 아름답다고 알려져 있다. 예로부터 이 일대의 뛰어난 경치를 ‘한천팔경(寒泉八景)’이라 하였다.</p>
+                <p>한천팔경은 제1경인 월류봉을 비롯하여 사군봉(使君峯)·산양벽(山羊壁)·용연동(龍淵洞)·냉천정(冷泉亭)·화헌악(花獻岳)·청학굴(靑鶴窟)·법존암(法尊巖)으로 이루어져 있는데 대부분 월류봉의 여러 모습을 지칭한 것이다. 화헌악은 월류봉이 진달래와 철쭉으로 붉게 물든 모습을 가리키고, 용연동은 월류봉 아래의 깊은 소(沼)를 말하며, 산양벽(산양암)은 월류봉의 가파른 절벽을 이르는 것이다. <신증동국여지승람> 제16권 충청도 황간현(黃澗縣) 불우조에 ‘심묘사(深妙寺)의 팔경(八景)’으로 기록되어 있는 곳이 바로 한천팔경이다.</p>
+                <p>우암 송시열(宋時烈 1607~1689)은 한때 이곳에 머물며 작은 정사를 짓고 학문을 연구하였는데 월류봉 아래쪽에 우암을 기리기 위해 건립한 한천정사(寒泉精舍, 충청북도문화재자료 제28호)와 영동 송우암 유허비(충청북도기념물 제46호)가 있다.</p>
                 <div id="tab_wrap" class="tab_wrap">
                     <div class="tit_wrap">
                         <ul class="menu_wrap">
@@ -99,13 +98,13 @@
                                 <div class="photo_slide_wrap">
                                     <div class="photo_slides">
                                         <div class="photo_slide" id="slide_1">
-                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=cc5a1db2-74ec-4d90-ae98-a0b49ef96bf1" alt="이미지">
+                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=60f1233a-4eb7-497d-be6d-aa64382741cd" alt="이미지">
                                         </div>
                                         <div class="photo_slide" id="slide_2">
-                                            <img src="https://ggtour.or.kr/cgi/upload/story100/01%20%EA%B3%A8%EB%AA%A9%EC%97%90%EC%84%9C%20%EB%A7%8C%EB%82%9C%20%EB%8F%84%EC%8B%9C%20%EC%9D%B4%EC%95%BC%EA%B8%B0/04%20%ED%8C%8C%EC%A3%BC%20%EC%9E%A5%ED%8C%8C%EB%A6%AC/img/edit_images09.JPG" alt="이미지">
+                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=27e7a7bd-a6f6-4b41-8070-f316da3af72a" alt="이미지">
                                         </div>
                                         <div class="photo_slide" id="slide_3">
-                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=5621f6bc-6c35-4001-8eeb-2d9e6f6a6806" alt="이미지">
+                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=f4e06bc6-486e-43ba-96d8-6d6efcc8f5a3" alt="이미지">
                                         </div>
                                     </div>
                                     
@@ -132,7 +131,7 @@
                                     style="border: 0;"
                                     loading="lazy"
                                     allowfullscreen
-                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB70pt_GZK1TuoW4Vq-itkkLGZm_FvaJFk&q=평화누리공원&region=KR&language=ko" frameborder="0"></iframe>
+                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyB70pt_GZK1TuoW4Vq-itkkLGZm_FvaJFk&q=월류봉,충청북도+영동군+황간면+원촌리+47&region=KR&language=ko" frameborder="0"></iframe>
                             </div>
                         </div>
 
@@ -167,13 +166,13 @@
             <div class="obj">
                 <ul class="article_list">
                     <li>
-                        <a href="https://tour.paju.go.kr/tour/festival/festival02/festival02_2/festival02_2_01/festival02_2_01_01.jsp" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=01ced96a-a91e-454b-9486-dc7fdda7e486)"></div>
+                        <a href="https://www.goesanfestival.com/" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=beda4f18-9348-4f67-8599-8a38bc53059e)"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">파주장단콩축제</p>
+                                    <p class="title">괴산대학찰옥수수축제</p>
                                     <span class="small-text">
-                                        웰빙명품! 장단콩 세상!
+                                        충청북도 괴산군에서 열리는 여름축제, 괴산대학찰옥수수축제
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
@@ -181,13 +180,14 @@
                         </a>
                     </li>
                     <li>
-                        <a href="http://www.bcj.co.kr/" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=b1acba20-1b10-41a7-a184-a061afc20116);"></div>
+                        <a href="https://www.danyang.go.kr/sobaeksan/650" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=d076348c-15d5-4f13-a951-b2a5b224e8b1);"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">벽초지수목원 국화축제</p>
+                                    <p class="title">제38회 단양 소백산 철쭉제</p>
                                     <span class="small-text">
-                                        동서양의 아름다운 정원을 모두 품은 곳, 벽초지수목원의 가을꽃 국화축제로 초대합니다.
+                                        개막식 콘서트 등 다양한 공연과 풍성한 체험행사로 연인 및 가족 모두가 즐길수 있는 축제로 분홍분홍한 봄빛에 물드는 하늘정원 소백산이 펼처진 단양에서 아름다운 추억을 만들어보자! <br>
+                                        대한민국 대표 관광지 단양에서 즐거운 추억도 만들GO 금 한 돈도 가져가GO~
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
@@ -195,13 +195,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.bicof.com/intro.php" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image: url(https://www.bicof.com/__upload/history/1653979701_3888.jpg);"></div>
+                        <a href="https://www.jincheon.go.kr/site/culture/sub.do?menukey=2832" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=f6002c2a-5b71-4e0a-908a-40a7cbfb599d);"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">부천국제만화축제</p>
+                                    <p class="title">생거진천 농다리축제</p>
                                     <span class="small-text">
-                                        아시아 최고의 글로벌 만화축제, 부천국제만화축제(BICOF)!
+                                        조상의 슬기를 배워가고자 농다리를 테마로한 이색적 축제
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
@@ -209,13 +209,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="https://ggtour.or.kr/enjoy/festival.php?tmenu=&smenu=&stitle=&tsort=1&msort=11&board_code=13&board=13&s_category_name=&s_view_yn=&key=&ordering=1&no=72923&mode=detail&page=1&s_tag=&s_admin_no=" target="_blank" title="페이지 이동">
-                            <div class="thumb" style="background-image: url(https://ggtour.or.kr/cgi/upload/comm_board/20210326094603.jpg);"></div>
+                        <a href="http://pumba21.com/" target="_blank" title="페이지 이동">
+                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=9bc43273-2ec8-497c-b9e6-914ba351561e);"></div>
                             <div class="infor-element">
                                 <div class="infor-element-inner">
-                                    <p class="title">수원 화성문화제</p>
+                                    <p class="title">음성 품바축제</p>
                                     <span class="small-text">
-                                        제22대 정조대왕의 효심과 부국강병의 원대한 꿈으로 축성된 세계문화유산 수원화성에서 펼쳐지는 대표적인 전통문화관광축제 
+                                        품바, 사랑과 나눔으로 치유하다.
                                     </span>
                                     <span class="view">자세히 보기+ </span>
                                 </div>
