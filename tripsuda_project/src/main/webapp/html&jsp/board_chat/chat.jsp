@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/testchat.css">
+<link rel="stylesheet" href="../../css/board_chat/testchat.css">
 <script type="text/javascript" charset="utf-8">
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 </script>
