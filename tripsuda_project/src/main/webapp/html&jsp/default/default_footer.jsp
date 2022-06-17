@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <div class="container">
     <h1 class="f_logo">
-        <img src="./images/common/logo_SUDA.svg" alt="logo">
+        <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo">
     </h1>
     <div>
         <span>고객센터 070-8240-3211 </span>
