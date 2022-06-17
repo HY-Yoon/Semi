@@ -91,7 +91,7 @@ public class MemberDao
 	}
 }
 	
-<<<<<<< HEAD
+
 	//---------------HEE
 	//마이페이지에서 로그인시 정보 확인
 	public MemberVo getUserInfo(String id) {
@@ -129,7 +129,7 @@ public class MemberDao
 		return vo;
 
 	}
-=======
+
 	//------------회원 등업--------
 	public int updateGrade(int mnum) {
 		Connection con = null;
@@ -148,7 +148,8 @@ public class MemberDao
 		JdbcUtil.close(con, pstmt, null);
 	}
 }
->>>>>>> branch 'main' of https://github.com/HY-Yoon/Semi
+
+
 	
 	//JoinFormController 가입
 	public int insertMember(MemberVo dto) {
