@@ -6,10 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="point.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/point/point.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
-<link rel="stylesheet" href ="${pageContext.request.contextPath}/css/point/point.css" >
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/mypage.css">
+
+
+
 </head>
 <script type="text/javascript">
 window.onload = function(){
@@ -23,7 +27,8 @@ function recoList(pageNum){
 			let result = xhr.responseText;
 			let data = JSON.parse(result);
 			let list = data.list;
-
+			let sum = document.getElementById("sp");
+			sum.innerHTML = data.sum+" point";
 			let table = document.getElementById("Plist");
 			let html = "<table>"
 			    html += "<tr> <th>번호</th> <th>내용</th> <th>포인트</th> </tr>"
@@ -34,7 +39,7 @@ function recoList(pageNum){
 				let pdate = list[i].pdate;
 				let content = list[i].content;
 				 
-				html += "<tr><td>"+pnum+"</td><td>"+content+"<br><span>"+pdate+"</span></td><td>"+point+"</td></tr>";
+				html += "<tr><td>"+pnum+"</td><td>"+content+"<br><span>"+pdate+"</span></td><td>"+point+"point</td></tr>";
 			
 			}
 				table.innerHTML = html+ "</table>" ;
@@ -52,7 +57,7 @@ function recoList(pageNum){
 				
 				for(let i=startPage;i<=endPage;i++){
 					if(i==pageNum){
-						pageHTML +="<a href='javascript:recoList("+ i + ")'><span style='color:blue'>["+ i +"]</span></a>";
+						pageHTML +="<a href='javascript:recoList("+ i + ")'><span style='color:#0b81ff'>["+ i +"]</span></a>";
 					}else{
 						pageHTML +="<a href='javascript:recoList("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
 					}
@@ -72,47 +77,75 @@ function recoList(pageNum){
 	xhr.send();
 }
 </script>
-
-<body>
-
-<div class="wrap">
-
 <header>
 	 	<jsp:include page="../default/default_header.jsp"/>
 </header>
 
-<main>
-	<div class="main_content"> <!--포인트 메인-->
+<body>
+<main class ="wrap">
+	<div class="layout">
+
+		<aside>
+			<div class="side">
+			<div class="profile">
+				<div class="img"></div>
+				<p>로그인한 아이디</p>
+			</div>
+			<div class="mypage">
+				<ul>
+					<li class="list"><a href="#"><span class="txt">포인트</span></a></li>
+					<li class="list"><a href="#"><span class="txt">계정관리</span></a></li>
+					<li class="list"><a href="#"><span class="txt">여행후기</span></a></li>
+					<li class="list"><a href="#"><span class="txt">예약내역</span></a></li>
+					<li class="list"><a href="#"><span class="txt">내코멘트</span></a></li>
+					<li class="list"><a href="#"><span class="txt">내동행 게시글</span></a></li>
+					<li class="list"><a href="#"><span class="txt">내QnA</span></a></li>
+				</ul>
+			</div>
+			</div>
+			</aside>
+
+		<div class="content">
+		
+			<div class="main_content"> 
 				<div class="main_top"> <!--적립내역 맨위 div-->
-					<h1>적립내역</h1>
+					<h2>적립내역</h2>
 				</div>
 
 			<div class="main_mid"> <!-- 중간 div-->
 			<span>현재 보유포인트</span>
+			<span class="sp" id="sp"></span>
+			
 			</div>
-
+			
+			
 			<div class="main_table"> <!--list table-->
 
-			<div id="Plist">
+				<div id="Plist">
 
-			</div>
+				</div>
 		
 			</div>
 
 <div class="main_paging">
 
-<div id="page">
+	<div id="page">
+
+	</div>
+	
+</div>
 
 </div>
-</div>
+		
+		
+		
+		</div>
 
-</div>
 
 
+	
+	</div>
 </main>
-</div>
-
-
 
 <footer>
 		<jsp:include page="../default/default_footer.jsp"/>

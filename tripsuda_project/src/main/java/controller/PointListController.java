@@ -44,7 +44,11 @@ public class PointListController extends HttpServlet {
 		if(endPage>pageCount) {
 			endPage = pageCount;
 		}
-				
+		
+		//포인트총합	-  포인트가 1점씩이라 count가 총합		
+		int sum = dao.getCount(mnum);
+		
+		
 		ArrayList<PointVo> list = dao.Plist(mnum,startRow,endRow);
 		resp.setContentType("text/plain;charset=utf-8");
 		PrintWriter pw=resp.getWriter();
@@ -65,7 +69,7 @@ public class PointListController extends HttpServlet {
 			data.put("pageNum", pageNum);
 			data.put("startPage", startPage);
 			data.put("endPage", endPage);
-						
+			data.put("sum", sum);			
 			pw.print(data);
 	}
 		

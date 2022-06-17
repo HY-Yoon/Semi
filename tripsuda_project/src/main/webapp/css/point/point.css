@@ -1,5 +1,48 @@
 @charset "UTF-8";
-*{
-    margin: 0px;
-    padding: 0px;
+
+
+.main_mid{
+
+	margin: 30px;
+	
 }
+
+.main_mid .sp{
+	color: #0b81ff;
+	padding-left: 30px;
+}
+
+.main_table{
+	
+}
+table{
+	border-collapse: collapse;
+	width: 100%;
+	border-top: 1px solid  #0b81ff;
+	
+}
+
+table span{ 
+	
+	font-size: 15px;
+	color: #bcbcbc;
+	
+}
+
+table th{
+	text-align: left;
+	padding-top: 10px;
+}
+
+table td{
+	
+	text-align: left;
+	padding-top: 9px;
+}
+
+
+.main_paging{
+		padding-left: 320px;
+		margin-top: 15px;
+}
+
