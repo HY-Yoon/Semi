@@ -1,4 +1,4 @@
-package controller;
+package controller.partyboard;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ import dao.MemberDao;
 import vo.ChatroomVo;
 import vo.MemberVo;
 
-@WebServlet("/login")
+@WebServlet("/html&jsp/board_chat/login")
 public class LoginController extends HttpServlet
 {
 	@Override
@@ -28,6 +28,6 @@ public class LoginController extends HttpServlet
 		ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
 		
 		req.getSession().setAttribute("channel", 1);
-		resp.sendRedirect("chat.jsp");
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
 	}
 }
