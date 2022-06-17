@@ -17,6 +17,7 @@ public class JdbcUtil
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			conn = DriverManager.getConnection(url, "c##scott", "tiger");
 			// System.out.println("접속 성공 - " + conn);
+			conn.setAutoCommit(true);
 			return conn;
 		}
 		catch(ClassNotFoundException e)

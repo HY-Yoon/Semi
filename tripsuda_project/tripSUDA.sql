@@ -9,7 +9,7 @@ CREATE TABLE member (
    birth   Date NOT NULL,
    withdraw varchar2(10) DEFAULT 'N' check(withdraw in('Y','N')),   
    favorite varchar2(15) NOT NULL, 
-   grade   varchar2(30) DEFAULT '일반' , 
+   grade   varchar2(30) DEFAULT '일반', 
    stop   Date DEFAULT NULL  
 );
 -- 여행후기게시판
@@ -79,13 +79,16 @@ create table reco_expert(
     anum number(10) references board_expert(anum),
     mnum number(10) references member(mnum)
 );
+
 -- 포인트
 CREATE TABLE point (
 	pnum 	number(10) primary key,
 	mnum	number(10) references member(mnum),	
 	point	number(10) default 0,
-	pdate  date not null 
+	pdate  date not null,
+	content varchar2(30) -- 포인트 얻은 이유   게시판 작성 / 추천 10
 );
+
 --신고
 CREATE table report(
 	rnum number(10) primary key, --시퀀스

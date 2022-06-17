@@ -90,6 +90,24 @@ public class MemberDao
 	}
 }
 	
+	//------------회원 등업--------
+	public int updateGrade(int mnum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		con = JdbcUtil.getCon();
+	try {
+		String sql = "update member set grade='전문가' where mnum = ?";
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1,mnum);
+		return pstmt.executeUpdate();
+				
+	}catch (SQLException s) {
+		 s.printStackTrace();
+		 return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt, null);
+	}
+}
 	
 	
 }

@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="../../css/common.css">
 
 </head>
-<body> 
+<body>
 <%
 	session.setAttribute("id", 1234);
 %>
@@ -20,12 +20,14 @@
         <jsp:include page="../default/default_header.jsp"/>
     </header>
     <main>
+        <jsp:include page="pageheader.html"/>
         <jsp:include page="edit.jsp"/>
     </main>
     <footer>
         <jsp:include page="../default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="./js/common/header.js"></script>
+<script src="../../js/common/header.js"></script>
+<script src="../../js/board_party/default.js"></script>
 </body>
 </html>

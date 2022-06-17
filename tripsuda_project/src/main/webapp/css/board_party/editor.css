@@ -1,0 +1,97 @@
+.container * {
+	font-size: 16px;
+}
+
+.content_header {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: aqua;
+    background-image: url("../../images/board_party/thumb.jpg");
+    scroll-behavior: smooth;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+.content_header h2 {
+    height: 40px;
+    font-weight: 400;
+    color: white;
+}
+.content_header h1 {
+    height: 80px;
+    line-height: 40px;
+    font-weight: 500;
+    font-size: 68px;
+    color: white;
+}
+
+#limiter, #editor, #submitter {
+    display: flex; 
+    flex-direction: column;
+    /* padding: 15px; */
+    margin: 25px;
+    box-sizing: border-box;
+}
+.flexcon {
+    display: flex;
+}
+.contentbox {
+    display: flex; 
+    flex-direction: column;
+    /* padding: 15px; */
+    margin: 25px;
+    box-sizing: border-box;
+}
+
+.select_box {
+    width: 100%;
+    padding: 25px;
+    border: 1px solid lightgray;
+}
+
+.descbox {
+    display: flex;
+    align-items: center;
+    width: 150px;
+}
+
+.region_btns, .gender_btns {
+    margin: 0px 50px 0px 0px;
+    justify-content: flex-start;
+    border: 0;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+}
+
+.submit_btn {
+    display: flex;
+    width: 50%;
+    height: 54px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: rgb(0, 206, 124);
+    color: white;
+    cursor: pointer;
+}
+
+input {
+  -webkit-appearance: auto;
+}
+
+input:focus {
+    outline: rgb(0, 206, 124) solid 2px;
+}
+
+input#memcount_range:focus {
+	outline: none;
+}
