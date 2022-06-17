@@ -12,10 +12,20 @@
         </div>
 
         <div class="h_right">
+        
+         <!-- search_wrap 검색부분 수정했습니다. search.txt확인 -->
+        	<form action="${pageContext.request.contextPath}/html&jsp/board_expert/list.jsp" method="get">
             <div class="search_wrap">
-                <button></button>
-                <input type="text" name="search" id="search">
+                <button type="submit"></button>
+                <select name="select">
+	               	<option value="tot" <c:if test="${select=='tot' }">selected</c:if>>통합</option>
+                	<option value="title"<c:if test="${select=='title' }">selected</c:if>>제목</option>
+                	<option value="tag" <c:if test="${select=='tag' }">selected</c:if>>지역</option>
+                </select>
+                	<input type="text" name="search" id="search" value="${search }">
             </div>
+            </form>
+                    
             <c:choose>
                 <c:when test="${empty sessionScope.id}">
                     <button class="login">로그인</button>
