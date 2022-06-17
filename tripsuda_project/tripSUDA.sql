@@ -29,7 +29,7 @@ CREATE TABLE board_review (
 -- 여행후기댓글
 CREATE TABLE comm_review (
 	cnum	number(10) primary key, --시퀀스
-	anum	number(10) references board(anum),
+	anum	number(10) references BOARD_REVIEW(anum),
 	mnum	number(10)	references member(mnum),
 	content	varchar2(500)	NOT NULL,
 	regdate	Date	NOT NULL,
@@ -41,9 +41,10 @@ CREATE TABLE comm_review (
 -- 여행후기추천
 create table reco_review(
     rnum number(10) primary key,
-    anum number(10) references board(anum),
+    anum number(10) references BOARD_REVIEW(anum),
     mnum number(10) references member(mnum)
 );
+
 
 -- 전문가 게시판
 CREATE TABLE board_expert (
