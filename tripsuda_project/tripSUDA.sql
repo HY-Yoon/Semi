@@ -123,24 +123,29 @@ CREATE TABLE category (
 
 
 -- 동행 게시판 (partyboard X)
+drop table board_party cascade constraints;
 CREATE TABLE board_party (
-	anum	number(10)      primary key,	
-	mnum	number(10)      references member(mnum),	
-	nick	varchar2(20)	NOT NULL,
-	title	varchar2(100)	NOT NULL,
-	keyword	varchar2(20),
-	content	clob            NOT NULL,
-	regdate	date	        NOT NULL,
-	orgFile	varchar2(200),
-	serverFile	varchar2(200),
-	views       number(10)      NOT NULL,
+	anum	    number(10)      primary key,	
+	mnum	    number(10)      references member(mnum),	
+	nick	    varchar2(20)	NOT NULL,
+
+	dest        varchar2(10)    NOT NULL,
+	gender      varchar2(10),
+	age_min     number(10),
+	age_max     number(10),
 	memcnt      number(10)      NOT NULL,
-	dest        varchar2(100)   NOT NULL,
 	startdate   date            NOT NULL,
 	enddate     date            NOT NULL,
-	gender      varchar2(10),
-	age         number(10),
-	yn          varchar2(5)	    default N   NOT NULL
+
+	backimage   clob            NOT NULL,
+
+	title	    varchar2(100)	NOT NULL,
+	content	    clob            NOT NULL,
+    tags        varchar2(100),
+
+	views       number(10)      NOT NULL,
+	regdate	    date	        NOT NULL,
+	expired     char	        default 'N' NOT NULL
 );
 CREATE SEQUENCE board_party_seq;
 
@@ -184,7 +189,6 @@ CREATE TABLE chat
     message VARCHAR2(1000) NOT NULL,
     credate DATE NOT NULL,
     
-    CONSTRAINT fk_chat_rnum FOREIGN KEY(rnum) REFERENCES board_party(rnum),
     CONSTRAINT fk_chat_sender FOREIGN KEY(sender) REFERENCES MEMBER(mnum)
 )
 NESTED TABLE readers STORE AS chat_readers_list;
@@ -207,11 +211,11 @@ CREATE TABLE adminchat
 -- 동행구하기 글 작성되면 채팅방도 자동으로 생성
 -- ※ 글이 지워진다고 같이 제거되진 않음! (기록을 남겨야 할 것 같아서)
 create or replace trigger chatroom_create_trig
-    after insert on partyboard
+    after insert on board_party
     for each row
 declare
     nums chat_members;
 begin
-    select mnum bulk collect into nums from board_party where anum = :new.anum;
-    insert into chatroom values(chatroom_seq.nextval, :new.anum, nums);
+--    select :new.mnum bulk collect into nums from board_party where anum = :new.anum;
+    insert into chatroom values(chatroom_seq.nextval, :new.anum, chat_members(:new.mnum));
 end chatroom_create_trig;
