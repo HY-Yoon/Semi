@@ -2,10 +2,14 @@
 @import url(./default/reset.css);
 @import url(./default/header.css);
 @import url(./default/footer.css);
+
+
+
 img{
     vertical-align: top;
     object-fit: cover;
 }
+
 .container{
     width: 1200px;
     margin: 0 auto;

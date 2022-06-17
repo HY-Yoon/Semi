@@ -62,7 +62,7 @@
 						  "닉네임:"+nick +"<br>"+
 						  "조회수:"+views+"<br>"+
 						  hashtag+"<br>";
-												    
+											    
 		div.className="listdiv";
 						
 		div.style="cursor: pointer";
@@ -90,6 +90,7 @@
 							pageHTML +="<a href='javascript:BoardList("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
 						}
 					}
+					
 					if(endPage<pageCount){
 						pageHTML += "<a href='javascript:BoardList("+ (endPage+1) +")'>다음</a>";
 					}
@@ -99,34 +100,34 @@
 				
 				}
 			};
-		
-						
+								
 			xhr.open('post','${pageContext.request.contextPath}/html&jsp/board_expert/list',true);
 			let param="pageNum="+pageNum +"&select=${select}&search=${search}"
 			xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 			xhr.send(param);
-						
+					
 		}
 	
 </script>
 <body>
 
-
-<div id="header">
+<header>
  	<jsp:include page="../default/default_header.jsp"/>
-</div>
+</header>
  
- 
-<div id="main">
+<main> 
+
 <div id="board_list">
 
 </div>
-<div id="page"></div>
+<div id="page">
 </div>
 
-<div id="footer">
+</main>
+
+<footer>
 	<jsp:include page="../default/default_footer.jsp"/>
-</div>
+</footer>
 
 </body>
 </html>

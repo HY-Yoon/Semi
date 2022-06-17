@@ -260,6 +260,30 @@ public class Board_ExpertDao {
 		}
 		
 	}
-	
+		
+	//-------------추천10 넘는 게시글을 작성한 회원번호--------------
+		public int reco10(int anum) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;			
+			con = JdbcUtil.getCon();
+		try {
+			String sql = "select mnum from board_expert where anum=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, anum);
+			rs = pstmt.executeQuery();
+			rs.next(); 
+				int mnum = rs.getInt("mnum");
+				return mnum;
+			
+			
+		}catch (SQLException s) {
+			 s.printStackTrace();
+			 return -1;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+		
 	
 }
