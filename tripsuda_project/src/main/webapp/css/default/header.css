@@ -72,7 +72,7 @@
 }
 .h_right .search_wrap{
     position: relative;
-    width: 300px;
+    width: 330px;
     display: flex;
     -webkit-box-pack: center;
     justify-content: center;
@@ -104,7 +104,16 @@
     border-radius: 90px;
     height: 40px;
     width: 100%;
-    padding: 13px 18px 13px 40px;
+    padding: 13px 18px 13px 90px;
+}
+.search_wrap > select{
+	position: absolute;
+    top: 50%;
+    left: 40px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #5b5b5b;
 }
 .h_right > button{
     position: relative;

@@ -22,7 +22,7 @@
                 	<option value="title"<c:if test="${select=='title' }">selected</c:if>>제목</option>
                 	<option value="tag" <c:if test="${select=='tag' }">selected</c:if>>지역</option>
                 </select>
-                	<input type="text" name="search" id="search" value="${search }">
+                	<input type="text" name="search" id="search" value="${search }" placeholder="${placeholder }">
             </div>
             </form>
                     
