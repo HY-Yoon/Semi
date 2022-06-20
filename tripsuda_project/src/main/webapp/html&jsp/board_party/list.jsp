@@ -1,3 +1,5 @@
+<%@page import="util.DateUtil.DATEFORMAT"%>
+<%@page import="util.DateUtil"%>
 <%@page import="org.jsoup.Jsoup"%>
 <%@page import="dao.PartyBoardDao"%>
 <%@page import="vo.PartyboardVo"%>
@@ -5,12 +7,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<script type="text/javascript" charset="utf-8">
+	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
+</script>
 <%
 	String pn = request.getParameter("pagenum");
 	long pagenum = 1;
 	if (pn != null)
 		pagenum = Long.parseLong(pn);
-	ArrayList<PartyboardVo> list = PartyBoardDao.getInstance().selectAll(pagenum);
+	ArrayList<PartyboardVo> list = (ArrayList<PartyboardVo>)session.getAttribute("list");
 %>
 <div class="container">
 	<div id="searcher" style="border: 1px solid lightgray; padding: 15px">
@@ -41,23 +46,26 @@
 		<div class="flexcon">
 			<div class="descbox">날짜 선택</div>
 			<div id="schedule_select" class="select_box flexcon"> <!-- 일정 -->
+				<span style="width: 250px;">
+					<input type="checkbox" id="date_ignore_check" onchange="onCheckDateIgnore"> 제한 없음 &nbsp;&nbsp;
+				</span>
 				<input type="date" id="startdate" style="width: 100%" onchange="onChangeSchedule(true)">
 				&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp; 
 				<input type="date" id="enddate" style="width: 100%" onchange="onChangeSchedule(false)">
 			</div>
 		</div>
-		<input type="button" class="submit_btn" value="이 조건으로 검색" style="height:60px">
+		<input type="button" class="submit_btn" value="이 조건으로 검색" onclick="sendForm()" style="height:60px">
 	</div>
 	<div id="list" style="flex-direction: row; flex-wrap: wrap;">
 	<%
 		for (PartyboardVo vo : list)
 		{
 	%>
-		<div class="article" onclick="window.location.replace('<%=request.getContextPath() %>/html&jsp/board_party/detailpage.jsp?anum=<%=vo.getAnum() %>')">
+		<div class="article" onclick="window.location.replace('<%=request.getContextPath() %>/html&jsp/board_party/detail?anum=<%=vo.getAnum() %>')">
 			<div class="pic">
 				<img src="<%=vo.getBackimg() %>">
 				<div class="flexcon region">
-					<span><%=vo.getDest() %></span><span class="schedule">&nbsp;06/01 ~ 06/30</span>
+					<span><%=vo.getDest() %></span><span class="schedule">&nbsp;<%=DateUtil.getText(vo.getStartDate(), DATEFORMAT.MD_small) %> ~ <%=DateUtil.getText(vo.getEndDate(), DATEFORMAT.MD_small) %></span>
 				</div>
 			</div>
 			<div class="content">
@@ -97,7 +105,7 @@
 		<a href=""><< 이전</a>
 	<% } %>
 	<% for (long pnum = pagenum - (pagenum % 10) + 1; pnum <= Math.min(pagenum - (pagenum % 10) + 10, PartyBoardDao.getInstance().getPageCount()); pnum++) { %>
-		<a href="<%=request.getContextPath() %>/html&jsp/board_party/listpage.jsp?pagenum=<%=pnum %>"><%=pnum %></a>
+		<a href="<%=request.getContextPath() %>/html&jsp/board_party/list?pagenum=<%=pnum %>"><%=pnum %></a>
 	<% }
 		if (pagenum - (pagenum % 10) + 10 >= PartyBoardDao.getInstance().getPageCount())
 		{

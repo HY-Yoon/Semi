@@ -14,7 +14,7 @@
 <script type="text/javascript" charset="utf-8">
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 </script>
-<script type="text/javascript" src="js/chat_lib.js"></script>
+<script type="text/javascript" src="../../js/board_chat/chat_lib.js?ver=<%=System.currentTimeMillis() %>"></script>
 </head>
 <body>
 <%
@@ -32,7 +32,7 @@
 			for (ChatroomVo vo : chatrooms)
 			{
 				%>
-				<li><a href="javascript:ChatManager.connectRoom(<%=vo.getrNum() %>)"><%=ChatroomDao.getInstance().getArticleName(vo.getaNum()) %></a></li>
+				<li><a href="javascript:ChatManager.connectRoom(<%=vo.getaNum() %>)"><%=ChatroomDao.getInstance().getArticleName(vo.getaNum()) %></a></li>
 				<% 
 			}
 		%>
@@ -43,7 +43,7 @@
 	</div> 
 	<br>
 	<form action="javascript:ChatManager.sendChat()" method="post" onsubmit="return false;">
-		<input type="hidden" id="rnum" value="<%=channel %>">
+		<input type="hidden" id="anum" value="<%=channel %>">
 		<input type="text" id="msg">
 		<input type="submit" id="sendmsg" value="보내기" onclick="ChatManager.sendChat()">
 	</form>

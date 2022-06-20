@@ -72,4 +72,4 @@
 </div>
 
 <link rel="stylesheet" href="../../css/board_party/editor.css">
-<script src="../../js/board_party/editor.js"></script>
+<script src="../../js/board_party/editor.js?ver=" <%=System.currentTimeMillis() %>></script>

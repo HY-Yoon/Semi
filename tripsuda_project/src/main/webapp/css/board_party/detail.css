@@ -90,6 +90,10 @@ input[type="button"] {
     cursor: pointer;
 }
 
+input[type="button"][disabled="disabled"] {
+    background-color: rgb(128, 128, 128);
+}
+
 .region_btns, .gender_btns {
     margin: 0px 50px 0px 0px;
     justify-content: flex-start;

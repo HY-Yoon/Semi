@@ -1,6 +1,7 @@
 package controller.partyboard;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.ServletException;
@@ -46,14 +47,15 @@ public class PartyboardWriteController extends HttpServlet
 				json.getString("content"), json.getString("tag")
 				);
 		int result = PartyBoardDao.getInstance().insert(vo);
+		PrintWriter pw = resp.getWriter();
 		if (result > 0) // 성공
 		{
-			long anum = PartyBoardDao.getInstance().getCurrVal();
-			resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/detailpage.jsp?anum=" + anum);
+			long anum = PartyBoardDao.getInstance().selectNewArticle().getAnum();
+			pw.print(req.getContextPath() + "/html&jsp/board_party/detail?anum=" + anum);
 		}
 		else // 실패
 		{
-			resp.sendRedirect(req.getContextPath() + "/board_party/list.jsp");
+			pw.print(req.getContextPath() + "/html&jsp/board_party/list");
 		}
 	}
 }
