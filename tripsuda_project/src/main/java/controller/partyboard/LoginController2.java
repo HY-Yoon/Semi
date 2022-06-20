@@ -29,13 +29,7 @@ public class LoginController2 extends HttpServlet
 		}
 		
 		req.getSession().setAttribute("userdata", vo);
-
-		 System.out.println("no - " + vo.getMnum());
-		 ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
-		 System.out.println("rooms - " + list.size());
-		 req.getSession().setAttribute("chatrooms", list);
-		 req.getSession().setAttribute("channel", 1);
-		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/listpage.jsp");
 	}
 	
 }

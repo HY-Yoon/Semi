@@ -59,7 +59,7 @@
             </c:choose>
             <button class="btn_write">글쓰기</button>
             <div class="write_popup">
-                <button>
+                <button onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/editpage.jsp')">
                     <img src="${pageContext.request.contextPath }/images/common/letter_color.svg" alt="이미지">
                     <p>여행친구 찾기</p>
                 </button>
@@ -74,7 +74,7 @@
     <div class="h_bot">
         <button class="bot_navi active">홈</button>
         <button class="bot_navi">전문</button>
-        <button class="bot_navi">동행</button>
+        <button class="bot_navi" onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/listpage.jsp?pagenum=1')">동행</button>
         <button class="bot_navi">후기</button>
         <button class="bot_navi">자유</button>
         <button class="bot_navi">Q&A</button>

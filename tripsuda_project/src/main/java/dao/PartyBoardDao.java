@@ -50,6 +50,7 @@ public class PartyBoardDao
 			pstmt.setString(2, vo.getNick());
 			pstmt.setString(3, vo.getDest());
 			pstmt.setString(4, vo.getGender());
+			System.out.println("[" + vo.getGender() + "]");
 			pstmt.setLong(5, vo.getAge_min());
 			pstmt.setLong(6, vo.getAge_max());
 			pstmt.setLong(7, vo.getMemcnt());

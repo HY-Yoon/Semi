@@ -91,7 +91,7 @@ public class ChatroomDao
 					+ "    on a.anum = b.anum";
 		// 자신이 쓴 게시물을 통해 채팅방 가져오기
 		String sql2 = "select a.*, b.*"
-					+ "	   from partyboard a inner join chatroom b"
+					+ "	   from board_party a inner join chatroom b"
 					+ "        on a.anum = b.anum"
 					+ "    where ? in(select mnum from board where anum = a.anum)";
 		try(Connection con = JdbcUtil.getCon();

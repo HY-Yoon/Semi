@@ -24,10 +24,12 @@ public class LoginController extends HttpServlet
 		String pwd = req.getParameter("pwd");
 		MemberVo vo = MemberDao.getInstance().select(id, pwd);
 		req.getSession().setAttribute("userdata", vo);
-		
-		ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
-		
-		req.getSession().setAttribute("channel", 1);
-		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
+
+		 System.out.println("no - " + vo.getMnum());
+		 ArrayList<ChatroomVo> list = ChatroomDao.getInstance().getUserRooms(vo.getMnum());
+		 System.out.println("rooms - " + list.size());
+		 req.getSession().setAttribute("chatrooms", list);
+		 req.getSession().setAttribute("channel", 1);
+		 resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
 	}
 }

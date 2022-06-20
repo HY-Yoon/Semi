@@ -5,6 +5,8 @@
 
 <%
 	PartyboardVo vo = PartyBoardDao.getInstance().select(Long.parseLong(request.getParameter("anum")));
+	String gender = vo.getGender().equalsIgnoreCase("선택 안함") ? "제한 없음" : vo.getGender();
+	String age = (vo.getAge_min() == 0 && vo.getAge_max() == 0) ? "제한 없음" : vo.getAge_min() + "세부터 " + vo.getAge_max() + "세까지";
 %>
 <div class="content_header">
 	<img src="<%=vo.getBackimg() %>" width="100%">
@@ -16,10 +18,11 @@
 		</div>
 		<div class="line"></div>
 		<div class="desc">
-			지역, 모집인원<br>
-			일자 언제부터 ~ 언제까지<br>
-			성별 조건 (있으면)<br>
-			연령 조건 (있으면)
+			<span class="desctext">지역</span> <%=vo.getDest() %><br>
+			<span class="desctext">모집인원</span> <%=vo.getMemcnt() %>명<br>
+			<span class="desctext">일자</span> <%=vo.getStartDate().toString() %> ~ <%=vo.getEndDate().toString() %><br>
+			<span class="desctext">성별</span> <%=gender %><br>
+			<span class="desctext">연령</span> <%=age %>
 		</div>
 		<div style="min-height: 300px;">
 			<%=vo.getContent() %>
