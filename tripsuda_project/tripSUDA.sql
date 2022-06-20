@@ -160,14 +160,15 @@ CREATE TABLE category (
 
 
 -- 동행 게시판 (partyboard X)
+-- 220620 dest 및 gender 컬럼의 크기를 10 -> 20으로 증가
 drop table board_party cascade constraints;
 CREATE TABLE board_party (
 	anum	    number(10)      primary key,	
 	mnum	    number(10)      references member(mnum),	
 	nick	    varchar2(20)	NOT NULL,
 
-	dest        varchar2(10)    NOT NULL,
-	gender      varchar2(10),
+	dest        varchar2(20)    NOT NULL,
+	gender      varchar2(20),
 	age_min     number(10),
 	age_max     number(10),
 	memcnt      number(10)      NOT NULL,
@@ -186,14 +187,12 @@ CREATE TABLE board_party (
 );
 CREATE SEQUENCE board_party_seq;
 
---동행신청목록
+--동행신청목록 (220620 - 시퀀스 제거(불필요해보여서))
 CREATE TABLE partywait (
-    pnum number(10) primary key, --시퀀스 따로 만들 것 
-	anum VARCHAR(255) references board(anum), -- 게시글번호 참조 
+	anum number references board_party(anum), -- 게시글번호 참조 
 	mnum number(10) references member(mnum), --회원번호 참조
 	yn varchar2(5)	DEFAULT 'N' check(yn in('Y','N'))
 );
-
 
 
 

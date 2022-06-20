@@ -3,11 +3,14 @@ package dao;
 import java.math.BigDecimal;
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import org.json.JSONObject;
 
 import db.JdbcUtil;
 import vo.ChatroomVo;
@@ -70,28 +73,27 @@ public class PartyBoardDao
 		}
 	}
 
-	public PartyboardVo selectNewArticle(long anum)
+	public PartyboardVo selectNewArticle()
 	{
-		return select(getCurrVal());
+		return selectAll(1).get(0);
 	}
-	
-	public long getCurrVal()
+	public PartyboardVo selectNewArticle(long mnum)
 	{
-		String sql = "select LAST_NUMBER from USER_SEQUENCES where sequence_name = 'BOARD_PARTY_SEQ'";
+		return selectAll(1, mnum).get(0);
+	}
+	public void addView(long anum)
+	{
 		try(Connection con = JdbcUtil.getCon();
-			PreparedStatement pstmt = con.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();)
+			Statement stmt = con.createStatement();)
 		{
-			if (rs.next())
-				return rs.getLong(1);
+			stmt.executeUpdate("update board_party set views = (views + 1) where anum = " + anum);
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
-		return -1;
 	}
-	
+
 	public PartyboardVo select(long anum)
 	{
 		if (anum <= 0)
@@ -133,6 +135,60 @@ public class PartyBoardDao
 		return null;
 	}
 	
+	public ArrayList<PartyboardVo> search(long page, boolean no_region, String region, boolean no_gender, String gender, boolean no_age, long age_min, long age_max, boolean no_date, Date startdate, Date enddate)
+	{
+		ArrayList<PartyboardVo> list = new ArrayList<PartyboardVo>();
+		String sql = "select * from ";
+		if (no_region && no_gender && no_age && no_date)
+		{
+			return selectAll(page);
+		}
+		else
+		{
+			// 공포의 쿼리
+			sql += "(select bp.*, rownum as rnum from (select * from board_party order by anum desc) bp)"
+				+  " where "
+				+  (no_region ? "" : "dest = \'" + region + "\' " + (!no_gender || !no_age || !no_date ? "and " : ""))
+				+  (no_gender ? "" : "gender = \'" + gender + "\' " + (!no_age || !no_date ? "and " : ""))
+				+  (no_age ? "" : "age_min >= " + age_min + " and age_max <= " + age_max + " " + (!no_date ? "and " : ""))
+				+  (no_date ? "" : "startdate >= \'" + startdate + "\' and enddate <= \'" + enddate + "\'")
+				+  " and rnum >= " + (page * 8 - 7) + " and rnum <= " + (page * 8);
+		}
+		try(Connection con = JdbcUtil.getCon();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);)
+		{
+			while (rs.next())
+			{
+				PartyboardVo vo = new PartyboardVo(
+					rs.getLong("anum"),
+					rs.getLong("mnum"),
+					rs.getString("nick"),
+					rs.getString("dest"),
+					rs.getString("gender"),
+					rs.getLong("age_min"),
+					rs.getLong("age_max"),
+					rs.getLong("memcnt"),
+					rs.getDate("startdate"),
+					rs.getDate("enddate"),
+					rs.getString("backimage"),
+					rs.getString("title"),
+					rs.getString("content"),
+					rs.getString("tags"),
+					rs.getLong("views"),
+					rs.getDate("regdate"),
+					rs.getString("expired")
+				);
+				list.add(vo);
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	public int getPageCount()
 	{
 		int page = 1;
@@ -153,13 +209,35 @@ public class PartyBoardDao
 		return (int)Math.ceil(page / 8.0);
 	}
 	
+	public int updateExpire(long anum, boolean expire)
+	{
+		String sql = "update board_party set expired = ? where anum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setString(1, expire ? "Y" : "N");
+			pstmt.setLong(2, anum);
+			return pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return -1;
+	}
+
 	public ArrayList<PartyboardVo> selectAll(long page)
+	{
+		return selectAll(page, -1);
+	}
+	public ArrayList<PartyboardVo> selectAll(long page, long mnum)
 	{
 		ArrayList<PartyboardVo> list = new ArrayList<PartyboardVo>();
 		if (page <= 0)
 			return list;
 		
-		String sql = "select * from (select bp.*, rownum as rnum from board_party bp order by anum desc) where rnum >= ? and rnum <= ?";
+		String sql = "select * from (select bp.*, rownum as rnum from (select * from board_party <mnum> order by anum desc) bp) where rnum >= ? and rnum <= ?";
+		sql = sql.replaceAll("<mnum>", mnum > 0 ? ("where mnum = " + mnum) : "");
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
