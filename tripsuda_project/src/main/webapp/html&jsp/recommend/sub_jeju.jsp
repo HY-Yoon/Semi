@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 제주 --%>
-<link rel="stylesheet" href="./css/reco_sub.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/reco_sub.css">
 <!-- 날씨를 얻어오기 위한 현재 페이지 정보 -->
 <div id="pageInfo" style="display: none;">
     <span id="course_id">164</span>
@@ -230,4 +230,4 @@
 </div>
 
 <!-- javaScript -->
-<script src="./js/recommend_sub.js"></script>
+<script src="${pageContext.request.contextPath }/js/recommend_sub.js"></script>

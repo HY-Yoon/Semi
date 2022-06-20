@@ -136,7 +136,7 @@ function weather(){
                 case '8': img="weather05.png"; sky_status="<span>눈</span>"; break;
                 default: img="weather05.png"; sky_status="<span>눈비</span>"; break;
             }
-            document.querySelector(".status_img img").src= "./images/recommend/"+img;//날씨 이미지
+            document.querySelector(".status_img img").src= sessionStorage.getItem("contextPath")+"/images/recommend/"+img;//날씨 이미지
             document.querySelector(".weather .status").innerHTML= degree + sky_status; //온도, 날씨
         }
     }
