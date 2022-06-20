@@ -3,8 +3,6 @@
 @import url(./default/header.css);
 @import url(./default/footer.css);
 
-
-
 img{
     vertical-align: top;
     object-fit: cover;
@@ -13,4 +11,9 @@ img{
 .container{
     width: 1200px;
     margin: 0 auto;
+}
+input:focus{
+    border-color:#0b81ff !important;
+    outline: none !important;
+    border-width: 2px !important;
 }
