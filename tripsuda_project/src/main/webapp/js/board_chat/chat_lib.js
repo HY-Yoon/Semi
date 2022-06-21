@@ -36,14 +36,14 @@ ChatManager.update = function()
 {
 	if (this._roomdata != null)
 	{
-		this.connectRoom(_roomdata.rnum);
+		this.connectRoom(_roomdata.anum);
 	}
 }
 
 // 방에 연결
-ChatManager.connectRoom = function(rnum)
+ChatManager.connectRoom = function(anum)
 {
-	// console.log("connect - " + rnum);
+	// console.log("connect - " + anum);
 	
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function()
@@ -54,7 +54,7 @@ ChatManager.connectRoom = function(rnum)
 			ChatManager.updateChatList(JSON.parse(result));
 		}
 	};
-	let url = sessionStorage.getItem("contextPath") + "/board_chat/room?rnum=" + rnum;
+	let url = sessionStorage.getItem("contextPath") + "/board_chat/room?anum=" + anum;
 	// console.log("url - " + url);
 	xhr.open("get", url, true);
 	xhr.send();
@@ -63,7 +63,7 @@ ChatManager.connectRoom = function(rnum)
 // 채팅 보내기
 ChatManager.sendChat = function()
 {
-	let obj = {rnum : document.getElementById("rnum").value,
+	let obj = {anum : document.getElementById("anum").value,
 				msg : document.getElementById("msg").value};
 	
 	// console.log("chat send - " + JSON.stringify(obj));
@@ -89,7 +89,7 @@ ChatManager.sendChat = function()
 ChatManager.updateChatList = function(roomdata)
 {
 	this._roomdata = roomdata;
-	document.getElementById("rnum").value = this._roomdata.rnum;
+	document.getElementById("anum").value = this._roomdata.anum;
 	document.getElementById("channel_title").innerText = this._roomdata.title;
 	let msg = "";
 	for(let chat_element of this._roomdata.list)

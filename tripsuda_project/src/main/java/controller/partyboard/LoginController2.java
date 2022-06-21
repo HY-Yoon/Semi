@@ -29,7 +29,7 @@ public class LoginController2 extends HttpServlet
 		}
 		
 		req.getSession().setAttribute("userdata", vo);
-		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/listpage.jsp");
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/list");
 	}
 	
 }

@@ -6,22 +6,14 @@ package vo;
  */
 public class PartywaitVo
 {
-	private long pnum;
 	private long anum;
 	private long mnum;
 	private String yn;
-	public PartywaitVo(long pnum, long anum, long mnum, String yn) {
+	public PartywaitVo(long anum, long mnum, String yn) {
 		super();
-		this.pnum = pnum;
 		this.anum = anum;
 		this.mnum = mnum;
 		this.yn = yn;
-	}
-	public long getPnum() {
-		return pnum;
-	}
-	public void setPnum(long pnum) {
-		this.pnum = pnum;
 	}
 	public long getAnum() {
 		return anum;

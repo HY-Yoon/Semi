@@ -56,7 +56,7 @@ public class ChatroomDao
 
 	public String getArticleName(long anum)
 	{
-		String sql = "select * from board where anum = " + anum;
+		String sql = "select * from board_party where anum = " + anum;
 		try(Connection con = JdbcUtil.getCon();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);)
@@ -93,7 +93,7 @@ public class ChatroomDao
 		String sql2 = "select a.*, b.*"
 					+ "	   from board_party a inner join chatroom b"
 					+ "        on a.anum = b.anum"
-					+ "    where ? in(select mnum from board where anum = a.anum)";
+					+ "    where a.mnum = ?";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			PreparedStatement pstmt2 = con.prepareStatement(sql2);)
@@ -152,6 +152,37 @@ public class ChatroomDao
 			{
 				ChatroomVo vo = new ChatroomVo();
 				vo.setrNum(channel);
+				vo.setaNum(rs.getLong("anum"));
+				Array arr = rs.getArray("members");
+				System.out.println(arr.getArray().toString());
+				BigDecimal[] li = (BigDecimal[])arr.getArray();
+				long[] mem = new long[li.length];
+				for (int i = 0; i < li.length; i++)
+					mem[i] = li[i].longValue();
+				vo.setMembers(mem);
+				return vo;
+			}
+			rs.close();
+			return null;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public ChatroomVo getRoomfromAnum(long anum)
+	{
+		String sql = "select * from chatroom where anum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, anum);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+			{
+				ChatroomVo vo = new ChatroomVo();
+				vo.setrNum(anum);
 				vo.setaNum(rs.getLong("anum"));
 				Array arr = rs.getArray("members");
 				System.out.println(arr.getArray().toString());

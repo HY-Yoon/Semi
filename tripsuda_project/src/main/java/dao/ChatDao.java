@@ -37,15 +37,18 @@ public class ChatDao
 	
 	public int addChat(ChatVo vo)
 	{
-		String sql = "insert into chat values(chat_seq.nextval, ?, ?, ?, ?, sysdate)";
+		String sql = "insert into chat values(chat_seq.nextval, ?, ?, <chat>, ?, sysdate)";
+		String param_cm = "chat_members(";
+		for (int i = 0; i < vo.getReaders().length; i++)
+			param_cm += vo.getReaders()[i] + (i == vo.getReaders().length - 1 ? ")" : ",");
+		sql = sql.replaceAll("<chat>", param_cm);
+		
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
 			pstmt.setLong(1, vo.getrNum());
 			pstmt.setLong(2, vo.getSender());
-			Array arr = ((OracleConnection) con).createARRAY("chat_members", vo.getReaders());
-			pstmt.setArray(3, arr);
-			pstmt.setString(4, vo.getMessage());
+			pstmt.setString(3, vo.getMessage());
 			return pstmt.executeUpdate();
 		}
 		catch(SQLException e)
@@ -55,11 +58,11 @@ public class ChatDao
 		}
 	}
 	
-	public static ArrayList<ChatVo> select(long rnum)
+	public ArrayList<ChatVo> select(long rnum)
 	{
 		ArrayList<ChatVo> list = new ArrayList<ChatVo>();
 		
-		String sql = "select * from chat where rnum = ?";
+		String sql = "select * from chat where rnum = ? order by credate asc";
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
@@ -71,7 +74,7 @@ public class ChatDao
 				vo.setcNum(rs.getLong("cnum"));
 				vo.setrNum(rs.getLong("rnum"));
 				vo.setSender(rs.getLong("sender"));
-				Array arr = rs.getArray("members");
+				Array arr = rs.getArray("readers");
 				System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];

@@ -1,63 +1,35 @@
 /**
- *  
+ * 
  */
-
-const REGION_LIST = ["서울", "인천", "부산", "제주도", "경기도", "강원도", "충청도", "경상도", "전라도"];
-const GENDER_LIST = ["선택 안함", "남성", "여성"];
-
 let limiter = {
     region: document.getElementById("region_select"),
     gender: document.getElementById("gender_select"),
     age: document.getElementById("age_select"),
-    schedule: document.getElementById("schedule_select"),
-    memcount: document.getElementById("memcount_select")
+    schedule: document.getElementById("schedule_select")
 };
 
-let editor = {
-    backimg: document.getElementById("backimg_edit"),
-    title: document.getElementById("title_edit"),
-    summernote: document.getElementById("summernote"),
-    tag: document.getElementById("tag_edit"),
-};
+const REGION_LIST = ["전체", "서울", "인천", "부산", "제주도", "경기도", "강원도", "충청도", "경상도", "전라도"];
+const GENDER_LIST = ["선택 안함", "남성", "여성"];
 
 let form = {
-    region: '',
-    gender_limit: '',
+    no_dest: false,
+    region: REGION_LIST[0],
+    no_gender: false,
+    gender_limit: GENDER_LIST[0],
     age_limit: {
         no_limit: false,
         min_age: '10',
         max_age: '80'
     },
     schedule: {
-        start: null,
-        end: null
-    },
-    member_count: '2',
-    thumbnail_image_base64: null,
-    title: '',
-    content: '',
-    tag: ''
+        no_limit: false,
+        start: '0000-00-00',
+        end: '0000-00-00'
+    }
 };
 
 window.addEventListener('load', function()
 {
-    console.log($('#summernote'));
-    $('#summernote').summernote({
-        placeholder: '내용을 입력하세요.',
-        tabsize: 2,
-        height: 300,
-        lang: 'ko-KR',
-        toolbar: [
-            ['style', ['style']],
-            ['font', ['bold', 'underline', 'clear']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']]
-        ]
-    });
-
     initializeLimiter();
 })
 
@@ -88,7 +60,6 @@ initializeLimiter = function()
     }
     onClickGender(GENDER_LIST[0]);
 }
-
 onClickRegion = function(name)
 {
     for (let btn of limiter.region.getElementsByClassName("region_btns"))
@@ -101,6 +72,7 @@ onClickRegion = function(name)
         else
             btn.style = "font-weight: 400;";
     }
+    form.no_dest = name == REGION_LIST[0];
 }
 onClickGender = function(name)
 {
@@ -114,6 +86,7 @@ onClickGender = function(name)
         else
             btn.style = "font-weight: 400;";
     }
+    form.no_gender = name == GENDER_LIST[0];
 }
 onCheckAgeIgnore = function()
 {
@@ -138,6 +111,11 @@ onCheckAgeIgnore = function()
         form.age_limit.min_age = ls.children[0].value;
         form.age_limit.max_age = ls.children[1].value;
     }
+}
+onCheckDateIgnore = function()
+{
+    let cb = document.getElementById("date_ignore_check");
+    form.age_limit.no_limit = cb.checked;
 }
 onChangeMemCount = function()
 {
@@ -184,22 +162,17 @@ onChangeSchedule = function(isStart)
 
 sendForm = function() 
 {
-    form.title = editor.title.value;
-    form.tag = editor.tag.value;
-    form.content = $('#summernote').summernote('code');
-
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function()
 	{
 		if (xhr.readyState == 4 && xhr.status == 200)
 		{
-			let result = xhr.responseText;
-            location.href = result;
+			let result = xhr.responseText; 
 		}
 	};
 	let url = sessionStorage.getItem("contextPath")
-		 + "/board_party/write";
-    console.log(form);
+		 + "/html&jsp/board_party/list";
+    console.log(url);
 	xhr.open("post", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8;");
 	xhr.send(JSON.stringify(form));

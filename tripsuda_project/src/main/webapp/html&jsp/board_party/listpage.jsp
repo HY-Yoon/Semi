@@ -29,5 +29,6 @@
 </div>
 <script src="../../js/common/header.js"></script>
 <script src="../../js/board_party/default.js"></script>
+<script src="../../js/board_party/list.js"></script>
 </body>
 </html>
