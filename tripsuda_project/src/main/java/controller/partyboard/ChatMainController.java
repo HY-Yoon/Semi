@@ -29,10 +29,15 @@ public class ChatMainController extends HttpServlet
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		MemberVo userdata = (MemberVo)req.getSession().getAttribute("userdata");
-		// long anum = Long.parseLong(req.getParameter("anum"));
-		// req.getSession().setAttribute("anum", anum);
+		if (userdata == null)
+		{
+			// TODO 임시
+			resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/login.jsp");
+			return;
+		}
+		
 		req.getSession().setAttribute("userdata", userdata);
 		req.getSession().setAttribute("chatrooms", ChatroomDao.getInstance().getUserRooms(userdata.getMnum()));
-		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chatpage.jsp");
 	}
 }

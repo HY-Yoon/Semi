@@ -107,7 +107,7 @@
 	<% for (long pnum = pagenum - (pagenum % 10) + 1; pnum <= Math.min(pagenum - (pagenum % 10) + 10, PartyBoardDao.getInstance().getPageCount()); pnum++) { %>
 		<a href="<%=request.getContextPath() %>/html&jsp/board_party/list?pagenum=<%=pnum %>"><%=pnum %></a>
 	<% }
-		if (pagenum - (pagenum % 10) + 10 >= PartyBoardDao.getInstance().getPageCount())
+		if (pagenum - (pagenum % 10) + 10 <= PartyBoardDao.getInstance().getPageCount())
 		{
 	%>
 		<a href="">다음 >></a>

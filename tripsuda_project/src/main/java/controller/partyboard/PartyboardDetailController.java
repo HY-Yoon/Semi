@@ -51,7 +51,7 @@ public class PartyboardDetailController extends HttpServlet
 			result = PartyBoardDao.getInstance().updateExpire(anum, true);
 			break;
 		case "join": // 참가 요청
-			result = PartyWaitDao.getInstance().insert(new PartywaitVo(anum, userdata.getMnum(), "N"));
+			result = PartyWaitDao.getInstance().insert(new PartywaitVo(anum, userdata.getMnum(), "Y"));
 			break;
 		case "leave": // 동행 나가기
 			result = PartyWaitDao.getInstance().delete(anum, userdata.getMnum());

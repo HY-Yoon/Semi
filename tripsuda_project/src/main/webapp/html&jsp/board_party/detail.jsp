@@ -1,3 +1,4 @@
+<%@page import="dao.ChatDao"%>
 <%@page import="vo.ChatroomVo"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="dao.ChatroomDao"%>
@@ -42,7 +43,7 @@
 			<div>
 				태그 일람
 			</div>
-			<%=DateUtil.getText(vo.getRegDate(), DATEFORMAT.YMDHM) %> · 조회수 <%=vo.getViews() %> · 메시지수(?)<br>
+			<%=DateUtil.getText(vo.getRegDate(), DATEFORMAT.YMDHM) %> · 조회수 <%=vo.getViews() %> · 메시지수 <%=ChatDao.getInstance().getChatCnt(vo.getAnum()) %><br>
 			<a href="" style="text-decoration: underline;" >신고하기</a>
 		</div>
 	</div>
@@ -98,14 +99,12 @@
 					}
 				}
 				ChatroomVo room = ChatroomDao.getInstance().getRoomfromAnum(vo.getAnum());
-				if (room != null)
+				PartywaitVo wait = PartyWaitDao.getInstance().select(vo.getAnum(), userdata.getMnum());
+				if (wait != null)
 				{
-					for (long mem : room.getMembers())
+					if (wait.getYn().equalsIgnoreCase("Y"))
 					{
-						if (mem == userdata.getMnum())
-						{
-							%><input type="button" value="채팅방 열기" onclick="window.location.replace('<%=request.getContextPath()%>/board_chat/main?anum=<%=vo.getAnum() %>')"><%
-						}
+						%><input type="button" value="채팅방 열기" onclick="window.location.replace('<%=request.getContextPath()%>/board_chat/main?anum=<%=vo.getAnum() %>')"><%
 					}
 				}
 			}

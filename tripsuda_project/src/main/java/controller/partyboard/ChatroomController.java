@@ -21,25 +21,31 @@ import util.JSONUtil;
 import vo.ChatVo;
 import vo.ChatroomVo;
 import vo.MemberVo;
+import vo.PartyboardVo;
 
 // 채널 변경
 @WebServlet("/board_chat/room")
 public class ChatroomController extends HttpServlet
 {
+	/**
+	 *	방 연결시의 작업
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		MemberVo userdata = (MemberVo)req.getSession().getAttribute("userdata");
 		String an = req.getParameter("anum");
+		String getImg = req.getParameter("getImg");
 		long anum = an == null ? PartyBoardDao.getInstance().selectNewArticle(userdata.getMnum()).getAnum() : Long.parseLong(an);
 		req.getSession().setAttribute("anum", anum);
 		req.getSession().setAttribute("userdata", userdata);
 		req.getSession().setAttribute("chatrooms", ChatroomDao.getInstance().getUserRooms(userdata.getMnum()));
 		// resp.sendRedirect(req.getContextPath() + "/html&jsp/board_chat/chat.jsp");
 		
-		sendRoomdata(resp, anum);
+		sendRoomdata(resp, anum, getImg != null);
 	}
 	
+	// 채팅 송수신시의 작업
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
@@ -55,17 +61,18 @@ public class ChatroomController extends HttpServlet
 		ChatVo vo = new ChatVo(0, room.getrNum(), mnum, new long[] {mnum}, msg, null);
 		ChatDao.getInstance().addChat(vo);
 		 
-		sendRoomdata(resp, anum);
+		sendRoomdata(resp, anum, false);
 	}
 	
 	// response를 통해 방 정보 보내기
-	private void sendRoomdata(HttpServletResponse resp, long anum) throws IOException
+	private void sendRoomdata(HttpServletResponse resp, long anum, boolean withImg) throws IOException
 	{
 		resp.setCharacterEncoding("UTF-8");
 		
 		JSONObject json = new JSONObject();
 		
 		// 방 정보
+		PartyboardVo article = PartyBoardDao.getInstance().select(anum);
 		ChatroomVo room = ChatroomDao.getInstance().getRoomfromAnum(anum);
 		json.put("rnum", room.getrNum());
 		json.put("anum", room.getaNum());
@@ -77,15 +84,17 @@ public class ChatroomController extends HttpServlet
 		for (ChatVo vo : ChatDao.getInstance().select(room.getrNum()))
 		{
 			JSONObject temp = new JSONObject();
+			temp.put("cnum", vo.getcNum());
 			temp.put("sender", vo.getSender());
 			temp.put("msg", vo.getMessage());
 			temp.put("readers", vo.getReaders());
-			temp.put("date", DateUtil.getText(vo.getCreDate(), DATEFORMAT.YMDHM));
+			temp.put("date", DateUtil.getText(vo.getCreDate(), DATEFORMAT.HMS));
 			
 			arr.put(temp);
 		}
 		json.put("list", arr);
-		
+		if (withImg)
+			json.put("img", article.getBackimg());
 		// 작성
 		PrintWriter pw = resp.getWriter();
 		pw.print(json);

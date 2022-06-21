@@ -24,7 +24,7 @@ ChatManager.initialize = function()
 	console.log("chat manager initialized!");
 	
 	// 변수 잡기
-	this._chatlist = document.getElementsByClassName("chatlist")[0];
+	this._chatlist = document.getElementById("chatlist");
 	this._roomdata = null;
 	
 	// 매 초 업데이트 실행
@@ -36,12 +36,12 @@ ChatManager.update = function()
 {
 	if (this._roomdata != null)
 	{
-		this.connectRoom(_roomdata.anum);
+		this.connectRoom(_roomdata.anum, false);
 	}
 }
 
 // 방에 연결
-ChatManager.connectRoom = function(anum)
+ChatManager.connectRoom = function(anum, withImg)
 {
 	// console.log("connect - " + anum);
 	
@@ -54,8 +54,7 @@ ChatManager.connectRoom = function(anum)
 			ChatManager.updateChatList(JSON.parse(result));
 		}
 	};
-	let url = sessionStorage.getItem("contextPath") + "/board_chat/room?anum=" + anum;
-	// console.log("url - " + url);
+	let url = sessionStorage.getItem("contextPath") + "/board_chat/room?anum=" + anum + (withImg ? "&getImg=true" : "");
 	xhr.open("get", url, true);
 	xhr.send();
 }
@@ -85,16 +84,78 @@ ChatManager.sendChat = function()
 	xhr.send(JSON.stringify(obj));
 }
 
+// 채팅 리스트 깨끗하게 비우기
+ChatManager.clearList = function()
+{
+	while (this._chatlist.children.length > 0)
+	{
+		this._chatlist.children[0].remove();
+	}
+}
+// 채팅 리스트 내에 해당 cnum을 가진 요소가 있나 확인
+ChatManager.search = function(cnum)
+{
+	for (let obj of document.getElementsByClassName("msg-num"))
+	{
+		if (parseInt(obj.innerText) == parseInt(cnum))
+			return true;
+	}
+	return false;
+}
+
 // 채팅 리스트 갱신
 ChatManager.updateChatList = function(roomdata)
 {
 	this._roomdata = roomdata;
+	if (this._roomdata.img != null)
+	{
+		this.clearList();
+		this._chatlist.style = "background-image: url('" + this._roomdata.img + "');";
+	}
+
 	document.getElementById("anum").value = this._roomdata.anum;
 	document.getElementById("channel_title").innerText = this._roomdata.title;
-	let msg = "";
-	for(let chat_element of this._roomdata.list)
+
+	console.log(this._roomdata);
+	let mNum = parseInt(sessionStorage.getItem("userNum"));
+	for (let i = 0; i < this._roomdata.list.length; i++)
 	{
-		msg += `${chat_element.date} : ${chat_element.sender} - ${chat_element.msg}\r\n`;
+		let chat_element = this._roomdata.list[i];
+		if (this.search(chat_element.cnum))
+			continue;
+
+		console.log("i = " + i + ", cnum = " + chat_element.cnum);
+
+		// 엘리먼트
+		let msg = {
+			cnum : document.createElement("div"),
+			parent : document.createElement("div"),
+			ele : document.createElement("div"),
+			ele_flex :  document.createElement("div"),
+			info :  document.createElement("div")
+		};
+
+		// 서로 붙이기
+		msg.parent.appendChild(msg.cnum);
+		msg.parent.appendChild(msg.ele);
+		msg.ele.appendChild(msg.ele_flex);
+		msg.parent.appendChild(msg.info);
+
+		// 클래스 설정
+		msg.cnum.style = "display: none;";
+		msg.cnum.className = "msg-num";
+		msg.parent.className = "msg-parent";
+		let msgtype = (chat_element.sender == -1 ? "msg-sys" : (chat_element.sender == mNum ? "msg-mine" : "msg-user"));
+		msg.ele.className = "msg-ele " + msgtype;
+		msg.ele_flex.className = "msg-flex";
+		msg.info.className = "msg-info";
+
+		// 내용물 설정
+		msg.cnum.innerText = chat_element.cnum;
+		msg.ele_flex.innerText = chat_element.msg;
+		msg.info.innerText = chat_element.date;
+
+		// 붙이기
+		this._chatlist.appendChild(msg.parent);
 	}
-	this._chatlist.innerText = msg;
 }

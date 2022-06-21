@@ -46,7 +46,7 @@ public class PartyWaitDao
 		if (select(vo.getAnum(), vo.getMnum()) != null)
 			return -2;
 		
-		String sql = "insert into partywait values(?, ?, \'N\')"; // anum, mnum, yn
+		String sql = "insert into partywait values(?, ?, \'Y\')"; // anum, mnum, yn
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
 		{
@@ -60,6 +60,28 @@ public class PartyWaitDao
 			e.printStackTrace();
 			return -1;
 		}
+	}
+	
+	public int getMemCnt(long anum)
+	{
+		if (anum <= 0)
+			return 0;
+		
+		String sql = "select count(*) as memcnt from partywait where anum = " + anum + " and yn = 'Y'";
+		try(Connection con = JdbcUtil.getCon();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);)
+		{
+			if (rs.next())
+			{
+				return rs.getInt("memcnt");
+			}
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 	public PartywaitVo select(long anum, long mnum)

@@ -3,6 +3,7 @@ package dao;
 import java.math.BigDecimal;
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -56,6 +57,51 @@ public class ChatDao
 			e.printStackTrace();
 			return 0;
 		}
+	}
+	
+	public long getChatCnt(long anum)
+	{
+		String sql = "select count(*) from chat where rnum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, anum);
+			ResultSet rs = pstmt.executeQuery();
+			long cnt = 0;
+			if (rs.next())
+			{
+				cnt = rs.getLong(1);
+			}
+			rs.close();
+			return cnt;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	public Date getRecentChatDate(long anum)
+	{
+		String sql = "select * from (select * from chat where rnum = ? order by cnum desc) where rownum = 1";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, anum);
+			ResultSet rs = pstmt.executeQuery();
+			Date date = null;
+			if (rs.next())
+			{
+				date = rs.getDate("credate");
+			}
+			rs.close();
+			return date;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public ArrayList<ChatVo> select(long rnum)

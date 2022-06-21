@@ -1,6 +1,7 @@
 package vo;
 
 import java.sql.Date;
+import java.util.Calendar;
 
 /**
  * @author 주현
@@ -177,6 +178,9 @@ public class PartyboardVo
 		this.regDate = regDate;
 	}
 	public String getExpired() {
+		java.util.Date currDate = Calendar.getInstance().getTime();
+		if (currDate.after(getEndDate()))
+			return "Y";
 		return expired;
 	}
 	public void setExpired(String expired) {
