@@ -129,7 +129,8 @@ public class MemberDao
 }
 	
 
-	//---------------HEE
+	//---------------HEE 
+	//------------------6/23혜인 수정(vo에 mnum 추가)
 	//마이페이지에서 로그인시 정보 확인
 	public MemberVo getUserInfo(String id) {
 
@@ -147,6 +148,7 @@ public class MemberDao
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
+				vo.setMnum(rs.getLong("mnum"));
 				vo.setId(rs.getString("id"));
 				vo.setPwd(rs.getString("pwd"));
 				vo.setName(rs.getString("name"));
