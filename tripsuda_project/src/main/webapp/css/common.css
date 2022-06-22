@@ -2,7 +2,9 @@
 @import url(./default/reset.css);
 @import url(./default/header.css);
 @import url(./default/footer.css);
-
+main{
+	padding-top:140px;
+}
 img{
     vertical-align: top;
     object-fit: cover;
@@ -15,5 +17,4 @@ img{
 input:focus{
     border-color:#0b81ff !important;
     outline: none !important;
-    border-width: 2px !important;
 }
