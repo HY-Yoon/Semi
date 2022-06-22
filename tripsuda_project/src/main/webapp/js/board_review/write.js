@@ -1,5 +1,5 @@
 /**
- * 여행후기게시판 editor JS
+ * 여행후기게시판 write JS
  */
  
  let editor ={
