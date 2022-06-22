@@ -6,13 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
-</head>
-<style>
-	#board_list{width: 850px ;height: 600px;}
-	.listdiv{width:400px;height: 170px;border:1px solid #aaa;margin-bottom: 5px;float: left;}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/list.css?after">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+</head>
+
 <%
 	request.setCharacterEncoding("utf-8");
 	String select = request.getParameter("select");
@@ -56,16 +55,15 @@
 			let orgfile = board[i].orgfile;
 			let serverfile = board[i].serverfile;
 			let div=document.createElement("div");
-			div.innerHTML= tag+ "<br>"+
-						  "제목:"+title +"<br>"+
-						  "내용:" + content +"<br>"+
-						  "닉네임:"+nick +"<br>"+
-						  "조회수:"+views+"<br>"+
-						  hashtag+"<br>";
+			div.innerHTML= "<div class='a'><img src='${pageContext.request.contextPath}/images/board_expert/brighter.svg'><span class='tag'>"+tag+"</span></div>"
+										+"<div class='b'><h3 class='title'>"+title+"</h3></div>"
+										+"<div class='c'><p class='con'>"+content+"</p></div>"
+										+"<div class='d'><p class='hashtag'>"+hashtag+"</p></div>"
+										+"<div class='e'><span class='nick'>"+nick+"</span></div>"
+										+"<div class='f'><img src='${pageContext.request.contextPath}/images/board_expert/index.svg'><span class='views'>"+views+"</span></div>";
 											    
 		div.className="listdiv";
-						
-		div.style="cursor: pointer";
+		div.style = "cursor:pointer";
 		div.onclick = function(){
 			views++;
 			location.href="${pageContext.request.contextPath}/html&jsp/board_expert/detail?anum="+anum+"&views="+views;
@@ -110,19 +108,19 @@
 	
 </script>
 <body>
-
 <header>
  	<jsp:include page="../default/default_header.jsp"/>
 </header>
  
 <main> 
-
+<div class="content">
 <div id="board_list">
 
 </div>
 <div id="page">
 </div>
 
+</div>
 </main>
 
 <footer>

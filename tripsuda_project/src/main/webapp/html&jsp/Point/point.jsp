@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/mypage.css">
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 
 
 </head>
@@ -117,7 +117,7 @@ function recoList(pageNum){
 			<span class="sp" id="sp"></span>
 			
 			</div>
-			
+			<hr>
 			
 			<div class="main_table"> <!--list table-->
 

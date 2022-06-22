@@ -6,15 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-	.comm{width:400px;height: 100px;border:1px solid #aaa;margin-bottom: 5px;}
-	#main_detail{width: 1000px;height: 500px;border: 1px solid black;}
-</style>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/detail.css?detail">
 </head>
-
 
 <script type="text/javascript">
 window.onload=function(){
@@ -46,9 +43,8 @@ function commList(){
 				
 				let div=document.createElement("div");
 				
-				div.innerHTML= nick+ "<br>" +
-							   regdate+"<br>"+
-				               content +"<br>"
+				div.innerHTML="<div class='nickreg'><span class='nic'>"+nick+"</span><br><span class='reg'>"+regdate+"</span></div>"
+											+"<div class='c'>"+content+"</div>";
 				              
 				div.className="comm";
 				commList.appendChild(div);
@@ -148,40 +144,44 @@ function addComm(){
 </div>
 
 <div id ="main">
-<div id="main_detail">
-<h1>제목 ${title }</h1>
-지역태그 : ${tag }<br>
-내용 : ${content }<br>
-해시태그 : ${hashtag }<br>
-작성일 : ${regdate }<br>
-조회수 : ${views }<br>
-게시글번호:${anum }<br>
-회원번호: ${mnum }<br>
 
-첨부파일
+<div id="main_detail">
+<div class="tit"><h1> ${title }</h1></div>
+<div class="tag">지역 ${tag }</div>
+<div class="cont">${content }</div>
+<div class="hash">${hashtag }</div>
+
+
+<div class="filedownload">
 <a href="${pageContext.request.contextPath}/board_expert/download?orgfile=${orgfile}&serverfile=${serverfile}">${serverfile}</a><br>
-<a href="">신고하기</a><br>
-<input type="button" value="추천하기" onclick="addReco()">
+</div>
+<div class="else">
+<span>${regdate }</span>
+<span>조회수 ${views }</span>
+<a href="">신고하기</a>
+<button type="button" onclick="addReco()"><img alt="추천" src="../../images/board_expert/reco.png"></button>
+</div>
+
+
 
 <!-- 게시글 회원번호랑 로그인한 회원번호가 일치했을때 삭제 -->
 <c:if test="">
 </c:if>
 
-<input type="button" value="게시글삭제" onclick="del()">
-
-
-
+<input type="button" id="del" value="게시글삭제" onclick="del()">
 </div>
-
+<hr>
 <div id="commList">
+
 </div>
 
 <div id="commAdd">
 	<input type="text" id="nick" value="nick2" readonly="readonly"><br> <!-- value에 로그인한 member nick 받아오기(회원번호필요) -->
 	<textarea rows="3" cols="50" id="comments"></textarea><br>
-	<input type="button" value="등록" onclick="addComm()">
+	<div class="btn1">
+	<input type="button" id="sub" value="댓글등록" onclick="addComm()">
+	</div>
 </div>
-
 
 </div>
 
