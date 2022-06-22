@@ -215,6 +215,7 @@ NESTED TABLE members STORE AS chat_members_list;
 CREATE SEQUENCE chatroom_seq;
 
 -- 채팅
+-- 220622 - 외래 키 제약조건 제거
 DROP TABLE chat;
 CREATE TABLE chat
 (
@@ -223,11 +224,12 @@ CREATE TABLE chat
     sender NUMBER NOT NULL,
     readers chat_members,
     message VARCHAR2(1000) NOT NULL,
-    credate DATE NOT NULL,
-    
-    CONSTRAINT fk_chat_sender FOREIGN KEY(sender) REFERENCES MEMBER(mnum)
+    credate DATE NOT NULL
 )
 NESTED TABLE readers STORE AS chat_readers_list;
+-- 외래 키 걸려있는 경우 아래 커맨드로 제거하기
+ALTER TABLE chat DROP CONSTRAINT fk_chat_sender;
+
 -- 채팅 시퀀스
 CREATE SEQUENCE chat_seq;
 
