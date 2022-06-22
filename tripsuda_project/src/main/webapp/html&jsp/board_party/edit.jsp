@@ -71,5 +71,5 @@
 	</div>
 </div>
 
-<link rel="stylesheet" href="../../css/board_party/editor.css">
-<script src="../../js/board_party/editor.js?ver=" <%=System.currentTimeMillis() %>></script>
+<link rel="stylesheet" href="../../css/board_party/editor.css?ver=<%=System.currentTimeMillis() %>">
+<script src="../../js/board_party/editor.js?ver=<%=System.currentTimeMillis() %>"></script>

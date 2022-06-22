@@ -67,7 +67,7 @@ onClickRegion = function(name)
         if (btn.innerText == name)
         {
             form.region = btn.innerText;
-            btn.style = "color: rgb(0, 206, 124); font-weight: 700;";
+            btn.style = "color: #0b81ff; font-weight: 700;";
         }
         else
             btn.style = "font-weight: 400;";
@@ -81,7 +81,7 @@ onClickGender = function(name)
         if (btn.innerText == name)
         {
             form.gender_limit = btn.innerText;
-            btn.style = "color: rgb(0, 206, 124); font-weight: 700;";
+            btn.style = "color: #0b81ff; font-weight: 700;";
         }
         else
             btn.style = "font-weight: 400;";

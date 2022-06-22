@@ -115,5 +115,5 @@
 	</div>
 </div>
 
-<link rel="stylesheet" href="../../css/board_party/list.css">
-<script src="js/editor.js"></script>
+<link rel="stylesheet" href="../../css/board_party/list.css?ver=<%=System.currentTimeMillis() %>">
+<script src="js/editor.js?ver=<%=System.currentTimeMillis() %>"></script>

@@ -28,7 +28,7 @@
     </footer>
 </div>
 <script src="../../js/common/header.js"></script>
-<script src="../../js/board_party/default.js"></script>
-<script src="../../js/board_party/list.js"></script>
+<script src="../../js/board_party/default.js?ver=<%=System.currentTimeMillis() %>"></script>
+<script src="../../js/board_party/list.js?ver=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>

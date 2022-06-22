@@ -6,7 +6,7 @@
     </h1>
     <div>
         <span>고객센터 070-8240-3211 </span>
-        <jsp:include page="../board_chat/adminchat.jsp"/>
+        <jsp:include page="../board_chat/adminchat.jsp??ver=<%=System.currentTimeMillis() %>"/>
     </div>
     <div>
         <p>이 웹페이지는 공부를 위해 만든 프로젝트 페이지입니다.</p>

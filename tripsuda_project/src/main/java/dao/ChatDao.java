@@ -40,9 +40,14 @@ public class ChatDao
 	{
 		String sql = "insert into chat values(chat_seq.nextval, ?, ?, <chat>, ?, sysdate)";
 		String param_cm = "chat_members(";
-		for (int i = 0; i < vo.getReaders().length; i++)
-			param_cm += vo.getReaders()[i] + (i == vo.getReaders().length - 1 ? ")" : ",");
-		sql = sql.replaceAll("<chat>", param_cm);
+		if (vo.getReaders() != null)
+		{
+			for (int i = 0; i < vo.getReaders().length; i++)
+				param_cm += vo.getReaders()[i] + (i == vo.getReaders().length - 1 ? ")" : ",");
+			sql = sql.replaceAll("<chat>", param_cm);
+		}
+		else
+			sql = sql.replaceAll("<chat>", "null");
 		
 		try(Connection con = JdbcUtil.getCon();
 			PreparedStatement pstmt = con.prepareStatement(sql);)
@@ -71,6 +76,31 @@ public class ChatDao
 			if (rs.next())
 			{
 				cnt = rs.getLong(1);
+			}
+			rs.close();
+			return cnt;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return 0;
+	}	
+	public long getRecentCnum()
+	{
+		// String sql = "select * from user_sequences";
+		// String sql = "select chat_seq.currval from dual";
+		String sql = "select * from chat order by cnum desc";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			ResultSet rs = pstmt.executeQuery();
+			long cnt = 0;
+			if (rs.next())
+			{
+				// System.out.println(rs.getString("sequence_name") + " ... " + rs.getLong("last_number"));
+				System.out.println(rs.getLong("cnum"));
+				cnt = rs.getLong("cnum");
 			}
 			rs.close();
 			return cnt;
