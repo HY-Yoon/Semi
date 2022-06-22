@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import db.JdbcUtil;
 import vo.reviewboard.ReviewBoardVo;
@@ -29,6 +30,59 @@ public class ReviewBoardDao {
 		initialize();
 	}
 	private void initialize(){}
+	
+	
+
+	//글 수정
+	public int edit(ReviewBoardVo vo) {
+		int n=-1;
+		Connection con= null;
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
+		String sql1="update board_review set"
+				+ " title =? , content = ? , thum = ?, notice = ?"
+				+ " where anum = ?"; 
+		
+		String sql2="update taglist_review set "
+				+ " tag = ?"
+				+ " where anum = ?"; 
+		try {
+			con=JdbcUtil.getCon();
+			con.setAutoCommit(false); //자동커밋해제
+			pstmt1=con.prepareStatement(sql1);
+			pstmt1.setString(1, vo.getTitle());
+			pstmt1.setString(2, vo.getContent());
+			pstmt1.setString(3, vo.getThum());
+			pstmt1.setString(4, vo.getNotice());
+			pstmt1.setInt(5, vo.getAnum());
+			n=pstmt1.executeUpdate();
+			
+			pstmt2=con.prepareStatement(sql2); 
+			pstmt2.setString(1, vo.getLocation());
+			pstmt2.setInt(2, vo.getAnum());
+			n+=pstmt2.executeUpdate();
+			
+		} catch (SQLException e) {
+			 e.printStackTrace();
+			 try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				con.commit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JdbcUtil.close(pstmt1);
+			JdbcUtil.close(pstmt2);
+			JdbcUtil.close(con);
+		}
+		return n;
+	}
 	
 	//조회수 증가
 	public void updateView(int anum) {

@@ -30,7 +30,23 @@ public class ReviewTagDao {
 	}
 	private void initialize(){}
 	
-	
+	public int delete(int anum) {
+		int n= -1;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		String sql = "delete from hashtag_review"
+				   + " where anum = "+anum;
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			n=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+		return n;
+	}
 	
 	public ArrayList<ReviewTagVo> select(int anum) {
 		ArrayList<ReviewTagVo> list=new ArrayList<ReviewTagVo>();

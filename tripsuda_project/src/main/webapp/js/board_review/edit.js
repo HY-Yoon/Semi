@@ -1,10 +1,11 @@
 /**
- * 여행후기게시판 수정 JS
+ * 여행후기게시판 editor JS
  */
  
  let editor ={
 	anum : document.getElementById("anum"),
 	mnum : document.getElementById("mnum"),
+	notice : document.getElementById("notice"),
 	title : document.getElementById("title"),
 	summernote : document.getElementById("summernote"),
 	tag : document.getElementById("hashtag"),
@@ -93,7 +94,9 @@ editor.icon.addEventListener("click",function()
 
 chkForm = function()
 {
+	form.anum = editor.anum.value;
 	form.mnum = editor.mnum.value;
+	form.notice = editor.notice.value;
 	form.location = $("input[name=location]:checked").val();
 	form.thumimg = document.getElementById("thum_img").src;
 	form.title =editor.title.value;
@@ -127,7 +130,7 @@ sendForm = function()
 		}
 	}
 	let url = sessionStorage.getItem("contextPath");
-		url += "/board_review/write";
+		url += "/board_review/edit";
 	
 	xhr.open("post",url,true);
 	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8;");

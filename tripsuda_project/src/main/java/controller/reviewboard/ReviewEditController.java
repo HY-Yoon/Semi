@@ -38,32 +38,34 @@ public class ReviewEditController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
 		JSONObject json= JSONUtil.parse(req.getReader());
-		String vmnum= json.getString("mnum");
-		int mnum= Integer.parseInt(vmnum);
+		int anum= Integer.parseInt(json.getString("anum"));
+		int mnum= Integer.parseInt(json.getString("mnum"));
 		String location= json.getString("location");
 		String thum_img= json.getString("thumimg");
 		String title= json.getString("title");
 		String content= json.getString("content");
+		String notice= json.getString("notice");
 		String hashtag= null;
 		if(json.getString("tag") !=null) {
 			hashtag= json.getString("tag");
 		}
 		
-		ReviewBoardVo vo= new ReviewBoardVo(0, mnum, title, content, null, 0, null, thum_img, location);
-		int anum=ReviewBoardDao.getInstance().write(vo);
+		ReviewBoardVo vo= new ReviewBoardVo(anum, mnum, title, content, null, 0, notice, thum_img, location);
+		int n = ReviewBoardDao.getInstance().edit(vo);
 		
 		resp.setContentType("text/plain;charset=utf-8");
 		PrintWriter pw= resp.getWriter();
 		JSONObject data=new JSONObject();
-		if(anum > 0) { //글작성 성공
+		if(n > 0) {//글수정 성공
+			ReviewTagDao.getInstance().delete(anum);
 			if(hashtag !=null) { //해시태그 저장
 				String[] tags=hashtag.split(" ");
 				for(String htag : tags) {
-					ReviewTagVo tagvo=new ReviewTagVo(0, anum, htag);
+					ReviewTagVo tagvo= new ReviewTagVo(0, anum, htag);
 					ReviewTagDao.getInstance().insert(tagvo);
-				}
+				} 
 			}
-			//글작성 성공하면 디테일 페이지로 이동
+			//글수정 성공하면 디테일 페이지로 이동
 			String url = req.getContextPath() + "/board_review/detail?anum="+anum;
 			data.put("url", url);
 		}else {
