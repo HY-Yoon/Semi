@@ -1,0 +1,246 @@
+@charset "UTF-8";
+/*여행후기 게시판 editor css*/
+section.bg-box{
+	min-height: 341px;
+	position: relative;
+    background-image: url(../../images/board_review/review.png);
+    background-size: cover;
+    background-position: center center;
+}
+main .container{
+	margin-top: 30px;
+}
+main .container > div{
+	margin-top:20px;
+}
+.location-box{
+	display:flex;
+	position: relative;
+    border-radius: 6px;
+    padding:19px 0;
+    margin-bottom: 30px;
+    border: 1px solid rgb(233, 233, 233);
+    background-color: rgb(255, 255, 255);
+    line-height:1;
+}
+.location-box .legend{
+	display: flex;
+	width: 144px;
+    padding-left:25px;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    color: #0b81ff;
+    font-weight: 700;
+    font-size: 15px;
+    
+}
+.location-box .legend p{
+	margin: 0;
+}
+.location-box .legend+div{
+	display: flex;
+}
+.legend+div label{
+    padding: 0 20px;
+    color: rgb(154, 154, 154);
+    font-weight: 400;
+    font-size: 15px;
+    margin:0;
+    cursor: pointer;
+}
+.legend+div label.active, .legend+div label:hover{
+	font-weight: bold;
+	color: #0b81ff;
+}
+
+
+.thum-box{
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 400px;
+    border: 1px solid rgb(233, 233, 233);
+    background-color: rgb(244, 244, 244);
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.thum-box > div{
+	position: relative;
+    display: flex;
+    color: rgb(153, 153, 153);
+    font-size: 14px;
+    font-weight: 300;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.icon-wrap{
+	width: 29px;
+    height: 29px;
+}
+.icon-wrap#close{
+	width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.thum-box .icon-wrap::after {
+    content: "";
+    width: 29px;
+    height: 29px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url(../../images/common/icon/img_icon.svg) 0% 0% / contain no-repeat;
+    transition: transform 0.3s ease 0s;
+}
+.thum-box .icon-wrap#close{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 2;
+}
+.icon-wrap#close::after {
+    content: "";
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url(../../images/common/icon/close.svg) 0% 0% / contain no-repeat;
+    transition: transform 0.3s ease 0s;
+}
+#thum_input{
+	width: 100%;
+	margin-top:10px;
+	overflow: hidden;
+}
+#close + #thum_input{
+	margin: 0;
+}
+#title, #hashtag{
+	display: inline-block;
+    width: 100%;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 16px 20px;
+    background: #fff;
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 4px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+.editor-wrap .btn-box{
+	display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 65px 0px 70px;
+}
+.editor-wrap .btn-box button{
+	width: calc(50% - 8px);
+	position: relative;
+    line-height: 20px;
+    border-radius: 4px;
+    padding: 17px 5px;
+    background-color: rgb(219, 219, 219);
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+button#submit_btn{
+	background-color: #0b81ff;
+}
+.note-editor.note-frame .note-editing-area .note-editable, .note-editor.note-airframe .note-editing-area .note-editable,
+.note-editor.note-frame .note-placeholder, .note-editor.note-airframe .note-placeholder{
+	padding: 16px 20px;
+}
+.note-placeholder{
+	color: #999;
+}
+
+/*팝업*/
+#popup{
+	position: fixed;
+    left: 0px;
+    top: 0px;
+    display: none;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: -1000;
+    opacity: 0;
+    transition: opacity 0.6s ease 0s;
+}
+#popup.active{
+	z-index: 1000;
+	display:flex;
+	opacity: 1;
+}
+.popup_inner{
+	position: relative;
+    max-height: 100%;
+    display: block;
+    width: 512px;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+    padding: 44px 0px 0px;
+    transform: translateY(-50%);
+    transition: transform 0.6s ease 0s;
+}
+#popup .btn_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    font-size: 0;
+    background: none;
+}
+#popup .btn_close:before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(../../images/common/icon/close.svg) no-repeat 0 0;
+    background-size: cover;
+}
+.popup_inner .popup_txt {
+    min-height: 78px;
+    padding: 30px 20px 20px;
+    white-space: break-spaces;
+    text-align: center;
+    box-sizing: border-box;
+    line-height: 23px;
+}
+.popup_inner > .btn_area {
+    display: flex;
+    border-radius: 0 0 6px 6px;
+    overflow: hidden;
+}
+.popup_inner > .btn_area .btn {
+    border-radius: 0;
+    background: none;
+    padding: 31px 5px;
+    font-size: 17px;
+    position: relative;
+    width: 100%;
+    line-height: 20px;
+    box-sizing: border-box;
+}

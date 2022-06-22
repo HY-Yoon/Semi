@@ -1,0 +1,173 @@
+@charset "UTF-8";
+/*여행후기게시판 detail.css*/
+.detail-wrap .thum-box{
+    position: relative;
+    width: 1200px;
+    margin: 0px auto;
+}
+.detail-wrap .thum-box img{
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    margin: 40px 0px;
+    border: 1px solid #ddd;
+}
+.detail-wrap .container{
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    margin: 40px auto 0;
+}
+.content-wrap{
+    max-width: 800px;
+    width: 800px;
+    margin-right: 80px;
+}
+.content-wrap .title{
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.5em;
+}
+.content-wrap .top-info{
+    margin-top: 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px 30px;
+    font-size: 16px;
+    display: flex;
+    color: rgb(106, 106, 106);
+}
+.content-wrap .top-info p:nth-child(2){
+    margin-left: 10px;
+}
+.content-wrap .content{
+    margin-top: 31px;
+    font-size: 15px;
+    line-height: 1.5em;
+    min-height: 100px
+}
+.content-wrap .content img{
+	max-width: 800px !important;
+}
+.content-wrap  #hash{
+    margin-top: 100px;
+    display: flex;
+    width: max-content;
+}
+#hash > div{
+    display: flex;
+    color: rgb(106, 106, 106);
+    font-size: 13px;
+    font-weight: 500;
+    background-color: rgb(245, 245, 245);
+    border-radius: 3px;
+    padding: 4px 7px;
+}
+#hash > div:nth-child(n+2){
+    margin-left: 8px;
+}
+#hash > div p:nth-child(n+2) {
+    margin-left: 4px;
+}
+#bottom{
+    margin-top: 10px;
+    font-size: 13px;
+    color: rgb(154, 154, 154);
+    display: flex;
+}
+#bottom p:nth-child(n+2){
+    margin-left: 8px;
+}
+#bottom button{
+    text-decoration: underline;
+    margin-left: 8px;
+}
+.comm-wrap #comm_cnt{
+    color: #0b81ff;
+}
+#commList{
+    position: relative;
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding-bottom: 65px;
+}
+.comm{
+    padding: 20px 0px;
+    border-bottom: 1px solid rgb(233, 233, 233);
+}
+.comm #top{
+    position: relative;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    font-size: 12px;
+    color: rgb(154, 154, 154);
+}
+.comm #top img{
+    width: 33px;
+    height: 33px;
+    margin-right: 6px;
+    border-radius: 50%;
+}
+.comm #top div p:first-child{
+	color: rgb(37, 37, 37);
+}
+.comm .comm_content{
+    margin-left: 48px;
+    margin-top: 18px;
+    line-height: 1.5em;
+}
+.profile-wrap{
+    width: 320px;
+}
+.profile-box{
+    border: 1px solid #E9E9E9;
+    padding: 20px 19px;
+    border-radius: 4px;
+}
+.profile-box .area-top{
+    display: flex;
+    margin-bottom: 15px;
+}
+.profile-box .area-top img{
+    width: 50px;
+    height: 50px;
+    padding: 4px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+.area-top .profile_info{
+    display: flex;
+    margin: 7px 0px 0px 7px;
+    align-items: flex-end;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+}
+.profile_info #profile_nickname{
+    font-size: 16px;
+    font-weight: bold;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.profile-box .area_middle{
+    margin-top: 26px;
+    border-top: 1px solid #E9E9E9;
+    padding: 40px 0 0;
+}
+.profile-box .area_middle button{
+    width: 100%;
+    background-color: #0b81ff;
+    border-radius: 3px;
+    padding: 16px 0px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+}
+.comm-wrap{
+    margin-top: 65px;
+}
