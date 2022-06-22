@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#adminchat {
+	display: flex;
+	position: fixed;
+	width: auto;
+	height: auto;
+	right: 60px;
+	bottom: 60px;
+	padding: 10px 20px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	border-radius: 30px;
+    color: #0b81ff;
+	box-shadow: 0px 0px 10px #00000033;
+}
+
+#adminchat_btn p {
+	font-weight: 700;
+	font-size: 20px;
+	text-align: center;
+	vertical-align: middle;
+    color: #0b81ff;
+}
+
+#adminchat_box {
+	display: flex;
+	width: 200px;
+	height: 600px;
+	padding: 10px 20px;
+}

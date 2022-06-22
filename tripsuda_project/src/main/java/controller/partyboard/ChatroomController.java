@@ -75,6 +75,7 @@ public class ChatroomController extends HttpServlet
 		PartyboardVo article = PartyBoardDao.getInstance().select(anum);
 		ChatroomVo room = ChatroomDao.getInstance().getRoomfromAnum(anum);
 		json.put("rnum", room.getrNum());
+		json.put("mnum", article.getMnum());
 		json.put("anum", room.getaNum());
 		json.put("title", ChatroomDao.getInstance().getArticleName(room.getaNum()));
 		json.put("members", room.getMembers());

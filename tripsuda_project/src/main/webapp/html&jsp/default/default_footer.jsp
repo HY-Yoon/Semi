@@ -6,7 +6,7 @@
     </h1>
     <div>
         <span>고객센터 070-8240-3211 </span>
-        <button>1:1 채팅상담</button>        
+        <jsp:include page="../board_chat/adminchat.jsp"/>
     </div>
     <div>
         <p>이 웹페이지는 공부를 위해 만든 프로젝트 페이지입니다.</p>

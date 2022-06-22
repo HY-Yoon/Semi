@@ -131,8 +131,21 @@ ChatManager.updateChatList = function(roomdata)
 	}
 
 	document.getElementById("anum").value = this._roomdata.anum;
-	document.getElementById("channel_title").innerText = this._roomdata.title;
-
+	document.getElementById("channel_title").innerHTML = "<h3>" + this._roomdata.title + "</h3>";
+	let leave_btn = document.getElementById("leave_button");
+	console.log(parseInt(this._roomdata.mnum) + " // " + parseInt(sessionStorage.getItem("userNum")))
+	if (parseInt(this._roomdata.mnum) == parseInt(sessionStorage.getItem("userNum")))
+	{
+		leave_btn.setAttribute("type", "hidden");
+	}
+	else
+	{
+		leave_btn.setAttribute("type", "button");
+		leave_btn.onclick = () => {
+			this.leaveRoom(this._roomdata.anum);
+		};
+	}
+	document.getElementById("channel_link").href = sessionStorage.getItem("contextPath") + "/html&jsp/board_party/detail?anum=" + this._roomdata.anum;
 	console.log(this._roomdata);
 	let mNum = parseInt(sessionStorage.getItem("userNum"));
 	for (let i = 0; i < this._roomdata.list.length; i++)

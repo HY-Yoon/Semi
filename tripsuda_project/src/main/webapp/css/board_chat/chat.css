@@ -36,6 +36,18 @@
     border-collapse: collapse;
 }
 
+.room-title {
+    display: flex;
+    justify-content: space-between;
+}
+.room-title input { 
+    border: none;
+    margin: 15px;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .room-ele {
     margin: 15px;
     border: none;

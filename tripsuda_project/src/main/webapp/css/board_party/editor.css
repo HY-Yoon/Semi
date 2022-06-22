@@ -79,7 +79,7 @@
     align-items: center;
     justify-content: center;
     border: none;
-    background-color: rgb(0, 206, 124);
+    background-color: #0b81ff;
     color: white;
     cursor: pointer;
 }
@@ -89,7 +89,7 @@ input {
 }
 
 input:focus {
-    outline: rgb(0, 206, 124) solid 2px;
+    outline: #0b81ff solid 2px;
 }
 
 input#memcount_range:focus {

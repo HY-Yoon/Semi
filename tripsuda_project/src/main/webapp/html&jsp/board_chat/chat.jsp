@@ -23,16 +23,16 @@
 	sessionStorage.setItem("userNum", "<%=userdata.getMnum() %>");
 </script>
 <script type="text/javascript" src="../../js/board_chat/chat_lib.js?ver=<%=System.currentTimeMillis() %>"></script>
-<h1>환영한다! <%=userdata.getId() %>!</h1>
-<h2 id="channel_title">현재 채널 - <%=hasChannel ? "연결 안됨" : channel %></h2>
-
 <div class="chatbox">
 	<div class="chat-topside">
 		<div class="chat-tbcell" style="width: 350px;">
 			<h3>참여한 채팅 목록</h3>
 		</div>
 		<div class="chat-tbcell boxhead">
-			<h3>여기에 타이틀 입력</h3>
+			<div class="room-title">
+				<a id="channel_link" target="_blank" href=""><h3 id="channel_title">여기에 타이틀 입력</h3></a>
+				<input id="leave_button" type="hidden" style="width: auto; color: #0b81ff;" onclick="ChatManager.leaveRoom()" value="나가기 >">
+			</div>
 		</div>
 	</div>
 	<div class="chat-center">
@@ -51,7 +51,8 @@
 								[ <%=pbvo.getStartDate() %> ~ <%=pbvo.getEndDate() %> ] <br>
 								<%=pbvo.getTitle() %> </a>
 							</div>
-							<%=memCnt %>명 | <%=dateDiff %> <% if (pbvo.getMnum() != userdata.getMnum()) { %>| <a href="javascript:ChatManager.leaveRoom(<%=vo.getaNum() %>)" style="text-decoration: underline;">나가기</a> <% } %>
+							<%=memCnt %>명 | <%=dateDiff %>
+							<% if (pbvo.getMnum() != userdata.getMnum()) { %>| <a href="javascript:ChatManager.leaveRoom(<%=vo.getaNum() %>)" style="text-decoration: underline;">나가기</a> <% } %>
 						</div>
 						<% 
 					}
