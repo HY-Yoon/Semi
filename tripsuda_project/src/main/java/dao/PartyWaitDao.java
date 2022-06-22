@@ -13,7 +13,9 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 
 import db.JdbcUtil;
+import vo.ChatVo;
 import vo.ChatroomVo;
+import vo.MemberVo;
 import vo.PartyboardVo;
 import vo.PartywaitVo;
 
@@ -53,6 +55,11 @@ public class PartyWaitDao
 			pstmt.setLong(1, vo.getAnum());
 			pstmt.setLong(2, vo.getMnum());
 			int result = pstmt.executeUpdate();
+
+			MemberVo mem = MemberDao.getInstance().select(vo.getMnum());
+			ChatVo chat = new ChatVo(0, vo.getAnum(), -1, new long[] { vo.getMnum() }, mem.getNick() + " 님이 참여했어요.", null);
+			ChatDao.getInstance().addChat(chat);
+			
 			return result;
 		}
 		catch(SQLException e)
@@ -60,6 +67,7 @@ public class PartyWaitDao
 			e.printStackTrace();
 			return -1;
 		}
+		
 	}
 	
 	public int getMemCnt(long anum)
@@ -120,7 +128,12 @@ public class PartyWaitDao
 		try(Connection con = JdbcUtil.getCon();
 			Statement stmt = con.createStatement();)
 		{
-			return stmt.executeUpdate(sql);
+			int result = stmt.executeUpdate(sql);
+			MemberVo mem = MemberDao.getInstance().select(mnum);
+			ChatVo chat = new ChatVo(0, anum, -1, new long[] { mnum }, mem.getNick() + " 님이 나가셨어요.", null);
+			ChatDao.getInstance().addChat(chat);
+
+			return result;
 		}
 		catch(SQLException e)
 		{

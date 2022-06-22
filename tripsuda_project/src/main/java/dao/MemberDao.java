@@ -33,6 +33,43 @@ public class MemberDao
 	{
 	}
 	
+	/**
+	 * 220622 - 주현
+	 */
+	public MemberVo select(long mnum)
+	{
+		String sql = "select * from member where mnum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, mnum);
+			ResultSet rs = pstmt.executeQuery();
+			MemberVo vo = null;
+			if (rs.next())
+			{
+				vo = new MemberVo(
+					rs.getLong("mnum"),
+					rs.getString("id"),
+					rs.getString("pwd"),
+					rs.getString("name"),
+					rs.getString("nick"),
+					rs.getString("phone"),
+					rs.getDate("birth"),
+					rs.getString("withdraw"),
+					rs.getString("favorite"),
+					rs.getString("grade"),
+					rs.getDate("stop"));
+			}
+			rs.close();
+			return vo;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public MemberVo select(String id, String pwd)
 	{
 		String sql = "select * from member where id = ? and pwd = ?";

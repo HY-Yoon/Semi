@@ -50,8 +50,8 @@ public class DateUtil
 	protected static final String[] timeMsg = { "초 전", "분 전", "시간 전", "일 전" };
 	protected static final long[] timeLine = { 60, 60, 24, 30 };
 	/**
-	 * @apiNote 시간차를 계산해 몇 분 전인지 알려줍니다.
-	 * @param date 날짜
+	 * @apiNote 인자값으로 받은 시간과 현재 시간의 차이를 계산해 얼마나 이전인지 알려줍니다.
+	 * @param date 비교할 날짜(과거)
 	 * @return 가공된 문자열 (방금 전 < 30~초 전 < ~분 전 < ~시간 전 < ~30일 전 < 오래 전)
 	 */
 	public static String getDiffer(Date date)
@@ -61,14 +61,16 @@ public class DateUtil
 		Date curr = Calendar.getInstance().getTime();
 		long time = (curr.getTime() / 1000) - (date.getTime() / 1000);
 		
+		// 너무 빠른 경우 방금 전이라고 표시
 		if (time < 30)
 			return "방금 전";
 		for (int i = 0; i < timeMsg.length; i++)
 		{
 			if (time < timeLine[i])
 				return time + timeMsg[i];
-			time = time / timeLine[i]; // 분, 시, 일로 나눈다
+			time = time / timeLine[i]; // 초->분->시->일로 나눈다
 		}
+		// 일 단위로도 나눌 수 없게 되면 오래 전이라고 표시
 		return "오래 전";
 	}
 }

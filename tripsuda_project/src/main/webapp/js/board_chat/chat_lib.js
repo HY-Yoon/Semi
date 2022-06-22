@@ -58,6 +58,23 @@ ChatManager.connectRoom = function(anum, withImg)
 	xhr.open("get", url, true);
 	xhr.send();
 }
+// 방에서 나가기
+ChatManager.leaveRoom = function(anum)
+{
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200)
+		{
+			let result = xhr.responseText;
+			let ele = document.getElementById("room-ele-" + anum);
+			ele.remove();
+		}
+	};
+	let url = sessionStorage.getItem("contextPath") + "/board_party/leave?anum=" + anum;
+	xhr.open("get", url, true);
+	xhr.send();
+}
 
 // 채팅 보내기
 ChatManager.sendChat = function()
