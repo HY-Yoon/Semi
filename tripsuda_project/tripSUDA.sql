@@ -99,7 +99,6 @@ CREATE TABLE board_qa (
 	regdate	date	NOT NULL,
 	views number(10) NOT NULL
 );
-create sequence board_qa_seq;
 -- Q&A댓글
 CREATE TABLE comm_qa (
 	cnum	number(10) primary key, --시퀀스
@@ -110,7 +109,6 @@ CREATE TABLE comm_qa (
 	lev	    number(10)	NULL,
 	sel  	VARCHAR2(100) check(sel in('Y','N'))
 );
-create sequence comm_qa_seq;
 --Q&A해시태그리스트
 create table hashtag_qa(
     hnum number(10) primary key,
@@ -147,11 +145,11 @@ CREATE table report(
 --내일정
 create table mycalender(
   ecode number(10) NOT NULL, --시퀀스
-  mnum number(10) NOT NULL,
-  anum  number(10), --시퀀스 
-  ctitle varchar2(100) NOT NULL,
-  startdate date NOT NULL,
-  enddate date NOT NULL
+  mnum number(10) references member(mnum),
+  anum  number(10) references board_party(anum),
+  title varchar2(100) board_party(title),
+  startdate date board_party(startdate),
+  enddate date board_party(enddate)
  );
 create sequence mycalender_seq;
 
