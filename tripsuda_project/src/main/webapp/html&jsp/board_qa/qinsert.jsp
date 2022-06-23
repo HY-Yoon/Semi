@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/qaInsert.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/board_qa/qaInsert.css">
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -47,7 +47,7 @@
 		<input type="text" id="qtitle" name="qtitle" placeholder="질문글의 제목을 입력하세요"><br>
 	</div>
 	<div id="textarea">
-		<textarea id="summernote" name="editordata"></textarea><br>
+		<textarea id="summernote" name="content"></textarea><br>
 	</div>
   <script>
   		$('#board_content').val("${board_data.BOARD_CONTENT}");
