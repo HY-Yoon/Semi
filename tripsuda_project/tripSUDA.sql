@@ -12,31 +12,27 @@ CREATE TABLE member (
    grade   varchar2(30) DEFAULT '일반', 
    stop   Date DEFAULT NULL  
 );
+
+------------6/23 혜인 시작
 -- 여행후기게시판
 CREATE TABLE board_review (
 	anum	number(10)	primary key,	
 	mnum	number(10) references member(mnum),	
-	nick	varchar2(20)	NOT NULL,
 	title	varchar2(100)	NOT NULL,
-	keyword	varchar2(20),
 	content	clob	NOT NULL,
 	regdate	date	NOT NULL,
-	orgFile	varchar2(200),	
-	serverFile	varchar2(200),
 	views number(10) NOT NULL,
-	notice varchar2(5)	check(notice in('Y','N'))
+	notice varchar2(5)	check(notice in('Y','N')),
+	thum clob not null
+	
 );
 -- 여행후기댓글
 CREATE TABLE comm_review (
 	cnum	number(10) primary key, --시퀀스
 	anum	number(10) references BOARD_REVIEW(anum),
 	mnum	number(10)	references member(mnum),
-	content	varchar2(500)	NOT NULL,
 	regdate	Date	NOT NULL,
-	ref		number(10)	NULL,
-	lev	    number(10)	NULL,
-	step	number(10)	NULL,
-	sel  	VARCHAR2(100) check(sel in('Y','N'))
+	content clob noy null
 );
 -- 여행후기추천
 create table reco_review(
@@ -44,6 +40,20 @@ create table reco_review(
     anum number(10) references BOARD_REVIEW(anum),
     mnum number(10) references member(mnum)
 );
+-- 여행후기지역태그
+create table taglist_review(
+    tnum number(10) primary key,
+    anum number(10) references BOARD_REVIEW(anum),
+    tag varchar2(30) not null
+);
+-- 여행후기해시태그
+create table hashtag_review(
+    hnum number(10) primary key,
+    anum number(10) references BOARD_REVIEW(anum),
+    htag varchar2(30) not null
+);
+------------6/23 혜인 끝
+
 
 -- 전문가 게시판
 CREATE TABLE board_expert (
