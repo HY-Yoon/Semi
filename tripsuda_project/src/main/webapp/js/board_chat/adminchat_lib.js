@@ -24,8 +24,10 @@ AdminChatManager.initialize = function()
 	console.log("admin chat manager initialized!");
 	
 	// 변수 잡기
-	this._chatlist = document.getElementById("chatlist"); // 채팅 리스트
+	this._userlist = document.getElementById("adminchat_userlist"); // 채팅 리스트
+	this._chatlist = document.getElementById("adminchat_chatlist"); // 채팅 리스트
 	this._chatdata = null; // 채팅 데이터 json
+	this._userlistdata = null; // 유저리스트 데이터 json
 	
 	// 매 초 업데이트 실행
 	this._updateHandler = setInterval(this.update, 1000);
@@ -55,7 +57,7 @@ AdminChatManager.sendChat = function(event)
 		return;
 	console.log("send start");
 
-	let obj = {msg : document.getElementById("msg").value};
+	let obj = {msg : document.getElementById("adminchat_msg").value};
 	
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function()
@@ -75,6 +77,22 @@ AdminChatManager.sendChat = function(event)
 	document.getElementById("msg").value = "";
 }
 
+// 관리자용 -> 유저 리스트 취득
+AdminChatManager.getUserList = function()
+{
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200)
+		{
+			let result = xhr.responseText;
+			AdminChatManager.updateChatList(JSON.parse(result));
+		}
+	};
+	let url = sessionStorage.getItem("contextPath") + "/adminchat/manage";
+	xhr.open("get", url, true);
+	xhr.send();
+}
 // 채팅에 연결
 AdminChatManager.connectChat = function()
 {
@@ -111,6 +129,53 @@ AdminChatManager.search = function(cnum)
 	return false;
 }
 
+// 유저 리스트 갱신
+AdminChatManager.updateUserList = function(userlistdata)
+{
+	this._userlistdata = userlistdata;
+
+	let mNum = parseInt(sessionStorage.getItem("userNum"));
+	for (let i = 0; i < this._chatdata.list.length; i++)
+	{
+		let chat_element = this._chatdata.list[i];
+		if (this.search(chat_element.cnum))
+			continue;
+
+		console.log("i = " + i + ", cnum = " + chat_element.cnum);
+
+		// 엘리먼트
+		let msg = {
+			cnum : document.createElement("div"),
+			parent : document.createElement("div"),
+			ele : document.createElement("div"),
+			ele_flex :  document.createElement("div"),
+			info :  document.createElement("div")
+		};
+
+		// 서로 붙이기
+		msg.parent.appendChild(msg.cnum);
+		msg.parent.appendChild(msg.ele);
+		msg.ele.appendChild(msg.ele_flex);
+		msg.parent.appendChild(msg.info);
+
+		// 클래스 설정
+		msg.cnum.style = "display: none;";
+		msg.cnum.className = "msg-num";
+		msg.parent.className = "msg-parent";
+		let msgtype = (chat_element.sender == mNum ? "msg-mine" : (chat_element.reader == mNum ? "msg-user" : "msg-sys"));
+		msg.ele.className = "msg-ele " + msgtype;
+		msg.ele_flex.className = "msg-flex";
+		msg.info.className = "msg-info";
+
+		// 내용물 설정
+		msg.cnum.innerText = chat_element.cnum;
+		msg.ele_flex.innerText = chat_element.msg;
+		msg.info.innerText = chat_element.date;
+
+		// 붙이기
+		this._chatlist.appendChild(msg.parent);
+	}
+}
 // 채팅 리스트 갱신
 AdminChatManager.updateChatList = function(chatdata)
 {

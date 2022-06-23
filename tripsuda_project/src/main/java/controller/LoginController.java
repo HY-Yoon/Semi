@@ -14,6 +14,7 @@ import dao.MemberDao;
 import vo.ChatroomVo;
 import vo.MemberVo;
 
+@Deprecated(since = "220623 - 주현: 테스트용이었음")
 @WebServlet("/login")
 public class LoginController extends HttpServlet
 {
