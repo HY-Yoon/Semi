@@ -34,15 +34,21 @@ public class ReportDao {
 	
 }
 	//신고목록 조회
-	public ArrayList<ReportVo> reportList(){
+	public ArrayList<ReportVo> reportList(int start,int end){
 		Connection con = null;
 		PreparedStatement pstmt =null;
 		ResultSet rs = null;
 		try {
 			con = JdbcUtil.getCon();
 			
-			String sql = "select * from report ";
+			String sql =" select * from ("
+				    +	" select aa.*, rownum rn from (" 
+				    +  " select * from report order by rdate desc) aa "
+				    + " ) where rn >= ? and rn <= ? ";
+						
 			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			rs  = pstmt.executeQuery();
 			
 			ArrayList<ReportVo> list = new ArrayList<ReportVo>();
@@ -67,11 +73,33 @@ public class ReportDao {
 		
 	}
 	
+	//신고 전체수
+	public int getCount() { 
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs= null;
+		String sql = "select NVL(count(*),0) cnt from report"; 
+	try {
+		con = JdbcUtil.getCon();
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		rs.next();
+		int cnt = rs.getInt("cnt"); 
+		return cnt;
+		
+	}catch (SQLException s) {
+		 s.printStackTrace();
+		 return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt, rs);
+	}
 	
+	}
 	
 	
 	
 	
 	
 }
+
 
