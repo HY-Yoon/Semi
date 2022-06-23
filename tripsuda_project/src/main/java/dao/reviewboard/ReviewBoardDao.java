@@ -379,4 +379,31 @@ public class ReviewBoardDao {
 		}
 		return anum;
 	}
+	//6.23 kj   추천10 받은 게시판 작성자(회원번호)
+	public int reco10(int anum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;			
+		con = JdbcUtil.getCon();
+	try {
+		String sql = "select mnum from board_review where anum=?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, anum);
+		rs = pstmt.executeQuery();
+		rs.next(); 
+			int mnum = rs.getInt("mnum");
+			return mnum;
+				
+	}catch (SQLException s) {
+		 s.printStackTrace();
+		 return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt, rs);
+	}
+}
+	
+	
+	
+	
+	
 }

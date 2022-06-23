@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import dao.MemberDao;
+import dao.PointDao;
+import dao.reviewboard.ReviewBoardDao;
 import dao.reviewboard.ReviewCommDao;
 import dao.reviewboard.ReviewRecoDao;
 import dao.reviewboard.ReviewTagDao;
@@ -39,6 +41,18 @@ public class ReviewRecoController extends HttpServlet{
 
 		//추천 확인
 		ReviewRecoDao dao= ReviewRecoDao.getInstance();
+		
+		//-------------------kj------------------------
+		// 6.23 추천수10 작성자 포인트+1 
+		int count = dao.getRecoCount(anum); //후기게시판 추천수
+		  if(count==10) { //추천수 10일때
+			  ReviewBoardDao rdao = ReviewBoardDao.getInstance();
+				int pointmnum =rdao.reco10(anum);         // 추천10받은 게시판 작성자 회원번호 구하기 
+				PointDao pdao = new PointDao(); 			
+				String content = "게시글 추천수 10";				   
+				int n1 = pdao.insert(pointmnum,content);  //포인트 테이블 추가
+				}
+		//-----------------------------------------
 		if(dao.select(anum, mnum) ==null) {
 			//추천내역이 없으면 추가
 			int n = dao.insert(anum, mnum);
