@@ -168,6 +168,25 @@
     font-weight: bold;
     font-size: 15px;
 }
+.profile-box .area_middle button.reco_btn{
+	background-color: #0b81ff91;
+	margin-bottom: 8px;
+}
 .comm-wrap{
     margin-top: 65px;
+}
+
+/*공지사항*/
+.content-wrap{
+	position:relative;
+}
+#notice_content::after{
+	content: "";
+    width: 34px;
+    height: 43px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(../../images/common/icon/notice.svg) 0% 0% / contain no-repeat;
+    transition: transform 0.3s ease 0s;
 }

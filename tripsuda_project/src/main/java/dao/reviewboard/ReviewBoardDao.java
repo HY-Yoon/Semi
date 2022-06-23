@@ -31,7 +31,185 @@ public class ReviewBoardDao {
 	}
 	private void initialize(){}
 	
+	public int delete(int anum) {
+		int n=-1;
+		Connection con= null;
+		PreparedStatement pstmt1=null;
+		PreparedStatement pstmt2=null;
+		String sql1="delete from taglist_review where anum =?"; 
+		String sql2="delete from board_review where anum =?"; 
+		
+		try {
+			con=JdbcUtil.getCon();
+			con.setAutoCommit(false); //자동커밋해제
+			pstmt1=con.prepareStatement(sql1);
+			pstmt1.setInt(1, anum);
+			n=pstmt1.executeUpdate();
+			
+			pstmt2=con.prepareStatement(sql2); 
+			pstmt2.setInt(1, anum);
+			n+=pstmt2.executeUpdate();
+			
+		} catch (SQLException e) {
+			 e.printStackTrace();
+			 try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}finally {
+			try {
+				con.commit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			JdbcUtil.close(pstmt1);
+			JdbcUtil.close(pstmt2);
+			JdbcUtil.close(con);
+		}
+		return n;
+	}
 	
+	//공지사항 설정
+	public int setNotice(int anum, String notice) {
+		int n= -1;
+		Connection con =null;
+		PreparedStatement pstmt= null;
+		String sql="update board_review set"
+				+ " notice = ? where anum = ?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, notice);
+			pstmt.setInt(2, anum);
+			n = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+		return n;
+	}
+	
+	
+	//전체 글 개수 
+	public int getCount(String select, String search) {
+		int cnt= -1;
+		Connection con =null;
+		PreparedStatement pstmt= null;
+		ResultSet rs =null;
+		con = JdbcUtil.getCon();
+		try {
+			String sql=null;
+			if(select !=null && !select.equals("")) {
+				//통합검색
+				if(select.equals("tot")) {
+					sql = "select NVL(count(*),0) cnt from"
+						+ "(select b.*, t.tag, m.nick from board_review b, taglist_review t, member m where b.anum = t.anum and b.mnum = m.mnum)"
+						+ " where tag like '%"+search+"%' or nick like '%" +search+ "%' "
+						+ " or title like '%"+search+"%'";
+					
+				//태그
+				}else if(select.equals("tag")) { 
+					sql  = "select NVL(count(b.anum),0) cnt "
+						+ " from board_review b, taglist_review t"
+						+ " where tag like '%"+search+"%' and b.anum = t.anum";
+					
+				}else {       
+					sql = "select NVL(count(b.anum),0) cnt "
+						+ "from board_review b "
+						+"where "+ select + " like '%" +search +"%'"; 
+				}
+				
+			}else {
+				//검색이 아닐 때
+				sql = "select NVL(count(anum),0) cnt from board_review";
+			}
+			
+			pstmt= con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		return cnt;
+	}
+	
+	//리스트
+	public ArrayList<ReviewBoardVo> selectAll(int start, int end,String select, String search)
+	{
+		ArrayList<ReviewBoardVo> list = new ArrayList<ReviewBoardVo>();
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+		String sql = null;
+		try 
+		{
+			con=JdbcUtil.getCon();
+			//검색이 있을 때
+			if(select !=null && select.equals("")) {
+				//통합검색
+				if(select.equals("tot")) {
+					sql = "select * from "
+						+ "(select aa.* , rownum rnum from"
+						+ " (select b.*, t.tag from board_review b, taglist_review t, member m "
+						+ "  where b.anum = t.anum and b.mnum = m.mnum order by b.anum desc) aa"
+						+ " where tag like '%"+search+"%' or nick like '%" +search+ "%'"
+						+ " or title like '%"+search+"%')"
+						+ "where rnum >=? and rnum <= ?";
+
+				//태그 검색
+				}else if(select.equals("tag")) {
+					sql = "select * from ( "
+						+ " select b.*, rownum rnum "
+						+ " from board_review b, taglist_review t "
+						+ " where b.anum = t.anum and tag like '%"+search+"%' "
+						+ " order by b.anum desc "
+						+" ) where rnum >=? and rnum <=?";
+				}else {
+					sql = " select * from ("
+						+ " select b.*, rownum rnum from board_review b "
+						+ " where " +select+ " like '%" +search+ "%' "
+						+ " order by b.anum desc "
+						+" ) where rnum >=? and rnum <= ?";
+				}
+			//검색 없을때
+			}else {
+				sql =  "select * from("
+				    	+"select aa.*,rownum rnum from("
+				        +" select * from board_review"
+				        +" order by anum desc"
+				        +" ) aa"
+				        +") where rnum>=? and rnum<=?" ;
+			}
+			pstmt =con.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				ReviewBoardVo vo = new ReviewBoardVo();
+				vo.setAnum(rs.getInt("anum"));
+				vo.setMnum(rs.getInt("mnum"));
+				vo.setTitle(rs.getString("title"));
+				vo.setContent(rs.getString("content"));
+				vo.setRegdate(rs.getDate("regdate"));
+				vo.setViews(rs.getInt("views"));
+				vo.setNotice(rs.getString("notice"));
+				vo.setThum(rs.getString("thum"));
+				vo.setLocation(rs.getString("location"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}
+		return list;
+	}
 
 	//글 수정
 	public int edit(ReviewBoardVo vo) {

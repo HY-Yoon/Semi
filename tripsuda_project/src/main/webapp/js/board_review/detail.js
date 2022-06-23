@@ -3,9 +3,14 @@
  */
 let context = sessionStorage.getItem("contextPath");
 let anum = sessionStorage.getItem("anum");
+let notice = sessionStorage.getItem("notice");
+let content_wrap = document.getElementsByClassName("content-wrap")[0];
  window.onload =function(){
 	hashList();
 	commList();
+	if(notice == 'Y'){
+		content_wrap.id = "notice_content";
+	}
 }
 function hashList()
 {
@@ -79,4 +84,60 @@ edit = function(){
 	url += "?anum="+anum;
 	
 	document.location.href = url;
+}
+del = function(){
+	let url = context +"/board_review/delete";
+	url += "?anum="+anum;
+	
+	document.location.href = url;
+}
+let recoform ={
+	anum : anum,
+	mnum : sessionStorage.getItem("mnum")
+}
+
+setReco = function(){
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let data = xhr.responseText;
+			let json = JSON.parse(data);
+			let reco= document.getElementById("reco");
+			reco.innerHTML= "추천수 "+ json.cnt;
+			alert(json.result);
+		}		
+	}
+	xhr.open("post",context+"/board_review/recommend",true);
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xhr.send(JSON.stringify(recoform));
+}
+
+setNotice = function(){
+	let getConfirm = "";
+	if(notice == 'N'){
+		getConfirm = confirm("이 글을 공지사항으로 설정하시겠어요?");
+	}else{
+		getConfirm = confirm("이 글을 공지사항에서 해제하시겠어요?");
+	}
+	
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			let result = xhr.responseText;
+			alert(result);
+			//현재페이지로딩
+			document.location.href= context+"/board_review/detail?anum="+anum;
+		}		
+	}
+	xhr.open("post",context+"/board_review/notice",true);
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    if(getConfirm){
+		notice = notice=='N'?'Y':'N';
+	}
+    let noticeform = {
+		anum :anum,
+		notice : notice
+	};
+	xhr.send(JSON.stringify(noticeform));
+	
 }

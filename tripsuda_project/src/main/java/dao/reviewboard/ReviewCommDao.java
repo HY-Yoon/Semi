@@ -23,6 +23,25 @@ public class ReviewCommDao {
 	}
 	private void initialize(){}
 	
+	public int delete(int anum) {
+		int n=-1;
+		Connection con =null;
+		PreparedStatement pstmt=null;
+		String sql = "delete from comm_review where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, anum);
+			n = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(con);
+		}
+		return n;
+	}
+	
 	public int insert(ReviewCommVo vo) {
 		int n=-1;
 		Connection con =null;

@@ -22,6 +22,7 @@
     <footer>
         <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
-
+	<script src="${pageContext.request.contextPath }/js/common/header.js"></script>
+    <script src="${pageContext.request.contextPath }/js/common/header_login.js"></script>
 </body>
 </html>
