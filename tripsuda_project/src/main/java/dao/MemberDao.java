@@ -128,7 +128,7 @@ public class MemberDao
 	}
 }
 	
-
+	//---------------6.23연희 수정(회원번호도 vo에 받아서 넣기)
 	//---------------HEE 
 	//------------------6/23혜인 수정(vo에 mnum 추가)
 	//마이페이지에서 로그인시 정보 확인
@@ -156,6 +156,7 @@ public class MemberDao
 				vo.setPhone(rs.getString("phone"));
 				vo.setFavorite(rs.getString("favorite"));
 				vo.setGrade(rs.getString("grade"));
+				vo.setMnum(rs.getInt("mnum"));
 			}
 
 			con.close();
