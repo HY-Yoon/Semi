@@ -1,9 +1,45 @@
 @charset "UTF-8";
 
+
 table{
-	border: 1px solid black;
+	
 	border-collapse: collapse;
+	width: 740px;
+	height: 370px;
+	border-top: 0.2px solid black;
+	border-left: 0.5px solid gray;  
+	box-shadow: 5px 5px  lightgray;
+	margin-top: 30px;
 }
-th,td,tr{
-	border: 1px solid black;
+
+
+.rnum{
+	width: 60px;
+	text-align: center;
+	font-size: 15px;
+	
+}
+
+.defend{
+	width: 140px;
+	padding-left: 30px;
+	}
+
+.plaint{
+	width: 140px;
+	padding-left: 30px;
+}
+.reason{
+	font-weight: bold;
+}
+
+.rdate{
+	text-align: center;
+	width: 100px;
+}
+
+.paging{
+	margin-top: 20px;
+	padding-left: 310px;
+	
 }

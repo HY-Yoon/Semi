@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,16 +18,16 @@
 		<div class="list">
 		<table>
 		<tr>
-			<th>신고번호</th><th>피신고자</th><th>신고자</th><th>신고이유</th><th>신고일자</th>
+			<th>번호</th><th>피신고자</th><th>신고자</th><th>신고이유</th><th>신고일자</th>
 		</tr>	
 		
 		<c:forEach var="vo" items="${list }">
 			<tr>
-				<td>${vo.rnum }</td>
-				<td>${vo.defendant }</td>
-				<td>${vo.plaintiff }</td>
-				<td>${vo.reason }</td>
-				<td>${vo.rdate }</td>
+				<td class="rnum">${vo.rnum }</td>
+				<td class="defend">${vo.def }</td> <!-- 번호가 아니라 아이디로.. -->
+				<td class="plaint">${vo.pla }</td>
+				<td class="reason">${vo.reason }</td>
+				<td class="rdate">${vo.rdate }</td>
 			</tr>
 		</c:forEach>
 				
@@ -42,7 +42,7 @@
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 								<c:choose>
 									<c:when test="${pageNum==i }"> 
-										<a href="${pageContext.request.contextPath}/admin/report?pageNum=${i}"><span style="color: blue">${i }</span></a>		
+										<a href="${pageContext.request.contextPath}/admin/report?pageNum=${i}"><span style="color: #0b81ff">${i }</span></a>		
 											</c:when>
 								
 									<c:otherwise>

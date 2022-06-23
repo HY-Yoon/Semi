@@ -476,4 +476,30 @@ public class MemberDao
 		}return nick;	
 			
 	}
+	
+	//신고자, 피신고자 아이디 구하기
+	public String whatId(int mnum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;			
+		con = JdbcUtil.getCon();
+	try {
+		String sql = "select id from member where mnum=?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, mnum);
+		rs = pstmt.executeQuery();
+			rs.next(); 
+			String id = rs.getString("id");
+			return id;
+					
+	}catch (SQLException s) {
+		 s.printStackTrace();
+		 return null;
+	}finally {
+		JdbcUtil.close(con, pstmt, rs);
+	}
+}
+	
+	
+	
 }
