@@ -47,7 +47,7 @@
 			</tr>
 			<tr>
 				<td id="title">닉네임</td>
-				<td>${member.nick}</td>
+				<td><input type="text" name="nick" value="${member.nick}" />
 			</tr>
 			<tr>
 				<td id="title">휴대전화</td>
@@ -58,7 +58,6 @@
 				<td id="title">관심지역</td>
 				<td><select name="favorite" id="favorite">
 						<option value="선택하기" selected>선택하기</option>
-						<!-- 선택하기 -->
 						<option value="서울">서울</option>
 						<option value="경기도">경기도</option>
 						<option value="강원도">강원도</option>

@@ -13,13 +13,18 @@
 
 	function changeForm(val) {
 		if (val == "-1") {
-			location.href = "${pageContext.request.contextPath}/";
+			location.href = "${pageContext.request.contextPath}/html&jsp/Menu.jsp";
 		} else if (val == "0") {
 			location.href = "${pageContext.request.contextPath}/memberModifyForm";
-		} else if (val == "1") {
-			location.href = "${pageContext.request.contextPath}/html&jsp/member/DeleteForm.jsp";
+		} else if (val == "1"){
+			 if(confirm("탈퇴시 본인이 작성한 게시글과 댓글은 자동으로 지워지지 않습니다. 정말 탈퇴하시겠습니까?")) {
+					location.href = "${pageContext.request.contextPath}/html&jsp/member/DeleteForm.jsp";
+				}else{
+			return false;
 		}
+		} 	
 	}
+
 	
 </script>
 <body>

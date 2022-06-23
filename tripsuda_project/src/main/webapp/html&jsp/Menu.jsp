@@ -33,7 +33,7 @@ function changeView(value){
 	}
 	else if(value == "5") // 자유게시판 리스트 화면으로 이동
 	{
-		location.href="";
+		location.href="${pageContext.request.contextPath}/freelist";
 	}
 }
 </script>
