@@ -323,7 +323,7 @@ public class MemberDao
 		return id;
 	}
 	
-	//비번 찾기 - 아이디/이름/전화번호 입력시 
+	//비번 찾기 - 아이디/이름/전화번호 입력시  > 구현 완료시 삭제하기 
 	public String findPwd(String id ,String name, String phone) {
 		
 		String pwd = null;
@@ -411,44 +411,69 @@ public class MemberDao
 
 }
 	
-	//회원 정보 수정하기
-	public void updateMember(MemberVo vo) {
-		
-		String sql="update member set pwd=?,phone=?,favorite=? where id=?";
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		con = JdbcUtil.getCon();
-		
-		try {
-		    // 자동 커밋을 false로 한다.
-		    con.setAutoCommit(false);
-		    pstmt = con.prepareStatement(sql);
-		    
-		    pstmt.setString(1, vo.getPwd());
-		    pstmt.setString(2, vo.getPhone());
-		    pstmt.setString(3, vo.getFavorite());
-		    pstmt.setString(4, vo.getId());
-		    
-		    int n = pstmt.executeUpdate();
-		    if(n>0) con.commit(); //업데이트 완료시 commit
-		    
-		    con.close();
-			pstmt.close();
+	//회원 정보 수정하기	
+	public void updateMember(MemberVo vo) {	
 			
-		}catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (Exception s) {
-				try {
-					con.rollback();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} // 오류시 롤백
-				throw new RuntimeException(s.getMessage());
-			} 
-		    
-		}
-	
+		String sql="update member set pwd=?,nick=?,phone=?,favorite=? where id=?";	
+		Connection con = null;	
+		PreparedStatement pstmt = null;	
+		ResultSet rs = null;	
+		con = JdbcUtil.getCon();	
+			
+		try {	
+		    // 자동 커밋을 false로 한다.	
+		    con.setAutoCommit(false);	
+		    pstmt = con.prepareStatement(sql);	
+		    	
+		    pstmt.setString(1, vo.getPwd());	
+		    pstmt.setString(2, vo.getNick());	
+		    pstmt.setString(3, vo.getPhone()); 	
+		    pstmt.setString(4, vo.getFavorite());	
+		    pstmt.setString(5, vo.getId());	
+		    	
+		    int n = pstmt.executeUpdate();	
+		    if(n>0) con.commit(); //업데이트 완료시 commit	
+		    	
+		    con.close();	
+			pstmt.close();	
+				
+		}catch (SQLException e) {	
+			// TODO Auto-generated catch block	
+			e.printStackTrace();	
+		}catch (Exception s) {	
+				try {	
+					con.rollback();	
+				} catch (SQLException e) {	
+					// TODO Auto-generated catch block	
+					e.printStackTrace();	
+				} // 오류시 롤백	
+				throw new RuntimeException(s.getMessage());	
+			} 	
+		    	
+		}	
+		
+	public String nickname(String id) {	
+		Connection con = null;	
+		PreparedStatement pstmt = null;	
+		ResultSet rs = null;	
+		con = JdbcUtil.getCon();	
+		String sql = "select nick from member where id=?";	
+		String nick="";	
+		try {	
+			pstmt = con.prepareStatement(sql);	
+				
+			pstmt.setString(1, id);	
+				
+			rs = pstmt.executeQuery();	
+			if(rs.next()) nick = rs.getString("nick");	
+				
+			con.close();	
+			pstmt.close();	
+			rs.close();	
+		}catch (SQLException e) {	
+			// TODO Auto-generated catch block	
+			e.printStackTrace();	
+		}return nick;	
+			
+	}
 }
