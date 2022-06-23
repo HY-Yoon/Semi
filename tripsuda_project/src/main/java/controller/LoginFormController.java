@@ -1,6 +1,6 @@
 package controller;
 
-import java.io.IOException; 
+import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MemberDao;
+import vo.MemberVo;
 
 @WebServlet("/LoginForm")
 public class LoginFormController extends HttpServlet{
@@ -25,11 +26,14 @@ public class LoginFormController extends HttpServlet{
 		MemberDao mdao = new MemberDao();
 		int check = mdao.loginCheck(id, pwd);
 		HttpSession session=request.getSession();
-		String nick = mdao.nickname(id);
+		MemberVo mvo = mdao.getUserInfo(id);
+		String nick = mvo.getNick();
+		long mnum = mvo.getMnum();
 		
 		if(check == 1) { //로그인 성공
 			session.setAttribute("sessionID", id);
 			session.setAttribute("sessionNick", nick);
+			session.setAttribute("sessionMnum", mnum);
 			request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
 		}else {
 	    	request.setAttribute("errMsg", "아이디 또는 비밀번호가 일치하지 않습니다");
