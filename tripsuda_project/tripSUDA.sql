@@ -13,6 +13,9 @@ CREATE TABLE member (
    stop   Date DEFAULT NULL  
 );
 
+
+CREATE SEQUENCE num_seq;
+
 ------------6/23 혜인 시작
 -- 여행후기게시판
 CREATE TABLE board_review (
@@ -280,6 +283,9 @@ CREATE TABLE board_free (
    views number(10) NOT NULL,  
 );
 
+
+CREATE SEQUENCE fanum_seq;
+
 CREATE TABLE comm_free (
    cnum   number(10) primary key,
    anum   number(10) references board_free(anum),
@@ -292,3 +298,5 @@ CREATE TABLE comm_free (
    lev       number(10)   NULL, 
    step   number(10)   NULL,
 );
+
+CREATE SEQUENCE fcnum_seq;
