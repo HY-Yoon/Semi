@@ -30,6 +30,7 @@ public class memberModifyController extends HttpServlet{
 	 MemberVo member = new MemberVo();
 	 member.setId(id);
 	 member.setPwd(request.getParameter("pwd"));
+	 member.setNick(request.getParameter("nick"));
 	 member.setPhone(request.getParameter("phone"));
 	 member.setFavorite(request.getParameter("favorite"));
 	

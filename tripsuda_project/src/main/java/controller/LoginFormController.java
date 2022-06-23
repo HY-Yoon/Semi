@@ -21,12 +21,15 @@ public class LoginFormController extends HttpServlet{
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		
+		
 		MemberDao mdao = new MemberDao();
 		int check = mdao.loginCheck(id, pwd);
 		HttpSession session=request.getSession();
+		String nick = mdao.nickname(id);
 		
 		if(check == 1) { //로그인 성공
 			session.setAttribute("sessionID", id);
+			session.setAttribute("sessionNick", nick);
 			request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
 		}else {
 	    	request.setAttribute("errMsg", "아이디 또는 비밀번호가 일치하지 않습니다");
