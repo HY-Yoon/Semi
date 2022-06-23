@@ -1,0 +1,100 @@
+@charset "UTF-8";
+#main{
+		width: 1150px;
+		margin: 30px auto;
+	
+}
+#main_detail{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+
+.comm{
+	border: none;
+		
+	}
+	
+.comm .nickreg{
+	padding: 6px;
+}
+	.nickreg .nic{
+	font-weight: bold;
+	}
+	.nickreg .reg{
+	font-weight: lighter;
+	font-size: 12px;
+	}
+	
+	.comm .c{
+	padding-left: 70px;
+	font-size: 16px;
+	}
+	
+	
+	
+	
+	#commAdd{
+	
+	margin-top: 14px;
+	}
+	
+	#commAdd #nick{
+	border:none;
+	margin-bottom: 10px;
+	}
+	#commAdd #comments{
+	
+	border-radius: 6px;
+	border: 1px solid black;
+	}
+	
+	#sub{
+	border: 1px solid black;
+	}
+	
+	#commAdd .btn1{
+	padding-left: 1070px;
+			
+	}
+	
+.tag{
+	padding: 30px;
+	padding-top: 40px;
+}	
+
+.cont{
+	margin-bottom: 150px;
+	font-size: 15px;
+}
+.else{
+	display: inline-block;
+	font-weight: lighter;
+}
+	
+.else img{
+	width: 22px;
+	height: 22px;
+}
+.else #report{
+	border: none;
+	text-decoration: underline;
+}
+
+	#del{
+	border: none;
+	text-decoration: underline;
+	padding-left: 1070px;
+	}
+	
+	.filedownload{
+	margin-bottom: 10px;
+	font-size: 16px;
+	margin-top: 10px;
+		
+	}
+	.filedownload a{
+	color: blue;
+	}
+	
+	

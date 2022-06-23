@@ -1,0 +1,124 @@
+@charset "UTF-8";
+
+.img{
+	height:450px;	
+	border: 1px solid black;
+	position: relative;
+}
+
+.img img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+
+.content{
+	width: 1150px;
+	margin: 30px auto;
+	
+}
+
+#board_list{
+	
+	width: 1150px;
+	height: 650px;
+
+	}
+	
+.listdiv{
+		
+	width:520px;
+	height: 200px;
+	border:none;
+	margin: 20px 20px;
+	float: left;
+	border: 2px rgba(0,0,0,0.2) solid; 
+	border-radius: 20px;
+	
+	box-shadow: 10px 10px  lightgray;
+	position: relative;
+	}
+	
+	
+	.listdiv .a{
+	position: absolute;
+	left: 30px;
+	top: 8px;
+	
+	}
+	
+	.a .tag{
+	padding-left: 7px;
+	padding-bottom: 5px;
+	font-size: 14px;
+	color: rgb(106, 106, 106);
+	
+	}
+	
+	.listdiv .b{
+	
+		font-size: 14px;
+		position: absolute;
+		left: 10px;
+		top: 34px;
+				
+	}
+	
+	.b h3{
+	
+	}
+
+	.listdiv .c{
+	font-size: 15px;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space:nowrap;
+	position: absolute;
+	width:100%;
+	top: 60px;
+	left: 14px
+	}
+
+	.listdiv .d{
+	position: absolute;
+	left: 10px;
+	bottom: 37px;
+	
+	}
+	
+	.listdiv .e{
+		display: inline-block;
+		font-size: 20px;
+		position: absolute;
+		left: 14px;
+		bottom: 12px;
+	}
+	
+	.e img{
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	}
+	
+	.listdiv .f{
+		display: inline-block;
+		position: absolute;
+		left: 100px;
+		bottom: 12px;
+	}
+	.f .views{
+	padding-left: 4px;
+	
+	
+	}
+	
+	
+	#page{
+	font-size:18px;
+	padding-left: 540px;
+	margin-top: 110px;
+	}
+	
+	

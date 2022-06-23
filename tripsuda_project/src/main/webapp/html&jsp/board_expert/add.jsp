@@ -16,60 +16,75 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/add.css?after">
 
 </head>
 <body>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('#summernote').summernote({
-		 width : 1500,
-		  height: 600,                 
 		  minHeight: 600,             
-		  maxHeight: 600,             
+		  maxHeight: 600,
+		  width:1150,
+		  placeholder:"내용을 입력하세요.",
 		  focus: true                  
 		});
 	});
+	
+	function goList() {
+		window.location.href="${pageContext.request.contextPath}/html&jsp/board_expert/list.jsp";
+	}
 </script>
-<!-- css적용...? -->
-
-
-<div id="header">
+<header>
  	<jsp:include page="../default/default_header.jsp"/>
-</div>
+</header>
 
 <div id="main">
+<div class ="img">
+<img alt="배경" src="${pageContext.request.contextPath}/images/board_expert/bg.jpg">
+</div>
 
+<div class ="content1">
 <form method="post" action ="${cp}/board_expert/add" enctype="multipart/form-data">
 
+
+<div id="main_location">
+
+<span>지역 선택</span>
+<input type="radio" name="location" value="서울" id="서울"><label for="서울">서울</label>
+<input type="radio" name="location" value="인천" id="인천"><label for="인천">인천</label>
+<input type="radio" name="location" value="강원도" id="강원도"><label for="강원도">강원도</label>
+<input type="radio" name="location" value="제주도" id="제주도"><label for="제주도">제주도</label>
+<input type="radio" name="location" value="부산" id="부산"><label for="부산">부산</label>
+<input type="radio" name="location" value="경기도" id="경기도"><label for="경기도">경기도</label>
+<input type="radio" name="location" value="충청도" id="충청도"><label for="충청도">충청도</label>
+<input type="radio" name="location" value="경상도" id="경상도"><label for="경상도">경상도</label>
+<input type="radio" name="location" value="전라도" id="전라도"><label for="전라도">전라도</label>
+</div>
+<input type="text" id ="title" name="title" placeholder="제목을 입력해주세요">
+<textarea id="summernote" name="content" ></textarea>
+<input type="hidden" name="mnum" value="${mnum }">
+<input type="hidden" name="nick" value="${nick }">
+<div class="fileloc">
+	<input type= "file" name="file1">
+</div>
+
 <div id="main_keyword">
-말머리
+<label>말머리</label>
 <select name="keyword">
 	<option value="잡담">잡담</option>
 	<option value="질문">질문</option>
 </select>
 </div>
 
-<div id="main_location">
-지역선택
-<input type="radio" name="location" value="서울">서울
-<input type="radio" name="location" value="강원도">강원도
-<input type="radio" name="location" value="제주도">제주도
-<input type="radio" name="location" value="부산">부산
-<input type="radio" name="location" value="경기도">경기도
-<input type="radio" name="location" value="충청도">충청도
-<input type="radio" name="location" value="경상도">경상도
-<input type="radio" name="location" value="전라도">전라도
-</div>
+<input type="text" id ="hashtag" name="hashtag" placeholder="태그를 입력해주세요"><br>
 
-<input type="text" id ="title" name="title" style="width: 1500px;">
-<textarea id="summernote" name="content">test</textarea>
-<input type="hidden" name="mnum" value="${mnum }">
-<input type="hidden" name="nick" value="${nick }">
-파일첨부	<input type= "file" name="file1"><br>
-해시태그  
-<input type="text" id ="hashtag" name="hashtag" style="width: 1500px;"><br>
-<input type="submit" value="등록">
+<div class="btn">
+<input type="button" value="취소" class="can" onclick="goList()">
+<input type="submit" value="등록" class="sub">
+</div>
 </form>
+</div>
 </div>
 
 <div id="footer">
