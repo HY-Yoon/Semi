@@ -27,11 +27,11 @@ public class JoinFormController extends HttpServlet {
 		 String id = request.getParameter("id");
 		 String pwd = request.getParameter("pwd");
 		 String name = request.getParameter("name");
-		 String nickname = request.getParameter("nickname");
+		 String nickname = request.getParameter("nick");
 		 String phone = request.getParameter("phone");
 		 String favorite = request.getParameter("favorite");
 		
-		 MemberVo vo=new MemberVo(0, id, pwd, name, nickname, phone, favorite ); //
+		 MemberVo vo=new MemberVo(0, id, pwd, name, nickname, phone, favorite ); 
 		 MemberDao mdao = new MemberDao();
 		 int n = mdao.insertMember(vo);
 		 System.out.println("n:" + n);

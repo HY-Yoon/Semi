@@ -10,7 +10,6 @@ function aa(){
 	   var xhr=null;
 	   let name = document.getElementById("name").value;
 	   let phone = document.getElementById("phone").value;
-	   console.log();
 	   xhr=new XMLHttpRequest();
 	   xhr.onreadystatechange=function(){
 		   if(xhr.readyState==4 && xhr.status==200){
@@ -19,7 +18,6 @@ function aa(){
 			   var div=document.getElementById("result");
 			   console.log(result);
 			   if(code=='success'){
-				   
 				   var id=data.getElementsByTagName("id")[0].firstChild.nodeValue;
 				   div.innerHTML="아이디:"+id;
 			   }else{

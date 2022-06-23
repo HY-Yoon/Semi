@@ -59,7 +59,36 @@ public class AdminChatDao
 		}
 	}
 	
-	
+
+	public ArrayList<AdminChatData> getRecentChatList()
+	{
+		ArrayList<AdminChatData> list = new ArrayList<AdminChatData>();
+		
+		String sql = "select * from chat c"
+					+ " inner join (select sender, max(cnum) as cnum from adminchat group by sender) a"
+					+ " on c.cnum = a.cnum"
+					+ " order by cnum desc";
+		try(Connection con = JdbcUtil.getCon();
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);)
+		{
+			while (rs.next())
+			{
+				AdminChatData acd = new AdminChatData(
+						rs.getLong("cnum"),
+						rs.getLong("sender"), 0,
+						rs.getString("message"), rs.getDate("credate"));
+				list.add(acd);
+			}
+			rs.close();
+			return list;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public ArrayList<AdminChatData> getList(long mnum)
 	{
 		ArrayList<AdminChatData> list = new ArrayList<AdminChatData>();

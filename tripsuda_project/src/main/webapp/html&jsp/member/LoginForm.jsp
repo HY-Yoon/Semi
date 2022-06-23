@@ -41,7 +41,7 @@
   <label> 아이디 : 
   <input type="text" name="id" id="id" maxlength="50" placeholder="ID를 입력하세요"></label><br>
   <label> 비밀번호 : 
-  <input type="text" name="pwd" id="pwd" size="20" maxlength="50"  placeholder="비밀번호를 입력하세요"></label>
+  <input type="password" name="pwd" id="pwd" size="20" maxlength="50"  placeholder="비밀번호를 입력하세요"></label>
   <br>
   <div>${errMsg }</div>
   <input type="submit" value="로그인"/>

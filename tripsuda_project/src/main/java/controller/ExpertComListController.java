@@ -21,7 +21,7 @@ public class ExpertComListController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Expert_commDao dao = new Expert_commDao();
-		int anum = Integer.parseInt(req.getParameter("anum"));
+		int anum = Integer.parseInt(req.getParameter("anu\"/tripsuda_project\".m"));
 		ArrayList<Expert_commVo> list = dao.list(anum);
 	
 		

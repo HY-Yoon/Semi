@@ -12,12 +12,12 @@
             <div>
                 <input type="button" value="X" onclick="AdminChatManager.toggleChat(false)">
             </div>
-            <div class="messagebox" id="chatlist">
+            <div class="messagebox" id="adminchat_chatlist">
             </div>
             <div class="line"></div>
             <div class="sendbox">
                 <div class="msgbox">
-                    <input type="text" id="msg" placeholder="이곳에 채팅 입력" onkeypress="AdminChatManager.sendChat(event)">
+                    <input type="text" id="adminchat_msg" placeholder="이곳에 채팅 입력" onkeypress="AdminChatManager.sendChat(event)">
                 </div>
             </div>
         </div>

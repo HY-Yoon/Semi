@@ -10,9 +10,12 @@
     pageEncoding="UTF-8"%>
  <%
 
- String nick = request.getParameter("nick");
- boolean exist = false;
- String sql = "select nick from member where nick=?";
+ String id = request.getParameter("id");
+ String name = request.getParameter("name");
+ String phone = request.getParameter("phone");
+ 
+ String pwd = null;
+ String sql = "select pwd from member where id=? and name=? and phone=?";
  Connection con = null;
  PreparedStatement pstmt = null;
  ResultSet rs = null;
@@ -20,11 +23,13 @@
 
  try {
  	pstmt = con.prepareStatement(sql);
- 	pstmt.setString(1, nick);
+ 	pstmt.setString(1, id);
+ 	pstmt.setString(2, name); 
+	pstmt.setString(3, phone);
 
  	rs = pstmt.executeQuery();
  	if (rs.next()) {
- 		exist = true; // 이미 닉네임이 존재하는 경우
+ 		pwd = rs.getString("pwd"); 
  	}
  } catch (SQLException s) {
  	s.printStackTrace();
@@ -40,10 +45,18 @@
  		e.printStackTrace();
  	}
  }
- JSONObject json = new JSONObject();
- json.put("exist", exist);
-  System.out.println(exist);
- response.setContentType("text/plain;charset=utf-8");
+
+ response.setContentType("text/XML;charset=utf-8");
  PrintWriter pw = response.getWriter();
- pw.print(json);
+ pw.print("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+ pw.print("<result>");
+ System.out.println(pwd);
+ if(pwd==null){
+	 pw.print("<code>fail</code>");
+ }else{
+	 pw.print("<code>success</code>");
+	 pw.print("<pwd>"+pwd+"</pwd>");
+ }
+ pw.print("</result>");
+ pw.close();
  %>
