@@ -1,0 +1,17 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 42" width="33" height="42">
+	<title>notice-svg</title>
+	<defs>
+		<linearGradient id="g1" x1="30" y1="35.1" x2="0" y2="5.1" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#0b81ff"/>
+			<stop offset=".2" stop-color="#098ffe"/>
+			<stop offset=".4" stop-color="#079ffd"/>
+			<stop offset=".6" stop-color="#05affc"/>
+			<stop offset=".8" stop-color="#03c0fb"/>
+			<stop offset="1" stop-color="#01d1fa"/>
+		</linearGradient>
+	</defs>
+	<style>
+		.s0 { fill: url(#g1) } 
+	</style>
+	<path id="Layer" class="s0" d="m33 0v4.7 14.3 23l-16.5-11.7-16.5 11.7v-23-14.3-4.7h4.7 23.6z"/>
+</svg>
