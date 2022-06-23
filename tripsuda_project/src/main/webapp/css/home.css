@@ -1,0 +1,111 @@
+@charset "UTF-8";
+main section{
+    position: relative;
+}
+.swiper_container{
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+.swiper_pagination{
+    position: absolute;
+    width: 100%;
+    text-align: start;
+    transition: opacity .3s;
+    transform: translateZ(0);
+    z-index: 10;
+    left: 0;
+    bottom: 20px;
+    margin-left: calc(50vw - 540px);   
+}
+.swiper_pagination .swiper-pagination-bullet{
+    width: 12px;
+    height: 12px;
+    background: #0b81ff;
+    opacity: 0.5;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0px 0px 0px 15px;
+    border-radius: 50%;
+}
+.swiper_pagination .swiper-pagination-bullet.active{
+    opacity: 1;
+    width: 40px;
+    transition: width 0.5s ease 0s;
+    border-radius: 100px;
+}
+.swiper_wrap{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+    transform: translateZ(0);
+}
+.swiper_slide{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.main_slide{
+    display: block;
+    width: 1200px;
+    height: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: calc(50vw - 610px);
+}
+.main_slide > a{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.main_slide > a >div:first-child{
+    position: absolute;
+    bottom: 214px;
+    left: 80px;
+    color: rgb(47, 50, 49);
+}
+.main_slide > a >div:first-child > p{
+    font-size: 48px;
+    line-height: 1em;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+.main_slide > a >div:first-child > p:last-child{
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 0px;
+}
+.main_slide > a >img{
+    width: 600px;
+    height: 354px;
+    object-fit: cover;
+    position: absolute;
+    bottom: 0px;
+    right: 70.7px;
+}
+.main_slide > a > button{
+    position: absolute;
+    left: 80px;
+    bottom: 123px;
+    padding: 13px 36px;
+    font-size: 22px;
+    font-weight: 400;
+    border-radius: 25px;
+    background: rgb(215, 221, 223);
+    color: rgb(103, 122, 130);
+}
+.swiper_slide .main_bg{
+    width: 100vw;
+    height: 451px;
+    background-color: rgb(232, 237, 239);
+}
