@@ -1,7 +1,5 @@
 package vo;
 
-import java.util.Date;
-
 public class Qa_BoardVo {
 	private int anum; 			// 글번호
 	private int mnum;			// 회원번호
@@ -9,10 +7,10 @@ public class Qa_BoardVo {
 	private String title;		// 질문글제목
 	private String keyword;		// 말머리(답변대기, 답변완료)
 	private String content;		// 질문글내용
-	private Date regdate;		// 질문글작성일
+	private String regdate;		// 질문글작성일
 	private int views;			// 질문글 조회수
 	public Qa_BoardVo() {}
-	public Qa_BoardVo(int anum, int mnum, String nick, String title, String keyword, String content, Date regdate,
+	public Qa_BoardVo(int anum, int mnum, String nick, String title, String keyword, String content, String regdate,
 			int views) {
 		super();
 		this.anum = anum;
@@ -60,10 +58,10 @@ public class Qa_BoardVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
 	public int getViews() {

@@ -8,11 +8,13 @@ public class Qa_CommVo {
 	private int mnum;			// 답변자 회원번호
 	private String nick;		// 답변자 닉네임
 	private String content;		// 답변내용
-	private	Date regdate;		// 답변 단 시간
+	private	String regdate;		// 답변 단 시간
+	private int ref;			// 댓글+대댓글 그룹 숫자 
 	private int lev;			// 답변 레벨(답댓글이면 1추가됨)
 	private String sel;			// 답변 채택 여부 (Y,N)
 	public Qa_CommVo() {}
-	public Qa_CommVo(int cnum, int anum, int mnum, String nick, String content, Date regdate, int lev, String sel) {
+	public Qa_CommVo(int cnum, int anum, int mnum, String nick, String content, String regdate, int ref, int lev,
+			String sel) {
 		super();
 		this.cnum = cnum;
 		this.anum = anum;
@@ -20,6 +22,7 @@ public class Qa_CommVo {
 		this.nick = nick;
 		this.content = content;
 		this.regdate = regdate;
+		this.ref = ref;
 		this.lev = lev;
 		this.sel = sel;
 	}
@@ -53,11 +56,17 @@ public class Qa_CommVo {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public Date getRegdate() {
+	public String getRegdate() {
 		return regdate;
 	}
-	public void setRegdate(Date regdate) {
+	public void setRegdate(String regdate) {
 		this.regdate = regdate;
+	}
+	public int getRef() {
+		return ref;
+	}
+	public void setRef(int ref) {
+		this.ref = ref;
 	}
 	public int getLev() {
 		return lev;
@@ -71,5 +80,5 @@ public class Qa_CommVo {
 	public void setSel(String sel) {
 		this.sel = sel;
 	}
-	
+
 }
