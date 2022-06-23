@@ -35,25 +35,6 @@
 	<div class="chat-center">
 		<div class="chat-tbcell" style="vertical-align: top; overflow: auto;">
 			<div id="adminchat_userlist">
-				<%
-					for (ChatroomVo vo : chatrooms)
-					{
-						PartyboardVo pbvo = PartyBoardDao.getInstance().select(vo.getaNum());
-						int memCnt = PartyWaitDao.getInstance().getMemCnt(vo.getaNum()) + 1;
-						String dateDiff = DateUtil.getDiffer(ChatDao.getInstance().getRecentChatDate(vo.getaNum()));
-						%>
-						<div class="room-ele" id="room-ele-<%=vo.getaNum() %>">
-							<div>
-								<a href="javascript:ChatManager.connectRoom(<%=vo.getaNum() %>, true)">
-								[ <%=pbvo.getStartDate() %> ~ <%=pbvo.getEndDate() %> ] <br>
-								<%=pbvo.getTitle() %> </a>
-							</div>
-							<%=memCnt %>명 | <%=dateDiff %>
-							<% if (pbvo.getMnum() != userdata.getMnum()) { %>| <a href="javascript:ChatManager.leaveRoom(<%=vo.getaNum() %>)" style="text-decoration: underline;">나가기</a> <% } %>
-						</div>
-						<% 
-					}
-				%>
 			</div>
 		</div>
 		<div class="chat-tbcell">
