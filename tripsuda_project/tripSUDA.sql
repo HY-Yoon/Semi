@@ -45,7 +45,6 @@ create table reco_review(
     mnum number(10) references member(mnum)
 );
 
-
 -- 전문가 게시판
 CREATE TABLE board_expert (
    anum   number(10)   primary key,   
@@ -131,9 +130,8 @@ CREATE table report(
 	rnum number(10) primary key, --시퀀스
 	defendant number(10) not null, --신고당한 회원번호
 	plaintiff number(10) not null, --신고한 회원번호
-	reason varchar(200) not null,
-	rdate Date not null,
-	repo varchar2(500) not null --신고 내용(댓글내용/게시글내용 짧게)
+	reason varchar(200) not null, -- 신고 이유로 통일 
+	rdate Date not null
 );
 
 --내일정

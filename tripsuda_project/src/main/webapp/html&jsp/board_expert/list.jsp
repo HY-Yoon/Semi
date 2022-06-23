@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/list.css?after">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/list.css?r">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
@@ -59,7 +59,7 @@
 										+"<div class='b'><h3 class='title'>"+title+"</h3></div>"
 										+"<div class='c'><p class='con'>"+content+"</p></div>"
 										+"<div class='d'><p class='hashtag'>"+hashtag+"</p></div>"
-										+"<div class='e'><span class='nick'>"+nick+"</span></div>"
+										+"<div class='e'><img src='${pageContext.request.contextPath}/images/board_expert/profile.svg'><span class='nick'>"+nick+"</span></div>"
 										+"<div class='f'><img src='${pageContext.request.contextPath}/images/board_expert/index.svg'><span class='views'>"+views+"</span></div>";
 											    
 		div.className="listdiv";
@@ -113,6 +113,12 @@
 </header>
  
 <main> 
+
+<div class ="img">
+<img alt="배경" src="${pageContext.request.contextPath}/images/board_expert/bg.jpg">
+</div>
+
+
 <div class="content">
 <div id="board_list">
 

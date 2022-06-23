@@ -30,18 +30,22 @@ $(document).ready(function() {
 		  focus: true                  
 		});
 	});
+	
+	function goList() {
+		window.location.href="${pageContext.request.contextPath}/html&jsp/board_expert/list.jsp";
+	}
 </script>
 <header>
  	<jsp:include page="../default/default_header.jsp"/>
 </header>
 
 <div id="main">
+<div class ="img">
+<img alt="배경" src="${pageContext.request.contextPath}/images/board_expert/bg.jpg">
+</div>
 
 <div class ="content1">
 <form method="post" action ="${cp}/board_expert/add" enctype="multipart/form-data">
-<div class ="img">
-이미지
-</div>
 
 
 <div id="main_location">
@@ -76,7 +80,7 @@ $(document).ready(function() {
 <input type="text" id ="hashtag" name="hashtag" placeholder="태그를 입력해주세요"><br>
 
 <div class="btn">
-<input type="button" value="취소" class="can" onclick="">
+<input type="button" value="취소" class="can" onclick="goList()">
 <input type="submit" value="등록" class="sub">
 </div>
 </form>

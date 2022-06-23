@@ -76,14 +76,21 @@
 	width: 22px;
 	height: 22px;
 }
+.else #report{
+	border: none;
+	text-decoration: underline;
+}
+
 	#del{
 	border: none;
 	text-decoration: underline;
+	padding-left: 1070px;
 	}
 	
 	.filedownload{
 	margin-bottom: 10px;
 	font-size: 16px;
+	margin-top: 10px;
 		
 	}
 	.filedownload a{

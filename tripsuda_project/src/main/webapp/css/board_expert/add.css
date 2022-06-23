@@ -1,18 +1,27 @@
 @charset "UTF-8";
 
 .img{
-	height:330px;	
-	
+	height:500px;	
+	border: 1px solid black;
+	position: relative;
+}
+
+.img img{
+	position: absolute;
+	width: 100%;
+	height: 100%;
 }
 
 .content1{
 	width: 1150px;
-	margin: 30px auto;
+	margin: 10px auto;
 		
 }
 
+
 #main_location{
 	padding: 7px;
+	margin-top: 10px;
 }
 
 #main_location input[type=radio]{

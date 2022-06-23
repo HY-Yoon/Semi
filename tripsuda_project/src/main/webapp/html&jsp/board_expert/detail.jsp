@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/detail.css?detail">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/detail.css?12">
 </head>
 
 <script type="text/javascript">
@@ -136,6 +136,26 @@ function addComm(){
 		xhr.send();
 	
 	}
+	
+	function report() {
+		var url = "${pageContext.request.contextPath}/html&jsp/board_expert/reportPopup.jsp?mnum=${mnum}";
+
+		var nWidth = 600;
+		var nHeight = 450;
+		
+		var curX = window.screenLeft;
+		var curY = window.screenTop;
+		var curWidth = document.body.clientWidth;
+		var curHeight = document.body.clientHeight;
+		  
+		var nLeft = curX + (curWidth / 2) - (nWidth / 2);
+		var nTop = curY + (curHeight / 2) - (nHeight / 2);
+				
+		 var status = "toolbar=no,scrollbars=no,resizable=no,status=no,menubar=no"
+		 							+",top="+nTop+",left="+nLeft+",width=600, height=450"; 
+		window.open(url,"신고하기" ,status);
+	}
+
 
 </script>
 <body>
@@ -150,15 +170,19 @@ function addComm(){
 <div class="tag">지역 ${tag }</div>
 <div class="cont">${content }</div>
 <div class="hash">${hashtag }</div>
-
+${mnum }
 
 <div class="filedownload">
+첨부파일 
 <a href="${pageContext.request.contextPath}/board_expert/download?orgfile=${orgfile}&serverfile=${serverfile}">${serverfile}</a><br>
 </div>
+
+
+
 <div class="else">
 <span>${regdate }</span>
 <span>조회수 ${views }</span>
-<a href="">신고하기</a>
+<input type="button" id="report" value="신고하기" onclick="report()">
 <button type="button" onclick="addReco()"><img alt="추천" src="../../images/board_expert/reco.png"></button>
 </div>
 
