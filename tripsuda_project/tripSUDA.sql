@@ -255,3 +255,32 @@ begin
 --    select :new.mnum bulk collect into nums from board_party where anum = :new.anum;
     insert into chatroom values(chatroom_seq.nextval, :new.anum, chat_members(:new.mnum));
 end chatroom_create_trig;
+
+
+--자유게시판
+CREATE TABLE board_free (
+   anum   number(10)   primary key,  
+   mnum   number(10) references member(mnum),  
+   id varchar2(20) not null 
+   nick   varchar2(20)   NOT NULL,  
+   title   varchar2(100)   NOT NULL,     
+   keyword   varchar2(20),   
+   content   clob   NOT NULL,  
+   regdate   date   NOT NULL,  
+   orgFile   varchar2(200),   
+   serverFile   varchar2(200),  
+   views number(10) NOT NULL,  
+);
+
+CREATE TABLE comm_free (
+   cnum   number(10) primary key,
+   anum   number(10) references board_free(anum),
+   mnum   number(10)   references member(mnum),  
+   id varchar2(20) not null,
+   nick varchar2(20), --작성자 닉네임
+   content   varchar2(500)   NOT NULL, 
+   regdate   Date   NOT NULL, 
+   ref      number(10)   NULL, 
+   lev       number(10)   NULL, 
+   step   number(10)   NULL,
+);
