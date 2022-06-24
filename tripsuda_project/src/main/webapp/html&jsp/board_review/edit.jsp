@@ -12,10 +12,7 @@
 <script src="${pageContext.request.contextPath }/js/summernote/summernote-lite.js"></script>
 <script src="${pageContext.request.contextPath }/js/summernote/lang/summernote-ko-KR.js"></script>
 
-<%
-	//test 지워야함
-	session.setAttribute("id", "ccc");
-	
+<%	
 	int anum= Integer.parseInt(request.getParameter("anum"));
 	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
 	ArrayList<ReviewTagVo> list = ReviewTagDao.getInstance().select(anum);
