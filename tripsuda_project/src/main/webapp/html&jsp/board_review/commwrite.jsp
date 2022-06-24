@@ -7,7 +7,7 @@
     pageEncoding="UTF-8"%>
 <%-- 댓글 쓰기--%>
 
-<!-- summernote -->
+<!-- summernote --> 
 <script src="${pageContext.request.contextPath }/js/jQuary/jquery-3.6.0.js"></script>
 <script src="${pageContext.request.contextPath }/js/summernote/summernote-lite.js"></script>
 <script src="${pageContext.request.contextPath }/js/summernote/lang/summernote-ko-KR.js"></script>
@@ -16,9 +16,8 @@
 </script>
 <%
 	int anum= Integer.parseInt(request.getParameter("anum"));
-	String id = (String)session.getAttribute("id");
+	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
-	MemberVo user = MemberDao.getInstance().getUserInfo(id);
 %>
 <div class="detail-wrap">
     <div class="container">
@@ -37,7 +36,7 @@
 </div>
 <div class="editor-wrap">
 	<input type="hidden" id="anum" value="<%=anum%>">
-	<input type="hidden" id="mnum" value="<%=user.getMnum()%>">
+	<input type="hidden" id="mnum" value="<%=userdata.getMnum()%>">
 	<div class="container">
 		<div id="summernote"></div> 					
 		<div class="btn-box">
