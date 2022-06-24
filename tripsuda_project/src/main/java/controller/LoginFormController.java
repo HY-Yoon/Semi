@@ -11,11 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.MemberDao;
 import vo.MemberVo;
-/**
- * 6/24수정 윤혜인
- * 
- *
- */
+
 @WebServlet("/LoginForm")
 public class LoginFormController extends HttpServlet{
 
@@ -33,12 +29,11 @@ public class LoginFormController extends HttpServlet{
 		MemberVo mvo = mdao.getUserInfo(id);
 		String nick = mvo.getNick();
 		long mnum = mvo.getMnum();
-		MemberVo userdata = MemberDao.getInstance().select(id, pwd);
+		
 		if(check == 1) { //로그인 성공
 			session.setAttribute("sessionID", id);
 			session.setAttribute("sessionNick", nick);
 			session.setAttribute("sessionMnum", mnum);
-			session.setAttribute("userdata", userdata);
 			request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
 		}else {
 	    	request.setAttribute("errMsg", "아이디 또는 비밀번호가 일치하지 않습니다");

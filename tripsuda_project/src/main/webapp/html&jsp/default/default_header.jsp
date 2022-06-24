@@ -31,6 +31,7 @@
                     <button class="login" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/LoginForm.jsp'">로그인</button>
                     <button class="join" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/JoinForm.jsp'">회원가입</button>
                 </c:when>
+                
                 <c:otherwise>
                     <button class="btn_notice"></button>
                     <button class="btn_profile">
@@ -63,8 +64,7 @@
                     <img src="${pageContext.request.contextPath }/images/common/letter_color.svg" alt="이미지">
                     <p>여행친구 찾기</p>
                 </button>
-              
-                <button>
+                 <button>
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>자유게시판</p>
                 </button>
@@ -89,7 +89,12 @@
         <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
         <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1'">동행</button>
         <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/board_review'">후기</button>
+<<<<<<< HEAD
         <button class="bot_navi">자유</button>
+=======
+        <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/freelist'">자유</button>
+        	<!-- 헤더영역 게시판 이름 클릭하면 Q&A게시판으로 이동하는 기능 추가  -->
+>>>>>>> refs/heads/KJ_header
         <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp'">Q&A</button>
     </div>
 </div>
