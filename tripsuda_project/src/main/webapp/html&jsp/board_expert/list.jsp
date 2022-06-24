@@ -132,6 +132,6 @@
 <footer>
 	<jsp:include page="../default/default_footer.jsp"/>
 </footer>
-
+<script src="${pageContext.request.contextPath}/js/board_expert/default.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="h_top">
         <div class="h_left">
-            <a href="/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
+            <a href="${pageContext.request.contextPath}/layout.jsp" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
             <div class="h_nav">
                 <button class="top_navi">커뮤니티</button>
                 <button class="top_navi">관광추천</button>
@@ -67,13 +67,25 @@
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>여행 질문하기</p>
                 </button>
+                <button>
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>자유게시판</p>
+                </button>
+                <button>
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>여행후기</p>
+                </button>
+                <button onclick="location.href='${pageContext.request.contextPath }/board_expert/add">
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>전문가</p>
+                </button>
             </div>
         </div>
     </div>
 
     <div class="h_bot">
         <button class="bot_navi active">홈</button>
-        <button class="bot_navi">전문</button>
+        <button class="bot_navi" onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
         <button class="bot_navi" onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1')">동행</button>
         <button class="bot_navi">후기</button>
         <button class="bot_navi">자유</button>
