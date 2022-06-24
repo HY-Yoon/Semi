@@ -31,7 +31,7 @@ public class PartyboardListController extends HttpServlet
 			pagenum = Long.parseLong(pn);
 		ArrayList<PartyboardVo> list = PartyBoardDao.getInstance().selectAll(pagenum);
 		req.getSession().setAttribute("list", list);
-		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/listpage.jsp");
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/listpage.jsp?pagenum=" + pagenum);
 	}
 	
 	@Override
