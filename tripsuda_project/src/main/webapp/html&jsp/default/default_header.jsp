@@ -101,7 +101,7 @@
 <script src="${pageContext.request.contextPath }/js/common/header.js"></script>
 <%--로그인했을때--%>
 <c:choose>
-     <c:when test="${not empty sessionScope.id}">
+     <c:when test="${not empty sessionScope.sessionID}">
      	<script src="${pageContext.request.contextPath }/js/common/header_login.js"></script>
      </c:when>
 </c:choose>
