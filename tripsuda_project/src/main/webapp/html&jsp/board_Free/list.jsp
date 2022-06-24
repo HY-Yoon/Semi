@@ -8,9 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판</title>
-<style>
 
-</style>
 	<script type="text/javascript">
 		function writeForm(){
 			location.href="${pageContext.request.contextPath}/html&jsp/board_Free/WriteForm.jsp"; 
@@ -18,6 +16,9 @@
 	</script>
 </head>
 <body>
+<header>
+ 	<jsp:include page="../default/default_header.jsp"/>
+</header>
 <!-- 글 목록 위 부분 -->
 <div id="topForm">
 		<c:if test="${sessionScope.sessionID!=null}">
@@ -127,4 +128,6 @@
 		</form>	
 	</div>
 </body>
+
+
 </html>

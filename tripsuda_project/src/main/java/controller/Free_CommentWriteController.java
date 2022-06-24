@@ -22,6 +22,8 @@ public class Free_CommentWriteController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
+		request.setCharacterEncoding("utf-8");
 		FreeCommDao dao = FreeCommDao.getInstance();
 		FreeCommVo comment = new FreeCommVo();
 		

@@ -35,13 +35,10 @@ public class FreeBoardDetailController extends HttpServlet {
 			dao.updateCount(anum);	//조회수 증가
 		
 		board = dao.getDetail(anum);	
-		
-		// 게시글 번호를 이용하여 해당 글에 있는 댓글 목록을 가져온다.
-		FreeCommDao commentDAO = FreeCommDao.getInstance();
-		ArrayList<FreeCommVo> commentList = commentDAO.getCommentList(anum);
+
 		
 		request.setAttribute("board", board);
-		if(commentList.size() > 0)	request.setAttribute("commentList", commentList);
+
 		request.setAttribute("page", page);
 		
 		request.getRequestDispatcher("/html&jsp/board_Free/DetailForm.jsp").forward(request, response);

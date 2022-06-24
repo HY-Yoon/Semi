@@ -24,6 +24,7 @@ public class FreeCommDao {
 	 // 댓글 목록 가져오기
 	public ArrayList<FreeCommVo> getCommentList(int anum) {
 		ArrayList<FreeCommVo> list = new ArrayList<FreeCommVo>();
+		System.out.println(anum);
 		String sql="select * from comm_free where anum=?";
 		con = JdbcUtil.getCon();
 		PreparedStatement pstmt = null;
@@ -72,6 +73,7 @@ public class FreeCommDao {
 			pstmt.setString(2, comment.getContent());
 
 			int n = pstmt.executeUpdate();
+			System.out.println(n);
 			if(n > 0){
 				result = true;
 			}
@@ -83,44 +85,28 @@ public class FreeCommDao {
 	} // end insertComment();	
 	
 	
-//	public boolean deleteComment(int comment_num) 
-//	{
-//		boolean result = false;
-//
-//		try {
-//			conn = DBConnection.getConnection();
-//			conn.setAutoCommit(false); // 자동 커밋을 false로 한다.
-//
-//			StringBuffer sql = new StringBuffer();
-//			sql.append("DELETE FROM BOARD_COMMENT");
-//			sql.append(" WHERE COMMENT_NUM IN");
-//			sql.append(" (SELECT COMMENT_NUM");
-//			sql.append(" FROM BOARD_COMMENT");
-//			sql.append(" START WITH COMMENT_NUM = ?");
-//			sql.append(" CONNECT BY PRIOR COMMENT_NUM = COMMENT_PARENT) ");
-//			
-//			pstmt = conn.prepareStatement(sql.toString());
-//			pstmt.setInt(1, comment_num);
-//			
-//			int flag = pstmt.executeUpdate();
-//			if(flag > 0){
-//				result = true;
-//				conn.commit(); // 완료시 커밋
-//			}	
-//			
-//		} catch (Exception e) {
-//			try {
-//				conn.rollback(); // 오류시 롤백
-//			} catch (SQLException sqle) {
-//				sqle.printStackTrace();
-//			}
-//			throw new RuntimeException(e.getMessage());
-//		}
-//
-//		close();
-//		return result;
-//	} // end deleteComment	
-//	
+	public boolean deleteComment(int cnum){
+		con = JdbcUtil.getCon();
+		boolean result = false;
+		String sql = "delete * from comm_free where cnum = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cnum);
+			
+			int n= pstmt.executeUpdate();
+			if(n> 0){
+				result = true;
+			}	
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			}
+		
+		close();
+		return result;
+	} // end deleteComment	
+	
 	
 	//연결 종료
 			public void close() {

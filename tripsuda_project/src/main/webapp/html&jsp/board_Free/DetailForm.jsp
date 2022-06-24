@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
+
 <script type="text/javascript">
 		function changeView(){
 				location.href="${pageContext.request.contextPath}/freelist";
@@ -23,68 +25,8 @@
 			}
 			return false;
 		}
-		
-		
 
-		var xhr=null;
 
-		// 댓글 등록
-		function addComm(){
-			xhr=new XMLHttpRequest();
-				xhr.onreadystatechange=function(){
-					 if(xhr.readyState==4 && xhr.status==200){
-						   let data=xhr.responseText;
-						   let json=JSON.parse(data);
-						   if(json.code=='success'){
-							   div.innerHTML=content;
-						   }else{
-							   alert("댓글 실패!");
-						   }
-			}
-		};
-		var form = document.getElementById("writeCommentForm");
-		var nick = form.comment_nick.value;
-		var content = form.comment_content.value;
-		var param="comment_nick="+nick+"&comment_content="+content;
-		xhr.open('post','${pageContext.request.contextPath}/FCommWrite' ,true); //
-		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-		   xhr.send(param);
-		  
-	}
-		
-
-		
-		
-		
-		// 댓글 삭제창
-		function cmDeleteOpen(cnum){
-			var msg = confirm("댓글을 삭제합니다.");	
-			if(msg == true){ // 확인을 누를경우
-				deleteCmt(cnum);
-			}
-			else{
-				return false; // 삭제취소
-			}
-		}
-	
-		// 댓글 삭제
-		function deleteCmt(cnum)
-		{
-			var param="cnum="+cnum;
-			
-			httpRequest = getXMLHttpRequest();
-			httpRequest.onreadystatechange = checkFunc;
-			httpRequest.open("POST", "CommentDeleteAction.co", true);	
-			httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=EUC-KR'); 
-			httpRequest.send(param);
-		}
-		
-		// 댓글 수정창
-		function cmUpdateOpen(comment_num){
-			window.name = "parentForm";
-			window.open("CommentUpdateFormAction.co?num="+comment_num,
-						"updateForm", "width=570, height=350, resizable = no, scrollbars = no");
-		}
 		
 	</script>
 </head>
@@ -145,6 +87,7 @@
 	
 	<!-- 댓글 부분 -->
 	<div id="comment">
+	..................${requestScope.commentList}
 		<table border="1" bordercolor="lightgray">
 	<!-- 댓글 목록 -->	
 	<c:if test="${requestScope.commentList != null}">
@@ -181,11 +124,11 @@
 			<c:if test="${sessionScope.sessionID !=null}">
 			
 			<form id="writeCommentForm">
-				<input type="hidden" name="comment_board" value="${comment.cnum}">
+				<input type="text" name="cnum" value="${comment.cnum}">
 				<input type="hidden" name="comment_nick" value="${sessionScope.sessionNick}">
 				<!-- 닉네임-->
 				<td width="150">
-					<div>
+					<div id="a1">
 						${sessionScope.sessionNick}
 					</div>
 				</td>
@@ -200,6 +143,8 @@
 					<div id="btn" style="text-align:center;">
 						
 						<input type="button" value="댓글 등록"  onclick="addComm()">
+						
+						<input type="button" value="댓글 삭제"  onclick="deleteComm('${comment.cnum}')">
 					</div>
 				</td>
 			</form>

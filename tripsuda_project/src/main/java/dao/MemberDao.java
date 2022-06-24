@@ -180,7 +180,7 @@ public class MemberDao
 				vo.setNick(rs.getString("nick"));
 				vo.setPhone(rs.getString("phone"));
 				vo.setBirth(rs.getString("birth"));
-				System.out.println(rs.getString("birth"));
+
 				vo.setFavorite(rs.getString("favorite"));
 				vo.setGrade(rs.getString("grade"));
 				vo.setMnum(rs.getInt("mnum"));

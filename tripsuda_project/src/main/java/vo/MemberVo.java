@@ -35,6 +35,12 @@ public class MemberVo
 
 
 
+
+
+
+
+
+
 	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, String favorite) {
 		super();
 		this.mnum = mnum;

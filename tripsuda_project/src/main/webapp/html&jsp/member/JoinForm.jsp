@@ -12,6 +12,7 @@
 
   //submit 제출 시 입력값들을 검사한다.
   function checkValue(){
+	  
 	  var form = document.joinform;
 	  var id=form.id.value;
 	  var pwd=form.pwd.value;
@@ -112,7 +113,7 @@
    }
 	
    function checkId(){
-	  
+	   joinform.idDuplication.value=="idCheck";
 	   let id = document.getElementById("id").value;
 	   console.log(id);
 	   let xhr=new XMLHttpRequest();
@@ -123,11 +124,11 @@
 			   console.log(result);
 			   if(result.exist==true){
 				   document.getElementById("u_id_check").innerHTML="사용중인 아이디입니다.";
-				   joinform.idDuplication.value=="idCheck";
+				  
 				   
 			   }else{
 				   document.getElementById("u_id_check").innerHTML="사용가능한 아이디입니다.";
-				   joinform.idDuplication.value=="idCheck";
+				 
 				   
 			   }
 		   }
@@ -165,12 +166,13 @@
 </head>
 <body>
 <h1>회원 가입</h1>
+<div id="wrap">
 <form name="joinform" action="${pageContext.request.contextPath}/JoinForm" method="post" onsubmit="return checkValue()">
   <table>
     <tr>
        <td>아이디</td>
        <td>
-           <input type="text" name="id" id="id" placeholder="ID를 입력하세요"  autofocus>
+           <input type="text" name="id" id="id" maxlength="10" placeholder="ID를 입력하세요"  autofocus>
            <input type="button" id="id_check" value="아이디중복확인" onclick="checkId()">
            <p id="u_id_check"></p>
            <input type="hidden" name="idDuplication" value="idUncheck"/>
@@ -255,5 +257,7 @@
     <input type="reset" value="취소" onclick="goMain()">
 
 </form>
+
+</div>
 </body>
 </html>
