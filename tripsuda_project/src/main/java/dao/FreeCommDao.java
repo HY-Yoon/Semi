@@ -57,49 +57,32 @@ public class FreeCommDao {
 		return list;
 	} // end getCommentList
 	
-//	// 댓글 등록
-//	public boolean insertComment(FreeCommVo comment){
-//		con = JdbcUtil.getCon();
-//		boolean result = false;
-//		String sql = " ";
-//		
-//		try {
-//			// 자동 커밋을 false로 한다.
-//			con.setAutoCommit(false);
-//			
-//			StringBuffer sql = new StringBuffer();
-//			sql.append("INSERT INTO BOARD_COMMENT");
-//			sql.append(" (COMMENT_NUM, COMMENT_BOARD, COMMENT_ID, COMMENT_DATE");
-//			sql.append(" , COMMENT_PARENT, COMMENT_CONTENT)");
-//			sql.append(" VALUES(?,?,?,sysdate,?,?)");
-//	
-//			pstmt = conn.prepareStatement(sql.toString());
-//			pstmt.setInt(1, comment.getComment_num());
-//			pstmt.setInt(2, comment.getComment_board());
-//			pstmt.setString(3, comment.getComment_id());
-//			pstmt.setInt(4, comment.getComment_parent());
-//			pstmt.setString(5, comment.getComment_content());
-//			
-//			int flag = pstmt.executeUpdate();
-//			if(flag > 0){
-//				result = true;
-//				conn.commit(); // 완료시 커밋
-//			}
-//			
-//		} catch (Exception e) {
-//			try {
-//				conn.rollback(); // 오류시 롤백
-//			} catch (SQLException sqle) {
-//				sqle.printStackTrace();
-//			} 
-//			e.printStackTrace();
-//			throw new RuntimeException(e.getMessage());
-//		}
-//		
-//		close();
-//		return result;	
-//	} // end insertComment();	
-//	
+	// 댓글 등록
+	public boolean insertComment(FreeCommVo comment){
+		con = JdbcUtil.getCon();
+		boolean result = false;
+		String sql = "insert into comm_free(cnum,nick,content,regdate) values(fcnum_seq.nextval, ?, ?, sysdate)";
+		
+		try {
+	
+			pstmt = con.prepareStatement(sql);
+
+			pstmt.setString(1, comment.getNick());
+			System.out.println(comment.getNick());
+			pstmt.setString(2, comment.getContent());
+
+			int n = pstmt.executeUpdate();
+			if(n > 0){
+				result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		close();
+		return result;	
+	} // end insertComment();	
+	
+	
 //	public boolean deleteComment(int comment_num) 
 //	{
 //		boolean result = false;

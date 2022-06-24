@@ -32,6 +32,7 @@ public class memberModifyController extends HttpServlet{
 	 member.setPwd(request.getParameter("pwd"));
 	 member.setNick(request.getParameter("nick"));
 	 member.setPhone(request.getParameter("phone"));
+	 member.setBirth(request.getParameter("birth"));
 	 member.setFavorite(request.getParameter("favorite"));
 	
 	 

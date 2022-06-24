@@ -115,6 +115,12 @@ public class FreeBoardDao {
 		    }// end getBoardList
 		
 		
+		    
+		    
+		    
+		    
+		    
+	
 		public FreeBoardVo getDetail(int anum){	
 			
 			FreeBoardVo board =  new FreeBoardVo();
@@ -278,6 +284,109 @@ public class FreeBoardDao {
 				close();
 				return result;
 			} //isBoardWriter()
+			
+			
+			// 글의 개수를 가져오는 메서드
+			 public int getBoardListCount1(String id) {
+			    	
+			    	int count = 0; //게시글 갯수 초기값
+			    	
+			    	String sql = "select count(nick) count from ("
+			    			+ "   select rownum anum, n.* from"
+			    			+ "  (select * from board_free where id= ? "
+			    					+ " order by regdate desc) n"
+			    			+ "    ) ";
+					
+					con = JdbcUtil.getCon();
+					
+					
+					try {
+						pstmt=con.prepareStatement(sql);
+						
+						pstmt.setString(1, id);
+			    		 rs = pstmt.executeQuery();
+			    		 
+			    		 if(rs.next()) count = rs.getInt("count");   
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					close();
+					return count;
+				} // end getBoardListCount
+				
+				
+				// 글목록 가져오기
+			    public List<FreeBoardVo> getBoardList1(String id, int page){
+			    	List<FreeBoardVo> list = new ArrayList<>();
+			    	con = JdbcUtil.getCon();
+			    	
+			    	String sql = "select * from ("
+			    			+ "   select rownum cnum, n.* from"
+			    			+ "  (select * from board_free order where id = ? by regdate desc) n"
+			    			+ ") "
+			    			+ "where cnum between ? and ?";
+			    	
+			    	// 1 , 11, 21, 31,... -> an = 1+(page-1)*10
+			    	// 10, 20, 30, 40 -> page*10
+			    	
+			    	try {
+			    	   pstmt=con.prepareStatement(sql);
+
+			    	   pstmt.setString(1, id); 
+			    	   pstmt.setInt(2, 1+(page-1)*10);
+			  		   pstmt.setInt(3, page*10);
+			  		   
+			  		   rs = pstmt.executeQuery();
+			  		   
+			  		   while(rs.next()){
+			  			   int anum=rs.getInt("anum");
+			 			   String nick = rs.getString("nick");
+			 		       String title = rs.getString("TITLE"); 
+			 		       String content = rs.getString("CONTENT");
+			 		       Date regdate = rs.getDate("REGDATE"); 
+			 		       String orgfile = rs.getString("orgfile");
+			 		       String serverfile = rs.getString("serverfile");
+			 		       int views = rs.getInt("views");
+			 		   
+			 		       FreeBoardVo board = new FreeBoardVo(
+			 				   anum,
+			 				   id,
+			 				   nick,
+			 				   title,
+			 				   content,
+			 				   regdate,
+			 				   orgfile,
+			 				   serverfile,
+			 				   views
+			 				   );
+			 		       
+			 		       list.add(board);
+			 		   }
+			    	} catch (SQLException e) {
+		 	 	     	// TODO Auto-generated catch block
+		 	 		    e.printStackTrace();
+		 	     	}
+			    	
+			    	close();
+		 		    return list;	
+			    	
+			    }// end getBoardList
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			//연결 종료
