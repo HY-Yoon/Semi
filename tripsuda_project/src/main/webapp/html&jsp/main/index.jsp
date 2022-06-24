@@ -12,9 +12,6 @@
 
 </head>
 <body> 
-<%
-	session.setAttribute("id", 1234);
-%>
 <div id="wrap">
     <header>
         <jsp:include page="/html&jsp/default/default_header.jsp"/>
@@ -26,6 +23,5 @@
         <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="${pageContext.request.contextPath }/js/common/header.js"></script>
 </body>
 </html>
