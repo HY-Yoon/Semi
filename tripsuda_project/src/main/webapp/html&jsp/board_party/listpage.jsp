@@ -12,9 +12,6 @@
 
 </head>
 <body>
-<%
-	session.setAttribute("id", 1234);
-%>
 <div id="wrap">
     <header>
         <jsp:include page="../default/default_header.jsp"/>
