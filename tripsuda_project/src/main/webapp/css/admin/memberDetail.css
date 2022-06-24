@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/*회원정보 자세히보기 페이지 css*/
+.content_inner > div {
+    width: 100%;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e9e9e9;
+    display: flex;
+    align-items: center;
+    
+}
+.section_tit{
+    width: 150px;
+}
+.content_inner .btn-box {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 30px 0px;
+    border: none;
+}
+.btn-box button {
+    width: calc(50% - 8px);
+    position: relative;
+    line-height: 20px;
+    border-radius: 4px;
+    padding: 17px 5px;
+    background-color: rgb(219, 219, 219);
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+button#submit_btn {
+    background-color: #0b81ff;
+}
+.content_inner input, .content_inner select{
+    background: rgb(248, 248, 248);
+    border: 1px solid rgb(233, 233, 233);
+    box-sizing: border-box;
+    border-radius: 90px;
+    height: 40px;
+    width: 100%;
+    padding: 13px 18px;
+}
+.content_inner select{
+	padding: 0 18px;
+}
+#mnum{
+	display: none;
+}

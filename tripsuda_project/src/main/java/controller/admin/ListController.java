@@ -1,4 +1,4 @@
-package admin;
+package controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
