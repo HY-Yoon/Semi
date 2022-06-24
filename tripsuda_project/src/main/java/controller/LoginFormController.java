@@ -34,7 +34,8 @@ public class LoginFormController extends HttpServlet{
 			session.setAttribute("sessionID", id);
 			session.setAttribute("sessionNick", nick);
 			session.setAttribute("sessionMnum", mnum);
-			request.getRequestDispatcher("/community").forward(request, response);
+			//request.getRequestDispatcher(request.getContextPath()+"/community").forward(request, response);
+			response.sendRedirect(request.getContextPath()+"/community");
 		}else {
 	    	request.setAttribute("errMsg", "아이디 또는 비밀번호가 일치하지 않습니다");
 	    	request.getRequestDispatcher("/html&jsp/member/LoginForm.jsp").forward(request, response);
