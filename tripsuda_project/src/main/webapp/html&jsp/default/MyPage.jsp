@@ -7,9 +7,16 @@
 <title>마이페이지</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/mypage.css">
+
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 
 <body>
+<header>
+ 	<jsp:include page="/html&jsp/default/mypage_header.jsp"/>
+</header>
 
 
 <main class ="wrap">
@@ -23,7 +30,7 @@
 			</div>
 			<div class="mypage">
 				<ul>
-					<li class="list"><a href="${pageContext.request.contextPath}/html&jsp/member/MyPage.jsp"><span class="txt">계정관리</span></a></li>
+					<li class="list"><a href="#"><span class="txt">계정관리</span></a></li>
 					<li class="list"><a href="#"><span class="txt">포인트조회</span></a></li>
 					<li class="list"><a href="#"><span class="txt">여행후기</span></a></li>
 					<li class="list"><a href="#"><span class="txt">자유게시판</span></a></li>
@@ -37,14 +44,16 @@
 
 
 		<div class="content">
-		쓰실거면 include말고 복사
+		
 		</div>
 	
 	</div>
 
 </main>
 
-
+<footer>
+	<jsp:include page="/html&jsp/default/default_footer.jsp"/>
+</footer>
 
 
 
