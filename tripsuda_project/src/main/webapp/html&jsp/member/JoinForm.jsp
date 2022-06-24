@@ -5,9 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<style>
 
-</style>
 <script type="text/javascript">
 
   //submit 제출 시 입력값들을 검사한다.
