@@ -90,7 +90,7 @@
         <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1'">동행</button>
         <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/board_review'">후기</button>
 
-        <button class="bot_navi">자유</button>
+        
 
         <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/freelist'">자유</button>
         	<!-- 헤더영역 게시판 이름 클릭하면 Q&A게시판으로 이동하는 기능 추가  -->

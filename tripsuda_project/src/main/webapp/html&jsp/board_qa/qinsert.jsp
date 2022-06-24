@@ -11,7 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <body>
-
+	<header>
+        <jsp:include page="/html&jsp/default/default_header.jsp"/>
+    </header>
 <form action="${pageContext.request.contextPath }/html&jsp/board_qa/insert_qa" method="post">
 	<div id="main">
 	<input type="hidden" name="mnum" value="${sessionScope.sessionMnum}">
@@ -69,7 +71,7 @@
 		<input type="text" id="hashtag" name="hashtag" placeholder="태그 입력(띄어쓰기로 구분, 100자 이내)">
 	</div>
 	<div id="buttonarea">
-		<input type="button" value="취소" onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp')">
+		<input type="button" value="취소" onclick="location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp')">
 		<input type="submit" value="완료">
 	</div>
 </div>
