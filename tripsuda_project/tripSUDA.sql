@@ -176,18 +176,6 @@ create table mycalender(
  );
 create sequence mycalender_seq;
 
---태그리스트
-create table taglist(
-    tnum number(10) primary key,
-    anum number(10) references board(anum),
-    tag varchar2(30) not null
-);
---카테고리
-CREATE TABLE category (
-	cate varchar2(30) check(cate in('자유','동행','전문가','후기','질문')) primary key
-);
-
-
 -- 동행 게시판 (partyboard X)
 -- 220620 dest 및 gender 컬럼의 크기를 10 -> 20으로 증가
 drop table board_party cascade constraints;
