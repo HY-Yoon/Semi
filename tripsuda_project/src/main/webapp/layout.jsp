@@ -26,6 +26,6 @@
         <jsp:include page="./html&jsp/default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="./js/common/header.js"></script>
+
 </body>
 </html>
