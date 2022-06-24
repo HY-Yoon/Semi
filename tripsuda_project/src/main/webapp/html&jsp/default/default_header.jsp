@@ -27,7 +27,7 @@
             </form>
                     
             <c:choose>
-                <c:when test="${empty sessionScope.id}">
+                <c:when test="${empty sessionScope.sessionID}">
                     <button class="login" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/LoginForm.jsp'">로그인</button>
                     <button class="join" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/JoinForm.jsp'">회원가입</button>
                 </c:when>
@@ -50,7 +50,7 @@
                         <div class="area_porfile">
                             <img src="${pageContext.request.contextPath }/images/common/vector_profile_default.svg" alt="프로필">    
                             <div>
-                                <p>${sessionScope.id}</p>
+                                <p>${sessionScope.sessionID}</p>
                                 <button>마이페이지</button>
                             </div>
                         </div>
@@ -101,7 +101,7 @@
 <script src="${pageContext.request.contextPath }/js/common/header.js"></script>
 <%--로그인했을때--%>
 <c:choose>
-     <c:when test="${not empty sessionScope.id}">
+     <c:when test="${not empty sessionScope.sessionID}">
      	<script src="${pageContext.request.contextPath }/js/common/header_login.js"></script>
      </c:when>
 </c:choose>
