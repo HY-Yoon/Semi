@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import db.JdbcUtil;
+import vo.Qa_BoardVo;
 import vo.Qa_CommVo;
 
 public class Qa_CommDao {
@@ -96,7 +98,7 @@ public class Qa_CommDao {
 		ResultSet rs=null;
 		String sql="select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime from( "
 				+ "select * from comm_qa c inner join member m on c.mnum=m.mnum)z "
-				+ "where anum=?"; 
+				+ "where anum=? order by sel desc, systime"; 
 		try {
 			con=JdbcUtil.getCon();
 			ps=con.prepareStatement(sql);
@@ -118,5 +120,48 @@ public class Qa_CommDao {
 			JdbcUtil.close(con,ps,rs);
 		}
 	}
-
+	public int delete(int anum) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		String sql="delete from comm_qa where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, anum);
+			int n=ps.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,ps,null);
+		}
+	}
+	public int upDateselect(int cnum,int anum) {
+		Connection con=null;
+		PreparedStatement ps1=null;
+		PreparedStatement ps2=null;
+		String sql1="update comm_qa set sel='Y' where cnum=?";
+		String sql2="update board_qa set keyword='채택완료' where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps1=con.prepareStatement(sql1);
+			ps1.setInt(1,cnum);
+			int n=ps1.executeUpdate();
+			if(n>0) {
+				ps2=con.prepareStatement(sql2);
+				ps2.setInt(1, anum);
+				n+=ps2.executeUpdate();
+				return n;
+			}
+			return -1;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(ps2);
+			JdbcUtil.close(ps1);
+			JdbcUtil.close(con);
+		}
+	}
 }

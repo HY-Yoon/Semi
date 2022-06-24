@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import db.JdbcUtil;
 import vo.Qa_BoardVo;
@@ -150,16 +151,16 @@ public class Qa_BoardDao {
 			JdbcUtil.close(con,ps,rs);
 		}
 	}
-	public int contentUpdate(Qa_BoardVo vo) {
+	public int contentUpdate(int anum,String title,String content) {
 		Connection con=null;
 		PreparedStatement ps=null;
 		String sql="update board_qa set title=?,content=? where anum=?";
 		try {
 			con=JdbcUtil.getCon();
 			ps=con.prepareStatement(sql);
-			ps.setString(1, vo.getTitle());
-			ps.setString(2, vo.getContent());
-			ps.setInt(3, vo.getAnum());
+			ps.setString(1, title);
+			ps.setString(2, content);
+			ps.setInt(3, anum);
 			int n=ps.executeUpdate();
 			return n;
 		}catch(SQLException se) {
@@ -189,7 +190,7 @@ public class Qa_BoardDao {
 	//sysdate에서 시간을 꺼내오고 content는 태그제외 100자까지의 문자열만 갖는 vo객체를 리스트로 반환
 	public ArrayList<Qa_BoardVo> bList1(int startRow,int endRow){
 		Connection con=null;
-		PreparedStatement pstmt=null;
+		PreparedStatement ps=null;
 		ResultSet rs=null;
 		con=JdbcUtil.getCon();
 		try {
@@ -199,10 +200,10 @@ public class Qa_BoardDao {
 					+ "    from (select * from board_qa) z order by systime desc "
 					+ "    )b "
 					+ "    ) where rn>=? and rn<=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rs=pstmt.executeQuery();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, endRow);
+			rs=ps.executeQuery();
 			ArrayList<Qa_BoardVo> list=new ArrayList<Qa_BoardVo>();
 			while(rs.next()) {
 				// html 태그 제외하고 한줄로 출력하는 정규식 사용
@@ -219,7 +220,7 @@ public class Qa_BoardDao {
 			s.printStackTrace();
 			return null;
 		}finally {
-			JdbcUtil.close(con, pstmt, rs);
+			JdbcUtil.close(con, ps, rs);
 		}
 	}
 	public ArrayList<Qa_BoardVo> bList2(int startRow,int endRow){
@@ -268,12 +269,10 @@ public class Qa_BoardDao {
 		try {
 			String sql="select * from ( "
 					+ "    select b.*, rownum rn from ( "
-					+ "    select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime "
-					+ "    from (select b.*, c.sel sel "
-					+ "    from board_qa b inner join comm_qa c on b.anum=c.anum where sel='N' "
-					+ "    order by systime desc)z "
-					+ "    )b "
-					+ "    ) where rn>=? and rn<=?";
+					+ "        select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime "
+					+ "        from (select b.*, c.sel sel from board_qa b "
+					+ "        inner join comm_qa c on b.anum=c.anum where sel='N' "
+					+ "        )z order by systime desc )b ) where rn>=? and rn<=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -295,6 +294,23 @@ public class Qa_BoardDao {
 			return null;
 		}finally {
 			JdbcUtil.close(con, pstmt, rs);
+		}
+	}
+	public int delete(int anum) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		String sql="delete from board_qa where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, anum);
+			int n=ps.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,ps,null);
 		}
 	}
 }

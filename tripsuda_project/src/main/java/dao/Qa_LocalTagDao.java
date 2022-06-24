@@ -40,6 +40,7 @@ public class Qa_LocalTagDao {
 				+ "on a.anum=l.anum where a.anum=?"; 
 		try {
 			con=JdbcUtil.getCon();
+			System.out.println();
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, anum);
 			rs=ps.executeQuery();
@@ -51,6 +52,41 @@ public class Qa_LocalTagDao {
 		}catch(SQLException se) {
 			se.printStackTrace();
 			return null;
+		}finally {
+			JdbcUtil.close(con,ps,null);
+		}
+	}
+	public int update(int anum,String ltag) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		String sql="update localtag_qa set ltag=? where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps=con.prepareStatement(sql);
+			ps.setString(1, ltag);
+			ps.setInt(2, anum);
+			int n=ps.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,ps,null);
+		}
+	}
+	public int delete(int anum) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		String sql="delete from localtag_qa where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, anum);
+			int n=ps.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
 		}finally {
 			JdbcUtil.close(con,ps,null);
 		}

@@ -81,5 +81,29 @@ public class Qa_HashTagDao {
 			JdbcUtil.close(con,ps,null);
 		}
 	}
-	
+	public int delete(int anum) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		String sql="delete from hashtag_qa where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, anum);
+			int n=ps.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,ps,null);
+		}
+	}
+	public int update(int anum, String htag) {
+		int deln=delete(anum);
+		if(deln>0) {
+			int n=insertHash(anum,htag);
+			return n;
+		}
+		return -1;
+	}
 }
