@@ -34,6 +34,7 @@ public class LoginFormController extends HttpServlet{
 			session.setAttribute("sessionID", id);
 			session.setAttribute("sessionNick", nick);
 			session.setAttribute("sessionMnum", mnum);
+			session.setAttribute("userdata", mvo);
 			//request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/community");
 		}else {
