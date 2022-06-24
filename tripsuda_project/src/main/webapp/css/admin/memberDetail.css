@@ -48,3 +48,15 @@ button#submit_btn {
 #mnum{
 	display: none;
 }
+.date-box{
+	display: flex;
+}
+.reset_btn{
+	width: 100px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-left: 15px;
+    color: #4f4f4f;
+    font-size: 12px;
+    font-weight: bold;
+}
