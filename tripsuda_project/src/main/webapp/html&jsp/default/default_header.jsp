@@ -4,7 +4,7 @@
 <div class="container">
     <div class="h_top">
         <div class="h_left">
-            <a href="${pageContext.request.contextPath}/layout.jsp" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
+            <a href="${pageContext.request.contextPath}/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
             <div class="h_nav">
                 <button class="top_navi">커뮤니티</button>
                 <button class="top_navi" onclick="'location.href='${pageContext.request.contextPath }/recomain?fav=${sessionScope.favorite}'">관광추천</button>
@@ -29,7 +29,7 @@
             <c:choose>
                 <c:when test="${empty sessionScope.id}">
                     <button class="login">로그인</button>
-                    <button class="join">회원가입</button>
+                    <button class="join" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/JoinForm.jsp'">회원가입</button>
                 </c:when>
                 <c:otherwise>
                     <button class="btn_notice"></button>
@@ -88,7 +88,7 @@
 	                    </button>
                 	</c:when>
 	                <c:when test="${!empty sessionScope.sessionID}">
-                		<button onclick="window.location.replace('${pageContext.request.contextPath }//html&jsp/board_qa/insert_qa')">
+                		<button onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/insert_qa')">
 		                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
 		                    <p>여행 질문하기</p>
 	                    </button>
@@ -99,7 +99,7 @@
     </div>
 
     <div class="h_bot">
-        <button class="bot_navi active" onclick="document.location.href='${pageContext.request.contextPath }/commnity'">홈</button>
+        <button class="bot_navi active" onclick="document.location.href='${pageContext.request.contextPath }/community'">홈</button>
         <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
         <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1'">동행</button>
         <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/board_review'">후기</button>
