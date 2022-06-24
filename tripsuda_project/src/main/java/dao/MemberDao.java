@@ -3,6 +3,7 @@ package dao;
 import java.math.BigDecimal; 
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +15,7 @@ import db.JdbcUtil;
 import oracle.jdbc.OracleConnection;
 import vo.ChatVo;
 import vo.MemberVo;
+import vo.PointVo;
 
 public class MemberDao
 {
@@ -327,7 +329,7 @@ public class MemberDao
 	public String findPwd(String id ,String name, String phone) {
 		
 		String pwd = null;
-		String sql = "select pwd from member where id=? name=? ane phone=?";
+		String sql = "select pwd from member where id=? name=? and phone=?";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -354,7 +356,7 @@ public class MemberDao
 		return pwd;
 	}
 	
-	//회원 퇼퇴하기, 아이디/비번 확인 후 탈퇴 진행시킴
+	//회원 탈퇴하기, 아이디/비번 확인 후 탈퇴 진행시킴
 	public int deleteMember(String id, String pwd) {
 		
 		String sql1 = "select pwd from member where id=?"; //비번 조회용
@@ -499,6 +501,96 @@ public class MemberDao
 		JdbcUtil.close(con, pstmt, rs);
 	}
 }
+	//kj 회원수
+	public int getCount(String YN,String select,String search) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;			
+		con = JdbcUtil.getCon();
+	try {
+		//기본
+		String sql = "select nvl(count(*),0) cnt from member where withdraw = ?";
+				
+				if(select!=null && !select.equals("")) { //검색했을때
+					
+				sql += " and "+select +" like '%"+search+"%'" ;
+				
+				}	
+				
+					
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, YN);
+		rs = pstmt.executeQuery();
+			rs.next(); 
+			int cnt = rs.getInt("cnt");
+			return cnt;
+					
+	}catch (SQLException s) {
+		 s.printStackTrace();
+		 return -1;
+	}finally {
+		JdbcUtil.close(con, pstmt, rs);
+	}
+}
+	
+	//kj 회원 전체 조회(탈퇴여부Y/N)
+	public ArrayList<MemberVo> Memberlist(String YN,String select,String search,int start,int end){
+		Connection con = null;
+		PreparedStatement pstmt =null;
+		ResultSet rs = null;
+	try {
+		con = JdbcUtil.getCon();
+		String sql = "";
+											
+				if(select!=null && !select.equals("")) { //검색했을때
+							sql =	"select * from ( "
+								   + " select aa.*, rownum rnum from ( "
+								   + " select * from member where withdraw = ? and "
+								   + select+" like '%"+search+"%' order by name asc) aa "
+								   +" ) where rnum >= ? and rnum <= ? ";
+			
+					}else{
+							sql =	"select * from ( "
+							   + " select aa.*, rownum rnum from ( "
+							   + " select * from member where withdraw = ? order by name asc) aa "
+							   +" ) where rnum >= ? and rnum <= ? ";
+					}
+				
+			pstmt =con.prepareStatement(sql);
+			pstmt.setString(1, YN);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs  = pstmt.executeQuery();
+			
+			ArrayList<MemberVo> list = new ArrayList<MemberVo>();
+			while(rs.next()) {
+				int mnum = rs.getInt("mnum");
+				String id = rs.getString("id");
+				String pwd = rs.getString("pwd");
+				String name = rs.getString("name");
+				String nick = rs.getString("nick");
+				String phone = rs.getString("phone");
+				Date birth = rs.getDate("birth");
+				String withdraw = rs.getString("withdraw");
+				String favorite = rs.getString("favorite");
+				String grade = rs.getString("grade");
+				Date stop = rs.getDate("stop");
+								
+				MemberVo vo = new MemberVo(mnum,id,pwd,name,nick,phone,birth,withdraw,favorite,grade,stop);
+				list.add(vo);
+			}
+			return list;
+			
+		}catch (SQLException s) {
+			 s.printStackTrace();
+			 return null;
+		}finally {
+			JdbcUtil.close(con, pstmt, rs);
+		}
+		
+	}
+	
+	
 	
 	
 	
