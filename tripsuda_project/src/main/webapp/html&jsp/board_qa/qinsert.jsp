@@ -14,8 +14,8 @@
 
 <form action="${pageContext.request.contextPath }/html&jsp/board_qa/insert_qa" method="post">
 	<div id="main">
-	<input type="hidden" name="mnum" value="1">
-	<input type="hidden" name="nick" value="송2">
+	<input type="hidden" name="mnum" value="${sessionScope.sessionMnum}">
+	<input type="hidden" name="nick" value="${sessionScope.sessionNick }">
 	<div id="loc">
 		<input type="radio" value="수도권" name="location" id="center">
 		<label for="center">수도권</label>
@@ -69,7 +69,7 @@
 		<input type="text" id="hashtag" name="hashtag" placeholder="태그 입력(띄어쓰기로 구분, 100자 이내)">
 	</div>
 	<div id="buttonarea">
-		<input type="button" value="취소">
+		<input type="button" value="취소" onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp')">
 		<input type="submit" value="완료">
 	</div>
 </div>
