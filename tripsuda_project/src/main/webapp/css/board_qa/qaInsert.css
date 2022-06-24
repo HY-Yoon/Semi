@@ -1,0 +1,50 @@
+@charset "UTF-8";
+#formbody{
+	padding: 10px;
+}
+#loc{
+	width:60%;
+	border:1px solid lightgray;
+	margin: auto;
+	text-align: center;}
+#loc label{
+	font-size:15px;}
+#loc input[type=radio]{
+	appearance:none;}
+#loc input[type=radio]:checked + label{color:#0b81ff;
+	font-weight: bold;} 
+#loc label:checked {color:#0b81ff;
+	font-weight: bold;}
+#titlearea{
+	width:60%;
+	border:2.5px solid #0b81ff;
+	border-radius:10px;
+	margin: auto;
+	vertical-align: middle;
+	}
+	#titlearea label{
+		font-size: 30px;
+		color:#0b81ff;
+		margin: 10px;}
+	#titlearea input{	
+		width:90%;
+		border:1px solid white;
+		font-size:25px;	
+		}
+	#titlearea input:focus {outline: none;}
+#textarea{
+	width:60%;
+	height:560px;
+	margin: auto;}
+#tagarea{
+	width:60%;
+	border:1px solid lightgray;
+	margin: auto;
+	text-align: center;}
+	#tagarea input{
+		width:800px;
+		border:1px solid white;}
+#buttonarea{
+	width:60%;
+	border:1px solid lightgray;
+	margin: auto;}

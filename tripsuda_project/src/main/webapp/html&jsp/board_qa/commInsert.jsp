@@ -15,9 +15,7 @@ function contentViewPage(anum)  {
 	} */
 </script>
 <body>
-<%
-	session.setAttribute("id", "aaaa");
-%>
+
 	<div id="main">
 	<div id="boardArea" class="boardArea">
 		<div id="titleArea" class="titleArea">

@@ -30,47 +30,47 @@
 				}
 				//게시글 다시 새로 얻어오기
 				for(let i=0;i<list.length;i++){
-					var anum=list[i].anum;
-					var hashlist=list[i].hash;
-					var listbox=document.createElement("div");
+					let anum=list[i].anum;
+					let hashlist=list[i].hash;
+					let listbox=document.createElement("div");
 						listbox.className="listbox";
-						var boxtop=document.createElement("div");
+						let boxtop=document.createElement("div");
 							boxtop.className="boxtop";
-							var local=document.createElement("div");
+							let local=document.createElement("div");
 								local.className="local";
 								local.innerHTML="<img src='${pageContext.request.contextPath}/images/common/icon/gps.svg'><p>"
 												+list[i].loc+"</p>";
 								boxtop.appendChild(local);
-							var keyword=document.createElement("p");
+							let keyword=document.createElement("p");
 								keyword.className="condition";
 								keyword.innerHTML=list[i].keyword;
 								boxtop.appendChild(keyword);
 							listbox.appendChild(boxtop);
-						var boxtitle=document.createElement("p");
+						let boxtitle=document.createElement("p");
 							boxtitle.className="boxtitle";
 							boxtitle.innerHTML=list[i].title;
 							listbox.appendChild(boxtitle);
-						var boxcontent=document.createElement("p");
+						let boxcontent=document.createElement("p");
 							boxcontent.className="boxcontent";
 							boxcontent.innerHTML=list[i].content;
 							listbox.appendChild(boxcontent);
-						var boxhash=document.createElement("ul");
+						let boxhash=document.createElement("ul");
 							let hasht="";
 							for(let j=0;j<hashlist.length;j++){
 								hasht+="<li>"+hashlist[i]+"</li>";
 							}
 							boxhash.innerHTML=hasht;
 							listbox.appendChild(boxhash);
-						var boxnick=document.createElement("div");
+						let boxnick=document.createElement("div");
 							boxnick.className="boxnick";
 							boxnick.innerHTML=list[i].nick;
 							listbox.appendChild(boxnick);
-						var boxview=document.createElement("div");
+						let boxview=document.createElement("div");
 							boxview.className="boxview";
 							boxview.innerHTML="<img src='${pageContext.request.contextPath}/images/common/icon/view.svg'><p>"
 												+list[i].views+"</p>";
 							listbox.appendChild(boxview);
-						var boxcommcnt=document.createElement("div");
+						let boxcommcnt=document.createElement("div");
 							boxcommcnt.className="boxcommcnt";
 							boxcommcnt.innerHTML="<img src='${pageContext.request.contextPath}/images/common/icon/comm.svg'><p>"
 												+list[i].commcnt+"</p>";
@@ -97,7 +97,7 @@
 				if(endPage<pageCount){
 					pageInner+="<a href='javascript:boardList("+(endPage+1)+")'>다음페이지</a>";
 				}
-				var qaListPage=document.getElementById("qaListPage");
+				let qaListPage=document.getElementById("qaListPage");
 				qaListPage.innerHTML=pageInner;
 			}
 		}
@@ -106,6 +106,7 @@
 		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		xhr.send(param);
 	}
+
 </script>
 </head>
 <body>
@@ -120,7 +121,7 @@
 		<option value="1">등록순</option>
 		<option value="2">댓글순</option>
 	</select>
-	<input type="button" value="답변을 기다리는 질문만 보기" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa/listView.jsp?pageNum=1&sortselect=3'">
+	<input type="button" value="답변을 기다리는 질문만 보기" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa//html&jsp/board_qa/list?pageNum=1&sortselect=3'">
 </div>
 <div id="qaList"></div>
 <div id="qaListPage"></div>

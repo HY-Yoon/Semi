@@ -4,28 +4,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TripSUDA Q&A</title>
+<title>트립수다 여행 Q&A</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css">
 
 </head>
 <body> 
-<%
-	session.setAttribute("id", 1234);
-%>
+
 <div id="wrap">
      <header>
         <jsp:include page="/html&jsp/default/default_header.jsp"/>
     </header>
     <main>
-		<jsp:include page="${pageContext.request.contextPath }/html&jsp/board_qa/contentView.jsp"/>
+		<jsp:include page="/html&jsp/board_qa/listView.jsp"/>
     </main>
     <footer>
         <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="./js/common/header.js"></script>
 </body>
 </html>
