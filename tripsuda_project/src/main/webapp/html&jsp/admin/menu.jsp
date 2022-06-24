@@ -28,6 +28,11 @@
         </a>
     </li>
     <li class="link_wrap">
+        <a href="${pageContext.request.contextPath}/html&jsp/board_chat/chatManagepage.jsp" class="link">
+            <span class="name">문의사항 처리(임시)</span>
+        </a>
+    </li>
+    <li class="link_wrap">
         <a href="/admin/member" class="link">
             <span class="name">신고관리</span>
         </a>
