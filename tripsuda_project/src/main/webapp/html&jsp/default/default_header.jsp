@@ -6,8 +6,8 @@
         <div class="h_left">
             <a href="${pageContext.request.contextPath}/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
             <div class="h_nav">
-                <button class="top_navi">커뮤니티</button>
-                <button class="top_navi" onclick="'location.href='${pageContext.request.contextPath }/recomain?fav=${sessionScope.favorite}'">관광추천</button>
+                <button class="top_navi" onclick="document.location.href='${pageContext.request.contextPath }/community'">커뮤니티</button>
+                <button class="top_navi" onclick="document.location.href='${pageContext.request.contextPath }/recomain?fav=${sessionScope.favorite}'">관광추천</button>
             </div>
         </div>
 
@@ -28,7 +28,7 @@
                     
             <c:choose>
                 <c:when test="${empty sessionScope.id}">
-                    <button class="login">로그인</button>
+                    <button class="login" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/LoginForm.jsp'">로그인</button>
                     <button class="join" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/JoinForm.jsp'">회원가입</button>
                 </c:when>
                 <c:otherwise>
@@ -53,7 +53,7 @@
                                 <button>마이페이지</button>
                             </div>
                         </div>
-                        <button class="btn_logout">로그아웃</button>
+                        <button class="btn_logout" onclick="document.location.href='${pageContext.request.contextPath }/Logout'">로그아웃</button>
                     </div>
                 </c:otherwise>
             </c:choose>
@@ -63,10 +63,7 @@
                     <img src="${pageContext.request.contextPath }/images/common/letter_color.svg" alt="이미지">
                     <p>여행친구 찾기</p>
                 </button>
-                <button>
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>여행 질문하기</p>
-                </button>
+              
                 <button>
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>자유게시판</p>

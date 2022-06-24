@@ -18,7 +18,7 @@ public class LogoutController extends HttpServlet {
 			request.getSession().removeAttribute("sessionID");
 			
 		//	request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
-	        response.sendRedirect(request.getContextPath()+"/html&jsp/Menu.jsp");  	
+	        response.sendRedirect(request.getContextPath()+"/community");  	
 	
 	}
 }
