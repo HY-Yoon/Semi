@@ -14,31 +14,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 여행후기게시판 자세히보기 페이지--%>
 <%
-	
 	int anum= Integer.parseInt(request.getParameter("anum"));
 	//현재 글 작성자와 로그인 회원이 같은 사람인지 확인하기 위한 vo
-	ReviewBoardVo vo1= ReviewBoardDao.getInstance().select(anum);
-	MemberVo userInfo = MemberDao.getInstance().select(vo1.getMnum());
-	String loginUser = (String)session.getAttribute("id");
-	if(loginUser != null && loginUser != ""){
+	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
+	MemberVo editorInfo = MemberDao.getInstance().select(vo.getMnum());
+	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
+	if(userdata != null){
 		//글쓴이가 보면 조회수 증가 X
-		if(!loginUser.equals(userInfo.getId())){ 
+		if(!userdata.equals(editorInfo.getId())){ 
 			ReviewBoardDao.getInstance().updateView(anum);
 		}
 	}else{
 		ReviewBoardDao.getInstance().updateView(anum);
 	}
-	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
 	
-	request.setAttribute("user", userInfo.getId());
 	//공지사항 설정을 위해 로그인한 회원등급정보 가져오기
-	String grade= MemberDao.getInstance().getUserInfo(loginUser).getGrade();
-	request.setAttribute("grade", grade);
+	request.setAttribute("grade", userdata.getGrade());
 %>
 
 <script type="text/javascript">
 	sessionStorage.setItem("anum", "<%=anum %>");
-	sessionStorage.setItem("mnum", "<%=session.getAttribute("mnum") %>");
+	sessionStorage.setItem("mnum", "<%=userdata.getMnum() %>");
 	sessionStorage.setItem("notice", "<%=vo.getNotice() %>");
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 	
@@ -66,17 +62,17 @@
                 <p id="view">조회수 <%=vo.getViews() %></p>
                 <p id="reco">추천수 <%=ReviewRecoDao.getInstance().getRecoCount(anum) %></p>
                 <c:choose>
-                	<c:when test="${id == user}">
+                	<c:when test="${userdata.getId() == editorInfo.getId()}">
                 		<button onclick="edit()">수정</button>
                 		<button onclick="del()">삭제</button>
                 	</c:when>
-                	<c:when test="${id != '' && id != null}">
+                	<c:when test="${userdata != null}">
                 		<button class="report">신고하기</button>	
                 	</c:when>
                 </c:choose>
                 
-                <c:if test="${grade == '관리자'}">
-                <!-- 관리자일때만 -->
+                <c:if test="${userdata.getGrade() == '관리자'}">
+                	<!-- 관리자일때만 -->
                 	<button class="notice" onclick="setNotice()">공지사항설정</button>
                 </c:if>
                 
@@ -91,12 +87,14 @@
                 <div class="area-top">
                     <img src="${pageContext.request.contextPath }/images/common/icon/profile/1.svg">
                     <div class="profile_info">
-                        <p id="profile_nickname"><%=userInfo.getNick() %></p>
+                        <p id="profile_nickname"><%=editorInfo.getNick() %></p>
                     </div>
                 </div>
                 <div class="area_middle">
-	                <button class="reco_btn" <c:if test="${id != user && id !=null && !empty id && id != ''}"> onclick="setReco()"</c:if>>추천하기</button>
-               		<button class="comm_btn" <c:if test="${id != user && id !=null && !empty id && id != ''}">onclick="addComm()"</c:if>>댓글작성</button>
+                	<%--작성자는 본인 글 추천불가 --%>
+	                <button class="reco_btn" <c:if test="${userdata.getId() != editorInfo.getId()}"> onclick="setReco()"</c:if>>추천하기</button>
+               		<%-- 로그인안한 회원은 댓글작성 불가 --%>
+               		<button class="comm_btn" <c:if test="${userdata != null}">onclick="addComm()"</c:if>>댓글작성</button>
                 </div>
             </div>
         </section>
