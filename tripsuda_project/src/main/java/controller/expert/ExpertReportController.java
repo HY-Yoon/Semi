@@ -1,4 +1,4 @@
-package controller;
+package controller.expert;
 
 import java.awt.Window;
 import java.io.IOException;
