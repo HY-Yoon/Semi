@@ -14,6 +14,7 @@
 <body> 
 <%
 	session.setAttribute("id", 1234);
+	session.invalidate();
 %>
 <div id="wrap">
     <header>

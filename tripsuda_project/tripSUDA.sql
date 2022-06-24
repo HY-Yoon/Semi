@@ -91,6 +91,25 @@ create table reco_expert(
     anum number(10) references board_expert(anum),
     mnum number(10) references member(mnum)
 );
+
+--전문가 해시태그
+create table hashtag_expert(
+	hashnum number(10) primary key,
+	anum number(10) references board_expert(anum),
+	tag varchar2(200) not null
+)
+
+--전문가 태그
+create table tag_expert(
+	tnum number(10) primary key,
+	anum number(10) references board_expert(anum),
+	tag varchar2(100) not null
+)
+
+
+
+
+
 -- Q&A게시판
 CREATE TABLE board_qa (
 	anum	number(10)	primary key,	
