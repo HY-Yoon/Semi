@@ -92,4 +92,5 @@ $(document).ready(function() {
 </div>
 
 </body>
+	<script src="${pageContext.request.contextPath}/js/board_expert/default.js"></script>
 </html>
