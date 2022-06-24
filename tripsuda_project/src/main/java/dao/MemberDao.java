@@ -54,7 +54,7 @@ public class MemberDao
 					rs.getString("name"),
 					rs.getString("nick"),
 					rs.getString("phone"),
-					rs.getDate("birth"),
+					rs.getString("birth"),
 					rs.getString("withdraw"),
 					rs.getString("favorite"),
 					rs.getString("grade"),
@@ -89,7 +89,7 @@ public class MemberDao
 					rs.getString("name"),
 					rs.getString("nick"),
 					rs.getString("phone"),
-					rs.getDate("birth"),
+					rs.getString("birth"),
 					rs.getString("withdraw"),
 					rs.getString("favorite"),
 					rs.getString("grade"),
@@ -154,6 +154,8 @@ public class MemberDao
 				vo.setName(rs.getString("name"));
 				vo.setNick(rs.getString("nick"));
 				vo.setPhone(rs.getString("phone"));
+				vo.setBirth(rs.getString("birth"));
+				System.out.println(rs.getString("birth"));
 				vo.setFavorite(rs.getString("favorite"));
 				vo.setGrade(rs.getString("grade"));
 				vo.setMnum(rs.getInt("mnum"));
@@ -194,8 +196,8 @@ public class MemberDao
 	//JoinFormController 가입
 	public int insertMember(MemberVo dto) {
 
-		String sql = "insert into member(mnum,id,pwd,name,nick,phone,favorite) "
-				+ "values(NUM_SEQ.NEXTVAL,?,?,?,?,?,?)";
+		String sql = "insert into member(mnum,id,pwd,name,nick,phone,birth,favorite) "
+				+ "values(NUM_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		con = JdbcUtil.getCon();
@@ -203,13 +205,16 @@ public class MemberDao
 		try {
 
 			pstmt = con.prepareStatement(sql);
+			
 
 			pstmt.setString(1, dto.getId());
+	
 			pstmt.setString(2, dto.getPwd());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.getNick());
 			pstmt.setString(5, dto.getPhone());
-			pstmt.setString(6, dto.getFavorite());  //selected
+			pstmt.setString(6, dto.getBirth());
+			pstmt.setString(7, dto.getFavorite());  //selected
 
 			int n = pstmt.executeUpdate();
 			pstmt.close();

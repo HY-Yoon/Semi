@@ -48,6 +48,14 @@
 				<td id="title">전화번호</td>
 				<td>${member.phone}</td>
 			</tr>
+			
+			<tr>
+			    <td id="title">생일</td>
+			    <td>
+			       ${member.birth}
+			       </td>
+			       
+			</tr>
 	
 			<tr>
 				<td id="title">관심지역</td>

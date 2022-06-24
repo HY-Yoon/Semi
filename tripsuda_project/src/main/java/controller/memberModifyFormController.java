@@ -29,7 +29,7 @@ public class memberModifyFormController extends HttpServlet{
 	    MemberVo member = mdao.getUserInfo(id);
 					
 		request.setAttribute("memberInfo", member);
-					
+				
 		request.getRequestDispatcher("/html&jsp/member/ModifyForm.jsp").forward(request, response);
 	}
 	

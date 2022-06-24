@@ -55,6 +55,10 @@
 				</td>
 			</tr>
 			<tr>
+			    <td id="title">생일</td>
+			    <td>${member.birth}</td>    
+			</tr>
+			<tr>
 				<td id="title">관심지역</td>
 				<td><select name="favorite" id="favorite">
 						<option value="선택하기" selected>선택하기</option>

@@ -45,20 +45,13 @@
 		 alert("비밀번호를 입력하세요");
 		 return false;
 	  }
-	  ]
+	  
 	  if(pwd.length < 8 || pwd.length > 20){
 		  alert("비밀번호는 8자~20자 사이만 가능합니다");
 		  return false;
 	  }
 	  
-	  var num = pwd.search(/[0-9]/g);
-	  var eng = pwd.search(/[a-z]/ig);
-	  var spe = pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 	  
-	  if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
-		  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-		  return false;
-	  }
 	  
 	  
 	  if(pwd2==""){
@@ -171,36 +164,96 @@
 </script>
 </head>
 <body>
+<h1>회원 가입</h1>
 <form name="joinform" action="${pageContext.request.contextPath}/JoinForm" method="post" onsubmit="return checkValue()">
- <fieldset>
-   <legend>회원 가입</legend>
-    <label>아이디 : <input type="text" name="id" id="id" placeholder="ID를 입력하세요"  autofocus></label>
-    <input type="button" id="id_check" value="아이디중복확인" onclick="checkId()">
-    <p id="u_id_check"></p>
-    <input type="hidden" name="idDuplication" value="idUncheck"/>
-    <label>비밀 번호 : <input type="password" name="pwd" id="pwd" size="20" placeholder="영문숫자 조합 8자리 이상이어야 합니다."></label><br>
-    <p>영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.</p>
-    비밀 번호 확인 : <input type="password" name="pwd2" id=pwd2 size="20" placeholder="위와 똑같이 입력하세요."><br>
-    <label>이름 : <input type="text" name="name" id="name"></label><br> 
-    <label>닉네임 : <input type="text" name="nick" id="nick"></label>
-    <input type="button" id="nick_check" value="닉네임중복확인" onclick="checkNick()">
-    <p id="u_nick_check"></p>
-    <label>핸드폰 번호 : <input type="text" name="phone" id="phone" placeholder="하이픈(-)없이 입력하세요"></label><br> 
-    <label>관심 지역</label>
-     <select name="favorite" id="favorite">
-       <option value="선택하기" selected>선택하기</option> 
-       <option value="서울">서울</option>
-       <option value="경기도">경기도</option>
-       <option value="강원도">강원도</option>
-       <option value="제주도">제주도</option>
-       <option value="부산">부산</option>
-       <option value="충청도">충청도</option>
-       <option value="경상도">경상도</option>
-       <option value="전라도">전라도</option>
-     </select><br>
-    <input type="submit" value="가입하기">
+  <table>
+    <tr>
+       <td>아이디</td>
+       <td>
+           <input type="text" name="id" id="id" placeholder="ID를 입력하세요"  autofocus>
+           <input type="button" id="id_check" value="아이디중복확인" onclick="checkId()">
+           <p id="u_id_check"></p>
+           <input type="hidden" name="idDuplication" value="idUncheck"/>
+        </td>   
+    </tr>
+    
+    <tr>
+        <td>비밀번호</td>
+        <td>
+            <input type="password" name="pwd" id="pwd" size="20" placeholder="영문숫자 조합 8자리 이상이어야 합니다.">
+            <p>영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.</p>
+        </td>
+    </tr>
+    
+    <tr>
+         <td>비밀번호 확인</td>
+         <td>
+            <input type="password" name="pwd2" id=pwd2 size="20" placeholder="위와 똑같이 입력하세요.">
+          </td>  
+     </tr>
+     
+     <tr>
+        <td>이름</td>
+        <td>
+            <input type="text" name="name" id="name">
+         </td>
+     </tr>
+     
+     <tr>
+        <td>닉네임</td>
+        <td>
+             <input type="text" name="nick" id="nick">
+             <input type="button" id="nick_check" value="닉네임중복확인" onclick="checkNick()">
+             <p id="u_nick_check"></p>
+         </td>
+     </tr>            
+                 
+     <tr>
+         <td>핸드폰 번호</td>
+         <td>
+             <input type="text" name="phone" id="phone" placeholder="하이픈(-)없이 입력하세요">
+          </td> 
+      <tr>
+          <td>생일</td>
+          <td>
+              <input type="text" name="birth_yy" maxlength="4" placeholder="년(4자)">
+              <select name="birth_mm">
+                <option value="">월</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>      
+              <input type="text" name="birth_dd" maxlength="2" placeholder="일">
+           </td>
+       </tr>    
+     <tr>
+        <td>관심지역</td>
+        <td>
+            <select name="favorite" id="favorite">
+               <option value="선택하기" selected>선택하기</option> 
+               <option value="서울">서울</option>
+               <option value="경기도">경기도</option>
+               <option value="강원도">강원도</option>
+               <option value="제주도">제주도</option>
+               <option value="부산">부산</option>
+               <option value="충청도">충청도</option>
+               <option value="경상도">경상도</option>
+               <option value="전라도">전라도</option>
+     </select></td>
+     </tr>
+     </table>
+     <input type="submit" value="가입하기">
     <input type="reset" value="취소" onclick="goMain()">
- </fieldset>
+
 </form>
 </body>
 </html>

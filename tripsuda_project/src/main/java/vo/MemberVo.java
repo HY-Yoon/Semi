@@ -14,7 +14,7 @@ public class MemberVo
 	private String name;		// 이름
 	private String nick;		// 닉네임
 	private String phone;		// 전번
-	private Date birth;			// 생일
+	private String birth;			// 생일
 	private String withdraw;		// 탈퇴여부(Y/N)
 	private String favorite;	// 관심지역
 	private String grade;		// 권한(일반/전문가/관리자)
@@ -27,6 +27,12 @@ public class MemberVo
 	
 	
 	
+
+
+
+
+
+
 
 
 	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, String favorite) {
@@ -61,7 +67,7 @@ public class MemberVo
 
 
 
-	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, Date birth,
+	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, String birth,
 			String favorite, String grade) {
 		super();
 		this.mnum = mnum;
@@ -76,7 +82,7 @@ public class MemberVo
 	}
 
 
-	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, Date birth, String withdraw,
+	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, String birth, String withdraw,
 			String favorite, String grade, Date stop) {
 		super();
 		this.mnum = mnum;
@@ -91,6 +97,42 @@ public class MemberVo
 		this.grade = grade;
 		this.stop = stop;
 	}
+	
+
+
+
+
+
+
+   
+ 
+
+
+
+
+	public MemberVo(long mnum, String id, String pwd, String name, String nick, String phone, String birth,
+			String favorite) {
+		super();
+		this.mnum = mnum;
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.nick = nick;
+		this.phone = phone;
+		this.birth = birth;
+		this.favorite = favorite;
+	}
+
+
+   
+
+
+
+
+
+
+
+
 	public long getMnum() {
 		return mnum;
 	}
@@ -127,10 +169,10 @@ public class MemberVo
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Date getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(Date birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	public String getWithdraw() {
@@ -157,6 +199,10 @@ public class MemberVo
 	public void setStop(Date stop) {
 		this.stop = stop;
 	}
+
+
+
+
 	
 	
 }

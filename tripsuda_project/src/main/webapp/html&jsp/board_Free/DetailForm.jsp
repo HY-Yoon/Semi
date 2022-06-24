@@ -25,43 +25,36 @@
 		}
 		
 		
-		var xhr = null;
-		
+
+		var xhr=null;
+
 		// 댓글 등록
-		function writeCmt()
-		{
-			var form = document.getElementById("writeCommentForm");
-			
-			var board = form.comment_board.value
-			var nick = form.comment_nick.value
-			var content = form.comment_content.value;
-			
-			if(!content)
-			{
-				alert("내용을 입력하세요.");
-				return false;
+		function addComm(){
+			xhr=new XMLHttpRequest();
+				xhr.onreadystatechange=function(){
+					 if(xhr.readyState==4 && xhr.status==200){
+						   let data=xhr.responseText;
+						   let json=JSON.parse(data);
+						   if(json.code=='success'){
+							   div.innerHTML=content;
+						   }else{
+							   alert("댓글 실패!");
+						   }
 			}
-			else
-			{	
-				var param="comment_board="+board+"&comment_nick="+nick+"&comment_content="+content;
-					
-				xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = checkFunc;
-				xhr.open("POST", "${pageContext.request.contextPath}/F_CommentWrite", true);	
-				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=UTF-8'); 
-				xhr.send(param);
-			}
-		}
+		};
+		var form = document.getElementById("writeCommentForm");
+		var nick = form.comment_nick.value;
+		var content = form.comment_content.value;
+		var param="comment_nick="+nick+"&comment_content="+content;
+		xhr.open('post','${pageContext.request.contextPath}/FCommWrite' ,true); //
+		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		   xhr.send(param);
+		  
+	}
 		
-		function checkFunc(){
-			if(httpRequest.readyState == 4){
-				// 결과값을 가져온다.
-				var resultText = httpRequest.responseText;
-				if(resultText == 1){ 
-					document.location.reload(); // 상세보기 창 새로고침
-				}
-			}
-		}
+
+		
+		
 		
 		// 댓글 삭제창
 		function cmDeleteOpen(cnum){
@@ -179,16 +172,16 @@
 					</c:if>		
 					</div>
 				</td>
-			
+			</tr>
 			
 		</c:forEach>
 	</c:if>
-			
+			<tr>
 			<!-- 로그인 했을 경우만 댓글 작성가능 -->
 			<c:if test="${sessionScope.sessionID !=null}">
 			
 			<form id="writeCommentForm">
-				<input type="hidden" name="comment_board" value="${board.anum}">
+				<input type="hidden" name="comment_board" value="${comment.cnum}">
 				<input type="hidden" name="comment_nick" value="${sessionScope.sessionNick}">
 				<!-- 닉네임-->
 				<td width="150">
@@ -198,14 +191,15 @@
 				</td>
 				<!-- 본문 작성-->
 				<td width="550">
-					<div>
+					<div id="div">
 						<textarea name="comment_content" rows="4" cols="70" ></textarea>
 					</div>
 				</td>
 				<!-- 댓글 등록 버튼 -->
 				<td width="100">
 					<div id="btn" style="text-align:center;">
-						<p><a href="#" onclick="writeCmt()">[댓글등록]</a></p>	
+						
+						<input type="button" value="댓글 등록"  onclick="addComm()">
 					</div>
 				</td>
 			</form>

@@ -17,6 +17,29 @@ public class FreeCommVo {
 	public FreeCommVo() {
 		super();
 	}
+	
+	
+
+	public FreeCommVo(int cnum, String nick, String content, Date regdate) {
+		super();
+		this.cnum = cnum;
+		this.nick = nick;
+		this.content = content;
+		this.regdate = regdate;
+	}
+
+
+
+	public FreeCommVo(int cnum, int anum, int mnum, String nick, String id, String content, Date regdate) {
+		super();
+		this.cnum = cnum;
+		this.anum = anum;
+		this.mnum = mnum;
+		this.nick = nick;
+		this.id = id;
+		this.content = content;
+		this.regdate = regdate;
+	}
 
 	public FreeCommVo(int cnum, int anum, int mnum, String nick, String id, String content, Date regdate, int ref,
 			int lev, int step) {
@@ -31,6 +54,14 @@ public class FreeCommVo {
 		this.ref = ref;
 		this.lev = lev;
 		this.step = step;
+	}
+
+	public FreeCommVo(int cnum2, int anum2, int mnum2, String nick2, String id2, String content2, Object regdate2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public FreeCommVo(int i, int mnum2, String nick2, String id2, String content2, Object object) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getCnum() {
