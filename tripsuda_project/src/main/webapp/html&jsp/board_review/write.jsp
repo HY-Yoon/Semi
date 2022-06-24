@@ -12,15 +12,11 @@
 </script>
 
 <%
-	//test 지워야함
-	session.setAttribute("id", "ccc");
-	
-	String id=(String)session.getAttribute("id");
-	MemberVo user = MemberDao.getInstance().getUserInfo(id);
+	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 %>
 <div class="editor-wrap">
 	<section class="bg-box"></section>
-	<input type="hidden" id="mnum" value="<%=user.getMnum()%>">
+	<input type="hidden" id="mnum" value="<%=userdata.getMnum()%>">
 	<div class="container">
 		<div class="location-box">
 			<div class="legend">
