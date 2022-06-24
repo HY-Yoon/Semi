@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/login.css">
 <script type="text/javascript">
    function checkValue(){
 	   var form = document.loginForm;
@@ -23,7 +24,7 @@
    }
    
    function goFirstForm() {
-		location.href="${pageContext.request.contextPath}/html&jsp/Menu.jsp";
+		location.href="${pageContext.request.contextPath}/community";
 	}
    
    function FindId(){
@@ -37,17 +38,26 @@
 </script>
 </head>
 <body>
-<form name="loginForm" method="post" action="${pageContext.request.contextPath}/LoginForm" onsubmit="return checkValue()">
-  <label> 아이디 : 
-  <input type="text" name="id" id="id" maxlength="50" placeholder="ID를 입력하세요"></label><br>
-  <label> 비밀번호 : 
-  <input type="password" name="pwd" id="pwd" size="20" maxlength="50"  placeholder="비밀번호를 입력하세요"></label>
+<header><h2>Login</h2></header>
+<form name="loginForm" method="post" action="/tripsuda_project/LoginForm" 
+onsubmit="return checkValue()"  content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+  <div class="input-box">
+    <label for="id">아이디</label> 
+    <input type="text" name="id" id="id" maxlength="50" placeholder="ID를 입력하세요"></label><br>
+  </div>
+  <div class="input-box">
+    <label for="pwd">비밀번호</label> 
+    <input type="password" name="pwd" id="pwd" size="20" maxlength="50"  placeholder="비밀번호를 입력하세요"></label>
+  </div>
   <br>
-  <div>${errMsg }</div>
-  <input type="submit" value="로그인"/>
-  <input type="button" value="돌아가기" onclick="goFirstForm()">
-  <input type="button" value="아이디찾기" onclick="FindId()">
-  <input type="button" value="비번찾기" onclick="FindPwd()">
+  <div id="err"></div>
+    <input type="button" value="아이디찾기" onclick="FindId()">
+    <input type="button" value="비번찾기" onclick="FindPwd()">
+  
+   <input type="submit" value="로그인"/>
+  <div id="back"> 
+   <input type="button" value="돌아가기" onclick="goFirstForm()">
+   </div>
 </form>
 </body>
 </html>
