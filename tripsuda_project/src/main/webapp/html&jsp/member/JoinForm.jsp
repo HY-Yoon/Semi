@@ -163,7 +163,7 @@
 </head>
 <body>
 <h1>회원 가입</h1>
-<form name="joinform" action="${pageContext.request.contextPath}/JoinForm" method="post" onsubmit="return checkValue()">
+<form name="joinform" action="${pageContext.request.contextPath}/JoinForm." method="post" onsubmit="return checkValue()">
   <table>
     <tr>
        <td>아이디</td>

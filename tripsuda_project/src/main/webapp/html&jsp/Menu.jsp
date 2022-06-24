@@ -21,7 +21,7 @@ function changeView(value){
 	}
 	else if(value == "2") // 회원가입 버튼 클릭시 회원가입 화면으로 이동
 	{	
-		location.href="./member/JoinForm.jsp";  
+		location.href="./member/join.jsp";  
 	}
 	else if(value == "3") // 로그아웃 버튼 클릭시 로그아웃 controller 
 	{
