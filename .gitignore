@@ -1,3 +1,4 @@
 *.class
 tripsuda_project/.classpath
 .project
+.DS_Store
