@@ -99,13 +99,13 @@
     </div>
 
     <div class="h_bot">
-        <button class="bot_navi active">홈</button>
-        <button class="bot_navi" onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
-        <button class="bot_navi" onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1')">동행</button>
-        <button class="bot_navi" onclick="window.location.replace('<%=request.getContextPath()%>/board_review')">후기</button>
+        <button class="bot_navi active" onclick="document.location.href='${pageContext.request.contextPath }/commnity'">홈</button>
+        <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
+        <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1'">동행</button>
+        <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/board_review'">후기</button>
         <button class="bot_navi">자유</button>
         	<!-- 헤더영역 게시판 이름 클릭하면 Q&A게시판으로 이동하는 기능 추가  -->
-        <button class="bot_navi" onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp')">Q&A</button>
+        <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp'">Q&A</button>
     </div>
 </div>
 <script src="${pageContext.request.contextPath }/js/common/header.js"></script>
