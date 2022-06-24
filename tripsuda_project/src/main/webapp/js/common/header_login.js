@@ -1,4 +1,3 @@
-/*header_login.js */
 
 let btn_notice= document.getElementsByClassName("btn_notice")[0];
 let notice_popup= document.getElementsByClassName("notice_popup")[0];

@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>TRIPSUDA-여행후기 메인</title>
 </head>
 <body>
-
+	<a href="${pageContext.request.contextPath }/board_review/write">글쓰기</a>
 </body>
 </html>

@@ -15,9 +15,6 @@
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 </script>
 <%
-	//test 삭제할것
-	session.setAttribute("id", "ccc");
-
 	int anum= Integer.parseInt(request.getParameter("anum"));
 	String id = (String)session.getAttribute("id");
 	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);

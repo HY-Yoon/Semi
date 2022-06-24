@@ -1,5 +1,4 @@
-/*header.js */
-/*top_navi 클릭시 active class토글 */
+
 let top_navi=document.getElementsByClassName("top_navi");
 let add_active1 = function() {
     for (var i = 0; i < top_navi.length; i++){

@@ -14,7 +14,7 @@
 </head>
 <body>
 	<header>
-        <jsp:include page="/html&jsp/default/default_header.jsp"/>
+        <jsp:include page="/html&jsp/default/mypage_header.jsp"/>
     </header>
     <main>
     	<div class="container">

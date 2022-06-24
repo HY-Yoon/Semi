@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css?123">
+<title>탈퇴회원</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css?1">
 </head>
 <body>
 <%
@@ -27,7 +27,7 @@ function memberList(pageNum){
 		if(xhr.readyState==4 && xhr.status==200){
 			let result=xhr.responseText;	
 		
-			let list=document.getElementById("Nlist");
+			let list=document.getElementById("Ylist");
 			let child=list.childNodes;
 				for(let i=child.length-1;i>=0;i--){
 						let c=child.item(i);
@@ -40,7 +40,7 @@ function memberList(pageNum){
 			let html = "<table>"
 			    html += "<tr> <th>회원번호</th> <th>이름</th> <th>아이디</th> <th>닉네임</th> <th>등급</th><th>탈퇴여부</th> </tr>"
 			
-				for(let i=0;i<json.length;i++){
+				for(let i=0;i<json.length;i++) {
 						let mnum = json[i].mnum;				
 						let name = json[i].name;
 						let id = json[i].id;
@@ -48,11 +48,15 @@ function memberList(pageNum){
 						let grade = json[i].grade;
 						let withdraw = json[i].withdraw;
 									
-						html += "<tr class='tr' onclick='javascript:goDetail("+mnum+")'> <td class='mnum'>"+mnum+"</td><td class='name'>"+name+"</td><td class='id'>"
-					  	+id+"</td><td class='nick'>"+nick+"</td><td class='grade'>"+grade+"</td><td class='w'>"+withdraw+"</td> </tr>"
-					
+					html += "<tr class='tr' onclick='javascript:goDetail("+mnum+")'> <td class='mnum'>"+mnum+"</td><td class='name'>"+name+"</td><td class='id'>"
+							  	+id+"</td><td class='nick'>"+nick+"</td><td class='grade'>"+grade+"</td><td class='w'>"+withdraw+"</td> </tr>"
+										  		
 				}
+			
+			    
 			 	list.innerHTML = html+ "</table>"
+			 	
+			
 			 	
 				let startPage = data.startPage;       
 				let endPage = data.endPage;          
@@ -85,7 +89,7 @@ function memberList(pageNum){
 	};
 	
 	xhr.open('post','${pageContext.request.contextPath}/admin/list',true);
-	let param="pageNum="+pageNum +"&withdraw=N&select=${select}&search=${search}";
+	let param="pageNum="+pageNum +"&withdraw=Y&select=${select}&search=${search}";
 	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 	xhr.send(param);
 			
@@ -93,9 +97,9 @@ function memberList(pageNum){
 }
 
 //회원 상세보기 경로 설정하시면됩니다. 
-function goDetail(mnum) {
-	location.href="${pageContext.request.contextPath}/admin/member/detail?mnum="+mnum;
-	}	  
+	function goDetail(mnum) {
+		location.href="${pageContext.request.contextPath}/admin/member/detail?mnum="+mnum;
+		}	  
 
 </script>
 
@@ -105,20 +109,20 @@ function goDetail(mnum) {
 
 	
 	<div class="memberlist">
-		<div id="Nlist">
+		<div id="Ylist">
 		
 		</div>
 		
-
+	
 		
 		</div>
 		
 	<div id="page">
 	
 	</div>
-	
+		
 		<div class="w_search">
-			<form action="${pageContext.request.contextPath}/html&jsp/admin/list.jsp">
+			<form action="${pageContext.request.contextPath}/html&jsp/admin/YList.jsp">
 				<select name="select">
 					<option value="name">이름</option>
 					<option value="id">아이디</option>
@@ -126,7 +130,8 @@ function goDetail(mnum) {
 					<option value="grade">등급</option>
 				</select>
 				<input type="text" name="search" id="search">
-				<button type="submit"></button>
+				<button type="submit">검색</button>
+				
 				</form>
 			</div>
 		

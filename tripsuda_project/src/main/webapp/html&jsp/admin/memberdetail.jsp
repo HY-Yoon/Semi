@@ -48,7 +48,10 @@
     </div>
     <div>
         <p class="section_tit">회원정지기한</p>
-        <p><input type="date" id="stop" min="<%=today %>" value="<%=user.getStop() %>"></p>
+        <p class="date-box">
+        	<input type="date" id="stop" min="<%=today %>" value="<%=user.getStop() %>">
+        	<button type="reset" onclick="resetDate()" class="reset_btn">정지해제</button>
+        </p>
     </div>
     <div>
         <p class="section_tit">탈퇴여부</p>

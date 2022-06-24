@@ -4,23 +4,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TRIPSUDA</title>
+<title>TRIPSUDA-관리자페이지</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_review/detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/admin/default.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }">
 </head>
 <body>
 	<header>
-        <jsp:include page="/html&jsp/default/default_header.jsp"/>
+        <jsp:include page="/html&jsp/default/mypage_header.jsp"/>
     </header>
     <main>
-    	<jsp:include page="/html&jsp/board_review/list.jsp"/>
+    	<div class="container">
+    		<section class="menu_section">
+    			<jsp:include page="/html&jsp/admin/menu.jsp"/>
+    		</section>
+    		<section class="content_section">
+    			<jsp:include page="/html&jsp/admin/list.jsp"/>
+    		</section>
+    	</div>
     </main>
     <footer>
         <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
-    <script src="${pageContext.request.contextPath }/js/board_review/default.js"></script>
 </body>
 </html>

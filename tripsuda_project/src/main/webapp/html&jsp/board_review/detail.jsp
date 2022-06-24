@@ -14,18 +14,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 여행후기게시판 자세히보기 페이지--%>
 <%
-	//test 삭제할것
-	session.setAttribute("id", "ccc");
-	session.setAttribute("mnum", "4");
-
-
+	
 	int anum= Integer.parseInt(request.getParameter("anum"));
 	//현재 글 작성자와 로그인 회원이 같은 사람인지 확인하기 위한 vo
 	ReviewBoardVo vo1= ReviewBoardDao.getInstance().select(anum);
 	MemberVo userInfo = MemberDao.getInstance().select(vo1.getMnum());
 	String loginUser = (String)session.getAttribute("id");
-	//글쓴이가 보면 조회수 증가 X
-	if(!loginUser.equals(userInfo.getId())){ 
+	if(loginUser != null && loginUser != ""){
+		//글쓴이가 보면 조회수 증가 X
+		if(!loginUser.equals(userInfo.getId())){ 
+			ReviewBoardDao.getInstance().updateView(anum);
+		}
+	}else{
 		ReviewBoardDao.getInstance().updateView(anum);
 	}
 	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
@@ -35,6 +35,7 @@
 	String grade= MemberDao.getInstance().getUserInfo(loginUser).getGrade();
 	request.setAttribute("grade", grade);
 %>
+
 <script type="text/javascript">
 	sessionStorage.setItem("anum", "<%=anum %>");
 	sessionStorage.setItem("mnum", "<%=session.getAttribute("mnum") %>");
@@ -69,9 +70,9 @@
                 		<button onclick="edit()">수정</button>
                 		<button onclick="del()">삭제</button>
                 	</c:when>
-                	<c:otherwise>
+                	<c:when test="${id != '' && id != null}">
                 		<button class="report">신고하기</button>	
-                	</c:otherwise>
+                	</c:when>
                 </c:choose>
                 
                 <c:if test="${grade == '관리자'}">
@@ -94,12 +95,8 @@
                     </div>
                 </div>
                 <div class="area_middle">
-	                <c:choose>
-	                	<c:when test="${id != user}">
-	                		<button class="reco_btn" onclick="setReco()">추천하기</button>
-	                	</c:when>
-	                </c:choose>
-                   	<button class="comm_btn" onclick="addComm()">댓글작성</button>
+	                <button class="reco_btn" <c:if test="${id != user && id !=null && !empty id && id != ''}"> onclick="setReco()"</c:if>>추천하기</button>
+               		<button class="comm_btn" <c:if test="${id != user && id !=null && !empty id && id != ''}">onclick="addComm()"</c:if>>댓글작성</button>
                 </div>
             </div>
         </section>
