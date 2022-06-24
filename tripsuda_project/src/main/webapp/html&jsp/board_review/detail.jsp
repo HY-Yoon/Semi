@@ -18,16 +18,16 @@
 	//현재 글 작성자와 로그인 회원이 같은 사람인지 확인하기 위한 vo
 	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
 	MemberVo editorInfo = MemberDao.getInstance().select(vo.getMnum());
-	MemberVo userdata = (MemberVo)session.getAttribute("userdata"); 
+	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 	if(userdata != null){
 		//글쓴이가 보면 조회수 증가 X
-		if(!editorInfo.equals(userdata.getId())){ 
+		if(!userdata.getId().equals(editorInfo.getId())){ 
 			ReviewBoardDao.getInstance().updateView(anum);
 		}
 	}else{
 		ReviewBoardDao.getInstance().updateView(anum);
 	}
-
+	
 	//공지사항 설정을 위해 로그인한 회원등급정보 가져오기
 	request.setAttribute("grade", userdata.getGrade());
 %>
@@ -37,6 +37,7 @@
 	sessionStorage.setItem("mnum", "<%=userdata.getMnum() %>");
 	sessionStorage.setItem("notice", "<%=vo.getNotice() %>");
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
+	
 </script>
 <div class="detail-wrap">
     <section class="thum-box">
@@ -61,17 +62,17 @@
                 <p id="view">조회수 <%=vo.getViews() %></p>
                 <p id="reco">추천수 <%=ReviewRecoDao.getInstance().getRecoCount(anum) %></p>
                 <c:choose>
-                	<c:when test="${id == user}">
+                	<c:when test="${userdata.getId() == editorInfo.getId()}">
                 		<button onclick="edit()">수정</button>
                 		<button onclick="del()">삭제</button>
                 	</c:when>
-                	<c:when test="${id != '' && id != null}">
+                	<c:when test="${userdata != null}">
                 		<button class="report">신고하기</button>	
                 	</c:when>
                 </c:choose>
                 
-                <c:if test="${grade == '관리자'}">
-                <!-- 관리자일때만 -->
+                <c:if test="${userdata.getGrade() == '관리자'}">
+                	<!-- 관리자일때만 -->
                 	<button class="notice" onclick="setNotice()">공지사항설정</button>
                 </c:if>
                 
@@ -90,10 +91,10 @@
                     </div>
                 </div>
                 <div class="area_middle">
-	                <%-- 본인글은 추천 못함  --%>
-	                <button class="reco_btn" <c:if test="${userdata.getId() != editor.getId() }"> onclick="setReco()"</c:if>>추천하기</button>
-               		<%-- 로그인 사용자만 댓글작성 가능  --%>
-               		<button class="comm_btn" <c:if test="${userdata !=  null }">onclick="addComm()"</c:if>>댓글작성</button>
+                	<%--작성자는 본인 글 추천불가 --%>
+	                <button class="reco_btn" <c:if test="${userdata.getId() != editorInfo.getId()}"> onclick="setReco()"</c:if>>추천하기</button>
+               		<%-- 로그인안한 회원은 댓글작성 불가 --%>
+               		<button class="comm_btn" <c:if test="${userdata != null}">onclick="addComm()"</c:if>>댓글작성</button>
                 </div>
             </div>
         </section>
