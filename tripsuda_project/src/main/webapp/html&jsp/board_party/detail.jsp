@@ -1,3 +1,4 @@
+<%@page import="controller.report.UserReportController"%>
 <%@page import="dao.ChatDao"%>
 <%@page import="vo.ChatroomVo"%>
 <%@page import="java.util.Arrays"%>
@@ -44,7 +45,8 @@
 					태그 일람
 				</div>
 				<%=DateUtil.getText(vo.getRegDate(), DATEFORMAT.YMDHM) %> · 조회수 <%=vo.getViews() %> · 메시지수 <%=ChatDao.getInstance().getChatCnt(vo.getAnum()) %><br>
-				<a href="" style="text-decoration: underline;" >신고하기</a>
+				
+				<%=UserReportController.getHTML(request, vo.getMnum())%>
 			</div>
 		</div>
 		<div id="sidebar" class="contentbox desc" style="flex: 0 1 300px;">
