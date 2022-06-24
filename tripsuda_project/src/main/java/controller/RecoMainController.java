@@ -14,9 +14,9 @@ import javax.websocket.Session;
 public class RecoMainController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	String fav = "제주";
 	
-	req.setAttribute("fav", fav);
+	
+	//req.setAttribute("fav", fav);
 	//로그인 session에 favorite
 	req.getRequestDispatcher("/html&jsp/recommend/recoMain.jsp").forward(req, resp);
 	}

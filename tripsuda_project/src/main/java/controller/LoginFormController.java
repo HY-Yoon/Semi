@@ -29,11 +29,13 @@ public class LoginFormController extends HttpServlet{
 		MemberVo mvo = mdao.getUserInfo(id);
 		String nick = mvo.getNick();
 		long mnum = mvo.getMnum();
+		String fav = mvo.getFavorite();
 		
 		if(check == 1) { //로그인 성공
 			session.setAttribute("sessionID", id);
 			session.setAttribute("sessionNick", nick);
 			session.setAttribute("sessionMnum", mnum);
+			session.setAttribute("fav", fav);
 			session.setAttribute("userdata", mvo);
 			//request.getRequestDispatcher("/html&jsp/Menu.jsp").forward(request, response);
 			response.sendRedirect(request.getContextPath()+"/community");
