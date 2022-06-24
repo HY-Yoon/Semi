@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css?123">
 </head>
 <body>
 <%
