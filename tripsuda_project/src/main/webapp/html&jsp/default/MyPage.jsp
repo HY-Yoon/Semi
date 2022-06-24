@@ -23,10 +23,10 @@
 			</div>
 			<div class="mypage">
 				<ul>
-					<li class="list"><a href="#"><span class="txt">포인트</span></a></li>
-					<li class="list"><a href="#"><span class="txt">계정관리</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/html&jsp/member/MyPage.jsp"><span class="txt">계정관리</span></a></li>
+					<li class="list"><a href="#"><span class="txt">포인트조회</span></a></li>
 					<li class="list"><a href="#"><span class="txt">여행후기</span></a></li>
-					<li class="list"><a href="#"><span class="txt">예약내역</span></a></li>
+					<li class="list"><a href="#"><span class="txt">자유게시판</span></a></li>
 					<li class="list"><a href="#"><span class="txt">내코멘트</span></a></li>
 					<li class="list"><a href="#"><span class="txt">내동행 게시글</span></a></li>
 					<li class="list"><a href="#"><span class="txt">내QnA</span></a></li>

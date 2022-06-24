@@ -35,7 +35,7 @@ CREATE TABLE comm_review (
 	anum	number(10) references BOARD_REVIEW(anum),
 	mnum	number(10)	references member(mnum),
 	regdate	Date	NOT NULL,
-	content clob noy null
+	content clob not null
 );
 -- 여행후기추천
 create table reco_review(
@@ -280,7 +280,7 @@ end chatroom_create_trig;
 CREATE TABLE board_free (
    anum   number(10)   primary key,  
    mnum   number(10) references member(mnum),  
-   id varchar2(20) not null 
+   id varchar2(20) not null, 
    nick   varchar2(20)   NOT NULL,  
    title   varchar2(100)   NOT NULL,     
    keyword   varchar2(20),   
@@ -288,7 +288,7 @@ CREATE TABLE board_free (
    regdate   date   NOT NULL,  
    orgFile   varchar2(200),   
    serverFile   varchar2(200),  
-   views number(10) NOT NULL,  
+   views number(10) NOT NULL  
 );
 
 
@@ -304,7 +304,7 @@ CREATE TABLE comm_free (
    regdate   Date   NOT NULL, 
    ref      number(10)   NULL, 
    lev       number(10)   NULL, 
-   step   number(10)   NULL,
+   step   number(10)   NULL
 );
 
 CREATE SEQUENCE fcnum_seq;
