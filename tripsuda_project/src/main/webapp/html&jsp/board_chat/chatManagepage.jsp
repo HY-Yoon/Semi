@@ -18,12 +18,16 @@
         <jsp:include page="../default/default_header.jsp"/>
     </header>
     <main>
-        <jsp:include page="chat.jsp"/>
+        <jsp:include page="chatManage.jsp"/>
     </main>
     <footer>
         <jsp:include page="../default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="../../js/common/header.js"></script>
+<script src="../../js/common/header.js">
+</script>
+<script type="text/javascript" charset="utf-8">
+	document.getElementById("adminchat").remove();
+</script>
 </body>
 </html>

@@ -54,8 +54,8 @@ public class AdminChatController extends HttpServlet
 		MemberVo userdata = (MemberVo)req.getSession().getAttribute("userdata");
 		long mnum = userdata.getMnum();
 
-		ChatVo vo = new ChatVo(0, -1, mnum, null, msg, null);
-		AdminChatDao.getInstance().addChat(vo, -1);
+		ChatVo vo = new ChatVo(0, 0, mnum, null, msg, null);
+		AdminChatDao.getInstance().addChat(vo, 0);
 		
 		sendChatdata(resp, mnum);
 	}

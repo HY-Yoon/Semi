@@ -19,7 +19,6 @@
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 	sessionStorage.setItem("userNum", "<%=userdata.getMnum() %>");
 </script>
-<script type="text/javascript" src="../../js/board_chat/chat_lib.js?ver=<%=System.currentTimeMillis() %>"></script>
 <div class="chatbox">
 	<div class="chat-topside">
 		<div class="chat-tbcell" style="width: 350px;">
@@ -27,8 +26,7 @@
 		</div>
 		<div class="chat-tbcell boxhead">
 			<div class="room-title">
-				<a id="channel_link" target="_blank" href=""><h3 id="channel_title">여기에 타이틀 입력</h3></a>
-				<input id="leave_button" type="hidden" style="width: auto; color: #0b81ff;" onclick="ChatManager.leaveRoom()" value="나가기 >">
+				<h3 id="channel_title">유저명 입력</h3>
 			</div>
 		</div>
 	</div>
@@ -43,13 +41,19 @@
 				</div>
 				<div class="line"></div>
 				<div class="sendbox">
+					<div id="adminchat_reader" style="display: none;"></div>
 					<div class="msgbox">
-						<input type="text" id="adminchat_msg" placeholder="이곳에 채팅 입력">
+						<input type="text" id="adminchat_msg" onkeypress="AdminChatManager.sendManageChat(event)" placeholder="이곳에 채팅 입력">
 					</div>
-					<input type="submit" id="sendmsg" style="color: #0b81ff" value="전송" onclick="ChatManager.sendChat()">
+					<input type="submit" id="sendmsg" style="color: #0b81ff" value="전송" onclick="AdminChatManager.sendManageChat(event)">
 				</div>
 			</div>
 		</div>
 	</div> 
 </div> 
-<br>
+<script type="text/javascript" charset="utf-8">
+	window.addEventListener('load', function()
+	{
+		AdminChatManager.getUserList();
+	});
+</script>

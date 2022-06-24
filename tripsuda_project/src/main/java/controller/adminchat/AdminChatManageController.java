@@ -17,6 +17,7 @@ import chat.AdminChatData;
 import dao.AdminChatDao;
 import dao.ChatDao;
 import dao.ChatroomDao;
+import dao.MemberDao;
 import dao.PartyBoardDao;
 import util.DateUtil;
 import util.DateUtil.DATEFORMAT;
@@ -59,11 +60,13 @@ public class AdminChatManageController extends HttpServlet
 		for (AdminChatData acd : list)
 		{
 			JSONObject temp = new JSONObject();
+			String nick = MemberDao.getInstance().select(acd.getSender()).getNick();
 			temp.put("cnum", acd.getcNum());
+			temp.put("nick", nick);
 			temp.put("sender", acd.getSender());
 			temp.put("msg", acd.getMessage());
 			temp.put("reader", acd.getReader());
-			temp.put("date", DateUtil.getText(acd.getCreDate(), DATEFORMAT.HMS));
+			temp.put("date", DateUtil.getDiffer(acd.getCreDate()));
 			
 			arr.put(temp);
 		}
@@ -75,7 +78,7 @@ public class AdminChatManageController extends HttpServlet
 	}
 	
 	// 상담->유저 챗 전송 작업
-	@Override
+	@Override 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
 		System.out.println("admin chat manager insert start");
@@ -87,7 +90,7 @@ public class AdminChatManageController extends HttpServlet
 		MemberVo userdata = (MemberVo)req.getSession().getAttribute("userdata");
 		long sender = userdata.getMnum();
 
-		ChatVo vo = new ChatVo(0, -1, sender, null, msg, null);
+		ChatVo vo = new ChatVo(0, 0, sender, null, msg, null);
 		AdminChatDao.getInstance().addChat(vo, reader);
 		
 		sendChatdata(resp, reader);
@@ -106,7 +109,9 @@ public class AdminChatManageController extends HttpServlet
 		for (AdminChatData acd : list)
 		{
 			JSONObject temp = new JSONObject();
+			String nick = MemberDao.getInstance().select(acd.getSender()).getNick();
 			temp.put("cnum", acd.getcNum());
+			temp.put("nick", nick);
 			temp.put("sender", acd.getSender());
 			temp.put("msg", acd.getMessage());
 			temp.put("reader", acd.getReader());

@@ -40,7 +40,7 @@ public class AdminChatDao
 	
 	public int addChat(ChatVo vo, long reader)
 	{
-		vo.setrNum(-1);
+		vo.setrNum(0);
 		ChatDao.getInstance().addChat(vo); // 채팅값 추가
 		String sql = "insert into adminchat values(?, ?, ?)";
 		
@@ -67,7 +67,7 @@ public class AdminChatDao
 		String sql = "select * from chat c"
 					+ " inner join (select sender, max(cnum) as cnum from adminchat group by sender) a"
 					+ " on c.cnum = a.cnum"
-					+ " order by cnum desc";
+					+ " order by c.cnum desc";
 		try(Connection con = JdbcUtil.getCon();
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);)
