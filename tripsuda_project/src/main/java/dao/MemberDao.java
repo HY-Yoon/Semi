@@ -3,6 +3,7 @@ package dao;
 import java.math.BigDecimal; 
 import java.sql.Array;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,6 +33,29 @@ public class MemberDao
 	private void initialize()
 	{
 	}
+	
+	//220624 혜인 관리자페이지 회원관리를 위한 메소드 추가
+	public int updateMemInfoAdmin(int mnum, Date stop, String withdraw)
+	{
+		int n=-1;
+		Connection con= null;
+		PreparedStatement pstmt= null;
+		String sql="update member set stop =? , withdraw = ? where mnum = ?";
+		try {
+			con=JdbcUtil.getCon();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setDate(1, stop);
+			pstmt.setString(2, withdraw);
+			pstmt.setInt(3, mnum);
+			n=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			 e.printStackTrace();
+		}finally {
+			JdbcUtil.close(con, pstmt, null);
+		}
+		return n;
+	}
+	
 	
 	/**
 	 * 220622 - 주현
