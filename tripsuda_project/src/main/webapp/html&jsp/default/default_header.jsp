@@ -4,10 +4,10 @@
 <div class="container">
     <div class="h_top">
         <div class="h_left">
-            <a href="/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
+            <a href="${pageContext.request.contextPath}/layout.jsp" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
             <div class="h_nav">
                 <button class="top_navi">커뮤니티</button>
-                <button class="top_navi">관광추천</button>
+                <button class="top_navi" onclick="'location.href='${pageContext.request.contextPath }/recomain?fav=${sessionScope.favorite}'">관광추천</button>
             </div>
         </div>
 
@@ -67,17 +67,45 @@
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>여행 질문하기</p>
                 </button>
+                <button>
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>자유게시판</p>
+                </button>
+                <button>
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>여행후기</p>
+                </button>
+                <button onclick="location.href='${pageContext.request.contextPath }/board_expert/main?mnum=${sessionScope.mnum}&nick=${sessionScope.nick}'">
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>전문가</p>
+                </button>
+                                <!-- 글쓰기버튼 Q&A 로그인 안했으면 로그인창 뜨고 했으면 글쓰기로 가도록 수정했습니다. -->
+                <c:choose>
+                	<c:when test="${empty sessionScope.sessionID}">
+                		<button onclick="window.open('${pageContext.request.contextPath}/html&jsp/board_qa/loginPopup.jsp','login','width=450, height=250, top= resizable=no, scrollbars=no')">
+		                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+		                    <p>여행 질문하기</p>
+	                    </button>
+                	</c:when>
+	                <c:when test="${!empty sessionScope.sessionID}">
+                		<button onclick="window.location.replace('${pageContext.request.contextPath }//html&jsp/board_qa/insert_qa')">
+		                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+		                    <p>여행 질문하기</p>
+	                    </button>
+                	</c:when>
+                </c:choose>
             </div>
         </div>
     </div>
 
     <div class="h_bot">
         <button class="bot_navi active">홈</button>
-        <button class="bot_navi">전문</button>
+        <button class="bot_navi" onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
         <button class="bot_navi" onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1')">동행</button>
         <button class="bot_navi">후기</button>
         <button class="bot_navi">자유</button>
-        <button class="bot_navi">Q&A</button>
+        	<!-- 헤더영역 게시판 이름 클릭하면 Q&A게시판으로 이동하는 기능 추가  -->
+        <button class="bot_navi" onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp')">Q&A</button>
     </div>
 </div>
 <script src="${pageContext.request.contextPath }/js/common/header.js"></script>
