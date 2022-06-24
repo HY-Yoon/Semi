@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 찾기</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/FindPwd.css">
 <script type="text/javascript">
 
 function aaaaaaa(){
@@ -38,13 +39,23 @@ function aaaaaaa(){
 </head>
 <body>
 <h1>비밀번호 찾기</h1>
-<p>아이디와 이름,핸드폰 번호를 입력하세요</p>
-  <form name="findPwd" method="get">
-    <label> 아이디 : <input type="text" id="id" name="id" maxlength="50" placeholder="ID을 입력하세요"></label><br>
-    <label> 이름 : <input type="text" id="name" name="name" maxlength="50" placeholder="이름을 입력하세요"></label><br>
-    <label> 핸드폰 번호 : <input type="text" id="phone" name="phone" maxlength="50" placeholder="핸드폰 번호를 입력하세요"></label>
+<span>아이디와 이름,핸드폰 번호를 입력하세요</span>
+  <form name="findPwd" method="get" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
+    <div class="input-box">
+       <label for="id"> 아이디 </label> 
+       <input type="text" id="id" name="id" maxlength="50" placeholder="ID을 입력하세요"></label><br>
+    </div>
+    <div class="input-box">
+       <label for="name"> 이름 </label> 
+       <input type="text" id="name" name="name" maxlength="50" placeholder="이름을 입력하세요"></label><br>
+    </div>
+    <div class="input-box">
+       <label for="phone"> 핸드폰 번호 </label> 
+       <input type="text" id="phone" name="phone" maxlength="50" placeholder="핸드폰 번호를 입력하세요"></label>
     <input type="button" value="찾기" onclick="aaaaaaa()">
+    <span>
     <div id="result"></div>
+    </span>
   </form>
 </body>
 </html>
