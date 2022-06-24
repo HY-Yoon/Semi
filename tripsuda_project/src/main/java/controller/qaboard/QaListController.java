@@ -18,6 +18,8 @@ import dao.Qa_CommDao;
 import dao.Qa_HashTagDao;
 import dao.Qa_LocalTagDao;
 import vo.Qa_BoardVo;
+import vo.Qa_HashTagVo;
+import vo.Qa_LocalTagVo;
 @WebServlet("/html&jsp/board_qa/list")
 public class QaListController extends HttpServlet{
 	Qa_BoardDao bdao=Qa_BoardDao.getInstance();
@@ -38,7 +40,6 @@ public class QaListController extends HttpServlet{
 			case 3:blist=bdao.bList3(startRow, endRow);break;
 			default:
 		}
-		
 		int pageCount =(int)Math.ceil(bdao.getCountRow()/6.0);
 		int startPage=((pageNum-1)/6)*6+1;
 		int endPage=startPage+5;
