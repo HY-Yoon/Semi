@@ -40,10 +40,14 @@
 </header>
  <%
  		String fav = (String)request.getAttribute("fav");
- 					
+ 		
  %>
+ 
  <script type="text/javascript">
-		sessionStorage.setItem("fav","${fav}");
+ 
+		//sessionStorage.setItem("fav","${fav}");
+		
+		sessionStorage.setItem("fav","${sessionScope.fav}");
  </script>
 <main>
 	<div class="wrap">

@@ -7,7 +7,7 @@
             <a href="${pageContext.request.contextPath}/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
             <div class="h_nav">
                 <button class="top_navi" onclick="document.location.href='${pageContext.request.contextPath }/community'">커뮤니티</button>
-                <button class="top_navi" onclick="document.location.href='${pageContext.request.contextPath }/recomain?fav=${sessionScope.favorite}'">관광추천</button>
+                <button class="top_navi" onclick="document.location.href='${pageContext.request.contextPath }/recomain?fav=${sessionScope.fav}'">관광추천</button>
             </div>
         </div>
 
@@ -72,7 +72,7 @@
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>여행후기</p>
                 </button>
-                <button onclick="location.href='${pageContext.request.contextPath }/board_expert/main?mnum=${sessionScope.mnum}&nick=${sessionScope.nick}'">
+                <button onclick="location.href='${pageContext.request.contextPath }/board_expert/main?mnum=${sessionScope.sessionMnum}&nick=${sessionScope.sessionNick}'">
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>전문가</p>
                 </button>
