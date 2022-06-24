@@ -6,9 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-.listbox{width:400px;height:200px;border:1px solid gray;}
-</style>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/board_qa/list_qa.css">
+
 <script type="text/javascript">
 	window.onload=function(){
 		boardList(1);
@@ -36,16 +35,16 @@
 						listbox.className="listbox";
 						let boxtop=document.createElement("div");
 							boxtop.className="boxtop";
+							let keyword=document.createElement("div");
+								keyword.className="condition";
+								keyword.innerHTML=list[i].keyword;
+							boxtop.appendChild(keyword);
 							let local=document.createElement("div");
 								local.className="local";
 								local.innerHTML="<img src='${pageContext.request.contextPath}/images/common/icon/gps.svg'><p>"
 												+list[i].loc+"</p>";
-								boxtop.appendChild(local);
-							let keyword=document.createElement("p");
-								keyword.className="condition";
-								keyword.innerHTML=list[i].keyword;
-								boxtop.appendChild(keyword);
-							listbox.appendChild(boxtop);
+							boxtop.appendChild(local);
+						listbox.appendChild(boxtop);
 						let boxtitle=document.createElement("p");
 							boxtitle.className="boxtitle";
 							boxtitle.innerHTML=list[i].title;
@@ -110,11 +109,7 @@
 </script>
 </head>
 <body>
-<div class="qa_header">
-배경 이미지<br>
-여행에 대한 질문을 해보세요<br>
-여행 Q&A
-</div>
+<div class="main">
 <div class="qa_orderby">
 	<span>정렬</span>
 	<select id="sortselect" name="sortselect" onchange="boardList(1)">
@@ -123,7 +118,8 @@
 	</select>
 	<input type="button" value="답변을 기다리는 질문만 보기" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa//html&jsp/board_qa/list?pageNum=1&sortselect=3'">
 </div>
-<div id="qaList"></div>
-<div id="qaListPage"></div>
+<div id="qaList" class="qalist"></div>
+<div id="qaListPage" class="qaListPage"></div>
+</div>
 </body>
 </html>

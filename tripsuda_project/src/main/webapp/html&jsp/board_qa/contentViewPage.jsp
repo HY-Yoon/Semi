@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TripSUDA Q&A</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css">
+<title>게시글 목록</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+
 
 </head>
 <body> 
