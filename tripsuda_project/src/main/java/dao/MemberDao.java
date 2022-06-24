@@ -598,7 +598,7 @@ public class MemberDao
 				String name = rs.getString("name");
 				String nick = rs.getString("nick");
 				String phone = rs.getString("phone");
-				Date birth = rs.getDate("birth");
+				String birth = rs.getString("birth");
 				String withdraw = rs.getString("withdraw");
 				String favorite = rs.getString("favorite");
 				String grade = rs.getString("grade");
