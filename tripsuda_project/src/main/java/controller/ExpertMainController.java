@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/board_expert/add") // 글쓰기 누르면 페이지이동 // 필터로 포인트10(전문가등급) 인지 확인?
+@WebServlet("/board_expert/main") // 글쓰기 누르면 페이지이동 // 필터로 포인트10(전문가등급) 인지 확인?
 public class ExpertMainController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
