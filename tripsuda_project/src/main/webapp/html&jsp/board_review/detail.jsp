@@ -67,7 +67,7 @@
                 		<button onclick="del()">삭제</button>
                 	</c:when>
                 	<c:when test="${userdata != null}">
-                		<button class="report">신고하기</button>	
+                		<%=UserReportController.getHTML(request, userdata.getMnum())%>	
                 	</c:when>
                 </c:choose>
                 
