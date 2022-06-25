@@ -5,8 +5,9 @@ let context = sessionStorage.getItem("contextPath");
 let anum = sessionStorage.getItem("anum");
 let notice = sessionStorage.getItem("notice");
 let content_wrap = document.getElementsByClassName("content-wrap")[0];
+ 
+ 
  window.onload = function(){
-	console.log("onload");
 	hashList();
 	commList();
 	if(notice == 'Y'){
@@ -14,7 +15,7 @@ let content_wrap = document.getElementsByClassName("content-wrap")[0];
 	}
 }
 function hashList()
-{	console.log("hash");
+{	
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -38,7 +39,6 @@ function hashList()
 }
 
 function commList(){
-	console.log("comm");
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){

@@ -3,9 +3,9 @@
  * ajax로 통신하는 채팅 json 라이브러리 (상담용)
  */
 
-
+var prevOnload = window.onload;
 window.addEventListener('load', function()
-{
+{	prevOnload();
 	if (AdminChatManager._initialized != undefined)
 	{
 		console.log("admin chat library not loaded - lib already loaded!");
