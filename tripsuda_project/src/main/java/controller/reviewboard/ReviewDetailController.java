@@ -11,9 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
+import dao.MemberDao;
 import dao.reviewboard.ReviewBoardDao;
 import dao.reviewboard.ReviewTagDao;
 import util.JSONUtil;
+import vo.MemberVo;
 import vo.reviewboard.ReviewBoardVo;
 import vo.reviewboard.ReviewTagVo;
 
@@ -30,7 +32,11 @@ public class ReviewDetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
 	{
-		String anum = req.getParameter("anum");
+		int anum = Integer.parseInt(req.getParameter("anum"));
+		ReviewBoardVo vo = ReviewBoardDao.getInstance().select(anum);
+		MemberVo editor = MemberDao.getInstance().select(vo.getMnum());
+		req.setAttribute("vo", vo);
+		req.setAttribute("editor", editor);
 		req.getRequestDispatcher("/html&jsp/board_review/detailPage.jsp?anum="+anum).forward(req, resp);
 	}
 }

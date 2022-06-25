@@ -141,7 +141,7 @@ public class ReviewBoardDao {
 	}
 	
 	//리스트
-	public ArrayList<ReviewBoardVo> selectAll(int start, int end,String select, String search)
+	public ArrayList<ReviewBoardVo> selectAll(int start, int end, String select, String search)
 	{
 		ArrayList<ReviewBoardVo> list = new ArrayList<ReviewBoardVo>();
 		Connection con = null;
@@ -181,13 +181,14 @@ public class ReviewBoardDao {
 				}
 			//검색 없을때
 			}else {
-				System.out.println("없을무");
-				sql =  "select * from("
-				    	+"select aa.*,rownum rnum from("
-				        +" select * from board_review"
-				        +" order by anum desc"
-				        +" ) aa"
-				        +") where rnum>=? and rnum<=?" ;
+				sql =  "select * from( "
+					+ "    select aa.* , rownum rnum from( "
+					+ "        select b.anum, b.mnum, title, content, notice, thum, regdate, views, tag, nick from "
+					+ "        board_review b, taglist_review t, member m "
+					+ "        where b.anum = t.anum and b.mnum = m.mnum  "
+					+ "		   order by b.anum desc "
+					+ "     ) aa "
+					+ ") where rnum>=?  and rnum<=?";
 			}
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, start);
@@ -204,7 +205,8 @@ public class ReviewBoardDao {
 				vo.setViews(rs.getInt("views"));
 				vo.setNotice(rs.getString("notice"));
 				vo.setThum(rs.getString("thum"));
-				vo.setLocation(rs.getString("location"));
+				vo.setLocation(rs.getString("tag"));
+				vo.setNick(rs.getString("nick"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {

@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_review/detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_review/list.css">
 </head>
 <body>
 	<header>

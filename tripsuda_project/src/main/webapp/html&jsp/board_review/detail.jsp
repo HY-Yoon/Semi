@@ -15,11 +15,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- 여행후기게시판 자세히보기 페이지--%>
 <%
+	//현재 글 vo
+	ReviewBoardVo vo= (ReviewBoardVo)request.getAttribute("vo");
+	//현재 글번호
 	int anum= Integer.parseInt(request.getParameter("anum"));
-	//현재 글 작성자와 로그인 회원이 같은 사람인지 확인하기 위한 vo
-	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
-	MemberVo editorInfo = MemberDao.getInstance().select(vo.getMnum());
-	request.setAttribute("editorInfo", editorInfo);
+	//작성자
+	MemberVo editorInfo = (MemberVo)request.getAttribute("editor");
+	//로그인회원
 	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 	
 	//script 넘겨주기위한 mnum
@@ -65,8 +67,8 @@
                 <p id="date"><%=DateUtil.getText(vo.getRegdate(), "YYYY.MM.dd hh:mm") %></p>
                 <p id="view">조회수 <%=vo.getViews() %></p>
                 <p id="reco">추천수 <%=ReviewRecoDao.getInstance().getRecoCount(anum) %></p>
-                
-               	<c:if test="${userdata.getId() == editorInfo.getId()}">
+               
+               	<c:if test="${userdata.getId() == editor.getId()}">
                		<button onclick="edit()">수정</button>
                		<button onclick="del()">삭제</button>
                	</c:if>
@@ -96,7 +98,7 @@
                 </div>
                 <div class="area_middle">
                 	<%--작성자는 본인 글 추천불가 --%>
-	                <button class="reco_btn" <c:if test="${userdata.getId() != editorInfo.getId()}"> onclick='setReco()'</c:if>>추천하기</button>
+	                <button class="reco_btn" <c:if test="${userdata.getId() != editor.getId()}"> onclick='setReco()'</c:if>>추천하기</button>
                		<%-- 로그인안한 회원은 댓글작성 불가 --%>
                		<button class="comm_btn" <c:if test="${userdata != null}">onclick='addComm()'</c:if>>댓글작성</button>
                 </div>
