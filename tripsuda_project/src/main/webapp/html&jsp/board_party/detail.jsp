@@ -20,6 +20,7 @@
 	PartyboardVo vo = PartyBoardDao.getInstance().select(Long.parseLong(request.getParameter("anum")));
 	String gender = vo.getGender().equalsIgnoreCase("선택 안함") ? "제한 없음" : vo.getGender();
 	String age = (vo.getAge_min() == 0 && vo.getAge_max() == 0) ? "제한 없음" : vo.getAge_min() + "세부터 " + vo.getAge_max() + "세까지";
+	long lastmemcnt = PartyWaitDao.getInstance().getMemCnt(vo.getAnum());
 %>
 <div class="content_header">
 	<img src="<%=vo.getBackimg() %>" width="100%">
@@ -32,7 +33,7 @@
 			<div class="line"></div>
 			<div class="desc">
 				<span class="desctext">지역</span> <%=vo.getDest() %><br>
-				<span class="desctext">모집인원</span> <%=vo.getMemcnt() %>명<br>
+				<span class="desctext">모집인원</span> <%=vo.getMemcnt() %>명 (<%=vo.getMemcnt() - lastmemcnt %>명 남음)<br>
 				<span class="desctext">일자</span> <%=vo.getStartDate().toString() %> ~ <%=vo.getEndDate().toString() %><br>
 				<span class="desctext">성별</span> <%=gender %><br>
 				<span class="desctext">연령</span> <%=age %>
@@ -46,6 +47,10 @@
 				</div>
 				<%=DateUtil.getText(vo.getRegDate(), DATEFORMAT.YMDHM) %> · 조회수 <%=vo.getViews() %> · 메시지수 <%=ChatDao.getInstance().getChatCnt(vo.getAnum()) %><br>
 				
+				<% if (vo.getMnum() == userdata.getMnum() || userdata.getGrade().equals("관리자")) { %>
+				<a style="text-decoration: underline;" href="">수정</a>
+				<a style="text-decoration: underline;" href="">삭제</a>
+				<% } %>
 				<%=UserReportController.getHTML(request, vo.getMnum())%>
 			</div>
 		</div>
@@ -64,7 +69,11 @@
 						{
 							%><input type="button" disabled="disabled" value="지난 여행이에요."><%
 						}
-						else if (userdata.getMnum() == vo.getMnum()) // 그건 아닌데 작성자인 경우
+						else if (lastmemcnt >= vo.getMemcnt()) // 정원 꽉참
+						{
+							%><input type="button" disabled="disabled" value="모집 정원을 채웠어요."><%
+						}
+						else if (userdata.getMnum() == vo.getMnum()) // 그런 건 아닌데 작성자인 경우
 						{
 							%><input type="button" value="모집 다시 활성화하기" onclick="sendForm(<%=vo.getAnum() %>, 'activate')"><%
 						}

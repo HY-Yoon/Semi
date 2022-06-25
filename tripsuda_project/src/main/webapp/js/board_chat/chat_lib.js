@@ -185,7 +185,46 @@ ChatManager.updateChatList = function(roomdata)
 		msg.ele_flex.innerText = chat_element.msg;
 		msg.info.innerText = chat_element.date;
 
+		if (msgtype == "msg-user")
+		{
+			let reportFormat = sessionStorage.getItem("reportFormat");
+			reportFormat = reportFormat.replace("<contextPath>", sessionStorage.getItem("contextPath"));
+			reportFormat = reportFormat.replace("<mnum>", chat_element.sender);
+			msg.info.innerHTML = chat_element.date + "&nbsp; "
+			+ reportFormat;
+
+			if (this._roomdata.mnum == parseInt(sessionStorage.getItem("userNum")))
+			{
+				let deleteA = `<a style="text-decoration: underline;" href="javascript:ChatManager.removeChat(${chat_element.cnum})">삭제</a>`;
+				msg.info.innerHTML += "&nbsp;" + deleteA;
+			}
+		}
+
 		// 붙이기
 		this._chatlist.appendChild(msg.parent);
 	}
+}
+// 채팅 삭제 요청 보내기
+ChatManager.removeChat = function(_cnum)
+{
+	let obj = {cnum : _cnum};
+	
+	// console.log("chat send - " + JSON.stringify(obj));
+	
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState == 4 && xhr.status == 200)
+		{
+			let result = xhr.responseText; 
+			ChatManager.clearList();
+			ChatManager.updateChatList(JSON.parse(result));
+		} 
+	};
+	let url = sessionStorage.getItem("contextPath")
+		 + "/board_chat/room/delete";
+	// console.log("url - " + url);
+	xhr.open("post", url, true);
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8;");
+	xhr.send(JSON.stringify(obj));
 }

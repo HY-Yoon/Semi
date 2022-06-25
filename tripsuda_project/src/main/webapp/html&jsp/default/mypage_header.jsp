@@ -4,7 +4,7 @@
 <div class="container">
     <div class="h_top">
         <div class="h_left">
-            <a href="/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
+            <a href="${pageContext.request.contextPath}/community" target="_self"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
             <div class="h_nav">
                 <button class="top_navi">커뮤니티</button>
                 <button class="top_navi">관광추천</button>

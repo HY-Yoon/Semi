@@ -1,3 +1,4 @@
+<%@page import="controller.report.UserReportController"%>
 <%@page import="dao.ChatDao"%>
 <%@page import="util.DateUtil"%>
 <%@page import="dao.PartyWaitDao"%>
@@ -19,6 +20,7 @@
 %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_chat/chat.css?ver=<%=System.currentTimeMillis() %>">
 <script type="text/javascript" charset="utf-8">
+	sessionStorage.setItem("reportFormat", `<%=UserReportController.getHTMLFormat() %>`);
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 	sessionStorage.setItem("userNum", "<%=userdata.getMnum() %>");
 </script>

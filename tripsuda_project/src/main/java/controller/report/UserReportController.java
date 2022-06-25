@@ -23,11 +23,29 @@ public class UserReportController extends HttpServlet
 	 */
 	public static String getHTML(HttpServletRequest req, long userNumber)
 	{
-		String name = "신고 조지기";
+		String name = "신고하기";
 		String url = req.getContextPath() + "/report?mnum=" + userNumber;
 		String script = "window.open(\'"
 						+ url + "\', \'"
 						+ "신고하기" + "\', \'"
+						+ "width = 500, height = 860, location = no" + "\')";
+		
+		return "<a style=\"text-decoration: underline;\" href=\""
+				+ "javascript:" + script
+				+ "\">" + name + "</a>";
+	}
+	
+	/**
+	 * 신고창 팝업이 뜨는 <a> 태그를 붙입니다.
+	 * 다만 이 경우 플레이스홀더의 형태로 대체됩니다.
+	 * <contextPath> -> request.contextPath
+	 * <mnum> -> 유저 번호
+	 * @return <a href="javascript:window.open(...)>신고 조지기</a>
+	 */
+	public static String getHTMLFormat()
+	{
+		String name = "신고";
+		String script = "window.open(\'<contextPath>/report?mnum=<mnum>\', \'신고하기\', \'"
 						+ "width = 500, height = 860, location = no" + "\')";
 		
 		return "<a style=\"text-decoration: underline;\" href=\""

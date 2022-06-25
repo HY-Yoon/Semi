@@ -65,7 +65,7 @@ public class ChatroomController extends HttpServlet
 	}
 	
 	// response를 통해 방 정보 보내기
-	private void sendRoomdata(HttpServletResponse resp, long anum, boolean withImg) throws IOException
+	public static void sendRoomdata(HttpServletResponse resp, long anum, boolean withImg) throws IOException
 	{
 		resp.setCharacterEncoding("UTF-8");
 		
