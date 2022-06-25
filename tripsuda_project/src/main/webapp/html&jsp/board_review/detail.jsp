@@ -21,7 +21,7 @@
 	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 	if(userdata != null){
 		//글쓴이가 보면 조회수 증가 X
-		if(!userdata.equals(editorInfo.getId())){ 
+		if(!userdata.getId().equals(editorInfo.getId())){ 
 			ReviewBoardDao.getInstance().updateView(anum);
 		}
 	}else{
