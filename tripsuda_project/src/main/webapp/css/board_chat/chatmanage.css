@@ -1,0 +1,183 @@
+.chatbox {
+    display: table;
+    table-layout: fixed;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.chat-topside {
+    display: table-row;
+    height: 50px;
+    flex-direction: column;
+}
+.chat-topside * {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-center {
+    display: table-row;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-tbcell {
+    display: table-cell;
+    width: 300px;
+    height: 50px;
+    border: 1px lightgray solid;
+    border-collapse: collapse;
+}
+
+.room-title {
+    display: flex;
+    justify-content: space-between;
+}
+.room-title input { 
+    border: none;
+    margin: 15px;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.room-ele {
+    margin: 15px;
+    border: none;
+}
+
+.chat-flex {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+}
+.messagebox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 700px;
+    background-color: rgba(0, 0, 0, 0.05);
+    overflow: auto;
+    background-size: cover;
+    background-position: auto;
+}
+.messagebox img {
+    display: flex;
+    position: absolute;
+    max-height: 100%;
+    z-index: -1;
+}
+
+.line {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 15px;
+    background-color: lightgray;
+}
+
+.sendbox {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    margin-bottom: 15px;
+    justify-content: space-between;
+}
+
+.sendbox .msgbox {
+    width: 400px;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px lightgray solid;
+}
+
+.sendbox * { 
+    border: none;
+    background: transparent;
+    font-size: 20px;
+}
+#sendmsg { 
+    margin: 10px 20px;
+}
+
+/* 공통 최상위 */
+.msg-parent {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 5px;
+    font-size: 18px;
+}
+/* 공통 중간 */
+.msg-ele {
+    display: flex;
+    font-size: 18px;
+}
+/* 공통 정보 div */
+.msg-info {
+    /* position: absolute; */
+    display: flex;
+    width: auto;
+    align-items: center;
+    /* height: 135px; */
+    font-size: 14px;
+    margin: 0px 30px 0px 30px;
+    color: gray;
+    text-shadow: 1px 1px 0px white;
+}
+/* 공통 하위 div */
+.msg-flex {
+    display: flex;
+    width: auto;
+    align-items: center;
+    height: 50px;
+    margin: 5px 5px 0px 5px;
+    padding: 0px 20px;
+    color: white;
+    border-radius: 30px;
+}
+/* 시스템 메시지 */
+.msg-sys {
+    justify-content: center;
+    margin: 5px auto;
+    font-size: initial;
+}
+.msg-sys .msg-flex{
+    height: 30px;
+    background-color: rgba(64, 64, 64, 0.5);
+}
+.msg-sys + .msg-info{
+    justify-content: center;
+}
+/* 타인 메시지 */
+.msg-user {
+    justify-content: flex-start;
+    margin: 5px 20px;
+}
+.msg-user .msg-flex{
+    background-color: #0b81ff;
+}
+.msg-user + .msg-info{
+    justify-content: start;
+}
+
+/* 나의 메시지 */
+.msg-mine {
+    justify-content: flex-end;
+    margin: 5px 20px;
+}
+.msg-mine .msg-flex{
+    background-color: rgb(0, 206, 124);
+}
+.msg-mine + .msg-info{
+    justify-content: end;
+}

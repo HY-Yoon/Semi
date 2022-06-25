@@ -14,14 +14,13 @@
 <%
 	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 %>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_chat/chat.css?ver=<%=System.currentTimeMillis() %>">
 <script type="text/javascript" charset="utf-8">
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 	sessionStorage.setItem("userNum", "<%=userdata.getMnum() %>");
 </script>
 <div class="chatbox">
 	<div class="chat-topside">
-		<div class="chat-tbcell" style="width: 350px;">
+		<div class="chat-tbcell" style="width: 150px;">
 			<h3>유저 목록</h3>
 		</div>
 		<div class="chat-tbcell boxhead">
