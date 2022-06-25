@@ -64,6 +64,23 @@ public class ChatDao
 		}
 	}
 	
+	public int deleteChat(long cnum)
+	{
+		String sql = "delete from chat where cnum = ?";
+		
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, cnum);
+			return pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
 	public long getChatCnt(long anum)
 	{
 		String sql = "select count(*) from chat where rnum = ?";
@@ -133,7 +150,41 @@ public class ChatDao
 		}
 		return null;
 	}
-	
+
+	public ChatVo get(long cnum)
+	{
+		String sql = "select * from chat where cnum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, cnum);
+			ResultSet rs = pstmt.executeQuery();
+			ChatVo vo = null;
+			if (rs.next())
+			{
+				vo = new ChatVo();
+				vo.setcNum(rs.getLong("cnum"));
+				vo.setrNum(rs.getLong("rnum"));
+				vo.setSender(rs.getLong("sender"));
+				Array arr = rs.getArray("readers");
+				System.out.println(arr.getArray().toString());
+				BigDecimal[] li = (BigDecimal[])arr.getArray();
+				long[] mem = new long[li.length];
+				for (int i = 0; i < li.length; i++)
+					mem[i] = li[i].longValue();
+				vo.setReaders(mem);
+				vo.setMessage(rs.getString("message"));
+				vo.setCreDate(rs.getDate("credate"));
+			}
+			rs.close();
+			return vo;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public ArrayList<ChatVo> select(long rnum)
 	{
 		ArrayList<ChatVo> list = new ArrayList<ChatVo>();

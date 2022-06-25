@@ -3,6 +3,8 @@ package vo;
 import java.sql.Date;
 import java.util.Calendar;
 
+import dao.PartyWaitDao;
+
 /**
  * @author 주현
  * 동행 신청 게시판 VO
@@ -180,6 +182,8 @@ public class PartyboardVo
 	public String getExpired() {
 		java.util.Date currDate = Calendar.getInstance().getTime();
 		if (currDate.after(getEndDate()))
+			return "Y";
+		if (PartyWaitDao.getInstance().getMemCnt(this.anum) >= this.memcnt)
 			return "Y";
 		return expired;
 	}
