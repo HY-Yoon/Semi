@@ -36,7 +36,8 @@
 	<section class="bg-box"></section>
 	<input type="hidden" id="anum" value="<%=vo.getAnum()%>">
 	<input type="hidden" id="mnum" value="<%=vo.getMnum()%>">
-	<input type="hidden" id="notice" value="N">
+	<input type="hidden" id="notice" value="<%=vo.getNotice()%>"> 
+	
 	<div class="container">
 		<div class="location-box">
 			<div class="legend">

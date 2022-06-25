@@ -15,6 +15,7 @@
 let form = {
 	anum : "",
 	mnum : "",
+	notice:"",
 	location : "",
 	thumimg : null,
 	title : "",
