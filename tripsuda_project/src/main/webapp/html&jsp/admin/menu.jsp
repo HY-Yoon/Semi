@@ -33,7 +33,7 @@
         </a>
     </li>
     <li class="link_wrap">
-        <a href="${pageContext.request.contextPath}/adminchat/manage" class="link">
+        <a href="${pageContext.request.contextPath}/html&jsp/admin/memberChatManagePage.jsp" class="link">
             <span class="name">1:1 채팅 상담</span>
         </a>
     </li>

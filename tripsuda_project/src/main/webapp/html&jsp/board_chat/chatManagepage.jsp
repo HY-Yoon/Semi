@@ -15,16 +15,16 @@
 <body>
 <div id="wrap">
     <header>
-        <jsp:include page="../default/default_header.jsp"/>
+        <jsp:include page="/html&jsp/default/default_header.jsp"/>
     </header>
     <main>
         <jsp:include page="chatManage.jsp"/>
     </main>
     <footer>
-        <jsp:include page="../default/default_footer.jsp"/>
+        <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="../../js/common/header.js">
+<script src="${pageContext.request.contextPath}/js/common/header.js">
 </script>
 <script type="text/javascript" charset="utf-8">
 	document.getElementById("adminchat").remove();
