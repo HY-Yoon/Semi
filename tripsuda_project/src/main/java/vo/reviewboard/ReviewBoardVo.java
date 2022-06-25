@@ -21,6 +21,9 @@ public class ReviewBoardVo {
 	
 	private String location; //지역태그
 	
+	private String nick;//닉네임
+	private int cnt;//닉네임
+	
 	public ReviewBoardVo() {}
 
 	public ReviewBoardVo(int anum, int mnum, String title, String content, Date regdate, int views, String notice,
@@ -35,6 +38,40 @@ public class ReviewBoardVo {
 		this.notice = notice;
 		this.thum = thum;
 		this.location = location;
+	}
+
+	//목록 가져오기위한 vo
+	public ReviewBoardVo(int anum, int mnum, String title, String content, Date regdate, int views, String notice,
+			String thum, String location, String nick, int cnt) {
+		super();
+		this.anum = anum;
+		this.mnum = mnum;
+		this.title = title;
+		this.content = content;
+		this.regdate = regdate;
+		this.views = views;
+		this.notice = notice;
+		this.thum = thum;
+		this.location = location;
+		this.nick = nick;
+		this.cnt = cnt;
+	}
+	
+	
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 
 	public String getLocation() {

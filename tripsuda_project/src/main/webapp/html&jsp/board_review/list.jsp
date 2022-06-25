@@ -1,3 +1,4 @@
+<%@page import="vo.MemberVo"%>
 <%@page import="dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -20,9 +21,9 @@
             <button>검색하기</button>
         </div>
     </div>
-
+	
     <section>
-        <div class="list-top">
+	    <div class="list-top">
             <p>정렬</p>
             <div>
                 <select id="order">
@@ -31,34 +32,42 @@
                 </select>
             </div>
         </div>
-		
-        <div class="list-main">
-            	<div class="cont-box">
-            		<div>
-            			<img src="${vo.getThum() }">
-            		</div>
-            		<div class="location">
-            			<div class="loc-icon"></div>
-            			<p>${vo.getLocation()}</p>
-            		</div>
-            		<div class="cont-info">
-            			<p>${vo.getTitle() }</p>
-            			<p>${vo.getContent() }</p>
-            			<div class="cont-bot">
-            				<div class="profile-box">
-            					<img src="${pageContext.request.contextPath}/images/common/icon/profile/<%=(int)Math.floor(Math.random() * 4 + 1) %>.svg">
-            					<div>
-            					<%String nick = MemberDao.getInstance().select() %>
-            						<p></p>
-            					</div>
-            				</div>
-            			</div>
-            		</div>
-            	</div>
-        </div>
+        <c:forEach var="vo" items="${list }">
+        	<div class="list-main">
+	            	<div class="cont-box">
+	            		<div>
+	            			<img src="${vo.getThum() }">
+	            		</div>
+	            		<div class="location">
+	            			<div class="loc-icon"></div>
+	            			<p>${vo.getLocation()}</p>
+	            		</div>
+	            		<div class="cont-info">
+	            			<p>${vo.getTitle() }</p>
+	            			<p>${vo.getContent() }</p>
+	            			<div class="cont-bot">
+	            				<div class="profile-box">
+	            					<img src="${pageContext.request.contextPath}/images/common/icon/profile/<%=(int)Math.floor(Math.random() * 4 + 1) %>.svg">
+	            					<div>
+										<p>${vo.getNick() }</p>
+	            					</div>
+	            				</div>
+	                            <div class="view_cnt">
+	                                <div class="views">
+	                                    <p>${vo.getViews() }</p>
+	                                </div>
+	                                <div class="comm_cnt">
+	                                    <p>${vo.getCnt() }</p>
+	                                </div>
+	                            </div>
+	            			</div>
+	            		</div>
+	            	</div>
+	        </div>
+        </c:forEach>
 
         <div class="list-bot">
-
+            
         </div>
     </section>
 </div>

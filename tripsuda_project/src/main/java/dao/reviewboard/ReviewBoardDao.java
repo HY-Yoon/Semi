@@ -153,6 +153,7 @@ public class ReviewBoardDao {
 			con=JdbcUtil.getCon();
 			//검색이 있을 때
 			if(select !=null && select.equals("")) {
+				System.out.println("있을유");
 				//통합검색
 				if(select.equals("tot")) {
 					sql = "select * from "
@@ -180,6 +181,7 @@ public class ReviewBoardDao {
 				}
 			//검색 없을때
 			}else {
+				System.out.println("없을무");
 				sql =  "select * from("
 				    	+"select aa.*,rownum rnum from("
 				        +" select * from board_review"
