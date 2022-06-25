@@ -482,6 +482,10 @@ public class MemberDao
 		    	
 		}	
 		
+
+		
+	
+	
 	public String nickname(String id) {	
 		Connection con = null;	
 		PreparedStatement pstmt = null;	

@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/login.css">
+<%
+String errMsg = request.getParameter("errMsg");
+%>
+
 <script type="text/javascript">
    function checkValue(){
 	   var form = document.loginForm;
@@ -50,12 +55,11 @@ onsubmit="return checkValue()"  content="width=device-width, height=device-heigh
     <input type="password" name="pwd" id="pwd" size="20" maxlength="50"  placeholder="비밀번호를 입력하세요"></label>
   </div>
   <br>
-  <div id="err"></div>
-    <input type="button" value="아이디찾기" onclick="FindId()">
-    <input type="button" value="비번찾기" onclick="FindPwd()">
-  
+  <div id="err"><%=request.getAttribute("errMsg") %></div>
    <input type="submit" value="로그인"/>
   <div id="back"> 
+   <input type="button" value="아이디찾기" onclick="FindId()">
+    <input type="button" value="비번찾기" onclick="FindPwd()">
    <input type="button" value="돌아가기" onclick="goFirstForm()">
    </div>
 </form>

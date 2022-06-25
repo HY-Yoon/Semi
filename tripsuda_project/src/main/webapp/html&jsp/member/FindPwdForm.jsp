@@ -38,6 +38,7 @@ function aaaaaaa(){
 </script>
 </head>
 <body>
+
 <h1>비밀번호 찾기</h1>
 <span>아이디와 이름,핸드폰 번호를 입력하세요</span>
   <form name="findPwd" method="get" content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
@@ -52,10 +53,13 @@ function aaaaaaa(){
     <div class="input-box">
        <label for="phone"> 핸드폰 번호 </label> 
        <input type="text" id="phone" name="phone" maxlength="50" placeholder="핸드폰 번호를 입력하세요"></label>
+       </div>
+       <div class="input-box">
     <input type="button" value="찾기" onclick="aaaaaaa()">
-    <span>
+    </div>
     <div id="result"></div>
-    </span>
+ 
   </form>
+
 </body>
 </html>
