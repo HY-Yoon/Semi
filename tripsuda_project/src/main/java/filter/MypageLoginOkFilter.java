@@ -25,7 +25,7 @@ import vo.MemberVo;
 initParams = {
 		@WebInitParam(name="encoding", value="utf-8")
 })
-public class MainLoginOkFilter implements Filter
+public class MypageLoginOkFilter implements Filter
 {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -37,11 +37,11 @@ public class MainLoginOkFilter implements Filter
 		
 		req.setCharacterEncoding("utf-8");
 		
-		MemberVo user= (MemberVo)session.getAttribute("id");
-		if(user == null) {//회원이 아닐때 로그인페이지로 돌아가기
+		MemberVo userdata= (MemberVo)session.getAttribute("userdata");
+		if(userdata == null) {//회원이 아닐때 로그인페이지로 돌아가기
 			resp.sendRedirect(req.getContextPath()+"/html&jsp/member/LoginForm.jsp");
 		}else {
-			String grade=user.getGrade();
+			String grade=userdata.getGrade();
 			//관리자 메인으로 이동
 			if(grade.equals("관리자")) {
 				resp.sendRedirect(req.getContextPath()+"/admin/main");
