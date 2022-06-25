@@ -36,7 +36,7 @@
                             <img src="${pageContext.request.contextPath }/images/common/vector_profile_default.svg" alt="프로필">    
                             <div>
                                 <p>${sessionScope.id}</p>
-                                <button >마이페이지</button>
+                                <button onclick="document.location.href='${pageContext.request.contextPath }/mypage'">마이페이지</button>
                             </div>
                         </div>
                         <button class="btn_logout">로그아웃</button>

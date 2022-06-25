@@ -47,7 +47,7 @@ public class MypageLoginOkFilter implements Filter
 				resp.sendRedirect(req.getContextPath()+"/admin/main");
 				
 			}else{//일반 메인으로 이동
-				resp.sendRedirect(req.getContextPath()+"/mypage");
+				resp.sendRedirect(req.getContextPath()+"/member/main");
 			}
 		}
 	}
