@@ -39,12 +39,7 @@ public class ReviewListController extends HttpServlet{
 		String search = req.getParameter("search"); // 검색 값
 		String select = req.getParameter("select"); // sel 값 ex) 통합,제목,태그
 		
-		System.out.println("select값:"+select+"search값:"+search);
-		
-		//페이징
-		int pageCount = (int)Math.ceil(dao.getCount(select,search)/8.0);
-		
-		System.out.println(dao.getCount(select,search));
+		System.out.println("select값:"+select+" search값:"+search);
 		
 		String spagenum = req.getParameter("pagenum");
 		int pagenum = 1;
@@ -52,53 +47,50 @@ public class ReviewListController extends HttpServlet{
 			pagenum = Integer.parseInt(spagenum);
 		}
 		
-		int startRow = (pagenum-1)*8+1; //8개씩 
-		int endRow = startRow +5; 
-			
+		int endRow=pagenum*8;//8페이지씩
+		int startRow=endRow-7;
 		
-		int startPage = (pagenum-1)/8*8+1;
-		int endPage = startPage+7;
+		//페이징
+		int pageCount = (int)Math.ceil(dao.getCount(select,search)/8.0);
+		System.out.println(dao.getCount(select,search));
 		
-		if(endPage>pageCount) {
-			endPage = pageCount;
+		int startPageNum=((pagenum-1)/8*8)+1;
+		int endPageNum = startPageNum+7;	
+		
+		if(endPageNum > pageCount) {
+			endPageNum = pageCount;
 		}
-			
-		ArrayList<ReviewBoardVo> list = ReviewBoardDao.getInstance().selectAll(startRow,endRow,select,search);
-		resp.setContentType("text/plain;charset=utf-8");
-		PrintWriter pw = resp.getWriter();
-		JSONObject data=new JSONObject();
-		JSONArray jarr=new JSONArray();
-		for(ReviewBoardVo vo : list) {
-			JSONObject obj = new JSONObject();
-			obj.put("anum",vo.getAnum());
-			obj.put("mnum",vo.getMnum());
-			obj.put("title",vo.getTitle());
-			obj.put("content",vo.getContent());
-			obj.put("regdate",vo.getRegdate());
-			obj.put("views",vo.getViews());
-			obj.put("notice",vo.getNotice());
-			obj.put("location",vo.getLocation());
-			
-			//회원정보
-			String nick = MemberDao.getInstance().select(vo.getMnum()).getNick();
-			obj.put("nick", nick);
+		
+		ArrayList<ReviewBoardVo> list = ReviewBoardDao.getInstance().selectAll(startPageNum,endPageNum,select,search);	
+		ArrayList<ReviewBoardVo> board_list = new ArrayList<ReviewBoardVo>();
+		for(ReviewBoardVo getvo : list) {
+			ReviewBoardVo putvo = new ReviewBoardVo();
+			putvo.setAnum(getvo.getAnum());
+			putvo.setMnum(getvo.getMnum());
+			putvo.setTitle(getvo.getTitle());
+			putvo.setThum(getvo.getThum());
+			putvo.setContent(getvo.getContent());
+			putvo.setRegdate(getvo.getRegdate());
+			putvo.setViews(getvo.getViews());
+			putvo.setNotice(getvo.getNotice());
+			putvo.setLocation(getvo.getLocation());
+			putvo.setNick(getvo.getNick());
 			
 			//댓글수
-			int cnt = ReviewCommDao.getInstance().getCommCnt(vo.getAnum());
-			obj.put("cnt", cnt);
+			int cnt = ReviewCommDao.getInstance().getCommCnt(getvo.getAnum());
+			putvo.setCnt(cnt);
 			
-			jarr.put(obj);
+			board_list.add(putvo);
 		}
-		data.put("list", jarr);
-		data.put("pageCount", pageCount);
-		data.put("startPage", startPage);
-		data.put("endPage", endPage);
-		data.put("pageNum", pagenum);
+		req.setAttribute("list", board_list);
+		req.setAttribute("pageCount", pageCount);
+		req.setAttribute("startPage", startPageNum);
+		req.setAttribute("endPage", endPageNum);
+		req.setAttribute("pageNum", pagenum);
 		
-		//검색정보 json 객체에 담기
-		data.put("select", select);
-		data.put("search", search);
-		pw.print(data);
+		//검색정보 attribute에 담기
+		req.setAttribute("select", select);
+		req.setAttribute("search", search);
 		req.getRequestDispatcher("/html&jsp/board_review/listPage.jsp").forward(req, resp);
 	}
 	

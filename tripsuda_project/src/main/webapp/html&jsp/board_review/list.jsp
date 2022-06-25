@@ -6,7 +6,7 @@
 <div class="container">
     <div class="location-box">
         <div class="legend">
-            <p>지역 선택</p>
+            <p>지역 검색</p>
         </div>
         <div>
             <label for="loc_1">서울<input type="radio" name="location" id="loc_1" value="서울"></label>
@@ -18,7 +18,7 @@
             <label for="loc_7">충청도<input type="radio" name="location" id="loc_7" value="충청도"></label>
             <label for="loc_8">경상도<input type="radio" name="location" id="loc_8" value="경상도"></label>
             <label for="loc_9">전라도<input type="radio" name="location" id="loc_9" value="전라도"></label>
-            <button>검색하기</button>
+            <button class="search_location_btn">검색하기</button>
         </div>
     </div>
 	
@@ -32,11 +32,11 @@
                 </select>
             </div>
         </div>
-        <c:forEach var="vo" items="${list }">
-        	<div class="list-main">
-	            	<div class="cont-box">
+        <div class="list-main">
+        	<c:forEach var="vo" items="${list }">
+	            	<div class="cont-box" onclick="javascript:goDetail(${vo.getAnum()})">
 	            		<div>
-	            			<img src="${vo.getThum() }">
+	            			<div class="thum" style="background-image: url('${vo.getThum() }')"></div>
 	            		</div>
 	            		<div class="location">
 	            			<div class="loc-icon"></div>
@@ -63,11 +63,27 @@
 	            			</div>
 	            		</div>
 	            	</div>
-	        </div>
-        </c:forEach>
+	        
+        	</c:forEach>
+       	</div>
 
         <div class="list-bot">
-            
+            <c:if test="${startPage>10 }">
+				<a href="${pageContext.request.contextPath }/board_review?pagenum=${startPage-1}&search=${search}&select=${select}">[이전페이지]</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPage }" end="${endPage }">
+				<c:choose>
+					<c:when test="${pagenum==i }">
+						<a href="${pageContext.request.contextPath }/board_review?pagenum=${i}&search=${search}&select=${select}"><span style="color:red;">${i }</span></a>
+					</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath }/board_review?pagenum=${i}&search=${search}&select=${select}"><span style="color:gray;">${i }</span></a>
+					</c:otherwise>
+				</c:choose>	
+			</c:forEach>
+			<c:if test="${endPage < pageCount}">
+				<a href="${pageContext.request.contextPath }/board_review?pagenum=${endPage+1}&search=${search}&select=${select}">[다음페이지]</a>
+			</c:if>	
         </div>
     </section>
 </div>

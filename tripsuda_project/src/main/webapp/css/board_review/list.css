@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/*여행후기게시판 목록 css*/
+main .container{
+	margin-top: 50px;
+}
+/*location-box 시작*/
+.location-box{
+	display:flex;
+	position: relative;
+    border-radius: 6px;
+    padding:19px 0;
+    margin-bottom: 30px;
+    border: 1px solid rgb(233, 233, 233);
+    background-color: rgb(255, 255, 255);
+    line-height:1;
+}
+.location-box .legend{
+	display: flex;
+	width: 144px;
+    padding-left:25px;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    color: #0b81ff;
+    font-weight: 700;
+    font-size: 15px;
+    
+}
+.location-box .legend p{
+	margin: 0;
+}
+.location-box .legend+div{
+	display: flex;
+	align-items: center;
+}
+.legend+div label{
+    padding: 0 20px;
+    color: rgb(154, 154, 154);
+    font-weight: 400;
+    font-size: 15px;
+    margin:0;
+    cursor: pointer;
+}
+.legend+div label.active, .legend+div label:hover{
+	font-weight: bold;
+	color: #0b81ff;
+}
+.search_location_btn{
+	background-color: #0b81ff;
+    border-radius: 4px;
+    padding: 13px 28px 11px;
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+}
+/*location-box 끝*/
+
+.list-top{
+	position: relative;
+    display: flex;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.list-top > div{
+    height: 37px;
+    position:relative;
+    display:flex;
+    margin-left: 8px;
+} 
+select#order{
+	font-weight: 350;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgb(37, 37, 37);
+    border: unset;
+    background-color: unset;
+    appearance: none;
+    padding: 8px 30px 8px 8px;
+}
+.list-top > div::after {
+    content: "";
+    width: 8px;
+    height: 13px;
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translate(-50%, -50%) rotate(90deg);
+    background: url(../../images/common/icon/index.svg) 0% 0% / contain no-repeat;
+    transition: transform 0.3s ease 0s;
+}
+
+.list-main{
+	position: relative;
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+.cont-box{
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0px;
+    width: calc((100% - 45px) /4);
+    margin-right: 15px;
+}
+.cont-box > div:first-child{
+    width: 100%;
+    height: 282px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-right: 0px !important;
+}
+.cont-box > div:first-child .thum{
+    transition: all 0.3s;
+    transform: scale(1.1);
+    overflow: hidden;
+    border-radius: 4px;
+    width: 100%;
+    height: 100%;
+    background-position:center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.cont-box > div:first-child:hover .thum{
+    transform: scale(1.3);
+}
