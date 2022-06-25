@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/detail.css?12">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_expert/detail.css?1">
 </head>
 
 <script type="text/javascript">
@@ -189,11 +189,13 @@ ${mnum }
 
 
 <!-- 게시글 회원번호랑 로그인한 회원번호가 일치했을때 삭제 -->
-<c:if test="">
+<c:if test="${sessionScope.sessionMnum}==${mnum }">
+		<div class="del">
+			<input type="button" id="del" value="게시글삭제" onclick="del()">
+		</div>
 </c:if>
-
-<input type="button" id="del" value="게시글삭제" onclick="del()">
-</div>
+	</div>
+	
 <hr>
 <div id="commList">
 

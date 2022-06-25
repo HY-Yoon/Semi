@@ -79,12 +79,21 @@
 .else #report{
 	border: none;
 	text-decoration: underline;
+	background-color: white;
 }
 
+
+	.del{
+	
+	
+	}
+
 	#del{
+	width:100px;
 	border: none;
 	text-decoration: underline;
-	padding-left: 1070px;
+	margin-left: 1062px;
+	background-color: white;
 	}
 	
 	.filedownload{

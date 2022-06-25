@@ -17,7 +17,7 @@
 <header>
 <div class="h_wrap">
 	<div class="h_logo">
-		<a href="#"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
+		<a href="${pageContext.request.contextPath}/community"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
 		</div>
 	
 		<div class="h_menu">
@@ -53,7 +53,7 @@
 	<div class="wrap">
 			<div class="w_content">
 			
-			<h1>관심지역 <%=fav %></h1>	
+			<h1>관심지역 ${sessionScope.fav }</h1>	
 				<c:choose>
 					<c:when test="${fav eq '서울'}">
 						<div class="w_img">
