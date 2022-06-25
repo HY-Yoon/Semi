@@ -8,9 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ReportDao;
+import vo.MemberVo;
+
 @WebServlet("/report")
 public class UserReportController extends HttpServlet
 {
+	/**
+	 * 신고창 팝업이 뜨는 <a> 태그를 붙입니다.
+	 * 신고자의 정보는 session.userdata 를 통해서 취득합니다.
+	 * @param req jsp의 리퀘스트 변수 (contextPath 취득용)
+	 * @param userNumber 신고대상자의 멤버번호
+	 * @return <a href="javascript:window.open(...)>신고 조지기</a>
+	 */
 	public static String getHTML(HttpServletRequest req, long userNumber)
 	{
 		String name = "신고 조지기";
@@ -40,9 +50,52 @@ public class UserReportController extends HttpServlet
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
+		boolean isCancelled = false;
+		String cancelReason = "";
+		
 		req.setCharacterEncoding("utf-8");
-		System.out.println("asdfasdf");
-		System.out.println(req.getParameter("reason"));
-		System.out.println(req.getParameter("reason_detail"));
+		System.out.println("mnum - " + req.getParameter("mnum"));
+		System.out.println("reason - " + req.getParameter("reason"));
+		System.out.println("reason de - " + req.getParameter("reason_detail"));
+
+		if (req.getParameter("mnum") == null || req.getParameter("reason") == null)
+		{
+			isCancelled = true;
+			cancelReason = "비정상적인 접근";
+		}
+		
+		MemberVo userdata = (MemberVo)req.getSession().getAttribute("userdata");
+		if (userdata == null)
+		{
+			isCancelled = true;
+			cancelReason = "먼저 로그인하세요.";
+		}
+		else
+		{
+			int plaintiff = (int)userdata.getMnum();
+			int defendant = Integer.parseInt(req.getParameter("mnum"));
+			String reason = req.getParameter("reason");
+			if (req.getParameter("reason_detail") != null)
+				reason += " - " + req.getParameter("reason_detail");
+			
+			int result = ReportDao.getInstance().insert(defendant, plaintiff, reason);
+			if (result < 0)
+			{
+				isCancelled = true;
+				cancelReason = "DB 에러";
+			}
+			
+		}
+		if (!isCancelled)
+		{
+			req.getRequestDispatcher("/html&jsp/report/report_complete.jsp?result=ok").forward(req, resp);
+			// resp.sendRedirect(req.getContextPath() + "/html&jsp/report/report_complete.jsp?result=ok");			
+		}
+		else
+		{
+			req.setAttribute("no_reason", cancelReason);
+			req.getRequestDispatcher("/html&jsp/report/report_complete.jsp?result=error").forward(req, resp);
+			// resp.sendRedirect(req.getContextPath() + "/html&jsp/report/report_complete.jsp?result=error");
+		}
 	}
 }

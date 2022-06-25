@@ -183,7 +183,7 @@ ${mnum }
 <span>${regdate }</span>
 <span>조회수 ${views }</span>
 <input type="button" id="report" value="신고하기" onclick="report()">
-<button type="button" onclick="addReco()"><img alt="추천" src="../../images/board_expert/reco.png"></button>
+<button type="button" onclick="addReco()"><img alt="추천" src="${pageContext.request.contextPath}/images/board_expert/reco.png"></button>
 </div>
 
 
