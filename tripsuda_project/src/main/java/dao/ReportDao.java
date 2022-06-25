@@ -11,7 +11,24 @@ import db.JdbcUtil;
 import vo.Expert_commVo;
 import vo.ReportVo;
 
-public class ReportDao {
+public class ReportDao
+{
+	private static ReportDao instance = null;
+	public static ReportDao getInstance()
+	{
+		if (instance == null)
+			instance = new ReportDao();
+		return instance;
+	}
+	private ReportDao()
+	{
+		initialize();
+	}
+	
+	private void initialize()
+	{
+	}
+	
 	//신고하기
 	public int insert(int defendant, int plaint, String reason ) {
 		Connection con = null;
