@@ -31,7 +31,7 @@
 			</div>
 			<div class="mypage">
 				<ul>
-					<li class="list"><a href="${pageContext.request.contextPath}/memberInfo"><span class="txt">나의정보수정</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/memberModifyForm"><span class="txt">나의정보수정</span></a></li>
 					<li class="list"><a href="${pageContext.request.contextPath}/html&jsp/Point/point.jsp"><span class="txt">포인트조회</span></a></li>
 					<li class="list"><a href="#"><span class="txt">여행후기</span></a></li>
 					<li class="list"><a href="#"><span class="txt">자유게시판</span></a></li>

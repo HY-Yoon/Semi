@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDao;
 import vo.MemberVo;
 
-@WebServlet("/mypage")
+@WebServlet("/member/main")
 public class memberInfoController extends HttpServlet{
       @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
