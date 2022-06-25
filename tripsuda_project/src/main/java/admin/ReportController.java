@@ -20,14 +20,13 @@ import vo.ReportVo22;
 public class ReportController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ReportDao rdao = new ReportDao();
+		ReportDao rdao = ReportDao.getInstance();
 		//신고목록 페이징
 		String spageNum = req.getParameter("pageNum");
 		int pageNum = 1;
 		if(spageNum!=null) {
 			pageNum = Integer.parseInt(spageNum);
-		}                
-						
+		}
 		int startRow = (pageNum-1)*5+1;                 
 		int endRow = startRow+4;	
 		
