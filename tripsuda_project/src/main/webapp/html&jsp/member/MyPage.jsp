@@ -34,10 +34,10 @@
    
    <!-- 가져온 회원정보를 출력한다. -->
 		<table>
-			<tr>
+			<div id=input-box>
 				<td id="title">아이디</td>
 				<td>${member.id}</td>
-			</tr>
+			</div>
 						
 			<tr>
 				<td id="title">이름</td>

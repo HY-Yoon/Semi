@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import dao.MemberDao;
 import vo.MemberVo;
 
-@WebServlet("/memberInfo")
+@WebServlet("/mypage")
 public class memberInfoController extends HttpServlet{
       @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,6 +29,6 @@ public class memberInfoController extends HttpServlet{
   		request.setAttribute("memberInfo", member);
   		
   		//다음 페이지로 이동
-  		request.getRequestDispatcher("/html&jsp/member/MyPage.jsp").forward(request, response);
+  		request.getRequestDispatcher("/html&jsp/default/MyPage.jsp").forward(request, response);
     }
 }
