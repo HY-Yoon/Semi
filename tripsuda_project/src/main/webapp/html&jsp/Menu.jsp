@@ -25,15 +25,15 @@ function changeView(value){
 	}
 	else if(value == "3") // 로그아웃 버튼 클릭시 로그아웃 controller 
 	{
-		location.href="${pageContext.request.contextPath}/Logout"; //
+		location.href="${pageContext.request.contextPath}/Logout."; //
 	}
 	else if(value == "4") // 내정보 버튼 클릭시 memberInfoController
 	{
-		location.href="${pageContext.request.contextPath}/memberInfo";
+		location.href="${pageContext.request.contextPath}/memberInfo.";
 	}
 	else if(value == "5") // 자유게시판 리스트 화면으로 이동
 	{
-		location.href="${pageContext.request.contextPath}/freelist";
+		location.href="${pageContext.request.contextPath}/freelist.";
 	}
 }
 </script>

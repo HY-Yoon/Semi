@@ -28,10 +28,9 @@ public class memberDeleteController extends HttpServlet {
 	
 	if(check == 1){
 		session.removeAttribute("sessionID");
-		request.getRequestDispatcher("/html&jsp/member/ResultForm.jsp").forward(request, response);
-	}else{
-		System.out.println("회원 삭제 실패");		
-		request.getRequestDispatcher("/Menu.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/community");
+	}else{	
+		request.getRequestDispatcher("/html&jsp/member/DeleteForm.jsp").forward(request, response);
 	}
 }
 }

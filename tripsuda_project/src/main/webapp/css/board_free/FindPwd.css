@@ -4,7 +4,11 @@ justify-content: center;
 }
 
 form{
+
 padding:10px;
+}
+span{
+	padding:10px;
 }
 
 .input-box{

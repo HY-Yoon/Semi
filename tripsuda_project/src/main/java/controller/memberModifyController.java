@@ -27,21 +27,20 @@ public class memberModifyController extends HttpServlet{
 	 String id = session.getAttribute("sessionID").toString();
 	
 	 // 수정할 정보를 memberVo에 넣는다.
-	 MemberVo member = new MemberVo();
-	 member.setId(id);
-	 member.setPwd(request.getParameter("pwd"));
-	 member.setNick(request.getParameter("nick"));
-	 member.setPhone(request.getParameter("phone"));
-	 member.setBirth(request.getParameter("birth"));
-	 member.setFavorite(request.getParameter("favorite"));
+	 MemberVo vo = new MemberVo();
+	 vo.setId(id);
+	 vo.setPwd(request.getParameter("pwd"));
+	 vo.setNick(request.getParameter("nick"));
+	 vo.setPhone(request.getParameter("phone"));
+	 vo.setBirth(request.getParameter("birth"));
+	 vo.setFavorite(request.getParameter("favorite"));
 	
 	 
-		mdao.updateMember(member);
-	
-
+	 mdao.updateMember(vo);
 	 
-     session.setAttribute("msg", "0");
-     request.getRequestDispatcher("/html&jsp/member/ResultForm.jsp").forward(request, response);
+	 MemberVo member = mdao.getUserInfo(id);
+	 request.setAttribute("memberInfo", member);
+     request.getRequestDispatcher("/html&jsp/default/MyPage.jsp").forward(request, response);
 		
    }
 }
