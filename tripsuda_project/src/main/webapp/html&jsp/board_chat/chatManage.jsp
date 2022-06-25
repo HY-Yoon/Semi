@@ -14,7 +14,7 @@
 <%
 	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
 %>
-<link rel="stylesheet" href="../../css/board_chat/chat.css?ver=<%=System.currentTimeMillis() %>">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_chat/chat.css?ver=<%=System.currentTimeMillis() %>">
 <script type="text/javascript" charset="utf-8">
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 	sessionStorage.setItem("userNum", "<%=userdata.getMnum() %>");

@@ -114,5 +114,5 @@
 		</div>
 </div>
 
-<link rel="stylesheet" href="../../css/board_party/detail.css?ver=<%=System.currentTimeMillis() %>">
-<script src="../../js/board_party/detail.js?ver=<%=System.currentTimeMillis() %>"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_party/detail.css?ver=<%=System.currentTimeMillis() %>">
+<script src="${pageContext.request.contextPath}/js/board_party/detail.js?ver=<%=System.currentTimeMillis() %>"></script>

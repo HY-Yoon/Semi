@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" href="../../css/board_party/list.css?ver=<%=System.currentTimeMillis() %>">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_party/list.css?ver=<%=System.currentTimeMillis() %>">
 <script type="text/javascript" charset="utf-8">
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 </script>
@@ -115,5 +115,3 @@
 	<% } %>
 	</div>
 </div>
-
-<script src="js/editor.js?ver=<%=System.currentTimeMillis() %>"></script>
