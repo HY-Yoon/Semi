@@ -3,7 +3,10 @@
 @import url(./default/header.css);
 @import url(./default/footer.css);
 main{
+	width: 100%;
 	padding-top:140px;
+	box-sizing: border-box;
+    overflow: hidden;
 }
 img{
     vertical-align: top;
