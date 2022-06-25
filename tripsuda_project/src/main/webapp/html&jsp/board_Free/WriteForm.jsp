@@ -24,6 +24,12 @@
 	margin: 10px auto;
 	
 	}
+	
+	.s{
+		margin-left: 30px;
+	
+	}
+	
 	.title, .cont{
 	width: 900px;
 	border: 1px solid black;
@@ -115,11 +121,11 @@
 	<table width="1200" border="3" bordercolor="lightgray" align="center">
 		<tr>
 			<td class="t">ID</td>
-			<td>${sessionScope.sessionID}</td>
+			<td><span class="s">${sessionScope.sessionID}</span></td>
 		</tr>
 		<tr>
 			<td class="t">작성자</td>
-			<td>${sessionScope.sessionNick}</td>
+			<td><span class="s">${sessionScope.sessionNick}</span></td>
 		</tr>
 
 			<tr>

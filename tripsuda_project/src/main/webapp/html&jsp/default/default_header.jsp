@@ -64,7 +64,7 @@
                     <img src="${pageContext.request.contextPath }/images/common/letter_color.svg" alt="이미지">
                     <p>여행친구 찾기</p>
                 </button>
-                 <button>
+                 <button onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_Free/WriteForm.jsp'" >
                     <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
                     <p>자유게시판</p>
                 </button>
