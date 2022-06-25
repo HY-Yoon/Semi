@@ -23,7 +23,7 @@ public class ExpertReportController extends HttpServlet{
 		String reason = req.getParameter("reason");
 		
 		
-		ReportDao dao = new ReportDao();
+		ReportDao dao = ReportDao.getInstance();
 		int n = dao.insert(defendant, plaint, reason);
 		if(n>0) {
 			
