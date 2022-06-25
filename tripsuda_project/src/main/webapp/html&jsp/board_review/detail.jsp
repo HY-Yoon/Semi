@@ -1,3 +1,4 @@
+<%@page import="controller.report.UserReportController"%>
 <%@page import="dao.reviewboard.ReviewRecoDao"%>
 <%@page import="dao.MemberDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -18,23 +19,26 @@
 	//현재 글 작성자와 로그인 회원이 같은 사람인지 확인하기 위한 vo
 	ReviewBoardVo vo= ReviewBoardDao.getInstance().select(anum);
 	MemberVo editorInfo = MemberDao.getInstance().select(vo.getMnum());
+	request.setAttribute("editorInfo", editorInfo);
 	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
+	
+	//script 넘겨주기위한 mnum
+	long mnum = 0;
+	
 	if(userdata != null){
 		//글쓴이가 보면 조회수 증가 X
 		if(!userdata.getId().equals(editorInfo.getId())){ 
 			ReviewBoardDao.getInstance().updateView(anum);
 		}
+		mnum = userdata.getMnum();
 	}else{
 		ReviewBoardDao.getInstance().updateView(anum);
-	}
-	
-	//공지사항 설정을 위해 로그인한 회원등급정보 가져오기
-	request.setAttribute("grade", userdata.getGrade());
+	}	
 %>
 
 <script type="text/javascript">
 	sessionStorage.setItem("anum", "<%=anum %>");
-	sessionStorage.setItem("mnum", "<%=userdata.getMnum() %>");
+	sessionStorage.setItem("mnum", "<%=mnum %>");
 	sessionStorage.setItem("notice", "<%=vo.getNotice() %>");
 	sessionStorage.setItem("contextPath", "<%=request.getContextPath() %>");
 	
@@ -61,16 +65,16 @@
                 <p id="date"><%=DateUtil.getText(vo.getRegdate(), "YYYY.MM.dd hh:mm") %></p>
                 <p id="view">조회수 <%=vo.getViews() %></p>
                 <p id="reco">추천수 <%=ReviewRecoDao.getInstance().getRecoCount(anum) %></p>
-                <c:choose>
-                	<c:when test="${userdata.getId() == editorInfo.getId()}">
-                		<button onclick="edit()">수정</button>
-                		<button onclick="del()">삭제</button>
-                	</c:when>
-                	<c:when test="${userdata != null}">
-                		<button class="report">신고하기</button>	
-                	</c:when>
-                </c:choose>
                 
+               	<c:if test="${userdata.getId() == editorInfo.getId()}">
+               		<button onclick="edit()">수정</button>
+               		<button onclick="del()">삭제</button>
+               	</c:if>
+               	<%--신고하기 시작 --%>
+               	<c:if test="${userdata != null}">
+               		<%=UserReportController.getHTML(request, userdata.getMnum())%>	
+               	</c:if>
+                <%--신고하기 끝 --%>
                 <c:if test="${userdata.getGrade() == '관리자'}">
                 	<!-- 관리자일때만 -->
                 	<button class="notice" onclick="setNotice()">공지사항설정</button>
@@ -92,9 +96,9 @@
                 </div>
                 <div class="area_middle">
                 	<%--작성자는 본인 글 추천불가 --%>
-	                <button class="reco_btn" <c:if test="${userdata.getId() != editorInfo.getId()}"> onclick="setReco()"</c:if>>추천하기</button>
+	                <button class="reco_btn" <c:if test="${userdata.getId() != editorInfo.getId()}"> onclick='setReco()'</c:if>>추천하기</button>
                		<%-- 로그인안한 회원은 댓글작성 불가 --%>
-               		<button class="comm_btn" <c:if test="${userdata != null}">onclick="addComm()"</c:if>>댓글작성</button>
+               		<button class="comm_btn" <c:if test="${userdata != null}">onclick='addComm()'</c:if>>댓글작성</button>
                 </div>
             </div>
         </section>
