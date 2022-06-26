@@ -168,7 +168,7 @@ header{
     width: 183px;
     padding: 0px 0px 0px 25px;
     background: rgb(255, 255, 255);
-    height: 138px;
+    height: 200px;
     top: 60px;
     margin-top: 20px;
     right: 0px;
@@ -179,6 +179,7 @@ header{
     justify-content: space-evenly;
     z-index: 100;
     margin-right: 0px !important;
+    padding-top: 15px;
 }
 .h_right .write_popup.active{
     display: flex;
@@ -190,6 +191,8 @@ header{
     font-weight: 500;
     font-size: 18px;
     color: rgb(37, 37, 37);
+    margin-bottom: 8px;
+    padding: 5px 0;
 }
 .h_right .write_popup > button img{
     position: absolute;
@@ -199,7 +202,8 @@ header{
     width: 33px;
 }
 .h_right .write_popup > button p{
-    padding-left: 12px;
+    padding-left: 40px;
+    text-align: left;
 }
 .h_right .write_popup::after{
     content: "";

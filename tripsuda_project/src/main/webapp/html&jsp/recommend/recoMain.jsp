@@ -7,8 +7,10 @@
 <meta charset="UTF-8">
 <title>관광지 추천</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/reco_main.css?1">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css">
 </head>
 
 <body>
