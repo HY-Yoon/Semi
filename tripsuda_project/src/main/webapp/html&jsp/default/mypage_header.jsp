@@ -35,7 +35,7 @@
                         <div class="area_porfile">
                             <img src="${pageContext.request.contextPath }/images/common/vector_profile_default.svg" alt="프로필">    
                             <div>
-                                <p>${sessionScope.id}</p>
+                                <p>${sessionScope.sessionID}</p>
                                 <button onclick="document.location.href='${pageContext.request.contextPath }/mypage'">마이페이지</button>
                             </div>
                         </div>
@@ -47,26 +47,24 @@
             <div class="write_popup">
                 <button onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/editpage.jsp')">
                     <img src="${pageContext.request.contextPath }/images/common/letter_color.svg" alt="이미지">
-                    <p>여행친구 찾기</p>
+                    <p>여행친구찾기</p>
                 </button>
-                <button onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_Free/WriteForm.jsp'" >
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>자유게시판</p>
+                 <button onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_Free/WriteForm.jsp'" >
+                    <img src="${pageContext.request.contextPath }/images/common/chat.png" alt="이미지">
+                    <p>자유롭게글쓰기</p>
                 </button>
-                <button>
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>여행후기</p>
+                <button onclick="location.href='${pageContext.request.contextPath }/board_review/write'">
+                    <img src="${pageContext.request.contextPath }/images/common/rating.png" alt="이미지">
+                    <p>여행후기작성하기</p>
                 </button>
                 <button onclick="location.href='${pageContext.request.contextPath }/board_expert/main?mnum=${sessionScope.sessionMnum}&nick=${sessionScope.sessionNick}'">
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>전문가</p>
+                    <img src="${pageContext.request.contextPath }/images/common/expert.png" alt="이미지">
+                    <p>전문가추천하기</p>
                 </button>
                 <button onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/insert_qa')">
-		                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-		                    <p>여행 질문하기</p>
-	            </button> 
-                
-               
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>여행 질문하기</p>
+	            </button>                
             </div>
         </div>
     </div>

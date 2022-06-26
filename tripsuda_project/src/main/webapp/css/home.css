@@ -107,5 +107,19 @@ main section{
 .swiper_slide .main_bg{
     width: 100vw;
     height: 451px;
+}
+.swiper_slide#slide_1 .main_bg{
+    background-color: rgb(232, 237, 239);
+}
+.swiper_slide#slide_2 .main_bg{
+    background-color: rgb(232, 237, 239);
+}
+.swiper_slide#slide_3 .main_bg{
+    background-color: rgb(232, 237, 239);
+}
+.swiper_slide#slide_4 .main_bg{
+    background-color: rgb(232, 237, 239);
+}
+.swiper_slide#slide_5 .main_bg{
     background-color: rgb(232, 237, 239);
 }
