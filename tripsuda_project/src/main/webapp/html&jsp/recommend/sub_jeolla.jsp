@@ -22,11 +22,11 @@
         <jsp:include page="/html&jsp/default/default_header.jsp"/>
     </header>
     <main>
-		<%-- 제주 --%>
+		<%-- 전라도 --%>
 		<!-- 날씨를 얻어오기 위한 현재 페이지 정보 -->
 		<div id="pageInfo" style="display: none;">
-		    <span id="course_id">164</span>
-		    <span id="spotName">(제주)우도해양도립공원</span>
+		    <span id="course_id">110</span>
+		    <span id="spotName">(순천)순천만자연생태공원</span>
 		</div>
 		
 		<div class="top_inner">
@@ -34,32 +34,33 @@
 		        <div class="info_box">
 		            <div class="title">
 		                <div class="tag">
-		                    <span>섬속의섬</span>
-		                    <span>경관/포토</span>
-		                    <span>유네스코</span>
-		                    <span>자연경관</span>
+		                    <span>갈대</span>
+		                    <span>생태공원</span>
+		                    <span>아이와함께</span>
+		                    <span>희귀조류</span>
+		                    <span>자연</span>
 		                </div>
 		                <h2>
 		                    <em id="page_title">
-		                        우도
+		                        순천만 자연생태공원
 		                    </em>
 		                </h2>
 		            </div>
 		            <div class="summary">
-		                한해 약 200만 명의 관광객이 찾는 제주의 대표적인 부속섬
+		                고흥반도와 여수반도 사이에 형성된 만, 우리나라의 대표적인 연안 습지
 		            </div>
 		            <ul class="summeary_list">
 		                <li>
 		                    <span>
 		                        <i class="fa fa_map"></i>주소
 		                    </span>
-		                    제주특별자치도 제주시 우도면 삼양고수물길 1
+		                    전라남도 순천시 순천만길 513-25
 		                </li>
 		                <li>
 		                    <span>
 		                        <i class="fa fa_phone"></i>문의처
 		                    </span>
-		                    (+82) 064-728-1527
+		                    061-749-6052
 		                </li>
 		            </ul>
 		            <div class="current_info">
@@ -89,7 +90,7 @@
 		        </div>
 		        <div class="thumb">
 		            <div>
-		                <img src="https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/e1c2f9e4-bf4c-488c-884c-5674f8d8b119.jpg" alt="우도">
+		                <img src="https://t1.daumcdn.net/brunch/service/user/1jPF/image/qFZGU4gYug8cv0rEOGb5jbIJc9U.jpg" alt="순천만">
 		            </div>
 		        </div>
 		    </div>
@@ -101,12 +102,8 @@
 		                <h3>상세소개</h3>
 		            </div>
 		            <div class="obj">
-		                <p>우도는 소가 누워있는 모양을 닮았다고 해서 일찍부터 소섬 또는 쉐섬으로 불리웠다. 완만한 경사와 옥토, 풍부한 어장, 우도팔경 등 천혜의 자연조건을 갖춘 관광지로써 한해 약 200만 명의 관광객이 찾는 제주의 대표적인 부속섬이다. </p>
-		                <p>성산항과 종달항에서 우도가는 배를 탈 수 있는데 어디서 출발하든 15분 정도 소요된다. 섬의 길이는 3.8km, 둘레는 17km. 쉬지 않고 걸으면 3~4시간 걸리는 거리지만, 대부분의 관광객은 버스나 자전거, 미니 전기차를 타고 유명한 관광지 위주로 돌아본다. 
-		
-		                    검멀레해변이나 우도봉, 홍조단괴해변, 하고수동해변 등 유명한 관광지 1-2개를 둘러보고, 카페나 음식점에서 휴식을 즐겨도 대략 3-4시간 정도 소요된다. 여유있게 우도를 즐기고 싶다면 오전 아침배를 타고 들어가 오후 배를 타고 나와 하루종일 우도에 머물러 보는것도 좋다. 단, 기상에 따라 배 운항여부가 달라질수 있으니 우도 여행일정을 짜는데는 기상조건을 필히 확인해야한다. </p>
-		                <p>※ 우도 외부차량(렌터카, 전세버스) 반입 제한 조치는 2022년 7월 31일까지로 연장되었다. <br>
-		                    (단, 1~3급 장애인과 만 65세 이상 노약자, 임산부, 만 6세 미만의 영유아를 동반하는 경우와 우도에 숙박하는 관광객이 탄 렌터카는 반입 가능하다.)</p>
+		                <p>전남 순천시 순천만은 고흥반도와 여수반도 사이에 형성된 만으로 우리나라의 대표적인 연안 습지다. 순천만에는 다양하고 풍부한 습지 생물이 서식하고 있어 습지 연구에 매우 중요한 지역이다. 순천만에서 우리나라에서 가장 넓은 면적의 갈대 군락을 볼 수 있다. 갈대 군락은 생물들에게 또 다른 보금자리를 마련하여 현재 이곳에는 국제보호조인 흑두루미, 검은머리갈매기 외에도 황새, 저어새, 혹부리오리, 논병아리, 고방오리, 왜가리 등 다양한 생물이 서식한다. 이 외에 순천만에서는 유유히 흐르는 S자형 수로, 칠면초 군락 등 수려한 해안생태 경관을 볼 수 있다. 특히 S자형 수로는 우리나라 사진작가들이 10대 낙조 풍광 중 하나로 꼽았고, 2006년에는 한국관광공사 최우수 경관 감상지로 선정되는 등 빼어난 풍경을 자랑한다.</p>
+		                <p>순천만은 약 8,000년의 역사를 가지고 있다. 지구상의 마지막 빙하기가 끝나고 해수면이 약 160m 상승하면서 서해가 육지에서 바다로 변하였을 때 처음 생성된 것으로 추정된다. 약 540만㎡에 달하는 갈대 군락은 하천이 직강화(直降化)되면서 토사의 유입량이 많아지고 습지 면적이 늘어나면서 자연스럽게 형성됐다. 크기는 물론 보유하고 있는 생물의 종도 남다른 만큼 순천만은 2003년 12월 습지보호지역으로 지정·관리되고 있다. 2004년에는 동북아 두루미 보호 국제네트워크에 가입, 2006년 1월 20일에는 국내 연안 습지 최초로 람사르협약에 등록되었다. 2008년 6월, 순천만의 생물학적 가치가 인정되어 국가지정문화재 명승으로 지정되었다.</p>
 		                <div id="tab_wrap" class="tab_wrap">
 		                    <div class="tit_wrap">
 		                        <ul class="menu_wrap">
@@ -121,13 +118,13 @@
 		                                <div class="photo_slide_wrap">
 		                                    <div class="photo_slides">
 		                                        <div class="photo_slide" id="slide_1">
-		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=298419cd-c6c4-41fc-82dc-49dab7e8abbe" alt="이미지">
+		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=dda9e13c-d081-4826-adbf-28a4efd72548" alt="이미지">
 		                                        </div>
 		                                        <div class="photo_slide" id="slide_2">
-		                                            <img src="https://api.cdn.visitjeju.net/photomng/imgpath/201907/30/066d3cb8-f967-449d-8f35-7b00dbd84cf8.jpg" alt="이미지">
+		                                            <img src="https://img1.kakaocdn.net/cthumb/local/R0x420/?fname=http%3A%2F%2Ft1.kakaocdn.net%2Ffiy_reboot%2Fplace%2F62EDCC1143964167ACBE95CA8EF1AC19" alt="이미지">
 		                                        </div>
 		                                        <div class="photo_slide" id="slide_3">
-		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=3d21448d-53db-4510-8ee4-e5c13e5d03eb" alt="이미지">
+		                                            <img src="https://img1.kakaocdn.net/cthumb/local/R0x420/?fname=http%3A%2F%2Ft1.daumcdn.net%2Flocal%2FkakaomapPhoto%2Freview%2F410037b3fef1f744aea32af74554beee28d4a6c6%3Foriginal" alt="이미지">
 		                                        </div>
 		                                    </div>
 		                                    
@@ -154,7 +151,7 @@
 		                                    style="border: 0;"
 		                                    loading="lazy"
 		                                    allowfullscreen
-		                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcMhxkQwl_PPTvbguHOoQj4GRxoSmFhUQ&q=우도&region=KR&language=ko" frameborder="0"></iframe>
+		                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcMhxkQwl_PPTvbguHOoQj4GRxoSmFhUQ&q=순천만습지&region=KR&language=ko" frameborder="0"></iframe>
 		                            </div>
 		                        </div>
 		
@@ -171,11 +168,11 @@
 		                <p>
 		                    <strong>이용시간</strong>
 		                </p>
-		                <p>없음</p>
+		                <p>화요일~일요일, 08:00~일몰 시까지(야간천문대 이용은 22:00까지)</p>
 		                <p>
 		                    <strong>휴무일</strong>
 		                </p>
-		                <p>연중무휴</p>
+		                <p>매주 월요일 (배·기차·천문대 등의 시설만 이용 불가, 공원 입장 가능)</p>
 		            </div>
 		        </div>
 		    </div>
@@ -189,13 +186,13 @@
 		            <div class="obj">
 		                <ul class="article_list">
 		                    <li>
-		                        <a href="https://www.gn.go.kr/tour/prog/lod/Sights/S01/sub02_02_01/view.do?cid=745" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=516bae56-c1b1-4cbb-96b8-b54431004185)"></div>
+		                        <a href="http://tour.shinan.go.kr" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=50cafadf-b2f0-47b4-87d3-22ab1bfd9667)"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">안반데기 </p>
+		                                    <p class="title">신안 섬수국축제</p>
 		                                    <span class="small-text">
-		                                        강릉 해발 1,100m의 고산지대에 위치해 ‘하늘 아래 첫 동네’라고 불리는 안반데기
+		                                        다양한 꽃구경하러 오세요!
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
@@ -203,13 +200,13 @@
 		                        </a>
 		                    </li>
 		                    <li>
-		                        <a href="https://www.gn.go.kr/tour/prog/lodFesta/Festa/sub02_05/view.do" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image: url(https://tourdb.gwd.go.kr/img/512/additional/2016/12/13/DB10012_I_01.JPG);"></div>
+		                        <a href="http://www.xn--q20b02dt1iwpiewfoma840bq6d0tq.com/" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=b00ba5dd-b7b3-44dd-84b5-49143cc509a3);"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">풍호마을 연꽃축제</p>
+		                                    <p class="title">남도음식문화큰잔치</p>
 		                                    <span class="small-text">
-		                                        강릉 풍호마을의 호수에서 만개한 연꽃을 보고 즐길 수 있는 축제
+		                                        남도의 맛! 세계를 잇다!
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
@@ -217,13 +214,13 @@
 		                        </a>
 		                    </li>
 		                    <li>
-		                        <a href="https://www.gn.go.kr/tour/prog/lodFesta/Festa/sub02_05/view.do" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image: url(https://tourdb.gwd.go.kr/img/512/additional/2016/01/11/DA0005_I_01.JPG);"></div>
+		                        <a href="https://festival.jangheung.go.kr/festival" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image: url(https://festival.jangheung.go.kr/images/festival/main/visual_01.jpg?build_20220613001);"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">장덕리복사꽃축제</p>
+		                                    <p class="title">정남진장흥물축제</p>
 		                                    <span class="small-text">
-		                                        매년 봄 장덕리마을에서 열리는 축제
+		                                        무더위 날려버릴 시원한 축제
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
@@ -231,13 +228,13 @@
 		                        </a>
 		                    </li>
 		                    <li>
-		                        <a href="https://tour.pc.go.kr/Home/H30000/H30200/placeDetail?place_no=237&viewType=gallery&curationGroup=2&page=1&pageSize=12&order_column=1&place_type=15" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image: url(http://tong.visitkorea.or.kr/cms/resource/49/2609549_image2_1.jpg);"></div>
+		                        <a href="https://www.gokseong.go.kr/tour/festivity/rose" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image: url(https://www.gokseong.go.kr/tour/contents/77/festivity_rose1.jpg?build_20220607001);"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">평창대관령음악제</p>
+		                                    <p class="title">곡성 세계장미축제</p>
 		                                    <span class="small-text">
-		                                        강원문화재단이 주관하는 평창대관령음악제는 강원도의 아름다운 대자연의 품에서 펼쳐지는 음악을 사랑하는 모든 이들을 위한 축제이다.
+		                                        전 세계 명품 장미를 한 곳에서 볼 수 있는 국내 유일의 기회!
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>

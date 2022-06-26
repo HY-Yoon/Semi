@@ -1,5 +1,15 @@
 /* 관광지 추천 공통 JS*/
-
+let windowOnload = window.onload;
+window.onload = function(){
+	windowOnload ? windowOnload() : null;
+	//이미지 슬라이드
+	start_photo_interval();
+	// 현재 시간 가져오기
+	getTime();
+	start_getTime_interval();
+	//현재 날씨 가져오기
+	weather();
+}
 //SNS공유버튼
 const pageTitle= document.getElementById("page_title").innerText;
 const sendText = pageTitle + " 관광지추천보러가기"; //전달할 텍스트
@@ -42,7 +52,6 @@ function shareKakao() {
 
 
 //이미지 슬라이드
-window.onload = start_photo_interval();
 var photo_interval;
 var photo_length= $('.photo_slide').length;
 function start_photo_interval(){
@@ -67,8 +76,6 @@ $(".menu_wrap li button").click(function(){
 
 
 // 현재 시간 가져오기
-window.onload =getTime();
-window.onload = start_getTime_interval();
 var getTime_interval;
 function start_getTime_interval(){
     getTime_interval=setInterval(function(){
@@ -105,7 +112,7 @@ function getTime(){
     let time_str= month + "."+date+"."+ dayOfWeek + " "+ hours+":"+minutes;
     document.getElementsByClassName("today")[0].innerText= time_str;
 }
-window.onload = weather();
+
 //현재 날씨 가져오기
 function weather(){
     let xhr= new XMLHttpRequest();
