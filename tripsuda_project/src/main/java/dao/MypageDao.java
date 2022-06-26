@@ -160,8 +160,8 @@ public class MypageDao {
 							while(rs.next()) {
 								long anum = rs.getLong("anum");
 								String title = rs.getString("title");
-								Date regdate = rs.getDate("regdate");
-								PartyboardVo vo = new PartyboardVo(anum,mnum,title,regdate);
+								Date regDate = rs.getDate("regDate");
+								PartyboardVo vo = new PartyboardVo(anum,mnum,title,regDate);
 								list.add(vo);
 							}
 							return list;

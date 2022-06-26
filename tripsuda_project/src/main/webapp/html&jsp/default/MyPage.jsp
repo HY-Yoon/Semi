@@ -36,7 +36,7 @@
 					<li class="list"><a href="${pageContext.request.contextPath}/mypage/review"><span class="txt">여행후기</span></a></li>
 					<li class="list"><a href="${pageContext.request.contextPath}/mypage/free"><span class="txt">자유게시판</span></a></li>
 					<li class="list"><a href="${pageContext.request.contextPath}/mypage/party"><span class="txt">내동행 게시글</span></a></li>
-					<li class="list"><a href="#"><span class="txt">QnA</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/mypage/QnA"><span class="txt">QnA</span></a></li>
 					<li class="list"><a href="#"><span class="txt">내코멘트</span></a></li>
 				</ul>
 			</div>
