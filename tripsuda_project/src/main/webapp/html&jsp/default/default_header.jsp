@@ -62,23 +62,23 @@
             <div class="write_popup">
                 <button onclick="window.location.replace('<%=request.getContextPath()%>/html&jsp/board_party/editpage.jsp')">
                     <img src="${pageContext.request.contextPath }/images/common/letter_color.svg" alt="이미지">
-                    <p>여행친구 찾기</p>
+                    <p>여행친구찾기</p>
                 </button>
                  <button onclick="location.href='${pageContext.request.contextPath }/html&jsp/board_Free/WriteForm.jsp'" >
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>자유게시판</p>
+                    <img src="${pageContext.request.contextPath }/images/common/chat.png" alt="이미지">
+                    <p>자유롭게글쓰기</p>
                 </button>
-                <button>
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>여행후기</p>
+                <button onclick="location.href='${pageContext.request.contextPath }/board_review/write'">
+                    <img src="${pageContext.request.contextPath }/images/common/rating.png" alt="이미지">
+                    <p>여행후기작성하기</p>
                 </button>
                 <button onclick="location.href='${pageContext.request.contextPath }/board_expert/main?mnum=${sessionScope.sessionMnum}&nick=${sessionScope.sessionNick}'">
-                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-                    <p>전문가</p>
+                    <img src="${pageContext.request.contextPath }/images/common/expert.png" alt="이미지">
+                    <p>전문가추천하기</p>
                 </button>
                 <button onclick="window.location.replace('${pageContext.request.contextPath }/html&jsp/board_qa/insert_qa')">
-		                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
-		                    <p>여행 질문하기</p>
+                    <img src="${pageContext.request.contextPath }/images/common/magnifier_color.svg" alt="이미지">
+                    <p>여행 질문하기</p>
 	            </button>                
             </div>
         </div>
@@ -86,15 +86,10 @@
 
     <div class="h_bot">
         <button class="bot_navi active" onclick="document.location.href='${pageContext.request.contextPath }/community'">홈</button>
-        <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문</button>
-        <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1'">동행</button>
-        <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/board_review'">후기</button>
-
-        
-
-        <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/freelist'">자유</button>
-        	<!-- 헤더영역 게시판 이름 클릭하면 Q&A게시판으로 이동하는 기능 추가  -->
-
+        <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_expert/list.jsp'">전문가추천</button>
+        <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/html&jsp/board_party/list?pagenum=1'">동행구하기</button>
+        <button class="bot_navi" onclick="document.location.href='<%=request.getContextPath()%>/board_review'">여행후기</button>
+	    <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/freelist'">자유게시판</button>
         <button class="bot_navi" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/board_qa/listViewPage.jsp'">Q&A</button>
     </div>
 </div>
