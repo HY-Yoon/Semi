@@ -22,11 +22,11 @@
         <jsp:include page="/html&jsp/default/default_header.jsp"/>
     </header>
     <main>
-		<%-- 제주 --%>
+   	<%-- 경상도 --%>
 		<!-- 날씨를 얻어오기 위한 현재 페이지 정보 -->
 		<div id="pageInfo" style="display: none;">
-		    <span id="course_id">164</span>
-		    <span id="spotName">(제주)우도해양도립공원</span>
+		    <span id="course_id">199</span>
+		    <span id="spotName">(통영)미륵산</span>
 		</div>
 		
 		<div class="top_inner">
@@ -34,32 +34,33 @@
 		        <div class="info_box">
 		            <div class="title">
 		                <div class="tag">
-		                    <span>섬속의섬</span>
-		                    <span>경관/포토</span>
-		                    <span>유네스코</span>
-		                    <span>자연경관</span>
+		                    <span>바다</span>
+		                    <span>산</span>
+		                    <span>아이와함께</span>
+		                    <span>조망케이블카</span>
+		                    <span>자연</span>
 		                </div>
 		                <h2>
 		                    <em id="page_title">
-		                        우도
+		                        통영케이블카(미륵산)
 		                    </em>
 		                </h2>
 		            </div>
 		            <div class="summary">
-		                한해 약 200만 명의 관광객이 찾는 제주의 대표적인 부속섬
+		                맑은 산바람과 시원한 바닷바람을 동시에 느끼다
 		            </div>
 		            <ul class="summeary_list">
 		                <li>
 		                    <span>
 		                        <i class="fa fa_map"></i>주소
 		                    </span>
-		                    제주특별자치도 제주시 우도면 삼양고수물길 1
+		                    경상남도 통영시 발개로 205
 		                </li>
 		                <li>
 		                    <span>
 		                        <i class="fa fa_phone"></i>문의처
 		                    </span>
-		                    (+82) 064-728-1527
+		                    1544-3303
 		                </li>
 		            </ul>
 		            <div class="current_info">
@@ -89,7 +90,7 @@
 		        </div>
 		        <div class="thumb">
 		            <div>
-		                <img src="https://api.cdn.visitjeju.net/photomng/thumbnailpath/201804/30/e1c2f9e4-bf4c-488c-884c-5674f8d8b119.jpg" alt="우도">
+		                <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=e913e2a8-e574-4f64-8f85-07927a9b30da" alt="미륵산">
 		            </div>
 		        </div>
 		    </div>
@@ -101,12 +102,8 @@
 		                <h3>상세소개</h3>
 		            </div>
 		            <div class="obj">
-		                <p>우도는 소가 누워있는 모양을 닮았다고 해서 일찍부터 소섬 또는 쉐섬으로 불리웠다. 완만한 경사와 옥토, 풍부한 어장, 우도팔경 등 천혜의 자연조건을 갖춘 관광지로써 한해 약 200만 명의 관광객이 찾는 제주의 대표적인 부속섬이다. </p>
-		                <p>성산항과 종달항에서 우도가는 배를 탈 수 있는데 어디서 출발하든 15분 정도 소요된다. 섬의 길이는 3.8km, 둘레는 17km. 쉬지 않고 걸으면 3~4시간 걸리는 거리지만, 대부분의 관광객은 버스나 자전거, 미니 전기차를 타고 유명한 관광지 위주로 돌아본다. 
-		
-		                    검멀레해변이나 우도봉, 홍조단괴해변, 하고수동해변 등 유명한 관광지 1-2개를 둘러보고, 카페나 음식점에서 휴식을 즐겨도 대략 3-4시간 정도 소요된다. 여유있게 우도를 즐기고 싶다면 오전 아침배를 타고 들어가 오후 배를 타고 나와 하루종일 우도에 머물러 보는것도 좋다. 단, 기상에 따라 배 운항여부가 달라질수 있으니 우도 여행일정을 짜는데는 기상조건을 필히 확인해야한다. </p>
-		                <p>※ 우도 외부차량(렌터카, 전세버스) 반입 제한 조치는 2022년 7월 31일까지로 연장되었다. <br>
-		                    (단, 1~3급 장애인과 만 65세 이상 노약자, 임산부, 만 6세 미만의 영유아를 동반하는 경우와 우도에 숙박하는 관광객이 탄 렌터카는 반입 가능하다.)</p>
+		                <p>통영 미륵산에 설치된 통영케이블카는 2선(bi-cable) 자동순환식 곤돌라 방식으로 스위스의 최신기술에 의해 설치되었으며, 길이는 1975m다. 평균속도 1초당 4m로 상부역사까지 약 9분이 소요될 예정이며 승객용 곤돌라 47기, 화물용 1기 등 48개의 곤돌라가 순환하게 된다.</p>
+		                <p>특히, 친환경적인 설계에 의해 중간지주는 1개만 설치하여, 환경보호는 물론 탑승객에게 아주 편안한 승차감을 제공한다. 또한, 8인승 곤돌라 47대가 연속적으로 탑승객을 운송함으로써 지체 없이 탑승이 가능하며, 가까운 사람끼리 오붓하게 아름다운 한려수도의 경치를 감상할 수 있다. 펫 프렌들리 케이블카 오픈으로 반려동물과 함께 탑승이 가능하다.</p>
 		                <div id="tab_wrap" class="tab_wrap">
 		                    <div class="tit_wrap">
 		                        <ul class="menu_wrap">
@@ -121,13 +118,13 @@
 		                                <div class="photo_slide_wrap">
 		                                    <div class="photo_slides">
 		                                        <div class="photo_slide" id="slide_1">
-		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=298419cd-c6c4-41fc-82dc-49dab7e8abbe" alt="이미지">
+		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=edf09934-13ea-4c4e-876f-4b5edd424975" alt="이미지">
 		                                        </div>
 		                                        <div class="photo_slide" id="slide_2">
-		                                            <img src="https://api.cdn.visitjeju.net/photomng/imgpath/201907/30/066d3cb8-f967-449d-8f35-7b00dbd84cf8.jpg" alt="이미지">
+		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=4a14d4f5-e0ca-4e87-8036-5b9bd8c89024" alt="이미지">
 		                                        </div>
 		                                        <div class="photo_slide" id="slide_3">
-		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=3d21448d-53db-4510-8ee4-e5c13e5d03eb" alt="이미지">
+		                                            <img src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=288d0503-fe33-4a2a-b8bf-fdd5281c1554" alt="이미지">
 		                                        </div>
 		                                    </div>
 		                                    
@@ -154,7 +151,7 @@
 		                                    style="border: 0;"
 		                                    loading="lazy"
 		                                    allowfullscreen
-		                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcMhxkQwl_PPTvbguHOoQj4GRxoSmFhUQ&q=우도&region=KR&language=ko" frameborder="0"></iframe>
+		                                    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcMhxkQwl_PPTvbguHOoQj4GRxoSmFhUQ&q=통영케이블카&region=KR&language=ko" frameborder="0"></iframe>
 		                            </div>
 		                        </div>
 		
@@ -171,11 +168,17 @@
 		                <p>
 		                    <strong>이용시간</strong>
 		                </p>
-		                <p>없음</p>
+		                <p>- 동절기(10월~3월) 평일 09:30~16:00, 주말·공휴일 09:30~16:00 <br>
+		                    - 춘·추계(4,9월) 평일 09:30~17:00, 주말·공휴일 09:30~17:00 <br>
+		                    - 성수기·하절기(5~8월) 평일 09:30~18:00 주말·공휴일 09:30~18:00 <br>
+		                    ※ 날씨 관계로 휴장하거나 운행이 중단될 수 있으니 사전 확인 필요 <br>
+		                    ※ 매표는 운행종료 2~3시간 전에 조기마감 될 수 있음 <br>
+		                    ※ 5월, 8월, 10월은 조기운행 및 연장운행 할 수 있음 <br>
+		                    ※ 상기 운행시간은 상황에 따라 변동될 수 있으므로 사전확인 필요</p>
 		                <p>
 		                    <strong>휴무일</strong>
 		                </p>
-		                <p>연중무휴</p>
+		                <p>매월 2,4주차 월요일(두번쨰, 네번째 월요일이 공휴일인 경우 익일)</p>
 		            </div>
 		        </div>
 		    </div>
@@ -189,13 +192,13 @@
 		            <div class="obj">
 		                <ul class="article_list">
 		                    <li>
-		                        <a href="https://www.gn.go.kr/tour/prog/lod/Sights/S01/sub02_02_01/view.do?cid=745" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=516bae56-c1b1-4cbb-96b8-b54431004185)"></div>
+		                        <a href="https://www.timf.org/kr/" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image:url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=17ad2638-5bac-417c-a5cc-06898da77513)"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">안반데기 </p>
+		                                    <p class="title">통영국제음악제</p>
 		                                    <span class="small-text">
-		                                        강릉 해발 1,100m의 고산지대에 위치해 ‘하늘 아래 첫 동네’라고 불리는 안반데기
+		                                        ‘다양성 속의 비전(Vision in Diversity)’
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
@@ -203,13 +206,13 @@
 		                        </a>
 		                    </li>
 		                    <li>
-		                        <a href="https://www.gn.go.kr/tour/prog/lodFesta/Festa/sub02_05/view.do" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image: url(https://tourdb.gwd.go.kr/img/512/additional/2016/12/13/DB10012_I_01.JPG);"></div>
+		                        <a href="http://www.hansanf.org" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=3a3f019f-031b-4780-8060-4828d35bcbb5);"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">풍호마을 연꽃축제</p>
+		                                    <p class="title">통영한산대첩축제</p>
 		                                    <span class="small-text">
-		                                        강릉 풍호마을의 호수에서 만개한 연꽃을 보고 즐길 수 있는 축제
+		                                        한산대첩의 위대한 승리를 생생하게 느껴보자
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
@@ -217,13 +220,13 @@
 		                        </a>
 		                    </li>
 		                    <li>
-		                        <a href="https://www.gn.go.kr/tour/prog/lodFesta/Festa/sub02_05/view.do" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image: url(https://tourdb.gwd.go.kr/img/512/additional/2016/01/11/DA0005_I_01.JPG);"></div>
+		                        <a href="http://www.k-island.org/" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=89702246-9eee-4d74-9de6-4a3a4661968e);"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">장덕리복사꽃축제</p>
+		                                    <p class="title">제2회 섬의 날</p>
 		                                    <span class="small-text">
-		                                        매년 봄 장덕리마을에서 열리는 축제
+		                                        섬, 쉼이되다
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
@@ -231,13 +234,13 @@
 		                        </a>
 		                    </li>
 		                    <li>
-		                        <a href="https://tour.pc.go.kr/Home/H30000/H30200/placeDetail?place_no=237&viewType=gallery&curationGroup=2&page=1&pageSize=12&order_column=1&place_type=15" target="_blank" title="페이지 이동">
-		                            <div class="thumb" style="background-image: url(http://tong.visitkorea.or.kr/cms/resource/49/2609549_image2_1.jpg);"></div>
+		                        <a href="http://ttaf.kr" target="_blank" title="페이지 이동">
+		                            <div class="thumb" style="background-image: url(https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=bdabc791-48cb-467d-ba21-73b0b4644b98);"></div>
 		                            <div class="infor-element">
 		                                <div class="infor-element-inner">
-		                                    <p class="title">평창대관령음악제</p>
+		                                    <p class="title">통영연극예술축제</p>
 		                                    <span class="small-text">
-		                                        강원문화재단이 주관하는 평창대관령음악제는 강원도의 아름다운 대자연의 품에서 펼쳐지는 음악을 사랑하는 모든 이들을 위한 축제이다.
+		                                        통영시는 통제영 당시 12공방의 예술혼이 면면히 이어져 온 예술의 고장으로 통영만의 독특한 전통 공연예술인 통영오광대, 남해안별신굿, 승전무 등이 아직도 살아 숨 쉬고 있다.
 		                                    </span>
 		                                    <span class="view">자세히 보기+ </span>
 		                                </div>
