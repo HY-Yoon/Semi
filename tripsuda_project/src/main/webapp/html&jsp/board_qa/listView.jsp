@@ -10,9 +10,9 @@
 
 <script type="text/javascript">
 	window.onload=function(){
-		boardList(1);
+		boardList(1,1);
 	}
-	function boardList(pageNum){
+	function boardList(pageNum,selc){
 		let selec=document.getElementById("sortselect").value;
 		var xhr=new XMLHttpRequest(); //자바스크립트 내장 객체 얻어오기
 		xhr.onreadystatechange=function(){
@@ -64,7 +64,6 @@
 						let boxhash=document.createElement("ul");
 							for(let j=0;j<hashlist.length;j++){
 								hasht+="<li>"+hashlist[j]+"</li>";
-								console.log(hashlist[j]);
 							}
 							boxhash.innerHTML=hasht;
 							listbox.appendChild(boxhash);
@@ -108,23 +107,38 @@
 				qaListPage.innerHTML=pageInner;
 			}
 		}
-		let param="pageNum="+pageNum+"&sortselect="+selec;
+		let param="";
+		if(selc==selec){
+			param="pageNum="+pageNum+"&sortselect="+selec;
+		}else{
+			param="pageNum="+pageNum+"&sortselect="+3;
+		}
 		xhr.open('post','${pageContext.request.contextPath}/html&jsp/board_qa/list',true);
 		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		xhr.send(param);
 	}
-
+	function sortsel(){
+		let sort=document.getElementById("sortselect").value;
+		if(sort==1){
+			boardList(1,1);
+		}else if(sort==2){
+			boardList(1,2);
+		}else{
+			boardList(1,3)
+		}
+		console.log(sort);
+	}
 </script>
 </head>
 <body>
 <div class="main">
 <div class="qa_orderby">
 	<span>정렬</span>
-	<select id="sortselect" name="sortselect" onchange="boardList(1)">
+	<select id="sortselect" name="sortselect" onchange="sortsel()">
 		<option value="1">등록순</option>
 		<option value="2">댓글순</option>
 	</select>
-	<input type="button" value="답변을 기다리는 질문만 보기" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa//html&jsp/board_qa/list?pageNum=1&sortselect=3'">
+	<input type="button" value="답변을 기다리는 질문만 보기" onclick="sortsel()">
 </div>
 <div id="qaList" class="qalist"></div>
 <div id="qaListPage" class="qaListPage"></div>
