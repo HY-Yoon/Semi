@@ -6,54 +6,32 @@
 <head>
 <meta charset="UTF-8">
 <title>관광지 추천</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reco_main.css?12">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/reco_main.css?1">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 </head>
 
 <body>
 
-
 <header>
-<div class="h_wrap">
-	<div class="h_logo">
-		<a href="${pageContext.request.contextPath}/community"> <img src="${pageContext.request.contextPath }/images/common/logo_SUDA.svg" alt="logo"></a>
-		</div>
-	
-		<div class="h_menu">
-			<ul>
-				<li><a class="h_navi" href="#">추천</a></li>
-				<li><a class="h_navi" href="#">서울</a></li>
-				<li><a class="h_navi" href="#">경기</a></li>
-				<li><a class="h_navi" href="#">인천</a></li>
-				<li><a class="h_navi" href="#">강원</a></li>
-				<li><a class="h_navi" href="#">충청</a></li>
-				<li><a class="h_navi" href="#">전라</a></li>
-				<li><a class="h_navi" href="#">경상</a></li>
-				<li><a class="h_navi" href="#">부산</a></li>
-				<li><a class="h_navi" href="#">제주</a></li>
-		</ul>
-		</div>
-	</div>
-
-
+	<jsp:include page="../default/mypage_header.jsp"/>
 </header>
  <%
  		String fav = (String)request.getAttribute("fav");
- 		
  %>
- 
  <script type="text/javascript">
- 
 		//sessionStorage.setItem("fav","${fav}");
-		
 		sessionStorage.setItem("fav","${sessionScope.fav}");
+		sessionStorage.setItem("contextPath","${pageContext.request.contextPath}");
  </script>
 <main>
 	<div class="wrap">
 			<div class="w_content">
-			
-			<h1>관심지역 ${sessionScope.fav }</h1>	
+				
+			<div class="w_fav">
+				<h1>관심지역 ${sessionScope.fav }</h1>
+			</div>
+			<div class="layout">	
 				<c:choose>
 					<c:when test="${fav eq '서울'}">
 						<div class="w_img">
@@ -120,19 +98,25 @@
 						</c:choose>
 												
 			<div class="weather">
-				<span><%=fav %></span>
+				<span class="w_fav">${sessionScope.fav } 현재 날씨</span>
 					  <p class="time">
                  <span class="today">00.00.일 00:00</span>
                     </p>
           	          <span class="status_img">
-                        <img src="" alt="날씨" class="w_img">
+                        <img src="" alt="날씨" class="weather_img">
             	        </span>
               		      <span class="status">
                         			
                   			  </span>
+                  			  
 					</div>
 				
+				</div>
 			<div class="else">
+			<div class="ment">
+				<h1 style="text-align: center;">여행지 추천</h1>
+			</div>
+			
 				<div class="e_wrap">
 					<div class="e_img">
 					<figure>
@@ -246,14 +230,6 @@
 				
 				
 			</div>
-
-
-	
-
-	
-	
-	
-	
 	
 	
 	</div>
