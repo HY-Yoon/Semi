@@ -27,6 +27,10 @@
             </div>
         </div>
     </div>
+    <div>
+        동행란
+        <jsp:include page="/html&jsp/board_party/small_list.jsp"/>
+    </div>
     <div class="slide_btn_wrap">
         <button class="btn_prev">
             <img src="./images/slide/icon/arrow_main_left.svg">

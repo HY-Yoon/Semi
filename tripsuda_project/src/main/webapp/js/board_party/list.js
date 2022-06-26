@@ -12,25 +12,27 @@ const REGION_LIST = ["전체", "서울", "인천", "부산", "제주도", "경�
 const GENDER_LIST = ["선택 안함", "남성", "여성"];
 
 let form = {
-    no_dest: false,
+    pagenum: 1,
+    no_dest: true,
     region: REGION_LIST[0],
-    no_gender: false,
+    no_gender: true,
     gender_limit: GENDER_LIST[0],
     age_limit: {
-        no_limit: false,
+        no_limit: true,
         min_age: '10',
         max_age: '80'
     },
     schedule: {
-        no_limit: false,
-        start: '0000-00-00',
-        end: '0000-00-00'
+        no_limit: true,
+        start: '1970-01-01',
+        end: '1970-01-01'
     }
 };
 
 window.addEventListener('load', function()
 {
     initializeLimiter();
+    sendForm();
 })
 
 initializeLimiter = function()
@@ -160,9 +162,87 @@ onChangeSchedule = function(isStart)
     }
 }
 
+let ____listData = {
+    pagenum : 1,
+    max_page : 1,
+    articles : {
+        anum : 0,
+        dest : "",
+        pic_src : "",
+        start_date : "1/1",
+        end_date : "12/31",
+        expired : "N",
+        title : "",
+        little_text : "",
+        nick : "",
+        view : 0
+    }
+};
+
+// listData json 파일 받아서 리스트에 출력
 updateList = function(listData)
 {
+    console.log(listData);
+
+    let list = document.getElementById("list");
+	while (list.children.length > 0)
+        list.children[0].remove();
     
+    let contextPath = sessionStorage.getItem("contextPath");
+
+    for (let article of listData.articles)
+    {
+        let expire_msg = article.expired == "Y" ? `<span class="expired">지난 여행</span>` : `<span class="hiring">모집 중</span>`;
+        let html = `<div class="article" onclick="window.location.replace('${contextPath}/html&jsp/board_party/detail?anum=${article.anum}')">
+            <div class="pic">
+                <img src="${article.pic_src}">
+                <div class="flexcon region">
+                    <span>${article.dest}</span><span class="schedule">&nbsp;${article.start_date} ~ ${article.end_date}</span>
+                </div>
+            </div>
+            <div class="content">
+                <div style="font-weight: 500;">
+                    ${expire_msg}
+                    <span class="title">${article.title}</span>
+                </div>
+                <div class="desc">
+                    ${article.little_text}
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="profile">
+                        ${article.nick}
+                    </div>
+                    <div class="view">
+                        조회수 ${article.view}
+                    </div>
+                </div>
+            </div>
+        </div>`
+        list.innerHTML += html;
+    }
+    let page = document.getElementById("page");
+    let pagestart = parseInt(listData.pagenum / 10) * 10 + 1;
+    let pageend = listData.max_page > pagestart + 9 ? pagestart + 9 : listData.max_page;
+    console.log(pagestart + " // " + pageend);
+
+	while (page.children.length > 0)
+        page.children[0].remove();
+
+    if (pagestart > 10)
+        page.innerHTML += `<a href="javascript:changePage(${pagestart - 1})"><< 이전</a>`;
+    for (let p = pagestart; p <= pageend; p++)
+    {
+        let style = p == listData.pagenum ? `style="color: #0b81ff; font-weight: 700;"` : ``;
+        page.innerHTML += `<a href="javascript:changePage(${p})" ${style}>${p}</a>`;
+    }
+    if (pageend < listData.max_page)
+        page.innerHTML += `<a href="javascript:changePage(${pagestart + 10})">다음 >></a>`;
+}
+
+changePage = function(_page)
+{
+    form.pagenum = _page;
+    sendForm();
 }
 
 sendForm = function() 
@@ -173,6 +253,7 @@ sendForm = function()
 		if (xhr.readyState == 4 && xhr.status == 200)
 		{
 			let result = xhr.responseText; 
+            updateList(JSON.parse(result));
 		}
 	};
 	let url = sessionStorage.getItem("contextPath")
