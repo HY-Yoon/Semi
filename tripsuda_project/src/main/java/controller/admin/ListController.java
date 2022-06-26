@@ -35,7 +35,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 		
 		String N = "N";
 		
-		int pageCount = (int)Math.ceil(dao.getCount(N,select,search)/5.0); 
+		int pageCount = (int)Math.ceil(dao.getCount(N,select,search)/10.0); 
 				
 		int pageNum = 1;
 		String spageNum = req.getParameter("pageNum");
@@ -44,11 +44,11 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 			pageNum = Integer.parseInt(spageNum);
 		}
 		
-		int startRow = (pageNum-1)*5+1; 
-		int endRow = startRow +4; 
+		int startRow = (pageNum-1)*10+1; 
+		int endRow = startRow +9; 
 			
-		int startPage = (pageNum-1)/5*5+1;
-		int endPage = startPage+4;
+		int startPage = (pageNum-1) /10 *10 +1;
+		int endPage = startPage +9;
 		
 		if(endPage>pageCount) {
 			endPage = pageCount;
@@ -87,7 +87,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 	}else {
 		String Y = "Y";	
 		
-		int pageCount = (int)Math.ceil(dao.getCount(Y,select,search)/5.0); 
+		int pageCount = (int)Math.ceil(dao.getCount(Y,select,search)/10.0); 
 			
 		int pageNum = 1;
 		String spageNum = req.getParameter("pageNum");
@@ -96,11 +96,11 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 			pageNum = Integer.parseInt(spageNum);
 		}
 		
-		int startRow = (pageNum-1)*5+1; 
-		int endRow = startRow +4; 
+		int startRow = (pageNum-1)*10+1; 
+		int endRow = startRow +9; 
 			
-		int startPage = (pageNum-1)/5*5+1;
-		int endPage = startPage+4;
+		int startPage = (pageNum-1)/10*10+1;
+		int endPage = startPage+9;
 		
 		if(endPage>pageCount) {
 			endPage = pageCount;

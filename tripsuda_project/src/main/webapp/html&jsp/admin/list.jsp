@@ -27,7 +27,7 @@ function memberList(pageNum){
 		if(xhr.readyState==4 && xhr.status==200){
 			let result=xhr.responseText;	
 		
-			let list=document.getElementById("Nlist");
+			let list=document.getElementById("list");
 			let child=list.childNodes;
 				for(let i=child.length-1;i>=0;i--){
 						let c=child.item(i);
@@ -37,8 +37,7 @@ function memberList(pageNum){
 			let data=JSON.parse(result);
 			let json=data.list;
 		
-			let html = "<table>"
-			    html += "<tr> <th>회원번호</th> <th>이름</th> <th>아이디</th> <th>닉네임</th> <th>등급</th><th>탈퇴여부</th> </tr>"
+			let html = "";
 			
 				for(let i=0;i<json.length;i++){
 						let mnum = json[i].mnum;				
@@ -52,7 +51,7 @@ function memberList(pageNum){
 					  	+id+"</td><td class='nick'>"+nick+"</td><td class='grade'>"+grade+"</td><td class='w'>"+withdraw+"</td> </tr>"
 					
 				}
-			 	list.innerHTML = html+ "</table>"
+			 	list.innerHTML = html;
 			 	
 				let startPage = data.startPage;       
 				let endPage = data.endPage;          
@@ -64,23 +63,20 @@ function memberList(pageNum){
 					pageHTML += "<a href='javascript:memberList("+ (startPage-1) +")'>이전</a>";
 				}
 				
-				for(let i=startPage;i<=endPage;i++){
-					if(i==pageNum){
+				for(let i=startPage; i<=endPage; i++){
+					if(i == pageNum){
 						pageHTML +="<a href='javascript:memberList("+ i + ")'><span style='color:#0b81ff'>["+ i +"]</span></a>";
 					}else{
 						pageHTML +="<a href='javascript:memberList("+ i + ")'><span style='color:gray'>["+ i +"]</span></a>";
 					}
 				}
 		
-				if(endPage<pageCount){
+				if(endPage < pageCount){
 					pageHTML += "<a href='javascript:memberList("+ (endPage+1) +")'>다음</a>";
 				}
 				
 				var page=document.getElementById("page");
 				page.innerHTML = pageHTML ;
-			 	
-			 	
-			 	
 		}			 	
 	};
 	
@@ -88,50 +84,48 @@ function memberList(pageNum){
 	let param="pageNum="+pageNum +"&withdraw=N&select=${select}&search=${search}";
 	xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 	xhr.send(param);
-			
-	
 }
 
 //회원 상세보기 경로 설정하시면됩니다. 
 function goDetail(mnum) {
 	location.href="${pageContext.request.contextPath}/admin/member/detail?mnum="+mnum;
-	}	  
+}	  
 
 </script>
-
-
-<main>
+<h1 class="tit"><span>일반회원관리</span></h1>
 	<div class="wrap">
-
-	
-	<div class="memberlist">
-		<div id="Nlist">
-		
-		</div>
-		
-
-		
-		</div>
-		
-	<div id="page">
-	
-	</div>
-	
 		<div class="w_search">
-			<form action="${pageContext.request.contextPath}/html&jsp/admin/list.jsp">
-				<select name="select">
-					<option value="name">이름</option>
-					<option value="id">아이디</option>
-					<option value="nick">닉네임</option>
-					<option value="grade">등급</option>
-				</select>
-				<input type="text" name="search" id="search">
-				<button type="submit"></button>
+				<form action="${pageContext.request.contextPath}/html&jsp/admin/list.jsp">
+					<select name="select">
+						<option value="name">이름</option>
+						<option value="id">아이디</option>
+						<option value="nick">닉네임</option>
+						<option value="grade">등급</option>
+					</select>
+					<input type="text" name="search" id="search">
+					<button type="submit" class="sub_btn"></button>
 				</form>
 			</div>
+			
+			<table>
+				<thead>
+					<tr> 
+						<th>회원번호</th> 
+						<th>이름</th> 
+						<th>아이디</th> 
+						<th>닉네임</th> 
+						<th>등급</th>
+						<th>탈퇴여부</th>
+					</tr>
+				</thead>
+				<tbody id="list"></tbody>
+			</table>
+			<div id="page"></div>
+		
+		
+	
 		
 	</div>
-</main>
 
 </body>
 </html>
