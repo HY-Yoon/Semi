@@ -35,7 +35,15 @@ public class PartyboardVo
 	
 	
 
-	
+	//kj 
+	public PartyboardVo(long anum, long mnum, String title, Date regDate) {
+		super();
+		this.anum = anum;
+		this.mnum = mnum;
+		this.title = title;
+		this.regDate = regDate;
+	}
+
 	public PartyboardVo(long mnum, String nick,
 			String dest, String gender, long age_min, long age_max,
 			long memcnt, Date startDate, Date endDate,
