@@ -56,7 +56,7 @@ onsubmit="return checkValue()"  content="width=device-width, height=device-heigh
     <input type="password" name="pwd" id="pwd" size="20" maxlength="50"  placeholder="비밀번호를 입력하세요"></label>
   </div>
   <br>
-  <div id="err"><%=request.getAttribute("errMsg") %></div>
+  <div id="err">${request.errMsg}</div>
   <div class="btn"> <input type="submit" value="로그인"/></div>
   <div id="back"> 
    <input type="button" value="아이디찾기" onclick="FindId()">

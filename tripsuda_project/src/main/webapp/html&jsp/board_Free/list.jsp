@@ -26,11 +26,11 @@
 		<jsp:include page="/html&jsp/default/default_header.jsp" />
 	</header>
 		<main>
+			<div class="img">
+				<img alt="배경"
+					src="${pageContext.request.contextPath}/images/board_free/2.png">
+			</div>
 			<div class="container">
-				<div class="img">
-					<img alt="배경"
-						src="${pageContext.request.contextPath}/images/board_free/2.png">
-				</div>
 				<div class="board_list_wrap">
 					<!-- 글 목록 위 부분 -->
 					<div class="board_write_form">
@@ -41,7 +41,8 @@
 					<br>
 					<div class="board_list">
 						<br>
-						<table id="bList" padding:"10" width="1100" border="3" bordercolor="lightgray">
+						<table id="bList" padding:"10" width="1100" border="3"
+							bordercolor="lightgray">
 							<tr heigh="30">
 								<th class="num">글번호</th>
 								<th class="title">제목</th>
@@ -55,7 +56,7 @@
 									<td align="left" id="titt"><a
 										href="${pageContext.request.contextPath}/FBoardDetail?anum=${board.anum}">
 											${board.title} </a></td>
-									<td>${board.nick} </a>
+									<td>${board.nick}</a>
 									</td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd"
 											value="${board.regdate }" /></td>
@@ -126,10 +127,12 @@
 								class="btn btn-search" type="submit" value="검색" />
 						</form>
 					</div>
-				</div></main>
+				</div>
+		</main>
 		<footer>
 		<jsp:include page="../default/default_footer.jsp" />
 	</footer>
 </div>	
+<script src="${pageContext.request.contextPath}/js/board_free/default.js"></script>
 </body>
 </html>
