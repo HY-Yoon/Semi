@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 #adminchat {
+	z-index: 10;
 	display: flex;
 	position: fixed;
 	width: auto;

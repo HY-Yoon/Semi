@@ -34,12 +34,12 @@
 			<div class="descbox">연령 조건</div>
 			<div id="age_select" class="select_box"> <!-- 나이 제한 -->
 				<span style="width: 250px;">
-					<input type="checkbox" id="age_ignore_check" onchange="onCheckAgeIgnore()"> 제한 없음 &nbsp;&nbsp;
+					<input type="checkbox" checked="checked" id="age_ignore_check" onchange="onCheckAgeIgnore()"> 제한 없음 &nbsp;&nbsp;
 				</span>
 				<span id="age_limit_span">
-					<input type="number" min="2" max="20" value="10">
+					<input type="number" disabled="disabled" min="2" max="20" value="10">
 					세 ~
-					<input type="number" min="2" max="20" value="80">
+					<input type="number" disabled="disabled" min="2" max="20" value="80">
 					세
 				</span>
 			</div>
@@ -48,7 +48,7 @@
 			<div class="descbox">날짜 선택</div>
 			<div id="schedule_select" class="select_box flexcon"> <!-- 일정 -->
 				<span style="width: 250px;">
-					<input type="checkbox" id="date_ignore_check" onchange="onCheckDateIgnore"> 제한 없음 &nbsp;&nbsp;
+					<input type="checkbox" checked="checked" id="date_ignore_check" onchange="onCheckDateIgnore"> 제한 없음 &nbsp;&nbsp;
 				</span>
 				<input type="date" id="startdate" style="width: 100%" onchange="onChangeSchedule(true)">
 				&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp; 
