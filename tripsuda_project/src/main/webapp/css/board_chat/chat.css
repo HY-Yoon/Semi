@@ -109,6 +109,9 @@
 #sendmsg { 
     margin: 10px 20px;
 }
+#msg {
+    width: 100%;
+}
 
 /* 공통 최상위 */
 .msg-parent {

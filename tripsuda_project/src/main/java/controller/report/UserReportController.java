@@ -30,7 +30,7 @@ public class UserReportController extends HttpServlet
 						+ "신고하기" + "\', \'"
 						+ "width = 500, height = 860, location = no" + "\')";
 		
-		return "<a style=\"text-decoration: underline;\" href=\""
+		return "<a class=\"report_link\" style=\"text-decoration: underline;\" href=\""
 				+ "javascript:" + script
 				+ "\">" + name + "</a>";
 	}
@@ -48,7 +48,7 @@ public class UserReportController extends HttpServlet
 		String script = "window.open(\'<contextPath>/report?mnum=<mnum>\', \'신고하기\', \'"
 						+ "width = 500, height = 860, location = no" + "\')";
 		
-		return "<a style=\"text-decoration: underline;\" href=\""
+		return "<a class=\"report_link\" style=\"text-decoration: underline;\" href=\""
 				+ "javascript:" + script
 				+ "\">" + name + "</a>";
 	}

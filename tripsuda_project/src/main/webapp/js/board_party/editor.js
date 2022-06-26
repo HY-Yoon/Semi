@@ -21,6 +21,8 @@ let editor = {
 };
 
 let form = {
+    is_edit: false,
+    edit_anum: 0,
     region: '',
     gender_limit: '',
     age_limit: {
@@ -59,6 +61,45 @@ window.addEventListener('load', function()
     });
 
     initializeLimiter();
+    
+    // 에딧 캐시가 있는 경우(수정하는 경우)
+    let edit_cache = JSON.parse(sessionStorage.getItem("edit_cache"));
+    console.log(edit_cache);
+    if (edit_cache != null)
+    {
+        form.is_edit = true;
+        form.edit_anum = edit_cache.anum;
+
+        // form.region = edit_cache.region;
+        onClickRegion(edit_cache.region);
+        
+        // form.gender_limit = edit_cache.gender;
+        onClickGender(edit_cache.gender);
+
+        form.min_age = edit_cache.age_min;
+        form.max_age = edit_cache.age_max;
+        if (parseInt(form.min_age) == 0 && parseInt(form.max_age) == 0)
+            setAgeIgnore();
+        onCheckAgeIgnore();
+
+        form.schedule.start = edit_cache.start_date;
+        document.getElementById("startdate").value = edit_cache.start_date;
+        form.schedule.end = edit_cache.end_date;
+        document.getElementById("enddate").value = edit_cache.end_date;
+
+        // form.member_count = edit_cache.mem_count;
+        document.getElementById("memcount_range").value = edit_cache.mem_count;
+        onChangeMemCount();
+        
+        document.getElementById("backimg_file").src = edit_cache.back_img;
+        form.thumbnail_image_base64 = edit_cache.back_img;
+
+        editor.title.value = edit_cache.title;
+
+        $('#summernote').summernote('code', edit_cache.content);
+
+        editor.tag.value = edit_cache.tags;
+    }
 })
 
 initializeLimiter = function()
@@ -114,6 +155,11 @@ onClickGender = function(name)
         else
             btn.style = "font-weight: 400;";
     }
+}
+setAgeIgnore = function()
+{
+    let cb = document.getElementById("age_ignore_check");
+    cb.checked = true;
 }
 onCheckAgeIgnore = function()
 {
@@ -199,6 +245,8 @@ sendForm = function()
 	};
 	let url = sessionStorage.getItem("contextPath")
 		 + "/board_party/write";
+
+
     console.log(form);
 	xhr.open("post", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8;");

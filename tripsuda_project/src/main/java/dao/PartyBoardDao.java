@@ -72,6 +72,39 @@ public class PartyBoardDao
 			return -1;
 		}
 	}
+	public int update(PartyboardVo vo)
+	{
+		String sql = "update board_party set "
+				+ ""
+				+ "dest = ?, gender = ?, "
+				+ "age_min = ?, age_max = ?, memcnt = ?, "
+				+ "startdate = ?, enddate = ?, "	// dest, gender, age~age, memcnt, date~date
+				+ "backimage = ?, title = ?, content = ?, tags = ? "	// backimage, title, content, tags
+				+ "where anum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setString(1, vo.getDest());
+			pstmt.setString(2, vo.getGender());
+			pstmt.setLong(3, vo.getAge_min());
+			pstmt.setLong(4, vo.getAge_max());
+			pstmt.setLong(5, vo.getMemcnt());
+			pstmt.setDate(6, vo.getStartDate());
+			pstmt.setDate(7, vo.getEndDate());
+			pstmt.setString(8, vo.getBackimg());
+			pstmt.setString(9, vo.getTitle());
+			pstmt.setString(10, vo.getContent());
+			pstmt.setString(11, vo.getTags());
+			pstmt.setLong(12, vo.getAnum());
+			int result = pstmt.executeUpdate();
+			return result;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return -1;
+		}
+	}
 
 	public PartyboardVo selectNewArticle()
 	{
@@ -217,6 +250,22 @@ public class PartyBoardDao
 		{
 			pstmt.setString(1, expire ? "Y" : "N");
 			pstmt.setLong(2, anum);
+			return pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	
+	public int delete(long anum)
+	{
+		String sql = "delete from board_party where anum = ?";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, anum);
 			return pstmt.executeUpdate();
 		}
 		catch(SQLException e)

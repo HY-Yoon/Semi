@@ -141,5 +141,24 @@ public class PartyWaitDao
 		}
 		return -1;
 	}
+	public int deleteAll(long anum)
+	{
+		if (anum <= 0)
+			return -1;
+		
+		String sql = "delete from partywait where anum = " + anum;
+		try(Connection con = JdbcUtil.getCon();
+			Statement stmt = con.createStatement();)
+		{
+			int result = stmt.executeUpdate(sql);
+
+			return result;
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return -1;
+	}
 	
 }

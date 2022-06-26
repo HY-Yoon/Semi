@@ -69,9 +69,9 @@
 				<div class="sendbox">
 					<input type="hidden" id="anum" value="<%=channel %>">
 					<div class="msgbox">
-						<input type="text" id="msg" placeholder="이곳에 채팅 입력">
+						<input type="text" id="msg" placeholder="이곳에 채팅 입력" onkeypress="ChatManager.sendChat(event)">
 					</div>
-					<input type="submit" id="sendmsg" style="color: #0b81ff" value="전송" onclick="ChatManager.sendChat()">
+					<input type="submit" id="sendmsg" style="color: #0b81ff" value="전송" onclick="ChatManager.sendChat(event)">
 				</div>
 			</div>
 		</div>

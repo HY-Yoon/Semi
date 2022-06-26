@@ -14,18 +14,19 @@ import org.json.JSONObject;
 
 import dao.ChatDao;
 import dao.PartyBoardDao;
+import dao.PartyWaitDao;
 import util.JSONUtil;
 import vo.ChatVo;
 import vo.MemberVo;
 import vo.PartyboardVo;
 
-@WebServlet("/board_party/edit")
-public class PartyboardEditController extends HttpServlet
+@WebServlet("/board_party/remove")
+public class PartyboardRemoveController extends HttpServlet
 {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
 	{
-		System.out.println("partyboard edit start");
+		System.out.println("partyboard remove start");
 		MemberVo userdata = (MemberVo)req.getSession().getAttribute("userdata");
 		
 		long anum = Long.parseLong(req.getParameter("anum"));
@@ -33,13 +34,10 @@ public class PartyboardEditController extends HttpServlet
 		
 		if (userdata.getMnum() == vo.getMnum() || userdata.getGrade().equals("관리자"))
 		{
-			req.getSession().setAttribute("board_party_edit_cache", vo);
-			// req.getRequestDispatcher("/html&jsp/board_party/editpage.jsp").forward(req, resp);
-			resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/editpage.jsp?anum=" + anum);
+			ChatDao.getInstance().deleteChatAll(anum);
+			PartyWaitDao.getInstance().deleteAll(anum);
+			PartyBoardDao.getInstance().delete(anum);
 		}
-		else
-		{
-			resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/list");
-		}
+		resp.sendRedirect(req.getContextPath() + "/html&jsp/board_party/list");
 	}
 }
