@@ -12,11 +12,6 @@
 
 </head>
 <body> 
-<%
-	session.setAttribute("sessionID","aaaa");
-	session.setAttribute("sessionNick","1234");
-	session.setAttribute("sessionMnum",1);
-%>
 <div id="wrap">
      <header>
         <jsp:include page="/html&jsp/default/default_header.jsp"/>

@@ -16,6 +16,13 @@
 		let selec=document.getElementById("sortselect").value;
 		var xhr=new XMLHttpRequest(); //자바스크립트 내장 객체 얻어오기
 		xhr.onreadystatechange=function(){
+/* 			if(xhr.readyState==3 && xhr.status==200){
+				let qaList=document.getElementById("qaList");
+				let box=document.createElement("div");
+					box.className="listbox"
+					box.innerHTML="<p>게시판 로딩 중입니다. 잠시만 기다려주세요.</p>"
+				qaList.appendChild(box);
+			} */
 			if(xhr.readyState==4 && xhr.status==200){ //응답하고 응답 성공했을 때 명령 처리하기
 				let qaList=document.getElementById("qaList");
 				let jdata=xhr.responseText; //text-plain 타입으로 얻어오기
@@ -53,10 +60,11 @@
 							boxcontent.className="boxcontent";
 							boxcontent.innerHTML=list[i].content;
 							listbox.appendChild(boxcontent);
+						let hasht="";
 						let boxhash=document.createElement("ul");
-							let hasht="";
 							for(let j=0;j<hashlist.length;j++){
-								hasht+="<li>"+hashlist[i]+"</li>";
+								hasht+="<li>"+hashlist[j]+"</li>";
+								console.log(hashlist[j]);
 							}
 							boxhash.innerHTML=hasht;
 							listbox.appendChild(boxhash);

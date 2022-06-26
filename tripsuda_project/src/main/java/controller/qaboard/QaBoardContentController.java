@@ -20,11 +20,6 @@ public class QaBoardContentController extends HttpServlet{
 	Qa_LocalTagDao ldao=Qa_LocalTagDao.getInstance();
 	Qa_HashTagDao hdao=Qa_HashTagDao.getInstance();
 	Qa_CommDao cdao=Qa_CommDao.getInstance();
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		int anum = Integer.parseInt(req.getParameter("anum"));
-//		req.getRequestDispatcher("/board_qa/qview.jsp").forward(req, resp);
-//	}
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -36,6 +31,7 @@ public class QaBoardContentController extends HttpServlet{
 		ArrayList<String> htag=hdao.selectAll(anum);
 		int commcnt=cdao.commcnt(anum);
 		req.setAttribute("bvo", bvo);
+		req.setAttribute("mnum", bvo.getMnum());
 		req.setAttribute("views", views);
 		req.setAttribute("ltag", ltag);
 		req.setAttribute("htag", htag);

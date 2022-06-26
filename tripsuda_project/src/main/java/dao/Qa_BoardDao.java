@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import db.JdbcUtil;
+import vo.Qa_BoardOrderVo;
 import vo.Qa_BoardVo;
 
 public class Qa_BoardDao {
@@ -40,7 +41,7 @@ public class Qa_BoardDao {
 	public int insertQa(Qa_BoardVo vo) {
 		Connection con=null;
 		PreparedStatement ps=null;
-		String sql="insert into board_qa values(?,?,?,?,?,?,sysdate,?)";
+		String sql="insert into board_qa values(?,?,?,?,?,?,sysdate,?,null)";
 		try {
 			con=JdbcUtil.getCon();
 			int anum=getMaxAnum()+1; //글번호를 1부터 순차적으로 등록하기 위해 사용 
@@ -97,7 +98,7 @@ public class Qa_BoardDao {
 			if(rs.next()) {
 				Qa_BoardVo vo=new Qa_BoardVo(rs.getInt(1),rs.getInt(2),
 						rs.getString(3),rs.getString(4),rs.getString(5),
-						rs.getString(6),rs.getString("systime"),rs.getInt(8));
+						rs.getString(6),rs.getString("systime"),rs.getInt(8),rs.getString(9));
 				return vo;
 			}
 			return null;
@@ -188,31 +189,36 @@ public class Qa_BoardDao {
 		}
 	}
 	//sysdate에서 시간을 꺼내오고 content는 태그제외 100자까지의 문자열만 갖는 vo객체를 리스트로 반환
-	public ArrayList<Qa_BoardVo> bList1(int startRow,int endRow){
+	public ArrayList<Qa_BoardOrderVo> bList1(int startRow,int endRow){
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
 		con=JdbcUtil.getCon();
 		try {
-			String sql="select * from ( "
-					+ "    select b.*, rownum rn from ( "
-					+ "    select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime "
-					+ "    from (select * from board_qa) z order by systime desc "
-					+ "    )b "
-					+ "    ) where rn>=? and rn<=?";
+			String sql="select * from (\r\n"
+					+ "select tl.*, rownum rn from (\r\n"
+					+ "select bl.*,nvl(c.cnt,0),nvl(lastc,0)cc from (\r\n"
+					+ "select b.*, nvl(to_char(b.regdate, 'YYYY-MM-DD HH24:MI:SS'),0)systime, nvl(to_char(b.clastdate, 'YYYY-MM-DD HH24:MI:SS'),0)lastc, ltag from board_qa b inner join localtag_qa l on b.anum=l.anum)bl\r\n"
+					+ "left outer join (\r\n"
+					+ "select anum,count(cnum)cnt from comm_qa group by anum)c \r\n"
+					+ "on bl.anum=c.anum order by bl.regdate desc)\r\n"
+					+ "tl\r\n"
+					+ ") where rn>=? and rn<=?";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, startRow);
 			ps.setInt(2, endRow);
 			rs=ps.executeQuery();
-			ArrayList<Qa_BoardVo> list=new ArrayList<Qa_BoardVo>();
+			ArrayList<Qa_BoardOrderVo> list=new ArrayList<Qa_BoardOrderVo>();
 			while(rs.next()) {
 				// html 태그 제외하고 한줄로 출력하는 정규식 사용
 				String content=rs.getString("content").replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>","").
 						replaceAll("\r|\n|&nbsp;","");
 				if(content.length()>100) {content.substring(0,100);};
-				Qa_BoardVo vo=new Qa_BoardVo(rs.getInt(1),rs.getInt(2),
-						rs.getString(3),rs.getString(4),rs.getString(5),
-						content,rs.getString("systime"),rs.getInt(8));
+				Qa_BoardOrderVo vo=new Qa_BoardOrderVo(
+						new Qa_BoardVo(rs.getInt("anum"),rs.getInt("mnum"),
+						rs.getString("nick"),rs.getString("title"),rs.getString("keyword"),
+						content,rs.getString("systime"),rs.getInt("views"),rs.getString("lastc")),
+						rs.getString("ltag"),rs.getInt(13));
 				list.add(vo);
 			}
 			return list;
@@ -223,34 +229,36 @@ public class Qa_BoardDao {
 			JdbcUtil.close(con, ps, rs);
 		}
 	}
-	public ArrayList<Qa_BoardVo> bList2(int startRow,int endRow){
+	public ArrayList<Qa_BoardOrderVo> bList2(int startRow,int endRow){
 		Connection con=null;
-		PreparedStatement pstmt=null;
+		PreparedStatement ps=null;
 		ResultSet rs=null;
 		con=JdbcUtil.getCon();
 		try {
-			String sql="select * from ( "
-					+ "    select b.*, rownum rn from ( "
-					+ "    select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime, "
-					+ "    NVL(to_char(z.cd, 'YYYY-MM-DD HH:MI:SS'),0)cdtime "
-					+ "    from (select b.*, c.regdate cd "
-					+ "    from board_qa b left outer join comm_qa c on b.anum=c.anum)z "
-					+ "    order by cd desc "
-					+ "    )b "
-					+ "    ) where rn>=? and rn<=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rs=pstmt.executeQuery();
-			ArrayList<Qa_BoardVo> list=new ArrayList<Qa_BoardVo>();
+			String sql="select * from (\r\n"
+					+ "select tl.*, rownum rn from (\r\n"
+					+ "select bl.*,nvl(c.cnt,0),nvl(lastc,0)cc from (\r\n"
+					+ "select b.*, nvl(to_char(b.regdate, 'YYYY-MM-DD HH24:MI:SS'),0)systime, nvl(to_char(b.clastdate, 'YYYY-MM-DD HH24:MI:SS'),0)lastc, ltag from board_qa b inner join localtag_qa l on b.anum=l.anum)bl\r\n"
+					+ "left outer join (\r\n"
+					+ "select anum,count(cnum)cnt from comm_qa group by anum)c\r\n"
+					+ " on bl.anum=c.anum order by cc desc)\r\n"
+					+ "tl\r\n"
+					+ ") where rn>=? and rn<=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, endRow);
+			rs=ps.executeQuery();
+			ArrayList<Qa_BoardOrderVo> list=new ArrayList<Qa_BoardOrderVo>();
 			while(rs.next()) {
 				// html 태그 제외하고 한줄로 출력하는 정규식 사용
 				String content=rs.getString("content").replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>","").
 						replaceAll("\r|\n|&nbsp;","");
 				if(content.length()>100) {content.substring(0,100);};
-				Qa_BoardVo vo=new Qa_BoardVo(rs.getInt(1),rs.getInt(2),
-						rs.getString(3),rs.getString(4),rs.getString(5),
-						content,rs.getString("systime"),rs.getInt(8));
+				Qa_BoardOrderVo vo=new Qa_BoardOrderVo(
+						new Qa_BoardVo(rs.getInt("anum"),rs.getInt("mnum"),
+						rs.getString("nick"),rs.getString("title"),rs.getString("keyword"),
+						content,rs.getString("systime"),rs.getInt("views"),rs.getString("lastc")),
+						rs.getString("ltag"),rs.getInt(13));
 				list.add(vo);
 			}
 			return list;
@@ -258,34 +266,39 @@ public class Qa_BoardDao {
 			s.printStackTrace();
 			return null;
 		}finally {
-			JdbcUtil.close(con, pstmt, rs);
+			JdbcUtil.close(con, ps, rs);
 		}
 	}
-	public ArrayList<Qa_BoardVo> bList3(int startRow,int endRow){
+	public ArrayList<Qa_BoardOrderVo> bList3(int startRow,int endRow){
 		Connection con=null;
-		PreparedStatement pstmt=null;
+		PreparedStatement ps=null;
 		ResultSet rs=null;
 		con=JdbcUtil.getCon();
 		try {
-			String sql="select * from ( "
-					+ "    select b.*, rownum rn from ( "
-					+ "        select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime "
-					+ "        from (select b.*, c.sel sel from board_qa b "
-					+ "        inner join comm_qa c on b.anum=c.anum where sel='N' "
-					+ "        )z order by systime desc )b ) where rn>=? and rn<=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-			rs=pstmt.executeQuery();
-			ArrayList<Qa_BoardVo> list=new ArrayList<Qa_BoardVo>();
+			String sql="select * from (\r\n"
+					+ "select tl.*, rownum rn from (\r\n"
+					+ "select bl.*,nvl(c.cnt,0),nvl(lastc,0)cc from (\r\n"
+					+ "select b.*, nvl(to_char(b.regdate, 'YYYY-MM-DD HH24:MI:SS'),0)systime, nvl(to_char(b.clastdate, 'YYYY-MM-DD HH24:MI:SS'),0)lastc, ltag from board_qa b inner join localtag_qa l on b.anum=l.anum)bl\r\n"
+					+ "left outer join (\r\n"
+					+ "select anum,count(cnum)cnt from comm_qa group by anum)c\r\n"
+					+ " on bl.anum=c.anum where keyword='답변대기' order by bl.regdate desc)\r\n"
+					+ "tl\r\n"
+					+ ") where rn>=? and rn<=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, endRow);
+			rs=ps.executeQuery();
+			ArrayList<Qa_BoardOrderVo> list=new ArrayList<Qa_BoardOrderVo>();
 			while(rs.next()) {
 				// html 태그 제외하고 한줄로 출력하는 정규식 사용
 				String content=rs.getString("content").replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>","").
 						replaceAll("\r|\n|&nbsp;","");
 				if(content.length()>100) {content.substring(0,100);};
-				Qa_BoardVo vo=new Qa_BoardVo(rs.getInt(1),rs.getInt(2),
-						rs.getString(3),rs.getString(4),rs.getString(5),
-						content,rs.getString("systime"),rs.getInt(8));
+				Qa_BoardOrderVo vo=new Qa_BoardOrderVo(
+						new Qa_BoardVo(rs.getInt("anum"),rs.getInt("mnum"),
+						rs.getString("nick"),rs.getString("title"),rs.getString("keyword"),
+						content,rs.getString("systime"),rs.getInt("views"),rs.getString("lastc")),
+						rs.getString("ltag"),rs.getInt(13));
 				list.add(vo);
 			}
 			return list;
@@ -293,7 +306,7 @@ public class Qa_BoardDao {
 			s.printStackTrace();
 			return null;
 		}finally {
-			JdbcUtil.close(con, pstmt, rs);
+			JdbcUtil.close(con, ps, rs);
 		}
 	}
 	public int delete(int anum) {

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.MemberDao;
 import dao.Qa_BoardDao;
 import dao.Qa_CommDao;
 import dao.Qa_HashTagDao;
@@ -22,13 +21,12 @@ import vo.Qa_CommVo;
 public class QaInsertCommController extends HttpServlet{
 	Qa_BoardDao bdao=Qa_BoardDao.getInstance();
 	Qa_CommDao cdao=Qa_CommDao.getInstance();
-	Qa_LocalTagDao ldao=Qa_LocalTagDao.getInstance();
 	Qa_HashTagDao hdao=Qa_HashTagDao.getInstance();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int anum=Integer.parseInt(req.getParameter("anum"));
 		Qa_BoardVo bvo=bdao.select(anum);
-		ArrayList<String> hlist=hdao.select(anum);
+//		ArrayList<String> hlist=hdao.select(anum);
 		req.setAttribute("bvo", bvo);
 		req.getRequestDispatcher("/html&jsp/board_qa/comminsertPage.jsp").forward(req, resp);
 		// http://localhost:8081/semi/html&jsp/board_qa/comminsert_qa?anum=4
@@ -39,6 +37,7 @@ public class QaInsertCommController extends HttpServlet{
 		int anum=Integer.parseInt(req.getParameter("anum"));
 		String commContent=req.getParameter("content");
 		HttpSession session = req.getSession();
+//		MemberVo mvo=(MemberVo)session.getAttribute("userdata");
 		int mnum=(int)session.getAttribute("sessionMnum");
 		String nick=(String)session.getAttribute("sessionNick");
 		int cnum=0;
@@ -54,6 +53,7 @@ public class QaInsertCommController extends HttpServlet{
 		};
 		Qa_CommVo cvo=new Qa_CommVo(cnum,anum,mnum,nick,commContent,null,ref,lev,"N");
 		cdao.insert(cvo);
+		cdao.updateBoard(anum);
 		req.setAttribute("anum", anum);
 		req.getRequestDispatcher("/html&jsp/board_qa/content?anum="+anum).forward(req, resp);
 	}
