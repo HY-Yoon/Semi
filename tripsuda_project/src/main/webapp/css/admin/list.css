@@ -8,20 +8,23 @@ main table{
 }
 main thead tr{
 	border-top: 1px solid #8F8F8F;
-    background-color: #FAFAFA;
+    background-color: #f8f8f8;
 }
 main tbody tr{
 	border-bottom: 1px solid #EFEFEF;
 }
 main tbody tr:hover{
-	background: #eee;
+	background: #fafafa;
+}
+main tbody tr:hover td{
+	color: #0b81ff;
 }
 main tr{
 	cursor: pointer;	
 	height: 50px;
 }
-main  .w{
-	text-align: center;
+main tr th{
+	width: 200px;	
 }
 main #page{
 	text-align: center;
@@ -35,7 +38,7 @@ main .wrap{
 	margin-top: 30px;
 }
 main .sub_btn{
-	position: position;
+	position: relative;
     top: 0px;
     left: 0px;
     width: 40px;
@@ -53,6 +56,47 @@ main .sub_btn::after {
     background: url(../../images/common/icon/find.svg) 0% 0% / cover;
 }
 .w_search{
-	text-align: right;
+	display: flex;
+	justify-content: flex-end;
 }
-
+.w_search form{
+	position: relative;
+    width: 250px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+#search{
+	background: rgb(248, 248, 248);
+    border: 1px solid rgb(233, 233, 233);
+    box-sizing: border-box;
+    border-radius: 90px;
+    height: 40px;
+    width: 100%;
+    padding: 13px 90px 13px 18px;
+}
+.w_search > button {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+}
+.w_search .select {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: #5b5b5b;
+}
+.w_search button {
+    position: absolute;
+    top: 0px;
+    left:200px;
+    width: 40px;
+    height: 40px;
+}

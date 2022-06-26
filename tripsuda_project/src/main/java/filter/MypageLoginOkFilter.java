@@ -39,7 +39,7 @@ public class MypageLoginOkFilter implements Filter
 		
 		MemberVo userdata= (MemberVo)session.getAttribute("userdata");
 		if(userdata == null) {//회원이 아닐때 로그인페이지로 돌아가기
-			resp.sendRedirect(req.getContextPath()+"/html&jsp/member/LoginForm.jsp");
+			resp.sendRedirect(req.getContextPath()+"/mLogin");
 		}else {
 			String grade=userdata.getGrade();
 			//관리자 메인으로 이동

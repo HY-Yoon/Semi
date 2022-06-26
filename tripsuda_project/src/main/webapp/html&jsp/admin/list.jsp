@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원목록</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css?123">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css">
 </head>
 <body>
 <%
@@ -45,10 +45,9 @@ function memberList(pageNum){
 						let id = json[i].id;
 						let nick = json[i].nick;
 						let grade = json[i].grade;
-						let withdraw = json[i].withdraw;
 									
 						html += "<tr class='tr' onclick='javascript:goDetail("+mnum+")'> <td class='mnum'>"+mnum+"</td><td class='name'>"+name+"</td><td class='id'>"
-					  	+id+"</td><td class='nick'>"+nick+"</td><td class='grade'>"+grade+"</td><td class='w'>"+withdraw+"</td> </tr>"
+					  	+id+"</td><td class='nick'>"+nick+"</td><td class='grade'>"+grade+"</td> </tr>"
 					
 				}
 			 	list.innerHTML = html;
@@ -96,7 +95,7 @@ function goDetail(mnum) {
 	<div class="wrap">
 		<div class="w_search">
 				<form action="${pageContext.request.contextPath}/html&jsp/admin/list.jsp">
-					<select name="select">
+					<select name="select" class="select">
 						<option value="name">이름</option>
 						<option value="id">아이디</option>
 						<option value="nick">닉네임</option>
@@ -115,7 +114,6 @@ function goDetail(mnum) {
 						<th>아이디</th> 
 						<th>닉네임</th> 
 						<th>등급</th>
-						<th>탈퇴여부</th>
 					</tr>
 				</thead>
 				<tbody id="list"></tbody>
