@@ -4,9 +4,6 @@
     pageEncoding="UTF-8"%>
 <%--관리자페이지 메뉴--%>
 <%
-    //test용 삭제해야함
-    session.setAttribute("mnum","2");
-
 	int mnum = Integer.parseInt((String)session.getAttribute("mnum"));
 	MemberVo user = MemberDao.getInstance().select(mnum);
 %>
@@ -18,7 +15,7 @@
 </div>
 <div class="mypage_menu">
     <li class="link_wrap">
-        <a href="${pageContext.request.contextPath}/admin/dash" class="link">
+        <a href="${pageContext.request.contextPath}/admin/main" class="link">
             <span class="name">대시보드</span>
         </a>
     </li>
