@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="vo.PartyboardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -44,7 +47,11 @@
 	sessionStorage.setItem("tags", "<%=vo.getTags() %>");
 	*/
 </script>
-<% } %>
+<% }
+    Date date = Calendar.getInstance().getTime();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String currdate = sdf.format(date);
+	%>
 <div class="container">
 	<div id="limiter" style="border: 1px solid lightgray; padding: 15px">
 		<div class="flexcon"> <!-- 지역 -->
@@ -74,9 +81,9 @@
 		<div class="flexcon">
 			<div class="descbox">날짜 선택</div>
 			<div id="schedule_select" class="select_box flexcon"> <!-- 일정 -->
-				<input type="date" id="startdate" style="width: 100%" onchange="onChangeSchedule(true)">
+				<input type="date" min="<%=currdate %>" id="startdate" style="width: 100%" onchange="onChangeSchedule(true)">
 				&nbsp;&nbsp;&nbsp;&nbsp;~&nbsp;&nbsp;&nbsp;&nbsp; 
-				<input type="date" id="enddate" style="width: 100%" onchange="onChangeSchedule(false)">
+				<input type="date" min="<%=currdate %>" id="enddate" style="width: 100%" onchange="onChangeSchedule(false)">
 			</div>
 		</div>
 		<div class="flexcon">

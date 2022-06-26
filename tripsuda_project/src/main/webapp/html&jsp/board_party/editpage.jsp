@@ -25,7 +25,6 @@
         <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
 </div>
-<script src="${pageContext.request.contextPath}/js/common/header.js?ver=<%=System.currentTimeMillis() %>"></script>
 <script src="${pageContext.request.contextPath}/js/board_party/default.js?ver=<%=System.currentTimeMillis() %>"></script>
 </body>
 </html>

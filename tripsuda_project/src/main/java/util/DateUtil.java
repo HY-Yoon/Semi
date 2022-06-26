@@ -73,4 +73,16 @@ public class DateUtil
 		// 일 단위로도 나눌 수 없게 되면 오래 전이라고 표시
 		return "오래 전";
 	}
+	
+	/**
+	 * @apiNote 인자값으로 받은 시간과 현재 시간의 차이를 계산해 얼마나 이전인지 알려줍니다.
+	 * @param day 날짜값 (1~)
+	 * @return 그만큼 이전으로 간 날짜
+	 */
+	public static Date getDateBefore(long day)
+	{
+		Date curr = Calendar.getInstance().getTime();
+		long time = curr.getTime() - (1000 * 60 * 60 * 24 * day);
+		return new Date(time);
+	}
 }
