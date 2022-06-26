@@ -13,10 +13,11 @@ import javax.servlet.http.HttpSession;
 import dao.MypageDao;
 import vo.reviewboard.ReviewBoardVo;
 
-@WebServlet("/mypage/review")
-public class MyReviewController extends HttpServlet {
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+@WebServlet("/mypage/free")
+public class MyFreeController extends HttpServlet {
+@Override
+protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	req.setCharacterEncoding("utf-8");
 	HttpSession session = req.getSession();
 			
@@ -51,8 +52,7 @@ public class MyReviewController extends HttpServlet {
 	req.setAttribute("endPage",endPage);
 	req.setAttribute("pageCount",pageCount);
 	req.setAttribute("pageNum",pageNum);
-	req.getRequestDispatcher("/html&jsp/mypage/myreview.jsp").forward(req, resp);
-	
-	
-	}
+	req.getRequestDispatcher("/html&jsp/mypage/myfree.jsp").forward(req, resp);
+
+}
 }

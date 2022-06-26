@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import db.JdbcUtil;
-
+import vo.FreeBoardVo;
 import vo.reviewboard.ReviewBoardVo;
 
 public class MypageDao {
@@ -77,7 +77,65 @@ public class MypageDao {
 			}
 		}
 	
-	
+	//--------------------자유-------------------------
+			//자유게시판 
+			public ArrayList<FreeBoardVo> myfree(int mnum,int start,int end){
+				Connection con = null;
+				PreparedStatement pstmt =null;
+				ResultSet rs = null;
+			try {
+				con = JdbcUtil.getCon();
+				String  sql =	"select * from ( "
+								+"select aa.*, rownum rnum from("
+								+" select * from board_free where mnum = ? ) aa"
+								+") where rnum >=? and rnum <=? ";
+												
+					pstmt =con.prepareStatement(sql);
+					pstmt.setInt(1, mnum);
+					pstmt.setInt(2, start);
+					pstmt.setInt(3, end);
+					rs  = pstmt.executeQuery();
+					
+					ArrayList<FreeBoardVo> list = new ArrayList<FreeBoardVo>();
+					while(rs.next()) {
+						int anum = rs.getInt("anum");
+						String title = rs.getString("title");
+						Date regdate = rs.getDate("regdate");
+						FreeBoardVo vo = new FreeBoardVo(anum,mnum,null,null,title,null,null,regdate,null,null,0);
+						list.add(vo);
+					}
+					return list;
+					
+				}catch (SQLException s) {
+					 s.printStackTrace();
+					 return null;
+				}finally {
+					JdbcUtil.close(con, pstmt, rs);
+				}
+				
+			}
+			//-------자유 게시판 작성글 수 --------
+					public int myfreeCount(int mnum) {
+						Connection con = null;
+						PreparedStatement pstmt = null;
+						ResultSet rs = null;			
+						con = JdbcUtil.getCon();
+					try {
+						String sql = "select nvl(count(*),0) cnt from board_free where mnum=?";
+						pstmt=con.prepareStatement(sql);
+						pstmt.setInt(1, mnum);
+						rs = pstmt.executeQuery();
+							rs.next(); 
+							int cnt = rs.getInt("cnt");
+							return cnt;
+									
+					}catch (SQLException s) {
+						 s.printStackTrace();
+						 return -1;
+					}finally {
+						JdbcUtil.close(con, pstmt, rs);
+					}
+				}
 	
 	
 	
