@@ -14,7 +14,7 @@ public class FreeCommDao {
 	private ResultSet rs;
 	private static FreeCommDao instance;
 	
-	private FreeCommDao(){}
+	public FreeCommDao(){}
 	public static FreeCommDao getInstance(){
 		if(instance==null)
 			instance=new FreeCommDao();

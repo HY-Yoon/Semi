@@ -44,7 +44,7 @@ public class FreeBoardDetailController extends HttpServlet {
 		if(commentList.size() > 0)	request.setAttribute("commentList", commentList);
 		request.setAttribute("page", page);
 		
-		request.getRequestDispatcher("/html&jsp/board_Free/DetailForm.jsp").forward(request, response);
+		request.getRequestDispatcher("/html&jsp/board_Free/test.jsp").forward(request, response);
 
 				
 			}
