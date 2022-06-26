@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판 게시글</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/common.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/admin/default.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin/list.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/mypage.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 
 </head>
 <body>
@@ -40,25 +43,30 @@
 			</aside>	
 		
 	<div class="content">
+	<h2>자유게시판 게시글</h2>
 		<div class="list">
-		<h2>자유게시판 게시글</h2>
-			<table>
-		<tr>
-			<th>게시글번호</th><th>제목</th><th>작성일</th>
-		</tr>	
 		
-		<c:forEach var="vo" items="${list }">
+			<table>
+		<thead>
 			<tr>
-				<td class="anum">${vo.anum }</td>
-				<td class="title">${vo.title }</td> 
-				<td class="reg">${vo.regdate }</td>
-			</tr>
-		</c:forEach>
+			<th>게시글번호</th><th>제목</th><th>작성일</th>
+		</tr>
+		</thead>	
+		
+		<tbody>
+			<c:forEach var="vo" items="${list }">
+				<tr>
+					<td class="anum">${vo.anum }</td>
+					<td class="title">${vo.title }</td> 
+					<td class="reg">${vo.regdate }</td>
+				</tr>
+			</c:forEach>
+		</tbody>
 				
 	</table>
 		</div>
 		
-			<div class="paging">
+			<div id="page">
 				<c:if test="${startPage>5 }"><a href="${pageContext.request.contextPath}/mypage/free?pageNum=${startPage-1}">이전페이지</a>
 				</c:if>
 		
