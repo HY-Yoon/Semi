@@ -17,6 +17,7 @@ import dao.Qa_BoardDao;
 import dao.Qa_CommDao;
 import dao.Qa_HashTagDao;
 import dao.Qa_LocalTagDao;
+import vo.Qa_BoardOrderVo;
 import vo.Qa_BoardVo;
 import vo.Qa_HashTagVo;
 import vo.Qa_LocalTagVo;
@@ -33,7 +34,8 @@ public class QaListController extends HttpServlet{
 		int sort=Integer.parseInt(req.getParameter("sortselect"));
 		int endRow=pageNum*6;
 		int startRow=endRow-5;
-		ArrayList<Qa_BoardVo> blist=new ArrayList<Qa_BoardVo>();
+		ldao.select(pageNum);
+		ArrayList<Qa_BoardOrderVo> blist=new ArrayList<Qa_BoardOrderVo>();
 		switch(sort) {
 			case 1:blist=bdao.bList1(startRow, endRow);break;
 			case 2:blist=bdao.bList2(startRow, endRow);break;
@@ -50,8 +52,9 @@ public class QaListController extends HttpServlet{
 		PrintWriter pw=resp.getWriter();
 		JSONObject data=new JSONObject();
 		JSONArray jarr=new JSONArray();
-		for(Qa_BoardVo bvo:blist) {
+		for(Qa_BoardOrderVo vo:blist) {
 			JSONObject ob=new JSONObject();
+			Qa_BoardVo bvo=vo.getVo();
 			ob.put("anum",bvo.getAnum());
 			ob.put("nick",bvo.getNick());
 			ob.put("title",bvo.getTitle());
@@ -59,9 +62,9 @@ public class QaListController extends HttpServlet{
 			ob.put("content", bvo.getContent());
 			ob.put("regdate", bvo.getRegdate());
 			ob.put("views", bvo.getViews());
-			ob.put("loc", ldao.select(bvo.getAnum()));
+			ob.put("loc", vo.getLtag());
 			ob.put("hash", hdao.select(bvo.getAnum()));
-			ob.put("commcnt", cdao.commcnt(bvo.getAnum()));
+			ob.put("commcnt", vo.getCcnt());
 			jarr.put(ob);
 		}	
 		data.put("list",jarr);

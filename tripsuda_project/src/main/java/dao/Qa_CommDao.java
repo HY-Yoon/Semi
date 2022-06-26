@@ -38,6 +38,23 @@ public class Qa_CommDao {
 			JdbcUtil.close(con,ps,rs);
 		}
 	}
+	public int updateBoard(int anum) {
+		Connection con=null;
+		PreparedStatement ps=null;
+		String sql="update board_qa set clastdate=sysdate where anum=?";
+		try {
+			con=JdbcUtil.getCon();
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, anum);
+			int n=ps.executeUpdate();
+			return n;
+		}catch(SQLException se) {
+			se.printStackTrace();
+			return -1;
+		}finally {
+			JdbcUtil.close(con,ps,null);
+		}
+	}
 	public int insert(Qa_CommVo vo) {
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -82,7 +99,6 @@ public class Qa_CommDao {
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				return rs.getInt(1);
-				
 			}
 			return -1;
 		}catch(SQLException se) {

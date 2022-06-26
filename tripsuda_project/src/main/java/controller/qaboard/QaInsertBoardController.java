@@ -32,8 +32,17 @@ public class QaInsertBoardController extends HttpServlet{
 		String content=req.getParameter("content");
 		String qarea=req.getParameter("qarea");
 		String hashTag=req.getParameter("hashtag");
+		if(hashTag==null) {
+			int anum=0;
+			Qa_BoardVo bvo=new Qa_BoardVo(anum,mnum,nick,title,"답변대기",content,null,0,null);
+			anum=bdao.insertQa(bvo);
+			int ln=ldao.insert(anum,location);
+			if(ln>0 && anum>0) {
+				resp.sendRedirect(req.getContextPath() + "/html&jsp/board_qa/listViewPage.jsp");
+			}
+		}
 		int anum=0;
-		Qa_BoardVo bvo=new Qa_BoardVo(anum,mnum,nick,title,"답변대기",content,null,0);
+		Qa_BoardVo bvo=new Qa_BoardVo(anum,mnum,nick,title,"답변대기",content,null,0,null);
 		anum=bdao.insertQa(bvo);
 		int ln=ldao.insert(anum,location);
 		int hn=hdao.insertHash(anum,hashTag);

@@ -23,9 +23,8 @@ public class QaCheckCommController extends HttpServlet{
 		int cnum=Integer.parseInt(req.getParameter("cnum"));
 		int anum=Integer.parseInt(req.getParameter("anum"));
 		int n=cdao.upDateselect(cnum,anum);
-		if(n>1) {
-			req.setAttribute("anum", anum);
-			req.getRequestDispatcher("/html&jsp/board_qa/commview").forward(req, resp);
-		}
+		req.setAttribute("anum", anum);
+		req.getRequestDispatcher("/html&jsp/board_qa/content?anum="+anum).forward(req, resp);
+	
 	}
 }

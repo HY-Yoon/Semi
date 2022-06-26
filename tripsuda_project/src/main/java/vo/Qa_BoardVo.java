@@ -9,9 +9,10 @@ public class Qa_BoardVo {
 	private String content;		// 질문글내용
 	private String regdate;		// 질문글작성일
 	private int views;			// 질문글 조회수
+	private String clastdate;   // 최종 댓글 등록일자
 	public Qa_BoardVo() {}
 	public Qa_BoardVo(int anum, int mnum, String nick, String title, String keyword, String content, String regdate,
-			int views) {
+			int views, String clastdate) {
 		super();
 		this.anum = anum;
 		this.mnum = mnum;
@@ -21,6 +22,7 @@ public class Qa_BoardVo {
 		this.content = content;
 		this.regdate = regdate;
 		this.views = views;
+		this.clastdate = clastdate;
 	}
 	public int getAnum() {
 		return anum;
@@ -70,9 +72,11 @@ public class Qa_BoardVo {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	
-
-
-
+	public String getClastdate() {
+		return clastdate;
+	}
+	public void setClastdate(String clastdate) {
+		this.clastdate = clastdate;
+	}
 
 }

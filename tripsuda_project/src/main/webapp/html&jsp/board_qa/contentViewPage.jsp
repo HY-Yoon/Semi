@@ -8,11 +8,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-
-
 </head>
 <body> 
-
 <div id="wrap">
      <header>
         <jsp:include page="/html&jsp/default/default_header.jsp"/>

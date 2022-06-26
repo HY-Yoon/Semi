@@ -26,13 +26,13 @@ public class QaCommContentController extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		int anum=Integer.parseInt(req.getParameter("anum"));
 		ArrayList<Qa_CommVo> clist=cdao.select(anum);
-		
 		resp.setContentType("text/plain;charset=utf-8");
 		PrintWriter pw=resp.getWriter();
 		JSONObject data=new JSONObject();
 		JSONArray jarr=new JSONArray();
 		for(Qa_CommVo cvo:clist) {
 			JSONObject ob=new JSONObject();
+			ob.put("mnum",cvo.getMnum());
 			ob.put("cnum",cvo.getCnum());
 			ob.put("commmnum",cvo.getMnum());
 			ob.put("commnick",cvo.getNick());
