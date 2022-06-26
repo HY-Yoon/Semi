@@ -170,7 +170,7 @@ function addComm(){
 <div class="tag">지역 ${tag }</div>
 <div class="cont">${content }</div>
 <div class="hash">${hashtag }</div>
-${mnum }
+
 
 <div class="filedownload">
 첨부파일 
@@ -202,7 +202,7 @@ ${mnum }
 </div>
 
 <div id="commAdd">
-	<input type="text" id="nick" value="nick2" readonly="readonly"><br> <!-- value에 로그인한 member nick 받아오기(회원번호필요) -->
+	<input type="text" id="nick" value="${sessionScope.sessionNick }" readonly="readonly"><br> <!-- value에 로그인한 member nick 받아오기(회원번호필요) -->
 	<textarea rows="3" cols="50" id="comments"></textarea><br>
 	<div class="btn1">
 	<input type="button" id="sub" value="댓글등록" onclick="addComm()">
