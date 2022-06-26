@@ -309,3 +309,12 @@ CREATE TABLE comm_free (
 );
 
 CREATE SEQUENCE fcnum_seq;
+
+방문자 테이블
+create table visit(
+vnum number(5) primary key,
+vdate date not null
+)
+
+create sequence seq_visit;
+
