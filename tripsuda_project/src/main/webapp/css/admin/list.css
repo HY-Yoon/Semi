@@ -1,25 +1,58 @@
 @charset "UTF-8";
-
-
-table{
-	border: 1px solid black;
+/*관리자페이지 회원목록 css*/
+main table{
+	width: 100%;
 	border-collapse: collapse;
+	text-align: center;
+	margin-top: 15px;
 }
-
-.tr{
+main thead tr{
+	border-top: 1px solid #8F8F8F;
+    background-color: #FAFAFA;
+}
+main tbody tr{
+	border-bottom: 1px solid #EFEFEF;
+}
+main tbody tr:hover{
+	background: #eee;
+}
+main tr{
 	cursor: pointer;	
+	height: 50px;
 }
-
-.w{
+main  .w{
 	text-align: center;
 }
-
-
-
-
-#page{
-	padding-left: 200px;
-	margin-top: 10px;
+main #page{
+	text-align: center;
+	margin-top: 30px;
 	font-size: 15px;
+}
+main #page a{
+	margin: 0 8px;
+}
+main .wrap{
+	margin-top: 30px;
+}
+main .sub_btn{
+	position: position;
+    top: 0px;
+    left: 0px;
+    width: 40px;
+    height: 40px;
+}
+main .sub_btn::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: block;
+    width: 14px;
+    height: 14.5px;
+    margin: 13px 13px 13px 17px;
+    background: url(../../images/common/icon/find.svg) 0% 0% / cover;
+}
+.w_search{
+	text-align: right;
 }
 
