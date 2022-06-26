@@ -1,76 +1,74 @@
 @charset "UTF-8";
-*{
-	margin: 0px;
-	padding: 0px;
-	
-}
 
-header{
-	height: 100px;
-	
-}
-
-.h_wrap{
-	  width: 1200px;
-	  margin: 0px auto;
-}
-
-.h_logo{
-	display: inline-block;
-	line-height: 43px;
-	
-}
-
-.h_menu{
-	display: inline-block;
-}
-
-.h_menu li{
-	display: inline-block;
-	font-size: 22px;
-	padding: 10px;
-	margin-left: 20px;
-	margin-top: 30px;
-}
-
-
-.h_navi:active{
-
-}
 
 main{
-	width: 100%;
-	height: 100%;
-	border: 1px solid black;
+	
+	border: none;
+	
 }
+
+.w_fav{
+	text-align: center;
+	margin-bottom: 40px;
+}
+
 
 .wrap{
 	height: 100%;
+	width: 1000px;
+	margin: 0 auto;
 	
 }
+
+
+
 .weather{
 	height: 200px;
-	border: 1px solid black;
+	border: none;
+	display: inline-block;
+	width: 1000px;
+	margin: 0 auto;
+	padding: 10px;
+	
+		
 }
 
-.w_img{
-	width: 100%;
-	height: 400px;
-	margin: 0px auto;
-	border: 1px solid black;
+.weather span{
+	font-size: 30px;
 }
+
+
+.w_img{
+	width: 1000px;
+	height: 600px;
+	
+	border: none;
+	margin: 30px auto;
+	
+}
+
+.w_img img{
+height: 100%;
+width: 100%;
+
+}
+
+.ment{
+	margin: 0 auto;
+}
+
 
 .e_wrap{
 	width: 1000px;
 	height: 370px;
-	border: 1px solid black;
+	border: none;
 	margin: 50px auto;
 	display: flex;
 }
 .e_img{
 	width: 300px;
 	height: 370px;
-	border: 1px solid black;
+	border: none;
 	border-radius : 6px;
 	display: inline-block;
 	margin: 0px auto;

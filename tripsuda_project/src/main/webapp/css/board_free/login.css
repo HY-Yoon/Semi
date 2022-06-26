@@ -3,6 +3,11 @@ display:flex;
 justify-content: center;
 }
 
+.wrap{
+	width: 500px;
+	margin: 100px auto;
+}
+
 form{
 padding:10px;
 }
@@ -69,3 +74,14 @@ input[type=button] {
 	
 	margin: 10px 0px;
 }
+
+.img{
+	margin-top: 30px;
+	margin-left: 130px;
+}
+.img img{
+	width: 200px;
+	
+}
+
+

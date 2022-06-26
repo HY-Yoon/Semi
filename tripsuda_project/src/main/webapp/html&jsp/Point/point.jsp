@@ -78,7 +78,7 @@ function recoList(pageNum){
 }
 </script>
 <header>
-	 	<jsp:include page="../default/default_header.jsp"/>
+	 	<jsp:include page="../default/mypage_header.jsp"/>
 </header>
 
 <body>

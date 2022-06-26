@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/login.css?1">
 <%
 String errMsg = request.getParameter("errMsg");
 %>
@@ -43,6 +43,7 @@ String errMsg = request.getParameter("errMsg");
 </script>
 </head>
 <body>
+<div class="wrap">
 <header><h2>Login</h2></header>
 <form name="loginForm" method="post" action="/tripsuda_project/LoginForm" 
 onsubmit="return checkValue()"  content="width=device-width, height=device-height, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0">
@@ -56,12 +57,18 @@ onsubmit="return checkValue()"  content="width=device-width, height=device-heigh
   </div>
   <br>
   <div id="err"><%=request.getAttribute("errMsg") %></div>
-   <input type="submit" value="로그인"/>
+  <div class="btn"> <input type="submit" value="로그인"/></div>
   <div id="back"> 
    <input type="button" value="아이디찾기" onclick="FindId()">
     <input type="button" value="비번찾기" onclick="FindPwd()">
    <input type="button" value="돌아가기" onclick="goFirstForm()">
+     
+   </div>
+   
+    <div class="img">
+   <img alt="캐릭터" src="${pageContext.request.contextPath}/images/board_free/login.png">
    </div>
 </form>
+</div>
 </body>
 </html>
