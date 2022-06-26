@@ -33,23 +33,23 @@
 		</div>
 		
 			<div class="paging">
-				<c:if test="${startPage>5 }"><a href="${pageContext.request.contextPath}/mypage/review?pageNum=${startPage-1}">이전페이지</a>
+				<c:if test="${startPage>5 }"><a href="${pageContext.request.contextPath}/mypage/free?pageNum=${startPage-1}">이전페이지</a>
 				</c:if>
 		
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 								<c:choose>
 									<c:when test="${pageNum==i }"> 
-										<a href="${pageContext.request.contextPath}/mypage/review?pageNum=${i}"><span style="color: #0b81ff">${i }</span></a>		
+										<a href="${pageContext.request.contextPath}/mypage/free?pageNum=${i}"><span style="color: #0b81ff">${i }</span></a>		
 											</c:when>
 								
 									<c:otherwise>
-										<a href="${pageContext.request.contextPath}/mypage/review?pageNum=${i}"><span style="color: gray">${i }</span></a>
+										<a href="${pageContext.request.contextPath}/mypage/free?pageNum=${i}"><span style="color: gray">${i }</span></a>
 										</c:otherwise>
 								</c:choose>
 					</c:forEach>
 		
 				<c:if test="${endPage<pageCount }">
-					<a href="${pageContext.request.contextPath}/mypage/review?pageNum=${startPage+1}">다음페이지</a>
+					<a href="${pageContext.request.contextPath}/mypage/free?pageNum=${startPage+1}">다음페이지</a>
 				</c:if>
 
 		</div>

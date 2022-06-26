@@ -24,9 +24,20 @@ public class Qa_BoardVo {
 		this.views = views;
 		this.clastdate = clastdate;
 	}
+	//kj
+	public Qa_BoardVo(int anum, int mnum, String title, String regdate) {
+		super();
+		this.anum = anum;
+		this.mnum = mnum;
+		this.title = title;
+		this.regdate = regdate;
+	}
+	
+	
 	public int getAnum() {
 		return anum;
 	}
+	
 	public void setAnum(int anum) {
 		this.anum = anum;
 	}

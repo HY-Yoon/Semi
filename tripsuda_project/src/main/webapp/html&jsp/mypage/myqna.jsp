@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>동행게시판 게시글</title>
+<title>QnA 게시글</title>
 </head>
 <body>
 <header>
@@ -13,7 +13,7 @@
 
 <main>
 	<div class="wrap">
-		<h2>동행게시판 게시글</h2>
+		<h2>QnA 게시글</h2>
 		
 		<div class="list">
 			<table>
@@ -33,23 +33,23 @@
 		</div>
 		
 			<div class="paging">
-				<c:if test="${startPage>5 }"><a href="${pageContext.request.contextPath}/mypage/party?pageNum=${startPage-1}">이전페이지</a>
+				<c:if test="${startPage>5 }"><a href="${pageContext.request.contextPath}/mypage/qna?pageNum=${startPage-1}">이전페이지</a>
 				</c:if>
 		
 					<c:forEach var="i" begin="${startPage }" end="${endPage }">
 								<c:choose>
 									<c:when test="${pageNum==i }"> 
-										<a href="${pageContext.request.contextPath}/mypage/party?pageNum=${i}"><span style="color: #0b81ff">${i }</span></a>		
+										<a href="${pageContext.request.contextPath}/mypage/qna?pageNum=${i}"><span style="color: #0b81ff">${i }</span></a>		
 											</c:when>
 								
 									<c:otherwise>
-										<a href="${pageContext.request.contextPath}/mypage/party?pageNum=${i}"><span style="color: gray">${i }</span></a>
+										<a href="${pageContext.request.contextPath}/mypage/qna?pageNum=${i}"><span style="color: gray">${i }</span></a>
 										</c:otherwise>
 								</c:choose>
 					</c:forEach>
 		
 				<c:if test="${endPage<pageCount }">
-					<a href="${pageContext.request.contextPath}/mypage/party?pageNum=${startPage+1}">다음페이지</a>
+					<a href="${pageContext.request.contextPath}/mypage/qna?pageNum=${startPage+1}">다음페이지</a>
 				</c:if>
 
 		</div>
