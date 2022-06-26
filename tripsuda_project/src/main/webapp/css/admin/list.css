@@ -75,7 +75,7 @@ main .sub_btn::after {
     border-radius: 90px;
     height: 40px;
     width: 100%;
-    padding: 13px 90px 13px 18px;
+    padding: 13px 90px 13px 85px;
 }
 .w_search > button {
     position: absolute;

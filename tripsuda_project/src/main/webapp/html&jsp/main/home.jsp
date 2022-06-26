@@ -80,8 +80,8 @@
         </div>
     </div>
     <div>
-        동행란
-        <jsp:include page="/html&jsp/board_party/small_list.jsp"/>
+    <%--동행게시판 --%>
+    <jsp:include page="/html&jsp/board_party/small_list.jsp"/>
     </div>
     <div class="slide_btn_wrap">
         <button class="btn_prev">

@@ -123,3 +123,12 @@ main section{
 .swiper_slide#slide_5 .main_bg{
     background-color: rgb(232, 237, 239);
 }
+
+
+/*=======================*/
+#pb_head, #pb_list{
+	margin-top: 40px !important;
+}
+#pb_list{
+	min-height: 400px;
+}

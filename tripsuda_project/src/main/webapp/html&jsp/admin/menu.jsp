@@ -4,7 +4,8 @@
     pageEncoding="UTF-8"%>
 <%--관리자페이지 메뉴--%>
 <%
-	int mnum = Integer.parseInt((String)session.getAttribute("mnum"));
+	MemberVo userdata = (MemberVo)session.getAttribute("userdata");
+	int mnum = (int)userdata.getMnum();
 	MemberVo user = MemberDao.getInstance().select(mnum);
 %>
 <div class="profile-box">
