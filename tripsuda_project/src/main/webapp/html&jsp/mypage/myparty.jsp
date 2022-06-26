@@ -25,7 +25,7 @@
 			<tr>
 				<td class="anum">${vo.anum }</td>
 				<td class="title">${vo.title }</td> 
-				<td class="reg">${vo.regdate }</td>
+				<td class="reg">${vo.regDate }</td>
 			</tr>
 		</c:forEach>
 				

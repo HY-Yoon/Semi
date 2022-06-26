@@ -11,6 +11,7 @@
 	PartyboardVo vo = (PartyboardVo)session.getAttribute("board_party_edit_cache");
 	session.setAttribute("board_party_edit_cache", null);
 	if (vo != null)
+	{
 		System.out.print(vo.getAnum());
 %>
 <script type="text/javascript" charset="utf-8">
@@ -43,7 +44,7 @@
 	sessionStorage.setItem("tags", "<%=vo.getTags() %>");
 	*/
 </script>
-
+<% } %>
 <div class="container">
 	<div id="limiter" style="border: 1px solid lightgray; padding: 15px">
 		<div class="flexcon"> <!-- 지역 -->

@@ -174,7 +174,7 @@ public class PartyBoardDao
 		String sql = "select * from ";
 		if (no_region && no_gender && no_age && no_date)
 		{
-			return selectAll(page);
+			return selectAll();
 		}
 		else
 		{
@@ -185,7 +185,8 @@ public class PartyBoardDao
 				+  (no_gender ? "" : "gender = \'" + gender + "\' " + (!no_age || !no_date ? "and " : ""))
 				+  (no_age ? "" : "age_min >= " + age_min + " and age_max <= " + age_max + " " + (!no_date ? "and " : ""))
 				+  (no_date ? "" : "startdate >= \'" + startdate + "\' and enddate <= \'" + enddate + "\'")
-				+  " and rnum >= " + (page * 8 - 7) + " and rnum <= " + (page * 8);
+				+  " and rnum > 0";//" and rnum >= " + (page * 8 - 7) + " and rnum <= " + (page * 8);
+			System.out.println(sql);
 		}
 		try(Connection con = JdbcUtil.getCon();
 			Statement stmt = con.createStatement();
@@ -292,6 +293,46 @@ public class PartyBoardDao
 		{
 			pstmt.setLong(1, page * 8 - 7);
 			pstmt.setLong(2, page * 8);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next())
+			{
+				PartyboardVo vo = new PartyboardVo(
+					rs.getLong("anum"),
+					rs.getLong("mnum"),
+					rs.getString("nick"),
+					rs.getString("dest"),
+					rs.getString("gender"),
+					rs.getLong("age_min"),
+					rs.getLong("age_max"),
+					rs.getLong("memcnt"),
+					rs.getDate("startdate"),
+					rs.getDate("enddate"),
+					rs.getString("backimage"),
+					rs.getString("title"),
+					rs.getString("content"),
+					rs.getString("tags"),
+					rs.getLong("views"),
+					rs.getDate("regdate"),
+					rs.getString("expired")
+				);
+				list.add(vo);
+			}
+			rs.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+	public ArrayList<PartyboardVo> selectAll()
+	{
+		ArrayList<PartyboardVo> list = new ArrayList<PartyboardVo>();
+		
+		String sql = "select * from (select bp.*, rownum as rnum from (select * from board_party order by anum desc) bp)";
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next())
 			{

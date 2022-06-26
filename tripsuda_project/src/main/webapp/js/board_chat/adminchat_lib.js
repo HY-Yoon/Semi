@@ -157,9 +157,10 @@ AdminChatManager.connectUser = function(mnum, nick)
 			AdminChatManager.updateChatList(JSON.parse(result));
 		}
 	};
-
 	console.log("update 함수 변경 -> " + mnum + "번 (" + nick + ") 유저 채팅방 갱신");
 	AdminChatManager._managemode = true;
+	if (AdminChatManager._mnum != mnum)
+		AdminChatManager.clearList();
 	AdminChatManager._mnum = mnum;
 	AdminChatManager._nick = nick;
 	
