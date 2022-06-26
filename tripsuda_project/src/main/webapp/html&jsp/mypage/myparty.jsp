@@ -6,11 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>동행게시판 게시글</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+
 </head>
 <body>
 <header>
+	 	<jsp:include page="../default/mypage_header.jsp"/>
 </header>
-
 <main>
 	<div class="wrap">
 		<h2>동행게시판 게시글</h2>
@@ -60,6 +65,8 @@
 </main>
 
 <footer>
+	<jsp:include page="/html&jsp/default/default_footer.jsp"/>
 </footer>
+
 </body>
 </html>

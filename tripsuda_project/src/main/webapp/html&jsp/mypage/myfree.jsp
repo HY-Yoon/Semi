@@ -6,16 +6,42 @@
 <head>
 <meta charset="UTF-8">
 <title>자유게시판 게시글</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/mypage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+
 </head>
 <body>
 <header>
+	 	<jsp:include page="../default/mypage_header.jsp"/>
 </header>
 
 <main>
 	<div class="wrap">
-		<h2>자유게시판 게시글</h2>
+		<div class="layout">
+		<aside>
+			<div class="side">
+			<div class="profile">
+				<div class="img"></div>
+				<p>${member.name}님 환영합니다!</p>
+			</div>
+			<div class="mypage">
+				<ul>
+					<li class="list"><a href="${pageContext.request.contextPath}/memberModifyForm"><span class="txt">회원정보수정</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/html&jsp/Point/point.jsp"><span class="txt">포인트</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/mypage/review"><span class="txt">여행후기</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/mypage/free"><span class="txt">자유게시판</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/mypage/party"><span class="txt">내동행 게시글</span></a></li>
+					<li class="list"><a href="${pageContext.request.contextPath}/mypage/qna"><span class="txt">QnA</span></a></li>
+				</ul>
+			</div>
+			</div>
+			</aside>	
 		
+	<div class="content">
 		<div class="list">
+		<h2>자유게시판 게시글</h2>
 			<table>
 		<tr>
 			<th>게시글번호</th><th>제목</th><th>작성일</th>
@@ -53,13 +79,16 @@
 				</c:if>
 
 		</div>
+		</div>
 		
 		
-		
+	</div>
 	</div>
 </main>
 
 <footer>
+	<jsp:include page="/html&jsp/default/default_footer.jsp"/>
 </footer>
+
 </body>
 </html>
