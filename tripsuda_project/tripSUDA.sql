@@ -119,7 +119,8 @@ CREATE TABLE board_qa (
 	keyword	varchar2(20),
 	content	clob	NOT NULL,
 	regdate	date	NOT NULL,
-	views number(10) NOT NULL
+	views number(10) NOT NULL,
+    clastdate date null
 );
 -- Q&A 댓글
 CREATE TABLE comm_qa (
