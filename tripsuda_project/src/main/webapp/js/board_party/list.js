@@ -160,6 +160,11 @@ onChangeSchedule = function(isStart)
     }
 }
 
+updateList = function(listData)
+{
+    
+}
+
 sendForm = function() 
 {
 	let xhr = new XMLHttpRequest();

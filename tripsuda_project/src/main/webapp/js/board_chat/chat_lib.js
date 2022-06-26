@@ -34,9 +34,9 @@ ChatManager.initialize = function()
 // 업데이트
 ChatManager.update = function()
 {
-	if (this._roomdata != null)
+	if (ChatManager._roomdata != null)
 	{
-		this.connectRoom(_roomdata.anum, false);
+		ChatManager.connectRoom(ChatManager._roomdata.anum, false);
 	}
 }
 
@@ -77,8 +77,14 @@ ChatManager.leaveRoom = function(anum)
 }
 
 // 채팅 보내기
-ChatManager.sendChat = function()
+ChatManager.sendChat = function(event)
 {
+	if (event.keyCode != undefined)
+	{
+		if (event.keyCode != 13)
+			return;
+	}
+	console.log("send start");
 	let obj = {anum : document.getElementById("anum").value,
 				msg : document.getElementById("msg").value};
 	
@@ -99,6 +105,8 @@ ChatManager.sendChat = function()
 	xhr.open("post", url, true);
 	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8;");
 	xhr.send(JSON.stringify(obj));
+
+	document.getElementById("msg").value = "";
 }
 
 // 채팅 리스트 깨끗하게 비우기

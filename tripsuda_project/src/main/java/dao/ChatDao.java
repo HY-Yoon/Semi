@@ -80,6 +80,22 @@ public class ChatDao
 			return 0;
 		}
 	}
+	public int deleteChatAll(long anum)
+	{
+		String sql = "delete from chat where rnum = ?";
+		
+		try(Connection con = JdbcUtil.getCon();
+			PreparedStatement pstmt = con.prepareStatement(sql);)
+		{
+			pstmt.setLong(1, anum);
+			return pstmt.executeUpdate();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
 	
 	public long getChatCnt(long anum)
 	{
@@ -116,7 +132,7 @@ public class ChatDao
 			if (rs.next())
 			{
 				// System.out.println(rs.getString("sequence_name") + " ... " + rs.getLong("last_number"));
-				System.out.println(rs.getLong("cnum"));
+				// System.out.println(rs.getLong("cnum"));
 				cnt = rs.getLong("cnum");
 			}
 			rs.close();
@@ -167,7 +183,7 @@ public class ChatDao
 				vo.setrNum(rs.getLong("rnum"));
 				vo.setSender(rs.getLong("sender"));
 				Array arr = rs.getArray("readers");
-				System.out.println(arr.getArray().toString());
+				// System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
 				for (int i = 0; i < li.length; i++)
@@ -202,7 +218,7 @@ public class ChatDao
 				vo.setrNum(rs.getLong("rnum"));
 				vo.setSender(rs.getLong("sender"));
 				Array arr = rs.getArray("readers");
-				System.out.println(arr.getArray().toString());
+				// System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
 				for (int i = 0; i < li.length; i++)

@@ -47,10 +47,18 @@
 				</div>
 				<%=DateUtil.getText(vo.getRegDate(), DATEFORMAT.YMDHM) %> · 조회수 <%=vo.getViews() %> · 메시지수 <%=ChatDao.getInstance().getChatCnt(vo.getAnum()) %><br>
 				
-				<% if (vo.getMnum() == userdata.getMnum() || userdata.getGrade().equals("관리자")) { %>
-				<a style="text-decoration: underline;" href="">수정</a>
-				<a style="text-decoration: underline;" href="">삭제</a>
-				<% } %>
+				<%
+				if (userdata != null)
+				{
+					if (vo.getMnum() == userdata.getMnum() || userdata.getGrade().equals("관리자")) {
+				%>
+				<a style="text-decoration: underline;" href="<%=request.getContextPath()%>/board_party/edit?anum=<%=vo.getAnum()%>">수정</a>
+				&nbsp;
+				<a style="text-decoration: underline;" href="<%=request.getContextPath()%>/board_party/remove?anum=<%=vo.getAnum()%>">삭제</a>
+				&nbsp;
+				<% }
+				}
+				%>
 				<%=UserReportController.getHTML(request, vo.getMnum())%>
 			</div>
 		</div>

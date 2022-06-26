@@ -108,7 +108,7 @@ public class ChatroomDao
 				vo.setrNum(rs.getLong("rnum"));
 				vo.setaNum(rs.getLong("anum"));
 				Array arr = rs.getArray("members");
-				System.out.println(arr.getArray().toString());
+				// System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
 				for (int i = 0; i < li.length; i++)
@@ -122,7 +122,7 @@ public class ChatroomDao
 				vo.setrNum(rs2.getLong("rnum"));
 				vo.setaNum(rs2.getLong("anum"));
 				Array arr = rs2.getArray("members");
-				System.out.println(arr.getArray().toString());
+				// System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
 				for (int i = 0; i < li.length; i++)
@@ -154,7 +154,7 @@ public class ChatroomDao
 				vo.setrNum(channel);
 				vo.setaNum(rs.getLong("anum"));
 				Array arr = rs.getArray("members");
-				System.out.println(arr.getArray().toString());
+				// System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
 				for (int i = 0; i < li.length; i++)
@@ -185,7 +185,7 @@ public class ChatroomDao
 				vo.setrNum(anum);
 				vo.setaNum(rs.getLong("anum"));
 				Array arr = rs.getArray("members");
-				System.out.println(arr.getArray().toString());
+				// System.out.println(arr.getArray().toString());
 				BigDecimal[] li = (BigDecimal[])arr.getArray();
 				long[] mem = new long[li.length];
 				for (int i = 0; i < li.length; i++)
