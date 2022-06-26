@@ -65,7 +65,7 @@ function checkNick(){
          <span class="box int_pass"> 
             <input type="text" name="pwd" id="pwd" class="int" maxlength="20"> 
          <span id="alertTxt">사용불가</span>
-         <img src="m_icon_pass.png" id="pwd1_img1" class="pswdImg">
+         <img src="btn.png" id="pwd1_img1" class="pswdImg">
          </span> 
          <span class="error_next_box"></span>
       </div>
@@ -77,7 +77,7 @@ function checkNick(){
          </h3>
          <span class="box int_pass_check"> 
          <input type="text" name="pwd2" id="pwd2" class="int" maxlength="20"> 
-         <img src="m_icon_check_disable.png" id="pwd2_img1" class="pswdImg">
+         <img src="btn.png" id="pwd2_img1" class="pswdImg">
          </span> <span class="error_next_box"></span>
       </div>
 
