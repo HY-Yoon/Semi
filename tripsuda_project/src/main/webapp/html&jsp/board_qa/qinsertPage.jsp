@@ -24,6 +24,8 @@
     <footer>
         <jsp:include page="/html&jsp/default/default_footer.jsp"/>
     </footer>
+    
 </div>
+<script src="${pageContext.request.contextPath}/js/board_expert/default.js"></script>
 </body>
 </html>

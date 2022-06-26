@@ -41,7 +41,6 @@
 							commsel.appendChild(commchec);
 						qacomm.appendChild(commsel);
 					}
-					 	
 					let fircomm=document.createElement("div");
 						fircomm.className="fircomm";
 						let comminfo=document.createElement("div");
@@ -60,6 +59,10 @@
 							commcontent.className="commcontent";
 							commcontent.innerHTML=list[i].commcontent;
 						fircomm.appendChild(commcontent);
+						
+						let commbottom=document.createElement("div");
+                        	commbottom.className="commbottom";
+	                    fircomm.appendChild(commbottom);
 						let selecarea=document.createElement("div");
 							selecarea.clasYsName="selecarea";
 						if(list[i].sel=='Y'){
@@ -86,32 +89,20 @@
 <div class="main">
 	<div class="left">
 		<div class="content">
-			<div class="title">
-				<img src="${pageContext.request.contextPath}/images/common/icon/question.svg"/>
-				${bvo.title }
-			</div>
+			<div class="title"><img src="${pageContext.request.contextPath}/images/common/icon/question.svg"/>${bvo.title }</div>
 			<div class="middletop">
 				상태 
 					<c:choose>
-						<c:when test="${bvo.keyword }=='답변대기'">
-							<span style="color:gray">
-								${bvo.keyword }
-							</span>
-						</c:when>
-						<c:when test="${bvo.keyword }=='채택완료'">
-							<span style="color:blue">
-								${bvo.keyword }
-							</span>
-						</c:when>
-					</c:choose>
-				지역 
-					<span class="contentlocal">
-						${ltag }
-					</span>
+	                    <c:when test="${bvo.keyword }=='답변대기'">
+	                        <span style="color:green">${bvo.keyword }</span>
+	                    </c:when>
+	                    <c:when test="${bvo.keyword }=='채택완료'">
+	                        <span style="color:blue">${bvo.keyword }</span>
+	                    </c:when>
+                	</c:choose>
+             	지역<span class="contentlocal">${ltag }</span>
 			</div>
-			<div class="middlebottom">
-				${bvo.content }
-			</div>
+			<div class="middlebottom">본문 ${bvo.content }</div>
 			<div class="bottom">
 				<div class="hashtag">
 					<c:if test="${!empty htag}">
@@ -123,7 +114,7 @@
 					</c:if>
 				</div>
 				<div class="contentinfo">
-					${bvo.regdate} - 조회수 ${views } - 답변수 ${commcnt } <%=UserReportController.getHTML(request,Integer.parseInt(request.getParameter("mnum")) )%>
+					${bvo.regdate} - 조회수 ${views } - 답변수 ${commcnt } 
 				</div>
 				<div class="contentud">
 					<c:choose>
@@ -135,6 +126,9 @@
 						</c:when>
 					</c:choose>
 				</div>
+				 	<c:if test="${sessionScope.sessionMnum eq requestScope.bvo.mnum }">
+
+            		</c:if>
 			</div>
 		</div>
 		<div class="comment">
