@@ -87,7 +87,7 @@ public class Qa_BoardDao {
 		Connection con=null;
 		PreparedStatement ps=null;
 		ResultSet rs=null;
-		String sql="select z.*, to_char(z.regdate, 'YYYY-MM-DD HH:MI:SS')systime from( "
+		String sql="select z.*, to_char(z.regdate, 'YYYY-MM-DD HH24:MI:SS')systime from( "
 				+ "select * from board_qa)z "
 				+ "where anum=?";
 		try {
@@ -98,7 +98,7 @@ public class Qa_BoardDao {
 			if(rs.next()) {
 				Qa_BoardVo vo=new Qa_BoardVo(rs.getInt(1),rs.getInt(2),
 						rs.getString(3),rs.getString(4),rs.getString(5),
-						rs.getString(6),rs.getString("systime"),rs.getInt(8),rs.getString(9));
+						rs.getString(6),rs.getString("systime"),rs.getInt(8),null);
 				return vo;
 			}
 			return null;

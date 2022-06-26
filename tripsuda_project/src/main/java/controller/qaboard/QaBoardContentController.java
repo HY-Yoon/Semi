@@ -30,13 +30,14 @@ public class QaBoardContentController extends HttpServlet{
 		String ltag=ldao.select(anum);
 		ArrayList<String> htag=hdao.selectAll(anum);
 		int commcnt=cdao.commcnt(anum);
+		System.out.println(bvo.getClastdate());
 		req.setAttribute("bvo", bvo);
 		req.setAttribute("mnum", bvo.getMnum());
 		req.setAttribute("views", views);
 		req.setAttribute("ltag", ltag);
 		req.setAttribute("htag", htag);
 		req.setAttribute("commcnt", commcnt);
-		req.getRequestDispatcher("/html&jsp/board_qa/contentViewPage.jsp").forward(req, resp);
+		req.getRequestDispatcher("/html&jsp/board_qa/contentView.jsp").forward(req, resp);
 		//http://localhost:8081/semi/html&jsp/board_qa/content?anum=18
 	}
 }

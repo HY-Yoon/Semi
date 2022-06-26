@@ -108,6 +108,7 @@ public class Qa_CommDao {
 			JdbcUtil.close(con,ps,rs);
 		}
 	}
+	
 	public ArrayList<Qa_CommVo> select(int anum) {
 		Connection con=null;
 		PreparedStatement ps=null;
@@ -136,6 +137,8 @@ public class Qa_CommDao {
 			JdbcUtil.close(con,ps,rs);
 		}
 	}
+	
+	
 	public int delete(int anum) {
 		Connection con=null;
 		PreparedStatement ps=null;

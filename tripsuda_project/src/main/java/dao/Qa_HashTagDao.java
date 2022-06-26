@@ -69,9 +69,11 @@ public class Qa_HashTagDao {
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, anum);
 			rs=ps.executeQuery();
+			System.out.println(4444);
 			ArrayList<String> hlist=new ArrayList<String>();
 			while(rs.next()) {
 				hlist.add(rs.getString("htag"));
+				System.out.println("htag");
 			}
 			return hlist;
 		}catch(SQLException se) {
