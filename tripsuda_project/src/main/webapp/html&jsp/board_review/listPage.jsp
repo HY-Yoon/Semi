@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_review/list.css">
 </head>
 <body>
+<script src="${pageContext.request.contextPath }/js/jQuary/jquery-3.6.0.js"></script>
 	<header>
         <jsp:include page="/html&jsp/default/default_header.jsp"/>
     </header>

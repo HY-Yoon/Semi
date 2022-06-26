@@ -152,7 +152,7 @@ public class ReviewBoardDao {
 		{
 			con=JdbcUtil.getCon();
 			//검색이 있을 때
-			if(select !=null && select.equals("")) {
+			if(select !=null && !select.equals("")) {
 				System.out.println("있을유");
 				//통합검색
 				if(select.equals("tot")) {

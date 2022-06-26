@@ -38,8 +38,14 @@ public class ReviewListController extends HttpServlet{
 		//검색	
 		String search = req.getParameter("search"); // 검색 값
 		String select = req.getParameter("select"); // sel 값 ex) 통합,제목,태그
+		if(search != null) {
+			System.out.println(search.equals(""));
+		}
+		  
+		//정렬
+		String order = req.getParameter("order");
 		
-		System.out.println("select값:"+select+" search값:"+search);
+		System.out.println("select값:"+select+"search값:"+search);
 		
 		String spagenum = req.getParameter("pagenum");
 		int pagenum = 1;
@@ -47,8 +53,8 @@ public class ReviewListController extends HttpServlet{
 			pagenum = Integer.parseInt(spagenum);
 		}
 		
-		int endRow=pagenum*8;//8페이지씩
-		int startRow=endRow-7;
+		int startRow=(pagenum-1)*8+1;//8개씩
+		int endRow=startRow+7;
 		
 		//페이징
 		int pageCount = (int)Math.ceil(dao.getCount(select,search)/8.0);
@@ -61,7 +67,7 @@ public class ReviewListController extends HttpServlet{
 			endPageNum = pageCount;
 		}
 		
-		ArrayList<ReviewBoardVo> list = ReviewBoardDao.getInstance().selectAll(startPageNum,endPageNum,select,search);	
+		ArrayList<ReviewBoardVo> list = ReviewBoardDao.getInstance().selectAll(startRow,endRow,select,search);	
 		ArrayList<ReviewBoardVo> board_list = new ArrayList<ReviewBoardVo>();
 		for(ReviewBoardVo getvo : list) {
 			ReviewBoardVo putvo = new ReviewBoardVo();
@@ -69,7 +75,9 @@ public class ReviewListController extends HttpServlet{
 			putvo.setMnum(getvo.getMnum());
 			putvo.setTitle(getvo.getTitle());
 			putvo.setThum(getvo.getThum());
-			putvo.setContent(getvo.getContent());
+			//html태그 모두 제거하고 text만 가져오기
+			String content = getvo.getContent().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
+			putvo.setContent(content);
 			putvo.setRegdate(getvo.getRegdate());
 			putvo.setViews(getvo.getViews());
 			putvo.setNotice(getvo.getNotice());
