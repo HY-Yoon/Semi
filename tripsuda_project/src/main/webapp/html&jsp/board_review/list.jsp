@@ -74,23 +74,23 @@
 	        
         	</c:forEach>
        	</div>
-
+       	
         <div class="list-bot">
             <c:if test="${startPage>10 }">
-				<a href="${pageContext.request.contextPath }/board_review?pagenum=${startPage-1}&search=${search}&select=${select}">[이전페이지]</a>
+				<a href="javascript:movePage(${startPage-1})">[이전페이지]</a>
 			</c:if>
 			<c:forEach var="i" begin="${startPage }" end="${endPage }">
 				<c:choose>
 					<c:when test="${pageNum == i }">
-						<a class="active" href="${pageContext.request.contextPath }/board_review?pagenum=${i}&search=${search}&select=${select}"><span>${i }</span></a>
+						<a class="active" href="javascript:movePage(${i})"><span>${i }</span></a>
 					</c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath }/board_review?pagenum=${i}&search=${search}&select=${select}"><span>${i }</span></a>
+						<a href="javascript:movePage(${i})"><span>${i }</span></a>
 					</c:otherwise>
 				</c:choose>	
 			</c:forEach>
 			<c:if test="${endPage < pageCount}">
-				<a href="${pageContext.request.contextPath }/board_review?pagenum=${endPage+1}&search=${search}&select=${select}">[다음페이지]</a>
+				<a href="javascript:movePage(${endPage+1})">[다음페이지]</a>
 			</c:if>	
         </div>
     </section>

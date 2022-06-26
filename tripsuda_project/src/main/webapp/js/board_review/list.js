@@ -151,3 +151,8 @@ getList = function(){
 	let url = "?"+param.order+"&"+param.tag+"&"+param.option+"&"+param.search;
 	document.location.href= sessionStorage.getItem("context") + "/board_review"+ url;
 }
+movePage = function(pagenum){
+	getParams();
+	let url = "?pagenum="+pagenum+"&"+param.order+"&"+param.tag+"&"+param.option+"&"+param.search;
+	document.location.href= sessionStorage.getItem("context") + "/board_review"+ url;
+}
