@@ -28,7 +28,7 @@
 	</header>
 		<main>
 			<div class="img">
-				<img alt="배경"
+				<img alt="배경" 
 					src="${pageContext.request.contextPath}/images/board_free/2.png">
 			</div>
 			<div class="container">

@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 - 글쓰기</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/wrtieForm.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/header.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/default/footer.css">
@@ -41,10 +40,6 @@
 </header>
 
 <main>
-			<div class="img">
-				<img alt="배경" 
-					src="${pageContext.request.contextPath}/images/board_free/2.png">
-			</div>
 <div class="container">
 	<div class="wrap">
 	<div class="write">
