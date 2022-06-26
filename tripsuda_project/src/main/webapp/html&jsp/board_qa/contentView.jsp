@@ -123,7 +123,7 @@
 					</c:if>
 				</div>
 				<div class="contentinfo">
-					${bvo.regdate} - 조회수 ${views } - 답변수 ${commcnt } <%=UserReportController.getHTML(request,Integer.parseInt(request.getParameter("mnum")) )%>
+					${bvo.regdate} - 조회수 ${views } - 답변수 ${commcnt } 
 				</div>
 				<div class="contentud">
 					<c:choose>
