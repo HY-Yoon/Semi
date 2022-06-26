@@ -29,7 +29,7 @@
             <c:choose>
                 <c:when test="${empty sessionScope.sessionID}">
                     <button class="login" onclick="document.location.href='${pageContext.request.contextPath }/mLogin'">로그인</button>
-                    <button class="join" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/JoinForm.jsp'">회원가입</button>
+                    <button class="join" onclick="document.location.href='${pageContext.request.contextPath }/html&jsp/member/join.jsp'">회원가입</button>
                 </c:when>
                 
                 <c:otherwise>
