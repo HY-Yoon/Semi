@@ -38,8 +38,9 @@ public class QaInsertCommController extends HttpServlet{
 		String commContent=req.getParameter("content");
 		HttpSession session = req.getSession();
 //		MemberVo mvo=(MemberVo)session.getAttribute("userdata");
-		int mnum=(int)session.getAttribute("sessionMnum");
+		int mnum=((Long)session.getAttribute("sessionMnum")).intValue();
 		String nick=(String)session.getAttribute("sessionNick");
+		
 		int cnum=0;
 		int ref=0;
 		int lev=0;

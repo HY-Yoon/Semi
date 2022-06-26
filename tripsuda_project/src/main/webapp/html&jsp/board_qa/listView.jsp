@@ -66,21 +66,25 @@
 								hasht+="<li>"+hashlist[j]+"</li>";
 							}
 							boxhash.innerHTML=hasht;
+							boxhash.className="boxhash"
 							listbox.appendChild(boxhash);
+						let boxbottom=document.createElement("div");	
 						let boxnick=document.createElement("div");
 							boxnick.className="boxnick";
-							boxnick.innerHTML=list[i].nick;
-							listbox.appendChild(boxnick);
+							boxnick.innerHTML="<img src='${pageContext.request.contextPath}/images/board_qa/view.svg' class='nicki'><p>"+list[i].nick+"</p>"
+							boxbottom.appendChild(boxnick);
 						let boxview=document.createElement("div");
 							boxview.className="boxview";
 							boxview.innerHTML="<img src='${pageContext.request.contextPath}/images/common/icon/view.svg'><p>"
 												+list[i].views+"</p>";
-							listbox.appendChild(boxview);
+							boxbottom.appendChild(boxview);
 						let boxcommcnt=document.createElement("div");
 							boxcommcnt.className="boxcommcnt";
 							boxcommcnt.innerHTML="<img src='${pageContext.request.contextPath}/images/common/icon/comm.svg'><p>"
 												+list[i].commcnt+"</p>";
-							listbox.appendChild(boxcommcnt);
+						boxbottom.appendChild(boxcommcnt);
+						boxbottom.className="boxbottom";
+						listbox.appendChild(boxbottom);
 						listbox.onclick = function(){
 						location.href="${pageContext.request.contextPath}/html&jsp/board_qa/content?anum="+anum;}
 						qaList.appendChild(listbox);
@@ -140,8 +144,10 @@
 	</select>
 	<input type="button" value="답변을 기다리는 질문만 보기" onclick="sortsel()">
 </div>
+<div class="listarea">
 <div id="qaList" class="qalist"></div>
 <div id="qaListPage" class="qaListPage"></div>
+</div>
 </div>
 </body>
 </html>
