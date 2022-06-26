@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.MypageDao;
+import vo.FreeBoardVo;
 import vo.reviewboard.ReviewBoardVo;
 
 
@@ -26,7 +27,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 	
 	MypageDao dao= MypageDao.getInstance();
 	
-	int pageCount = (int)Math.ceil(dao.myreviewCount(mnum)/5.0); 
+	int pageCount = (int)Math.ceil(dao.myfreeCount(mnum)/5.0); 
 	
 		
 	int pageNum = 1;
@@ -46,7 +47,7 @@ protected void service(HttpServletRequest req, HttpServletResponse resp) throws 
 		endPage = pageCount;
 	}
 	
-	ArrayList<ReviewBoardVo> list = dao.myreview(mnum,startRow,endRow);
+	ArrayList<FreeBoardVo> list = dao.myfree(mnum,startRow,endRow);
 	req.setAttribute("list",list);
 	req.setAttribute("startPage",startPage);
 	req.setAttribute("endPage",endPage);
