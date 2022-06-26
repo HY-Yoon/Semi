@@ -136,6 +136,7 @@ public class FreeBoardDao {
 				if(rs.next())
 				{
 					board.setAnum(anum);
+					
 					board.setId(rs.getString("id"));
 					board.setNick(rs.getString("nick"));
 					board.setTitle(rs.getString("title"));

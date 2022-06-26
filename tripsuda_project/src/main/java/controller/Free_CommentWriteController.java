@@ -27,12 +27,12 @@ public class Free_CommentWriteController extends HttpServlet {
 		
 		// 파리미터 값을 가져온다.
 
-		String comment_nick = request.getParameter("comment_nick");
-		String comment_content = request.getParameter("comment_content");
-		
+		String nick = request.getParameter("nick");
+		String content = request.getParameter("comments");
+		System.out.println(nick);
 
-		comment.setNick(comment_nick);
-		comment.setContent(comment_content);
+		comment.setNick(nick);
+		comment.setContent(content);
 		
 		boolean result = dao.insertComment(comment);
 		response.setContentType("text/html;charset=utf-8");
