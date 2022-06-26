@@ -21,6 +21,7 @@
         <jsp:include page="./html&jsp/default/default_header.jsp"/>
     </header>
     <main>
+    <
     </main>
     <footer>
         <jsp:include page="./html&jsp/default/default_footer.jsp"/>
