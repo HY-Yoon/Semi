@@ -65,6 +65,7 @@ public class QaListController extends HttpServlet{
 			ob.put("loc", vo.getLtag());
 			ob.put("hash", hdao.select(bvo.getAnum()));
 			ob.put("commcnt", vo.getCcnt());
+			ob.put("sort", sort);
 			jarr.put(ob);
 		}	
 		data.put("list",jarr);
