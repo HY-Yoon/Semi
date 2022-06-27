@@ -11,10 +11,7 @@
 	margin-top: 30px;
 	margin-bottom: 50px;
 }
-.bt_wrap {
-	margin-top: 30px;
-	margin-bottom: 50px;
-}
+
 .comm{
 	margin-top: 30px;
 	margin-bottom: 50px;
@@ -91,7 +88,6 @@
 
 input[type="button"]  {
 	position: relative;
-	display: flex;
 	-webkit-box-align: center;
 	align-items: center;
 	-webkit-box-pack: center;

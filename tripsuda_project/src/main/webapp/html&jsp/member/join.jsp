@@ -10,9 +10,27 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/board_free/joinForm.css">
 <script type="text/javascript">
 
+function checkId(){  
+	   let id = document.getElementById("id").value;
+	   console.log(id);
+	   let xhr=new XMLHttpRequest();
+	   xhr.onreadystatechange=function(){
+		   if(xhr.readyState==4 && xhr.status==200){
+			   let data=xhr.responseText;
+			   let result=JSON.parse(data);
+			   console.log(result);
+			   if(result.exist==true){
+				   error[0].innerHTML="사용중인 아이디입니다."; 
+			   }else{
+				   error[0].innerHTML="사용가능한 아이디입니다."; 
+			   }
+		   }
+	   };
+	   xhr.open('get','CheckIdForm.jsp?id=' + id,true); //
+	   xhr.send();
+}
 
 function checkNick(){
-		  
 	   let nick = document.getElementById("nick").value;
 	   console.log(nick);
 	   let xhr=new XMLHttpRequest();
@@ -48,12 +66,10 @@ function checkNick(){
             <label for="id">아이디</label>
          </h3>
          <span class="box int_id"> 
-         <input type="text" name="id" id="id" class="int" maxlength="10"> 
+         <input type="text" name="id" id="id" class="int" maxlength="10">
          </span>
          <span class="check">
-         <input type="button" id="id_check" value="아이디중복확인" onclick="checkId()"> 
-         <p id="u_id_check"></p>
-         <input type="hidden" name="idDuplication" value="" />
+<input type="button" id="id_check" value="아이디중복확인" onclick="checkId()">
          </span> <span class="error_next_box"></span>
       </div>
 
@@ -63,9 +79,9 @@ function checkNick(){
             <label for="pwd">비밀번호</label>
          </h3>
          <span class="box int_pass"> 
-            <input type="text" name="pwd" id="pwd" class="int" maxlength="20"> 
+            <input type="password" name="pwd" id="pwd" class="int" maxlength="20"> 
          <span id="alertTxt">사용불가</span>
-         <img src="btn.png" id="pwd1_img1" class="pswdImg">
+        
          </span> 
          <span class="error_next_box"></span>
       </div>
@@ -76,10 +92,11 @@ function checkNick(){
             <label for="pwd2">비밀번호 재확인</label>
          </h3>
          <span class="box int_pass_check"> 
-         <input type="text" name="pwd2" id="pwd2" class="int" maxlength="20"> 
-         <img src="btn.png" id="pwd2_img1" class="pswdImg">
+         <input type="password" name="pwd2" id="pwd2" class="int" maxlength="20"> 
+       
          </span> <span class="error_next_box"></span>
       </div>
+      
 
       <!-- NAME -->
       <div>
@@ -101,7 +118,6 @@ function checkNick(){
          </span>
          <span class="check">
          <input type="button" id="nick_check" value="닉네임중복확인" onclick="checkNick()">
-         </span> <p id="u_nick_check"></p>
          <span class="error_next_box"></span>
       </div>
 
