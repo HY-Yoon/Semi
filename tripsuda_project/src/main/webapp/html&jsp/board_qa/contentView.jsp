@@ -129,7 +129,7 @@
 					<c:choose>
 						<c:when test="${sessionScope.sessionMnum eq requestScope.bvo.mnum }">
 							<input type="button" value="수정" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa/updateboard_qa?anum=${bvo.anum}'">
-							<input type="button" values="삭제" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa/deleteboard_qa?anum=${bvo.anum}'">
+							<input type="button" value="삭제" onclick="location.href='${pageContext.request.contextPath}/html&jsp/board_qa/deleteboard_qa?anum=${bvo.anum}'">
 						</c:when>
 						<c:when test="${empty sessionScope}">
 						</c:when>

@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@charset "UTF-8";
 
 .main{
 	width: 85%;
@@ -33,10 +32,6 @@
 	width:30%;
 	display:inline-block;
 }
-.main div{
-	border:1px solid red;
-	
-}
 
 input[type="checkbox"]::after {
   border: solid black;
@@ -53,4 +48,9 @@ input[type="checkbox"]::after {
 
 .contentbottom{
 	color:blue
+}
+.right{
+	
+	width: 25%;
+	float:right;
 }

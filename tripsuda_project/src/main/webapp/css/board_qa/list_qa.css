@@ -2,10 +2,8 @@
 
 .main{
 	width:85%;
-
 	margin:auto;
 	padding: 15px;
-	
 }
 .qa_orderby{
 	margin-top:20px;
@@ -20,7 +18,6 @@
 	align-self: center;
 	margin:5px;
 }
-
 .qa_orderby select{
 	padding:5px;
 	border:none;
@@ -41,6 +38,7 @@
 	width: calc(50% - 20px);
     box-sizing: border-box;
 	overflow:hidden;
+	height:150px;
 }
 .boxtop{
 	align: center;
@@ -66,8 +64,7 @@
 .boxcontent{
 	width:100%;
 	height:50px;
-	overflow:hidden;
-	
+	overflow:hidden;	
 }
 .qalist ul{
 	list-style: none;

@@ -1,14 +1,13 @@
 @charset "UTF-8";
-.main{
-	width:85%;
+#formbody{
 	padding: 10px;
 }
 #loc{
+	width:60%;
 	border:1px solid lightgray;
 	margin: auto;
 	text-align: center;
-	padding: 7px;
-	margin-top: 10px;}
+	}
 #loc label{
 	font-size:15px;}
 #loc input[type=radio]{
@@ -18,7 +17,7 @@
 #loc label:checked {color:#0b81ff;
 	font-weight: bold;}
 #titlearea{
-
+	width:60%;
 	border:2.5px solid #0b81ff;
 	border-radius:10px;
 	margin: auto;
@@ -35,9 +34,11 @@
 		}
 	#titlearea input:focus {outline: none;}
 #textarea{
+	width:60%;
 	height:560px;
 	margin: auto;}
 #tagarea{
+	width:60%;
 	border:1px solid lightgray;
 	margin: auto;
 	text-align: center;}
@@ -45,5 +46,6 @@
 		width:800px;
 		border:1px solid white;}
 #buttonarea{
+	width:60%;
 	border:1px solid lightgray;
 	margin: auto;}
