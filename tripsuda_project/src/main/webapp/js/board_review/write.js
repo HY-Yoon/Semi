@@ -56,7 +56,7 @@ window.addEventListener('load',function()
 
 cancle = function(){
 	let url = sessionStorage.getItem("contextPath")
-		url +="/board_review/list";
+		url +="/board_review";
 	window.location.href = url;
 }
 

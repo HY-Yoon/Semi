@@ -95,7 +95,7 @@ public class ReviewBoardDao {
 	
 	
 	//전체 글 개수 
-	public int getCount(String select, String search) {
+	public int getCount(String option, String search, String tag) {
 		int cnt= -1;
 		Connection con =null;
 		PreparedStatement pstmt= null;
@@ -103,29 +103,36 @@ public class ReviewBoardDao {
 		con = JdbcUtil.getCon();
 		try {
 			String sql=null;
-			if(select !=null && !select.equals("")) {
+			if(option !=null && !option.equals("")) {
 				//통합검색
-				if(select.equals("tot")) {
+				if(option.equals("tot")) {
 					sql = "select NVL(count(*),0) cnt from"
 						+ "(select b.*, t.tag, m.nick from board_review b, taglist_review t, member m where b.anum = t.anum and b.mnum = m.mnum)"
-						+ " where tag like '%"+search+"%' or nick like '%" +search+ "%' "
+						+ " where tag like '%"+tag+"%' and nick like '%" +search+ "%' "
 						+ " or title like '%"+search+"%'";
 					
-				//태그
-				}else if(select.equals("tag")) { 
+				//제목
+				}else if(option.equals("title")) { 
 					sql  = "select NVL(count(b.anum),0) cnt "
 						+ " from board_review b, taglist_review t"
-						+ " where tag like '%"+search+"%' and b.anum = t.anum";
-					
+						+ " where tag like '%"+tag+"%' and title like '%"+search+"%' and b.anum = t.anum";
 				}else {       
 					sql = "select NVL(count(b.anum),0) cnt "
 						+ "from board_review b "
-						+"where "+ select + " like '%" +search +"%'"; 
+						+" where "+ option + " like '%" +search +"%'"; 
 				}
 				
 			}else {
-				//검색이 아닐 때
-				sql = "select NVL(count(anum),0) cnt from board_review";
+				//태그만 검색일때
+				if(tag !=null && !tag.equals("")) {
+					sql = "select NVL(count(b.anum),0) cnt "
+						+ "from board_review b, taglist_review t"
+						+" where tag like '%" +tag +"%'"
+						+ " and b.anum = t.anum"; 
+				}else {
+					//검색이 아닐 때
+					sql = "select NVL(count(anum),0) cnt from board_review";
+				}
 			}
 			
 			pstmt= con.prepareStatement(sql);
@@ -141,7 +148,7 @@ public class ReviewBoardDao {
 	}
 	
 	//리스트
-	public ArrayList<ReviewBoardVo> selectAll(int start, int end, String select, String search)
+	public ArrayList<ReviewBoardVo> selectAll(int start, int end, String option, String search, String tag, String order)
 	{
 		ArrayList<ReviewBoardVo> list = new ArrayList<ReviewBoardVo>();
 		Connection con = null;
@@ -152,43 +159,56 @@ public class ReviewBoardDao {
 		{
 			con=JdbcUtil.getCon();
 			//검색이 있을 때
-			if(select !=null && !select.equals("")) {
+			if(search !=null && !search.equals("")) {
 				System.out.println("있을유");
 				//통합검색
-				if(select.equals("tot")) {
+				if(option.equals("tot")) {
 					sql = "select * from "
-						+ "(select aa.* , rownum rnum from"
-						+ " (select b.*, t.tag from board_review b, taglist_review t, member m "
-						+ "  where b.anum = t.anum and b.mnum = m.mnum order by b.anum desc) aa"
-						+ " where tag like '%"+search+"%' or nick like '%" +search+ "%'"
-						+ " or title like '%"+search+"%')"
+						+ " (select aa.* , rownum rnum from "
+						+ "  (select b.anum, b.mnum, title, content, notice, thum, regdate, views, tag, nick "
+						+ "   from board_review b, taglist_review t, member m "
+						+ "   where b.anum = t.anum and b.mnum = m.mnum order by b."+order+" desc) aa "
+						+ " where tag like '%"+tag+"%' and nick like '%"+search+"%' "
+						+ "or title like '%"+search+"%' or content like '%"+search+"%') "
 						+ "where rnum >=? and rnum <= ?";
 
-				//태그 검색
-				}else if(select.equals("tag")) {
-					sql = "select * from ( "
-						+ " select b.*, rownum rnum "
-						+ " from board_review b, taglist_review t "
-						+ " where b.anum = t.anum and tag like '%"+search+"%' "
-						+ " order by b.anum desc "
-						+" ) where rnum >=? and rnum <=?";
+				//제목 검색
+				}else if(option.equals("title")) {
+					sql = "select * from "
+						+ " (select aa.* , rownum rnum from "
+						+ "		(select b.anum,b.mnum, title, content, notice, thum, regdate, views, tag, nick "
+						+ "		from board_review b, taglist_review t, member m "
+						+ "		where b.anum = t.anum and b.mnum = m.mnum order by b."+order+" desc) aa "
+						+ "  where tag like '%"+tag+"%' and title like '%"+search+"%') "
+						+ "where rnum >=? and rnum <= ?";
 				}else {
 					sql = " select * from ("
 						+ " select b.*, rownum rnum from board_review b "
-						+ " where " +select+ " like '%" +search+ "%' "
-						+ " order by b.anum desc "
+						+ " where " +option+ " like '%" +search+ "%' "
+						+ " order by b."+order+" desc "
 						+" ) where rnum >=? and rnum <= ?";
 				}
 			//검색 없을때
 			}else {
-				sql =  "select * from( "
-					+ "    select aa.* , rownum rnum from( "
-					+ "        select b.anum, b.mnum, title, content, notice, thum, regdate, views, tag, nick from "
-					+ "        board_review b, taglist_review t, member m "
-					+ "        where b.anum = t.anum and b.mnum = m.mnum  "
-					+ "		   order by b.anum desc "
-					+ "     ) aa "
-					+ ") where rnum>=?  and rnum<=?";
+				if(tag !=null && !tag.equals("")) {
+					sql = "select * from( "
+						+ "    select aa.* , rownum rnum from( "
+						+ "        select b.anum, b.mnum, title, content, notice, thum, regdate, views, tag, nick "
+						+ "        from board_review b, taglist_review t, member m "
+						+ "        where tag like '%"+tag+"%' and b.anum = t.anum and b.mnum = m.mnum "
+						+ "        order by b."+order+" desc "
+						+ "    ) aa "
+						+ ") where rnum>=?  and rnum<=?"; 
+				}else {
+					sql =  "select * from( "
+						+ "    select aa.* , rownum rnum from( "
+						+ "        select b.anum, b.mnum, title, content, notice, thum, regdate, views, tag, nick from "
+						+ "        board_review b, taglist_review t, member m "
+						+ "        where b.anum = t.anum and b.mnum = m.mnum  "
+						+ "		   order by b."+order+" desc "
+						+ "     ) aa "
+						+ ") where rnum>=?  and rnum<=?";
+				}
 			}
 			pstmt =con.prepareStatement(sql);
 			pstmt.setInt(1, start);

@@ -35,17 +35,19 @@ public class ReviewListController extends HttpServlet{
 	{	
 		req.setCharacterEncoding("utf-8");
 		ReviewBoardDao dao= ReviewBoardDao.getInstance();
-		//검색	
+		//검색
+		String option = req.getParameter("option"); // sel 값 ex) 통합,제목
 		String search = req.getParameter("search"); // 검색 값
-		String select = req.getParameter("select"); // sel 값 ex) 통합,제목,태그
-		if(search != null) {
-			System.out.println(search.equals(""));
-		}
+		String tag = req.getParameter("tag"); // 지역 선택
 		  
 		//정렬
-		String order = req.getParameter("order");
+		String vorder = req.getParameter("order");
+		String order = "anum";
+		if(vorder != null && !vorder.equals("")) {
+			order = vorder;
+		}
 		
-		System.out.println("select값:"+select+"search값:"+search);
+		System.out.println("option값:"+option+"search값:"+search);
 		
 		String spagenum = req.getParameter("pagenum");
 		int pagenum = 1;
@@ -57,8 +59,8 @@ public class ReviewListController extends HttpServlet{
 		int endRow=startRow+7;
 		
 		//페이징
-		int pageCount = (int)Math.ceil(dao.getCount(select,search)/8.0);
-		System.out.println(dao.getCount(select,search));
+		int pageCount = (int)Math.ceil(dao.getCount(option,search,tag)/8.0);
+		System.out.println(dao.getCount(option,search,tag));
 		
 		int startPageNum=((pagenum-1)/8*8)+1;
 		int endPageNum = startPageNum+7;	
@@ -67,7 +69,7 @@ public class ReviewListController extends HttpServlet{
 			endPageNum = pageCount;
 		}
 		
-		ArrayList<ReviewBoardVo> list = ReviewBoardDao.getInstance().selectAll(startRow,endRow,select,search);	
+		ArrayList<ReviewBoardVo> list = ReviewBoardDao.getInstance().selectAll(startRow,endRow,option,search,tag,order);	
 		ArrayList<ReviewBoardVo> board_list = new ArrayList<ReviewBoardVo>();
 		for(ReviewBoardVo getvo : list) {
 			ReviewBoardVo putvo = new ReviewBoardVo();
@@ -97,7 +99,7 @@ public class ReviewListController extends HttpServlet{
 		req.setAttribute("pageNum", pagenum);
 		
 		//검색정보 attribute에 담기
-		req.setAttribute("select", select);
+		req.setAttribute("option", option);
 		req.setAttribute("search", search);
 		req.getRequestDispatcher("/html&jsp/board_review/listPage.jsp").forward(req, resp);
 	}
