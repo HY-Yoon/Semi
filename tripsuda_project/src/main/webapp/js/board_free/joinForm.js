@@ -52,32 +52,29 @@ function checkId2() {
 
 function checkPwd() {
     var pwPattern = /[a-zA-Z0-9~!@#$%^&*()_+|<>?:{}]{8,16}/;
-    if(pw1.value === "") {
+    if(pwd.value == "") {
         error[1].innerHTML = "필수 정보입니다.";
         error[1].style.display = "block";
-    } else if(!pwPattern.test(pw1.value)) {
+    } else if(!pwPattern.test(pwd.value)) {
         error[1].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
-        pwMsg.innerHTML = "사용불가";
-        pwMsgArea.style.paddingRight = "93px";
+
         error[1].style.display = "block";
         
-        pwMsg.style.display = "block";
-        pwImg1.src = "m_icon_not_use.png";
+
+   
     } else {
         error[1].style.display = "none";
         pwMsg.innerHTML = "안전";
         pwMsg.style.display = "block";
         pwMsg.style.color = "#03c75a";
-        pwImg1.src = "m_icon_safe.png";
+
     }
 }
 
 function comparePwd() {
     if(pwd2.value === pwd.value && pwd2.value != "") {
-        pwImg2.src = "m_icon_check_enable.png";
         error[2].style.display = "none";
     } else if(pwd2.value !== pwd.value) {
-        pwImg2.src = "m_icon_check_disable.png";
         error[2].innerHTML = "비밀번호가 일치하지 않습니다.";
         error[2].style.display = "block";
     } 

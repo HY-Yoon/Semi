@@ -151,10 +151,8 @@
 					<div class="bt_wrap">
 						<c:if test="${sessionScope.sessionID !=null}">
 							<c:if test="${sessionScope.sessionID == board.id}">
-								<input type="button" value="수정"
-									onclick="fnUpdate('${board.anum}')">
-								<input type="button" value="삭제"
-									onclick="fnDelete('${board.anum}')">
+								<input type="button" value="수정" onclick="fnUpdate('${board.anum}')">
+								<input type="button" value="삭제" onclick="fnDelete('${board.anum}')">
 							</c:if>
 						</c:if>
 						<input type="button" value="목록" onclick="changeView()">
