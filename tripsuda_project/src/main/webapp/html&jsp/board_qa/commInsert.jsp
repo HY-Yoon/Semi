@@ -14,7 +14,8 @@
 	<div id="main">
 	<div id="boardArea" class="boardArea">
 		<div id="titleArea" class="titleArea">
-			${bvo.title }
+			<img src="${pageContext.request.contextPath}/images/common/icon/question.svg"/>
+			<p>${bvo.title }</p>
 		</div>
 		<div id="contentArea" class="contentArea">
 			${bvo.content }

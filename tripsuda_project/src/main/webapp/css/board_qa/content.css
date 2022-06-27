@@ -3,6 +3,7 @@
 .main{
 	width: 85%;
     margin: 0px auto;
+    position: relative;
 }
 .left{
     width: 70%;
@@ -13,6 +14,7 @@
 		margin-bottom: 65px;
 	}
 		.title{
+			margin-top:15px;
 			display: flex;
 		    -webkit-box-align: center;
 		    align-items: center;
@@ -24,13 +26,61 @@
 			    border-radius: 18px;
 			    background-color: rgb(248, 248, 248);
 			}
+			.title p{
+				font-size: 36px;
+				margin-left: 10px;
+			}
+		.middletop{
+			border:1px solid lightgray;
+			width:90%;
+			height:25px;
+			font-size: 20px;
+  			line-height : 25px;
+  			padding:10px;
+  			margin-top:10px;
+		}
+		.middlebottom {
+			margin:15px;
+		}
 		.center{
 			border:1px solid gray;
 			font-size:20px;
 		}
+		.commcnt span{
+			color :blue;
+		}
+.hashtag ul{
+	list-style: none;
+	display: inline-block;
+}
+.hashtag li{
+	float: left;
+	margin:7px;
+	background-color: lightgray;
+	border-radius: 3px;
+	padding: 2px;
+	display: inline-block;
+	
+}
 .right{
 	width:30%;
 	display:inline-block;
+	float: right;
+}
+
+.info{
+	align-items: center;
+}
+.info p{
+	font-size:20px;
+	display: inline-block;
+	margin:5px;
+	text-align: center;
+}
+.info img{
+	width:40px;
+	height:40px;
+	border-radius: 50px;
 }
 
 input[type="checkbox"]::after {
@@ -45,12 +95,56 @@ input[type="checkbox"]::after {
   transform: rotate(45deg);
   width: 15%;
 }
-
+.contentud input[type="button"]{
+	width:30%;
+	height:15px;
+	margin:10px;
+	background-color: #0b81ff;
+	border:0px;
+	color:white;
+}
 .contentbottom{
 	color:blue
 }
+.qacomm{
+	width:100%;
+	overflow:hidden;
+}
+.commsel {
+	width:10%;
+	float:left;
+}
+.commsel input[type="button"]{
+	width:20px;
+	height:20px;
+	border:0px;
+	background-color: lightblue;
+	border-radius: 5px;
+}
+.commbox{
+	width:80%;
+	position: relative;
+}
+.comminfo img{
+	width:30px;
+	border-radius: 30px;
+}
+.nickp{
+	font-size:13px;
+	display: inline-block;
+	}
+.commcontent{
+	margin:10px;
+	width:100%;
+}
+.selecarea{
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+}
 .right{
-	
-	width: 25%;
-	float:right;
+	position: absolute;
+	top:0;
+	right:0;
+	margin-top:15px;
 }

@@ -79,30 +79,34 @@
 	display: inline-block;
 	
 }
-.boxnick{
-	display: flex;
-}
 .nicki{
-	width:15px;
+	width:10px;
+}
+.boxbottom{
+	position: relative;
 }
 .boxnick p{
-	display: flex;
+	display:inline-block;
 }
-.boxview{
-	display: flex;	
+.boxbottom p{
+	display: inline-block;	
 }
-.boxview p{
-	display: flex;	
-} 
-.boxbottom{
-	display: flex;
-	
-	}
+
+.boxbottom div{
+	position: relative;
+	float: left;
+	margin:5px;
+}
+.boxbottom img{
+	width:20px;
+	border-radius: 10px;
+}
+
 .boxcommcnt{
 	display: flex;
 }
 .boxcommcnt p{
-	display: flex;
+	display: inline-block;
 }
 .qaListPage{
 	clear:both;

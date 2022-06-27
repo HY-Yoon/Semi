@@ -14,13 +14,13 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import dao.MemberDao;
-import dao.Qa_BoardDao;
 import dao.Qa_CommDao;
-import vo.Qa_BoardVo;
+import vo.MemberVo;
 import vo.Qa_CommVo;
 @WebServlet("/html&jsp/board_qa/commview")
 public class QaCommContentController extends HttpServlet{
 	Qa_CommDao cdao=Qa_CommDao.getInstance();
+	MemberDao mdao=MemberDao.getInstance();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -31,11 +31,12 @@ public class QaCommContentController extends HttpServlet{
 		JSONObject data=new JSONObject();
 		JSONArray jarr=new JSONArray();
 		for(Qa_CommVo cvo:clist) {
+			MemberVo mvo=mdao.select(Long.valueOf(cvo.getMnum()));
 			JSONObject ob=new JSONObject();
 			ob.put("mnum",cvo.getMnum());
 			ob.put("cnum",cvo.getCnum());
 			ob.put("commmnum",cvo.getMnum());
-			ob.put("commnick",cvo.getNick());
+			ob.put("commnick",mvo.getNick());
 			ob.put("commregdate",cvo.getRegdate());
 			ob.put("commcontent",cvo.getContent());
 			ob.put("sel", cvo.getSel());

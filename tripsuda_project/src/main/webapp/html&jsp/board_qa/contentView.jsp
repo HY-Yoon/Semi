@@ -22,39 +22,44 @@
 				let jdata=xhr.responseText; //text-plain 타입으로 얻어오기
 				let data=JSON.parse(jdata);
 				let list=data.clist;
-				//댓글 얻어오기
+				
+				//기존에 댓글에 붙어있던 댓글 삭제하기
+				let divchild=qacomm.childNodes;
+				for(let i=divchild.length-1;i>=0;i--){
+					let k=divchild.item(i);
+					qacomm.removeChild(k);
+				}
+				//새로 게시글에 붙어있는 댓글 얻어오기
 				for(let i=0;i<list.length;i++){
-					let cnum=list[i].cnum;
-					if(qacomm.getElementsByClassName("fircomm").length > list.length - 1) {
-						break;
-					}
+					var cnum=list[i].cnum;
+					//선택박스 영역 추가하기
+					let commsel=document.createElement("div");
+					// 글 작성자와 일치하고 채택 답변이 없는 경우 선택박스 영역에 버튼 추가하기
 					if(sesnum==connum && "${bvo.keyword }"=="답변대기"){
-						let commsel=document.createElement("div");
 							commsel.className="commsel";
 							let commchec=document.createElement("input");
 								commchec.type="button";
 								commchec.className="chec"
 								commchec.addEventListener('click',function(e){
 										let url="${pageContext.request.contextPath}/html&jsp/board_qa/commChecPopup.jsp?cnum="+cnum+"&anum="+${bvo.anum};
-										window.open(url,"","width=450, height=250, top= resizable=no, scrollbars=no");
+										window.open(url,"","width=450, height=250, top= resizable=no, scrollbars=no")
 									});
 							commsel.appendChild(commchec);
-						qacomm.appendChild(commsel);
 					}
-					 	
+					//선택박스 영역 최종 추가
+					qacomm.appendChild(commsel);
+					//댓글 가지고 오기 
 					let fircomm=document.createElement("div");
 						fircomm.className="fircomm";
 						let comminfo=document.createElement("div");
 							comminfo.className="comminfo";
-							let cnick=document.createElement("p");
-								cnick.innerHTML=list[i].commnick;
-								cnick.className="cnick";
-							comminfo.appendChild(cnick);
-							let cdate=document.createElement("p");
-								cdate.innerHTML=list[i].commregdate;
-								cdate.className="cdate";
-							comminfo.appendChild(cdate);
-							comminfo.innerHTML="${bvo.mnum}";
+							let cimg=document.createElement("img");
+								cimg.src="../../images/board_qa/view.svg";
+							comminfo.appendChild(cimg);
+							let cinfo=document.createElement("div");
+								cinfo.innerHTML="<p>"+list[i].commnick+"</p><p>"+list[i].commregdate+"</p>";
+								cinfo.className="nickp";
+							comminfo.appendChild(cinfo);
 						fircomm.appendChild(comminfo);
 						let commcontent=document.createElement("div");
 							commcontent.className="commcontent";
@@ -67,15 +72,16 @@
 								selimg.src="../../images/board_qa/commsel.svg";
 							selecarea.appendChild(selimg);
 						}
+							selecarea.className="selecarea";
 						fircomm.appendChild(selecarea);
+						fircomm.className="commbox";
 					qacomm.appendChild(fircomm);
 				}
 			}
 		}
-		let param="anum="+${bvo.anum};
-		xhr.open('post','${pageContext.request.contextPath}/html&jsp/board_qa/commview?anum='+${bvo.anum},true);
-		xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-		xhr.send(param);
+		xhr.open('get','${pageContext.request.contextPath}/html&jsp/board_qa/commview?anum='+${bvo.anum},true);
+		xhr.send();
+		
 	}
 	function goPopup(){
 		window.open("${pageContext.request.contextPath}/html&jsp/board_qa/loginPopup.jsp","loginChec","width=450, height=250, top= resizable=no, scrollbars=no");
@@ -88,21 +94,21 @@
 		<div class="content">
 			<div class="title">
 				<img src="${pageContext.request.contextPath}/images/common/icon/question.svg"/>
-				${bvo.title }
+				<p>${bvo.title }</p>
 			</div>
 			<div class="middletop">
 				상태 
 					<c:choose>
-						<c:when test="${bvo.keyword }=='답변대기'">
+						<c:when test="${bvo.keyword }=='채택완료'">
+								<span style="color:blue">
+									${bvo.keyword }
+								</span>
+						</c:when>
+						<c:otherwise>
 							<span style="color:gray">
 								${bvo.keyword }
 							</span>
-						</c:when>
-						<c:when test="${bvo.keyword }=='채택완료'">
-							<span style="color:blue">
-								${bvo.keyword }
-							</span>
-						</c:when>
+						</c:otherwise>
 					</c:choose>
 				지역 
 					<span class="contentlocal">
@@ -139,16 +145,16 @@
 		</div>
 		<div class="comment">
 			<div class="commcnt">
-				${commcnt }개의 답변
+				<span>${commcnt }</span>개의 답변
 			</div>
 			<div id="qacomm" name="qacomm" class="qacomm"></div>
 		</div>
 	</div>
 	<div class="right">
 		<div class="amemberinfo">
-			<div id="info">
-				${bvo.nick } 
-				연령대, 관심지역, 등급
+			<div class="info">
+				<img src="${pageContext.request.contextPath}/images/board_qa/view.svg">
+				<p>${bvo.nick }</p>
 			</div>
 		</div>
 		<div class="status">
