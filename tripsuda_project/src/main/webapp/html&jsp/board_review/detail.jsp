@@ -68,7 +68,7 @@
                 <p id="view">조회수 <%=vo.getViews() %></p>
                 <p id="reco">추천수 <%=ReviewRecoDao.getInstance().getRecoCount(anum) %></p>
                
-               	<c:if test="${userdata.getId() == editor.getId()}">
+               	<c:if test="${userdata.getId() == editor.getId() || userdata.getGrade() == '관리자'}">
                		<button onclick="edit()">수정</button>
                		<button onclick="del()">삭제</button>
                	</c:if>

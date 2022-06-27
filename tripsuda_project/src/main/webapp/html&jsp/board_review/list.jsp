@@ -30,7 +30,7 @@
             <p>정렬</p>
             <div>
                 <select id="order" onchange="getList()">
-                    <option value="regdate">최신순</option>
+                    <option value="anum">최신순</option>
                     <option value="views">조회순</option>
                 </select>
             </div>

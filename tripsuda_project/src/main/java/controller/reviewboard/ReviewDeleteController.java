@@ -43,7 +43,7 @@ public class ReviewDeleteController extends HttpServlet{
 			System.out.println("게시글 삭제실패.....");
 		}
 		
-		req.getRequestDispatcher("/board_review/list").forward(req, resp);
+		req.getRequestDispatcher("/board_review").forward(req, resp);
 	
 	}
 }

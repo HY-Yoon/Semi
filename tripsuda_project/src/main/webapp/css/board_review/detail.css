@@ -175,7 +175,10 @@
 .comm-wrap{
     margin-top: 65px;
 }
-
+.report_link{
+	margin-left: 8px;
+	font-size: 14px;
+}
 /*공지사항*/
 .content-wrap{
 	position:relative;

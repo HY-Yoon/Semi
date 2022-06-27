@@ -10,10 +10,16 @@ window.onload = function(){
 	//현재 날씨 가져오기
 	weather();
 }
+//목록 돌아가기
+document.getElementsByClassName("list-btn")[0].onclick = function(){
+	window.location.href = "/tripsuda_project/recomain";
+} 
+
+
 //SNS공유버튼
 const pageTitle= document.getElementById("page_title").innerText;
 const sendText = pageTitle + " 관광지추천보러가기"; //전달할 텍스트
-const sendURL = document.URL; //전달할 URL(현재 페이지)
+const sendURL = window.location.href ; //전달할 URL(현재 페이지)
 
 document.getElementById("twitter").addEventListener('click',function shareTwitter(){
     window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendURL);
